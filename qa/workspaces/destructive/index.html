@@ -1,0 +1,701 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4f46e5">
+  <meta name="description" content="MechLex – מערכת ידע הנדסית אינטראקטיבית למהנדסים ואנשי ייצור ובקרה.">
+  <link rel="icon" href="images/mechlex-icon.svg" type="image/svg+xml">
+  <title>MechLex 10.1.0 · מילון הנדסי עם עריכה חזותית</title>
+  <script>
+    (function () {
+      var supportsColorMix = !!(window.CSS && CSS.supports && CSS.supports("color", "color-mix(in srgb, #000 50%, #fff)"));
+      if (!supportsColorMix) document.documentElement.className += " legacy-edge95";
+    }());
+  </script>
+  <link rel="stylesheet" href="style.css?v=10.1.0-visual-admin">
+  <script src="data/mechlex-data.js?v=10.1.0-visual-admin"></script>
+</head>
+<body>
+  <button id="skipToContentBtn" class="skip-link" type="button">דלג לתוכן</button>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="ניווט ראשי">
+      <div class="sidebar-inner">
+          <div class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><path d="M10 10h28v28H10z"/><path d="M16 16h16v16H16z"/><path d="M24 4v8M24 36v8M4 24h8M36 24h8"/></svg>
+          </div>
+          <div>
+            <strong id="brandName">MECHLEX</strong>
+            <span id="brandSubtitle">Engineering Knowledge System</span>
+          </div>
+        </div>
+
+        <nav class="primary-nav" aria-label="ניווט ראשי">
+          <button class="nav-item active" data-collection="all">
+            <span class="nav-icon" aria-hidden="true" style="display:flex;align-items:center;justify-content:center;">
+              <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </span>
+            <span>כל המושגים</span><b id="navAllCount">0</b>
+          </button>
+          <button class="nav-item" data-collection="favorites">
+            <span class="nav-icon" aria-hidden="true">☆</span>
+            <span>מועדפים</span><b id="navFavCount">0</b>
+          </button>
+          <button class="nav-item" data-collection="learning">
+            <span class="nav-icon" aria-hidden="true">◔</span>
+            <span>בתהליך למידה</span><b id="navLearningCount">0</b>
+          </button>
+          <button class="nav-item" data-collection="mastered">
+            <span class="nav-icon" aria-hidden="true">✓</span>
+            <span>נלמדו</span><b id="navMasteredCount">0</b>
+          </button>
+          <button class="nav-item" data-collection="recent">
+            <span class="nav-icon" aria-hidden="true">↺</span>
+            <span>נצפו לאחרונה</span><b id="navRecentCount">0</b>
+          </button>
+        </nav>
+
+        <div class="sidebar-section">
+          <div class="sidebar-heading">
+            <span>תחומי ידע</span>
+            <button id="clearDomainFilter" class="icon-btn compact" title="נקה סינון תחום" aria-label="נקה סינון תחום">×</button>
+          </div>
+          <div id="domainNav" class="domain-nav"></div>
+        </div>
+
+        <div class="sidebar-foot">
+          <button id="adminBtn" class="btn ghost full-width">מרכז ניהול</button>
+          <span id="saveState" class="save-state" role="status">הנתונים נשמרים אוטומטית במחשב זה</span>
+          <span class="app-version">MechLex 10.1.0 · Visual Admin Offline</span>
+        </div>
+      </div>
+    </aside>
+
+    <div class="page">
+      <header class="topbar">
+        <button id="menuBtn" class="icon-btn menu-btn" aria-label="פתח תפריט" aria-expanded="false">☰</button>
+        <label class="global-search" for="searchInput">
+          <span aria-hidden="true">⌕</span>
+          <input id="searchInput" type="search" autocomplete="off" placeholder="חיפוש מושג, קוד, סימון, תקן או מילת מפתח…">
+          <kbd>/</kbd>
+        </label>
+        <div class="top-actions">
+          <button id="saveProgressBtn" class="btn primary compact-action" title="הורד קובץ התקדמות אישי לתיקיית ההורדות">שמירת מצב אישי</button>
+          <button id="loadProgressBtn" class="btn ghost compact-action" title="טען קובץ התקדמות אישי">טעינת מצב אישי</button>
+          <input id="importProgressFile" type="file" accept="application/json,text/plain,.json,.txt" hidden>
+          <button id="randomBtn" class="btn random-discovery-btn" title="התחל מסלול מושגים אקראי"><span aria-hidden="true">✦</span><span>הפתיעו אותי</span></button>
+          <button id="themeBtn" class="icon-btn" aria-label="החלף מצב תצוגה" title="מצב תצוגה">◐</button>
+        </div>
+      </header>
+
+      <main id="mainContent" class="main-content" tabindex="-1">
+        <section class="hero" aria-labelledby="pageTitle">
+          <div>
+            <p id="heroEyebrow" class="eyebrow">ENGINEERING REFERENCE · LEARNING · PRACTICE</p>
+            <h1 id="pageTitle">מילון הנדסי מקצועי</h1>
+            <p id="heroDescription">גישה מהירה להגדרות, סימונים, נוסחאות, תקנים, דוגמאות יישומיות ושיקולי ייצור ובחינה.</p>
+          </div>
+          <div class="hero-progress" aria-label="התקדמות למידה">
+            <div class="progress-ring" id="progressRing"><span id="progressPercent">0%</span></div>
+            <div><strong>התקדמות אישית</strong><span id="progressText">טרם סומנו מושגים כנלמדו</span></div>
+          </div>
+        </section>
+
+        <section class="metrics" aria-label="נתוני המילון">
+          <article><span id="metricTermsLabel">מושגים זמינים</span><strong id="termCount">0</strong><small id="metricTermsNote">במאגר הפעיל</small></article>
+          <article><span id="metricDomainsLabel">תחומי ידע</span><strong id="domainCount">0</strong><small id="metricDomainsNote">מסודרים לפי דיסציפלינה</small></article>
+          <article><span id="metricFavoritesLabel">מועדפים</span><strong id="favCount">0</strong><small id="metricFavoritesNote">לגישה מהירה</small></article>
+          <article><span id="metricMasteredLabel">נלמדו</span><strong id="masteredCount">0</strong><small id="metricMasteredNote">בהתקדמות האישית</small></article>
+        </section>
+
+        <section id="taxonomyExplorer" class="taxonomy-explorer" aria-label="ניווט לפי תחום, תת־תחום ותת־תת־תחום">
+          <div class="taxonomy-header-bar">
+            <button id="toggleTaxonomyBtn" type="button" class="taxonomy-summary" title="כווץ/הרחב מפת תחומים">
+              <span class="section-kicker">KNOWLEDGE MAP</span>
+              <span><strong id="taxonomyTitle">מפת תחומים היררכית</strong><small id="taxonomyPath">תחום ← תת־תחום ← תת־תת־תחום ← מושגים</small></span>
+              <span id="taxonomyArrow" class="taxonomy-toggle" aria-hidden="true">▲</span>
+            </button>
+
+            <section id="controlPanel" class="control-panel taxonomy-integrated-controls" aria-label="סינון ומיון">
+              <div class="filters">
+                <label><span>מיקום בהיררכיה</span><select id="subtopicFilter"><option value="all">כל התחומים והרמות</option></select></label>
+                <label><span>מיון</span><select id="sortSelect"><option value="relevance">רלוונטיות</option><option value="name">שם המושג</option><option value="code">קוד קטלוגי</option><option value="updated">עודכן לאחרונה</option></select></label>
+                <div class="view-switch" aria-label="צורת תצוגה">
+                  <button id="gridViewBtn" class="icon-btn active" title="תצוגת כרטיסים" aria-label="תצוגת כרטיסים">▦</button>
+                  <button id="listViewBtn" class="icon-btn" title="תצוגת רשימה" aria-label="תצוגת רשימה">☷</button>
+                  <button id="mindMapViewBtn" class="btn ghost view-mindmap-btn" title="מפת חשיבה ויזואלית (Mind Map)" aria-label="מפת חשיבה (Mind Map)"><span aria-hidden="true">🕸️</span><span>מפת חשיבה</span></button>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div id="taxonomyContent" class="taxonomy-content">
+            <div id="domainTabs" class="taxonomy-tree" aria-label="עץ תחומי ידע"></div>
+          </div>
+        </section>
+
+        <section id="domainSelectionState" class="domain-selection-state">
+          <span class="domain-selection-icon" aria-hidden="true">⌁</span>
+          <div><strong id="introTitle">המילון נפתח לפי תחומי ידע</strong><p id="introDescription">בחרו אחד מכרטיסי התחומים למעלה כדי לחשוף את המבנה שלו ואת המושגים שבתוכו. אפשר גם לחפש מושג ישירות בשורת החיפוש.</p></div>
+        </section>
+
+
+
+        <section id="resultsHead" class="results-head">
+          <div class="results-head-titles">
+            <div id="activeContext" class="active-context">
+              <span>מציג:</span><strong id="contextLabel">כל המושגים</strong>
+              <button id="resetFiltersBtn" class="text-btn hidden">איפוס מסננים</button>
+            </div>
+            <div><h2 id="resultsTitle">כל המושגים</h2><p id="resultsMeta">0 מונחים</p></div>
+          </div>
+          <div id="activeChips" class="active-chips" aria-live="polite"></div>
+        </section>
+
+        <div id="dictionary" class="dictionary-grid" aria-live="polite"></div>
+
+        <section id="mindMapContainer" class="mind-map-section hidden" aria-label="מפת חשיבה אינטראקטיבית">
+          <div class="mind-map-toolbar">
+            <div class="mind-map-info">
+              <strong>🕸️ מפת חשיבה ויזואלית (Mind Map)</strong>
+              <small>לחצו על מושג בקצה להצגת ההגדרה והתמונה, או על תחום/תת-תחום לכווץ/להרחיב ענפים (<span aria-hidden="true">◄ / ►</span>)</small>
+            </div>
+            <div class="mind-map-controls">
+              <button id="mindMapFitScreen" type="button" class="btn primary" title="התאם למסך 100%">🔍 התאם למסך 100%</button>
+              <button id="mindMapZoomIn" type="button" class="btn ghost icon-only" title="הגדל תצוגה">+</button>
+              <button id="mindMapZoomOut" type="button" class="btn ghost icon-only" title="הקטן תצוגה">-</button>
+              <button id="mindMapResetZoom" type="button" class="btn ghost" title="איפוס זום">100%</button>
+              <button id="mindMapExpandAll" type="button" class="btn ghost">הרחב הכל</button>
+              <button id="mindMapCollapseAll" type="button" class="btn ghost">כווץ הכל</button>
+            </div>
+          </div>
+          <div id="mindMapViewport" class="mind-map-viewport">
+            <div id="mindMapCanvasWrapper" class="mind-map-canvas-wrapper">
+              <svg id="mindMapSvg" class="mind-map-svg"></svg>
+              <div id="mindMapNodes" class="mind-map-nodes"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="emptyState" class="empty-state hidden">
+          <div class="empty-icon">⌕</div>
+          <h2>לא נמצאו מושגים מתאימים</h2>
+          <p>נסה מונח אחר, קוד קטלוגי, שם באנגלית או איפוס של אחד המסננים.</p>
+          <button id="emptyResetBtn" class="btn primary">איפוס חיפוש ומסננים</button>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div id="termOverlay" class="overlay hidden" role="dialog" aria-hidden="true" aria-modal="true" aria-labelledby="termTitle" tabindex="-1">
+    <article id="termModal" class="term-modal">
+      <header class="term-header">
+        <div class="term-heading">
+          <div class="term-path"><span id="termDomain"></span><span aria-hidden="true">/</span><span id="termSubtopic"></span><span id="termSubSubtopicSeparator" class="hidden" aria-hidden="true">/</span><span id="termSubSubtopic" class="hidden"></span></div>
+          <div class="term-code-row"><code id="termCode"></code></div>
+          <h2 id="termTitle"></h2>
+          <p id="termTitleEn" dir="ltr"></p>
+        </div>
+        <div class="term-window-actions">
+          <button id="expandTermBtn" class="icon-btn expand-btn" type="button" aria-label="הגדל למסך מלא" title="הגדל למסך מלא">⛶</button>
+          <button id="closeTermBtn" class="icon-btn close-btn" aria-label="סגור">×</button>
+        </div>
+      </header>
+
+      <div class="term-toolbar">
+        <button id="randomNextBtn" class="btn random-next-btn hidden" type="button" title="פתח מושג אקראי נוסף ללא חזרה">
+          <span class="random-next-spark" aria-hidden="true">✦</span>
+          <span class="random-next-copy"><strong>למושג הבא</strong><small id="randomSessionProgress" aria-live="polite"></small></span>
+          <span class="random-next-arrow" aria-hidden="true">←</span>
+        </button>
+        <button id="termFavBtn" class="btn ghost"><span aria-hidden="true">☆</span><span>הוסף למועדפים</span></button>
+        <div class="learning-control">
+          <span>מצב למידה:</span>
+          <button class="status-btn" data-status="none">טרם התחלתי</button>
+          <button class="status-btn" data-status="learning">בתהליך</button>
+          <button class="status-btn" data-status="mastered">נלמד</button>
+        </div>
+        <div class="export-actions">
+          <button id="downloadPngBtn" class="btn ghost">הורדת PNG</button>
+          <button id="downloadJpegBtn" class="btn ghost">הורדת JPEG</button>
+          <button id="printTermBtn" class="btn ghost">הדפס / PDF</button>
+        </div>
+      </div>
+
+
+      <div class="term-body">
+        <section id="tab-overview" class="term-page active">
+          <div class="core-layout">
+            <article class="content-card definition-card core-definition">
+              <span class="section-kicker">DEFINITION</span>
+              <h3>הגדרה מקצועית</h3>
+              <div id="termDefinition" class="rich-definition"></div>
+            </article>
+
+            <figure class="core-visual">
+              <div class="visual-stage">
+                <img id="termImage" class="hidden" alt="">
+                <div id="visualFallback" class="visual-fallback"></div>
+              </div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="tab-details" class="term-page details-page">
+          <nav id="detailTabs" class="detail-tabs" aria-label="נושאי מידע נוסף"></nav>
+          <div class="detail-panels">
+            <section class="detail-panel" data-detail-panel="context">
+              <article class="content-card detail-card">
+                <span class="section-kicker">CONTEXT</span>
+                <h3>הקשר וחשיבות</h3>
+                <p id="termWhy"></p>
+                <div class="quick-facts detail-facts">
+                  <article><span>סימון</span><strong id="termSymbol" dir="ltr">—</strong></article>
+                  <article><span>יחידות</span><strong id="termUnits" dir="ltr">—</strong></article>
+                  <article><span>תת־נושא</span><strong id="termFactSubtopic">—</strong></article>
+                  <article><span>עודכן</span><strong id="termUpdated">—</strong></article>
+                </div>
+              </article>
+            </section>
+
+            <section class="detail-panel" data-detail-panel="taxonomy">
+              <article class="content-card detail-card">
+                <span class="section-kicker">TERMS &amp; TAGS</span>
+                <h3>שמות חלופיים ותגיות</h3>
+                <div id="aliasCard" class="detail-inline-group hidden"><h4>שמות נוספים</h4><div id="termAliases" class="chips"></div></div>
+                <div id="tagsCard" class="detail-inline-group"><h4>תגיות מקצועיות</h4><div id="termTags" class="chips"></div></div>
+              </article>
+            </section>
+
+            <section class="detail-panel" data-detail-panel="media">
+              <article id="imageInfoCard" class="content-card detail-card">
+                <span class="section-kicker">IMAGE NOTE</span>
+                <h3 id="visualTitle">מידע על התמונה</h3>
+                <p id="visualDescription"></p>
+              </article>
+            </section>
+
+            <section class="detail-panel" data-detail-panel="related">
+              <article class="content-card detail-card">
+                <span class="section-kicker">RELATED</span>
+                <h3>מושגים קשורים</h3>
+                <div id="termRelated" class="related-list"></div>
+              </article>
+            </section>
+
+            <section class="detail-panel" data-detail-panel="equation">
+              <article class="content-card formula-card detail-card">
+                <span class="section-kicker">EQUATION</span>
+                <h3>נוסחה וייצוג מתמטי</h3>
+                <div class="equation-layout">
+                  <div class="equation-summary">
+                    <div id="termFormula" class="formula" dir="ltr">—</div>
+                    <p id="formulaNote"></p>
+                  </div>
+                  <div id="variablesCard" class="variables-section">
+                    <h4>משתנים והגדרות</h4>
+                    <div class="table-wrap"><table><thead><tr><th>סימון</th><th>משמעות</th><th>יחידות</th></tr></thead><tbody id="variablesBody"></tbody></table></div>
+                  </div>
+                </div>
+              </article>
+            </section>
+
+            <section class="detail-panel" data-detail-panel="standards">
+              <article class="content-card detail-card">
+                <span class="section-kicker">STANDARDS</span>
+                <h3>תקנים ומקורות מקצועיים</h3>
+                <div id="termStandards" class="standards-list"></div>
+              </article>
+            </section>
+
+            <section class="detail-panel" data-detail-panel="uses">
+              <article class="content-card detail-card">
+                <span class="section-kicker">APPLICATIONS</span>
+                <h3>שימושים אופייניים</h3>
+                <ul id="termUses"></ul>
+              </article>
+            </section>
+
+            <section class="detail-panel" data-detail-panel="manufacturing">
+              <article class="content-card detail-card">
+                <span class="section-kicker">MANUFACTURING</span>
+                <h3>שיקולי ייצור</h3>
+                <p id="termManufacturing"></p>
+              </article>
+            </section>
+
+            <section class="detail-panel" data-detail-panel="inspection">
+              <article class="content-card detail-card">
+                <span class="section-kicker">INSPECTION</span>
+                <h3>שיטות בחינה ומדידה</h3>
+                <p id="termInspection"></p>
+              </article>
+            </section>
+
+            <section class="detail-panel" data-detail-panel="example">
+              <article id="exampleCard" class="content-card detail-card">
+                <span class="section-kicker">WORKED EXAMPLE</span>
+                <h3 id="exampleTitle">דוגמה מחושבת</h3>
+                <div class="example-grid"><div><h4>נתון</h4><p id="exampleGiven"></p></div><div><h4>פתרון</h4><p id="exampleSolution" dir="auto"></p></div><div class="example-result"><h4>תוצאה</h4><strong id="exampleResult" dir="auto"></strong></div></div>
+              </article>
+            </section>
+
+            <section class="detail-panel" data-detail-panel="notes">
+              <article id="cautionCard" class="content-card caution-card detail-card">
+                <span class="section-kicker">ENGINEERING NOTE</span>
+                <h3>דגשים וטעויות נפוצות</h3>
+                <ul id="termCautions"></ul>
+              </article>
+            </section>
+          </div>
+        </section>
+      </div>
+    </article>
+  </div>
+
+  <div id="domainDetailOverlay" class="overlay hidden" role="dialog" aria-hidden="true" aria-modal="true" aria-labelledby="domainDetailTitle" tabindex="-1">
+    <article id="domainDetailModal" class="term-modal">
+      <header class="term-header">
+        <div class="term-heading">
+          <div class="term-path"><span id="domainDetailCategory">תחום ידע הנדסי</span></div>
+          <div class="term-code-row"><code id="domainDetailCode">DOMAIN</code></div>
+          <h2 id="domainDetailTitle"></h2>
+          <p id="domainDetailTitleEn" dir="ltr"></p>
+        </div>
+        <div class="term-window-actions">
+          <button id="expandDomainDetailBtn" class="icon-btn expand-btn" type="button" aria-label="הגדל למסך מלא" title="הגדל למסך מלא">⛶</button>
+          <button id="closeDomainDetailBtn" class="icon-btn close-btn" aria-label="סגור">×</button>
+        </div>
+      </header>
+
+      <div class="term-toolbar">
+        <button id="domainFavBtn" class="btn ghost"><span aria-hidden="true">☆</span><span>הוסף למועדפים</span></button>
+        <div class="learning-control">
+          <span>מצב למידה:</span>
+          <button class="status-btn" data-status="none">טרם התחלתי</button>
+          <button class="status-btn" data-status="learning">בתהליך</button>
+          <button class="status-btn" data-status="mastered">נלמד</button>
+        </div>
+        <div class="export-actions">
+          <button id="downloadDomainPngBtn" class="btn ghost">הורדת PNG</button>
+          <button id="downloadDomainJpegBtn" class="btn ghost">הורדת JPEG</button>
+          <button id="printDomainDetailBtn" class="btn ghost">הדפס / PDF</button>
+        </div>
+      </div>
+
+      <div class="term-body">
+        <section class="term-page active">
+          <div class="core-layout">
+            <article class="content-card definition-card core-definition">
+              <span class="section-kicker">DOMAIN DEFINITION</span>
+              <h3>הגדרה מקצועית</h3>
+              <div id="domainDetailDescription" class="rich-definition"></div>
+              
+
+            </article>
+
+            <figure class="core-visual">
+              <div class="visual-stage">
+                <img id="domainDetailImage" class="hidden" alt="">
+                <div id="domainVisualFallback" class="visual-fallback"></div>
+              </div>
+            </figure>
+          </div>
+        </section>
+      </div>
+    </article>
+  </div>
+
+  <div id="adminOverlay" class="overlay hidden" role="dialog" aria-hidden="true" aria-modal="true" aria-labelledby="adminTitle" tabindex="-1">
+    <article class="admin-modal">
+      <header class="admin-header">
+        <div><p class="eyebrow">ADMIN CONTROL CENTER</p><h2 id="adminTitle">ניהול מערכת הידע</h2><p>תוכן, מבנה, מדיה, עיצוב וגיבויים.</p></div>
+        <div class="admin-header-actions">
+          <button id="startVisualEditorBtn" type="button" class="btn visual-edit-launch hidden">✎ עריכה חזותית בדף</button>
+          <button id="headerExportDataBtn" type="button" class="btn primary compact-btn" title="הורד גיבוי בהתאם לדרגת ההרשאה">⬇ הורד גיבוי</button>
+          <div class="admin-role-status">
+            <span id="adminRoleBadge" class="admin-role-badge">הרשאה פעילה: <strong id="adminRoleName">אדמין ראשי</strong></span>
+            <span id="adminDraftStatus" class="admin-draft-status" role="status">כל השינויים נשמרו</span>
+            <button id="switchRoleBtn" type="button" class="btn ghost compact-btn" title="החלף סוג הרשאה">🔄 החלף דרגה</button>
+          </div>
+          <button id="closeAdminBtn" class="icon-btn close-btn" aria-label="סגור">×</button>
+        </div>
+      </header>
+      <nav class="admin-tabs" role="tablist" aria-label="לשוניות מרכז הניהול">
+        <button class="active" data-admin-tab="terms" role="tab" aria-selected="true" aria-controls="admin-terms">מושגים</button>
+        <button data-admin-tab="domains" role="tab" aria-selected="false" aria-controls="admin-domains">תחומים</button>
+        <button data-admin-tab="appearance" role="tab" aria-selected="false" aria-controls="admin-appearance">תצוגה</button>
+        <button data-admin-tab="data" role="tab" aria-selected="false" aria-controls="admin-data">גיבוי ותחזוקה</button>
+      </nav>
+
+      <div class="admin-body">
+        <section id="admin-terms" class="admin-page active">
+          <div class="admin-layout">
+            <form id="termForm" class="editor-panel">
+              <div class="panel-heading"><div><h3 id="termFormTitle">הוספת מושג</h3><p>שם בעברית, מיקום, הגדרה ותמונה — זה כל מה שנדרש. הקוד נוצר אוטומטית.</p></div><div style="display: flex; gap: 8px; align-items: flex-start;"><button type="submit" class="btn primary">שמור מושג</button><button id="clearTermBtn" type="button" class="btn ghost">מושג חדש</button></div></div>
+              <input id="editTermId" type="hidden">
+
+              <section class="editor-section basic-editor-section">
+                <div class="editor-section-heading"><h4>זהות ומיקום</h4><span>בחרו שם בעברית ואת המקום המדויק במילון</span></div>
+                <div class="form-grid basic-identity-grid">
+                  <label class="span-2 term-name-field">שם המושג בעברית<input id="editName" required placeholder="לדוגמה: טולרנס מיקום"></label>
+                  <label class="span-2">שם המושג באנגלית<input id="editNameEn" placeholder="לדוגמה: Position Tolerance" dir="ltr"></label>
+                  <label>קוד קטלוגי (אופציונלי)<input id="editCode" placeholder="נוצר אוטומטית אם ריק" dir="ltr"></label>
+                  <label>תחום<select id="editDomain" required></select></label>
+                  <label>מיקום המושג<select id="editSubtopic" required><option value="direct">ישירות בתחום (ללא תת־תחום)</option></select><small>אפשר לשייך מושג ישירות לתחום, לתת־תחום או לתת־תת־תחום.</small></label>
+                  <div class="span-2 rich-editor-field">
+                    <div class="label-row"><label for="editDefinition">הגדרה מקצועית מעוצבת</label><small>אפשר לשלב כותרות, הדגשה, רשימות, קווים וקישורים.</small></div>
+                    <div class="rich-editor-toolbar" role="toolbar" aria-label="כלי עיצוב לטקסט">
+                      <button type="button" data-rich-command="bold" title="הדגשה"><b>B</b></button>
+                      <button type="button" data-rich-command="italic" title="כתב נטוי"><i>I</i></button>
+                      <button type="button" data-rich-command="underline" title="קו תחתון"><u>U</u></button>
+                      <button type="button" data-rich-command="formatBlock" data-rich-value="h3" title="כותרת">כותרת</button>
+                      <button type="button" data-rich-command="insertUnorderedList" title="רשימת תבליטים">• רשימה</button>
+                      <button type="button" data-rich-command="insertOrderedList" title="רשימה ממוספרת">1. רשימה</button>
+                      <button type="button" data-rich-command="formatBlock" data-rich-value="blockquote" title="הדגשה מקצועית">ציטוט</button>
+                      <button type="button" data-rich-command="removeFormat" title="ניקוי עיצוב">נקה עיצוב</button>
+                    </div>
+                    <div id="editDefinition" class="rich-editor" contenteditable="true" role="textbox" aria-multiline="true" data-placeholder="הכניסו הגדרה מקצועית, ברורה ומזמינה…"></div>
+                    <input id="editDefinitionHtml" type="hidden" required>
+                  </div>
+                  <label class="span-2">שם קובץ בתיקיית images<input id="editImageName" placeholder="לדוגמה: דאטום.jpg"><small>אפשר להכניס לתיקיית images תמונה בשם המושג, או לציין כאן שם קובץ מדויק. נתמכים PNG, JPG, JPEG, WebP ו־SVG.</small></label>
+                  <label class="span-2 file-field">חלופה: הטמעת תמונה בתוך הגיבוי — עד 300KB<input id="editImageFile" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml"><small>תמונה מוטמעת מקבלת עדיפות על תיקיית images ונכללת בשני סוגי הגיבוי. אפשר להשאיר ריק ולעבוד רק עם תיקיית התמונות.</small><span id="embeddedImageState">לא הוטמעה תמונה</span><button id="removeEmbeddedImageBtn" type="button" class="text-btn">הסר תמונה מוטמעת</button></label>
+                </div>
+              </section>
+
+              <details class="editor-disclosure">
+                <summary>מידע נוסף — סיווג, הקשר ומושגים קשורים</summary>
+                <div class="form-grid disclosure-content">
+                  <label>סימון<input id="editSymbol" dir="ltr"></label>
+                  <label>יחידות<input id="editUnits" dir="ltr"></label>
+                  <label class="span-2">תקציר לכרטיס<input id="editShort" maxlength="180" placeholder="אם יישאר ריק, יילקח מתחילת ההגדרה"></label>
+                  <label class="span-2">למה זה חשוב<textarea id="editWhy"></textarea></label>
+                  <label class="span-2">מושגים קשורים — קודים או שמות, מופרדים בפסיק<input id="editRelated"></label>
+                  <label class="span-2">שמות חלופיים — מופרדים בפסיק<input id="editAliases"></label>
+                  <label>תגיות — מופרדות בפסיק<input id="editTags"></label>
+                  <label>תקנים — מופרדים בפסיק<input id="editStandards"></label>
+                </div>
+              </details>
+
+              <details class="editor-disclosure">
+                <summary>מידע נוסף — נוסחה ודוגמה</summary>
+                <div class="form-grid disclosure-content">
+                  <label class="span-2">נוסחה / ייצוג מתמטי<input id="editFormula" dir="ltr"></label>
+                  <label class="span-2">הערה לנוסחה<input id="editFormulaNote"></label>
+                  <label class="span-2">משתנים — שורה לכל משתנה: סימון | משמעות | יחידה<textarea id="editVariables" dir="auto" placeholder="Q | ספיקה נפחית | m³/s"></textarea></label>
+                  <fieldset class="span-2"><legend>דוגמה מחושבת</legend><div class="form-grid nested"><label class="span-2">כותרת<input id="editExampleTitle"></label><label>נתון<textarea id="editExampleGiven"></textarea></label><label>פתרון<textarea id="editExampleSolution" dir="auto"></textarea></label><label class="span-2">תוצאה<input id="editExampleResult" dir="auto"></label></div></fieldset>
+                </div>
+              </details>
+
+              <details class="editor-disclosure">
+                <summary>מידע נוסף — יישום, ייצור ובחינה</summary>
+                <div class="form-grid disclosure-content">
+                  <label class="span-2">שימושים — פריט בכל שורה<textarea id="editUses"></textarea></label>
+                  <label class="span-2">דגשים וטעויות נפוצות — פריט בכל שורה<textarea id="editCautions"></textarea></label>
+                  <label class="span-2">שיקולי ייצור<textarea id="editManufacturing"></textarea></label>
+                  <label class="span-2">שיטות בחינה ומדידה<textarea id="editInspection"></textarea></label>
+                </div>
+              </details>
+
+              <details class="editor-disclosure">
+                <summary>כיתוב ותיאור לתמונה</summary>
+                <div class="form-grid disclosure-content">
+                  <label>כותרת לתרשים<input id="editVisualTitle"></label>
+                  <label class="span-2">תיאור תרשים<input id="editVisualDescription"></label>
+                </div>
+              </details>
+
+              <div class="form-actions"><button id="saveTermBtn" class="btn primary" type="submit">שמור מושג</button><button id="deleteCurrentTermBtn" class="btn danger hidden" type="button">מחק מושג</button></div>
+            </form>
+
+            <div class="records-panel">
+              <div class="records-tools"><input id="adminSearchInput" type="search" aria-label="חיפוש ברשימת המושגים" placeholder="חיפוש ברשימת המושגים"><select id="adminDomainFilter" aria-label="סינון רשימת המושגים לפי תחום"><option value="all">כל התחומים</option></select></div>
+              <div id="termRecords" class="record-list"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="admin-domains" class="admin-page">
+          <div class="admin-layout domains-layout">
+            <form id="domainForm" class="editor-panel compact-editor">
+              <div class="panel-heading"><div><h3 id="domainFormTitle">הוספת תחום</h3><p>תחום מרכז ידע ומכיל תתי־תחומים, תתי־תתי־תחומים ומושגים.</p></div><div style="display: flex; gap: 8px; align-items: flex-start;"><button type="submit" class="btn primary">שמור תחום</button><button id="clearDomainBtn" type="button" class="btn ghost">תחום חדש</button></div></div>
+              <div class="hierarchy-builder-guide" aria-label="מבנה ההיררכיה הניתן לניהול">
+                <div class="hierarchy-guide-step level-domain"><b>1</b><span><strong>תחום</strong><small>המיכל הראשי</small></span></div>
+                <span class="hierarchy-guide-arrow" aria-hidden="true">←</span>
+                <div class="hierarchy-guide-step level-subtopic"><b>2</b><span><strong>תת־תחום</strong><small>ענף מקצועי</small></span></div>
+                <span class="hierarchy-guide-arrow" aria-hidden="true">←</span>
+                <div class="hierarchy-guide-step level-child"><b>3</b><span><strong>תת־תת־תחום</strong><small>חלוקה ממוקדת</small></span></div>
+                <span class="hierarchy-guide-arrow" aria-hidden="true">←</span>
+                <div class="hierarchy-guide-step level-term"><b>4</b><span><strong>מושג</strong><small>משויך בלשונית מושגים</small></span></div>
+              </div>
+              <input id="editDomainId" type="hidden">
+              <div class="form-grid">
+                <label>שם בעברית<input id="domainName" required></label>
+                <label>שם באנגלית<input id="domainNameEn" dir="ltr"></label>
+                <label>קידומת קוד<input id="domainPrefix" required dir="ltr"></label>
+                <label>סמל<select id="domainIcon"><option value="gdt">GD&T</option><option value="mechanics">מכניקה</option><option value="flow">זרימה</option><option value="thermal">תרמודינמיקה</option><option value="manufacturing">ייצור</option><option value="metrology">מטרולוגיה</option><option value="materials">חומרים</option><option value="general">כללי</option></select></label>
+                <label>צבע תחום<input id="domainColor" type="color" value="#246b87"></label>
+                <div class="span-2 rich-editor-field">
+                  <div class="label-row"><label for="domainDefinition">תיאור והגדרה מקצועית</label><small>אפשר לשלב כותרות, הדגשה, רשימות, קווים וקישורים.</small></div>
+                  <div class="rich-editor-toolbar" role="toolbar" aria-label="כלי עיצוב לטקסט">
+                    <button type="button" data-rich-command="bold" title="הדגשה"><b>B</b></button>
+                    <button type="button" data-rich-command="italic" title="כתב נטוי"><i>I</i></button>
+                    <button type="button" data-rich-command="underline" title="קו תחתון"><u>U</u></button>
+                    <button type="button" data-rich-command="formatBlock" data-rich-value="h3" title="כותרת">כותרת</button>
+                    <button type="button" data-rich-command="insertUnorderedList" title="רשימת תבליטים">• רשימה</button>
+                    <button type="button" data-rich-command="insertOrderedList" title="רשימה ממוספרת">1. רשימה</button>
+                    <button type="button" data-rich-command="formatBlock" data-rich-value="blockquote" title="הדגשה מקצועית">ציטוט</button>
+                    <button type="button" data-rich-command="removeFormat" title="ניקוי עיצוב">נקה עיצוב</button>
+                  </div>
+                  <div id="domainDefinition" class="rich-editor" contenteditable="true" role="textbox" aria-multiline="true" data-placeholder="הכניסו הגדרה מקצועית לתחום…"></div>
+                  <input id="domainDefinitionHtml" type="hidden">
+                  <textarea id="domainDescription" hidden></textarea>
+                </div>
+                <label class="span-2 file-field">תמונה: העלאת תמונה למסך התחום - עד 300KB<input id="domainImageFile" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml"><small>התמונה תישמר בתוך בסיס הנתונים ותוצג בעמוד התחום.</small><span id="domainEmbeddedImageState">לא נבחרה תמונה</span><button id="removeDomainEmbeddedImageBtn" type="button" class="text-btn">הסר תמונה נוכחית</button></label>
+                <div class="span-2 subtopic-manager-field"><div class="label-row"><label>מבנה התחום</label><button id="addSubtopicBtn" type="button" class="text-btn">+ הוספת תת־תחום</button></div><p class="field-hint">בכל תת־תחום אפשר ליצור תתי־תתי־תחומים. לאחר השמירה ניתן לשייך מושגים לכל אחת משלוש הרמות.</p><div id="domainSubtopicRows" class="subtopic-editor-rows"></div><textarea id="domainSubtopics" hidden></textarea></div>
+              </div>
+              <div class="form-actions"><button id="saveDomainBtn" class="btn primary" type="submit">שמור תחום</button><button id="deleteCurrentDomainBtn" class="btn danger hidden" type="button">מחק תחום ריק</button><button id="deleteDomainWithTermsBtn" class="btn danger danger-solid hidden" type="button">מחק תחום וכל תוכנו</button></div>
+            </form>
+            <div id="domainRecords" class="domain-records"></div>
+          </div>
+        </section>
+
+        <section id="admin-appearance" class="admin-page">
+          <div class="settings-grid">
+            <article class="settings-card"><h3>ערכת צבעים</h3><div class="form-grid"><label>צבע ראשי<input id="settingPrimary" type="color"></label><label>צבע רקע<input id="settingBackground" type="color"></label><label>צבע משטח<input id="settingSurface" type="color"></label></div></article>
+            <article class="settings-card"><h3>טיפוגרפיה וצפיפות</h3><div class="form-grid"><label>משפחת גופן<select id="settingFont"><option value="Arial">Arial</option><option value="Segoe UI">Segoe UI</option><option value="Tahoma">Tahoma</option><option value="system-ui">System UI</option></select></label><label>גודל בסיס<input id="settingFontSize" type="range" min="14" max="19" step="1"><output id="fontSizeOutput"></output></label><label>עיגול פינות<input id="settingRadius" type="range" min="0" max="22" step="1"><output id="radiusOutput"></output></label><label>צפיפות כרטיסים<select id="settingDensity"><option value="comfortable">מרווחת</option><option value="compact">קומפקטית</option></select></label></div></article>
+            <article class="settings-card"><h3>עיצוב UI/UX עמוק — כפתורים לחיצים</h3><div class="form-grid"><label>הצללת כפתורים (Box-Shadow)<select id="settingButtonShadow"><option value="none">ללא הצללה</option><option value="soft">מעודנת (Soft)</option><option value="dynamic">דינמית מורמת (Dynamic Float)</option><option value="deep">עמוקה (Deep Glass)</option></select></label><label>הגדלה ב-Hover<select id="settingButtonHoverScale"><option value="1.0">ללא הגדלה (1.00)</option><option value="1.02">קלה (1.02)</option><option value="1.04">בולטת (1.04)</option><option value="1.07">מוגברת (1.07)</option></select></label><label>שקיעה בלחיצה (Active)<select id="settingButtonActiveScale"><option value="1.0">ללא שקיעה (1.00)</option><option value="0.97">רגילה (0.97)</option><option value="0.94">עמוקה (0.94)</option></select></label></div></article>
+            <article class="settings-card"><h3>שדות מוצגים</h3><div id="fieldVisibility" class="toggle-grid"></div></article>
+          </div>
+          <div class="form-actions sticky-actions"><button id="applyAppearanceBtn" class="btn primary">החל הגדרות</button><button id="resetAppearanceBtn" class="btn ghost">איפוס עיצוב</button></div>
+        </section>
+
+        <section id="admin-data" class="admin-page">
+          <div class="settings-grid">
+            <article class="settings-card highlight-card backup-card">
+              <h3>שמירה אוטומטית ושני סוגי גיבוי</h3>
+              <p><strong>כל שינוי נשמר אוטומטית באחסון המקומי של מחשב זה.</strong> קובצי הגיבוי שבתיקיית backups אינם נדרסים אוטומטית; מורידים קובץ חדש ומעתיקים אותו לתיקייה.</p>
+              <div id="backupStatus" class="backup-status" role="status"><strong>בודק מצב גיבוי…</strong></div>
+              <div class="button-stack">
+                <button id="exportContentJsonBtn" class="btn ghost">⬇ גיבוי תוכן — תחומים ומושגים</button>
+                <button id="exportFullJsonBtn" class="btn primary">⬇ גיבוי אדמין ראשי — תוכן ו־UI/UX</button>
+                <button id="importJsonBtn" class="btn ghost">שחזר מגיבוי קיים</button>
+                <input id="importJsonFile" type="file" accept="application/json,.json" hidden>
+              </div>
+              <small>גיבוי התוכן כולל תחומים, תתי־תחומים, מושגים ותמונות מוטמעות. גיבוי האדמין הראשי מוסיף הגדרות UI/UX, העדפות והתקדמות. קודי הגישה ותמונות חיצוניות מתיקיית images אינם מוכפלים לתוך JSON. כל גיבוי חדש כולל גרסת סכימה וחתימת תקינות (checksum).</small>
+            </article>
+
+            <article class="settings-card recovery-card">
+              <h3>שחזור חכם ובדיקת שלמות</h3>
+              <p>לפני מחיקה, ייבוא או שינוי מסוכן נשמרות עד 8 נקודות שחזור מקומיות. הבדיקה מאתרת קודים ומזהים כפולים ומנקה קישורים שבורים.</p>
+              <div class="button-stack">
+                <button id="restoreRecoveryBtn" class="btn ghost">↶ שחזר נקודת שחזור אחרונה</button>
+                <button id="auditCatalogBtn" class="btn ghost">✓ בדוק ותקן שלמות קטלוג</button>
+              </div>
+              <small>נקודות השחזור נשמרות בדפדפן במחשב זה ואינן מחליפות גיבוי JSON חיצוני.</small>
+            </article>
+
+            <article class="settings-card storage-health-card">
+              <div class="settings-card-heading"><div><span class="section-kicker">OFFLINE STORAGE</span><h3>אחסון מקומי ועמידות נתונים</h3></div><span id="storageModeBadge" class="health-badge">מאתחל…</span></div>
+              <p>המערכת משתמשת ב־IndexedDB כאחסון הראשי וב־LocalStorage כעותק אתחול קל. כך ניתן להרחיב את הקטלוג בלי להיתקע במגבלת 5MB.</p>
+              <div id="storageStatus" class="storage-status" role="status"><strong>בודק את האחסון…</strong></div>
+              <div class="storage-meter" aria-hidden="true"><span id="storageMeterFill"></span></div>
+              <div class="button-row">
+                <button id="refreshStorageStatusBtn" class="btn ghost" type="button">רענן נתוני נפח</button>
+                <button id="requestPersistentStorageBtn" class="btn ghost" type="button">בקש הגנה ממחיקה אוטומטית</button>
+              </div>
+              <small>ניקוי נתוני האתר בדפדפן עדיין עלול למחוק מידע מקומי. גיבוי JSON הוא שכבת ההגנה החיצונית והניידת.</small>
+            </article>
+
+            <article class="settings-card catalog-health-card">
+              <div class="settings-card-heading"><div><span class="section-kicker">CATALOG HEALTH</span><h3>תקינות קטלוג ונקודות שחזור</h3></div><span id="catalogHealthBadge" class="health-badge">בודק…</span></div>
+              <div id="catalogIntegrityStatus" class="catalog-integrity-status" role="status"><strong>ממתין לבדיקה</strong></div>
+              <div id="restorePointStatus" class="restore-point-status"><span>לא נטענה נקודת שחזור</span></div>
+              <div class="button-stack">
+                <button id="runIntegrityCheckBtn" class="btn ghost" type="button">בדוק את תקינות הקטלוג</button>
+                <button id="repairCatalogBtn" class="btn ghost" type="button">תקן כשלים בטוחים אוטומטית</button>
+                <button id="restoreLatestSnapshotBtn" class="btn ghost" type="button">שחזר את נקודת השחזור האחרונה</button>
+              </div>
+              <small>לפני ייבוא, מחיקה או שינוי מבני משמעותי נוצרת נקודת שחזור מקומית אוטומטית. נשמרות עד 10 נקודות.</small>
+            </article>
+
+            <article class="settings-card">
+              <h3>ייצוא רשימת מושגים</h3>
+              <p>קובץ CSV מיועד לפתיחה ב־Excel ולבדיקת תוכן. הוא אינו מחליף גיבוי מלא.</p>
+              <button id="exportCsvBtn" class="btn ghost">ייצוא רשימת מושגים ל־CSV</button>
+            </article>
+
+            <article class="settings-card">
+              <h3>ניהול קודי גישה וסיסמאות</h3>
+              <p>הגדר קודים נפרדים למומחה התוכן ולאדמין הראשי. הקודים נשמרים רק בדפדפן זה ומשמשים כמחסום נוחות, לא כאבטחה ארגונית.</p>
+              <form id="pinSettingsForm">
+                <div class="form-grid">
+                  <input type="text" autocomplete="username" value="MechLex local admin" hidden aria-hidden="true">
+                  <label class="span-2">קוד מומחה תוכן (Content Admin)<input id="newContentPin" type="password" inputmode="numeric" minlength="4" autocomplete="new-password" placeholder="הזן קוד חדש למומחה תוכן"></label>
+                  <label class="span-2">קוד אדמין ראשי (Super Admin)<input id="newSuperPin" type="password" inputmode="numeric" minlength="4" autocomplete="new-password" placeholder="הזן קוד חדש לאדמין ראשי"></label>
+                </div>
+                <button id="changePinBtn" class="btn ghost" type="submit">עדכן קודי גישה</button>
+              </form>
+            </article>
+
+            <article class="settings-card danger-card">
+              <h3>תחזוקה ואיפוס</h3>
+              <p>לפני איפוס מומלץ לייצא גיבוי. פעולות אלו משפיעות על הנתונים השמורים בדפדפן הנוכחי.</p>
+              <div class="button-stack">
+                <button id="reloadSharedDataBtn" class="btn ghost">שחזר את קטלוג הבסיס המובנה</button>
+                <button id="clearProgressBtn" class="btn danger">איפוס התקדמות ומועדפים</button>
+                <button id="resetAllBtn" class="btn danger">איפוס מלא לברירת מחדל</button>
+              </div>
+            </article>
+          </div>
+        </section>
+      </div>
+    </article>
+  </div>
+
+
+  <div id="progressOverlay" class="overlay hidden" role="dialog" aria-hidden="true" aria-modal="true" aria-labelledby="progressTitle" tabindex="-1">
+    <form id="progressForm" class="progress-dialog">
+      <button id="closeProgressBtn" type="button" class="icon-btn close-btn" aria-label="סגור">×</button>
+      <div class="progress-dialog-icon">⇩</div>
+      <h2 id="progressTitle">שמירת מצב אישי</h2>
+      <p>הקובץ יישמר בתיקיית ההורדות המוגדרת בדפדפן ויכלול רק מועדפים, מצב למידה, היסטוריית צפייה והעדפות תצוגה אישיות.</p>
+      <label>שם עובד — אופציונלי<input id="progressUserName" autocomplete="name" placeholder="לדוגמה: Samuel"></label>
+      <label>פורמט קובץ<select id="progressFileFormat"><option value="json">JSON</option><option value="txt">TXT</option></select></label>
+      <div class="progress-file-example"><span>שם הקובץ:</span><code id="progressFilenamePreview" dir="ltr"></code></div>
+      <button id="submitProgressBtn" class="btn primary full-width" type="submit">הורד קובץ אישי</button>
+    </form>
+  </div>
+
+  <div id="pinOverlay" class="overlay hidden" role="dialog" aria-hidden="true" aria-modal="true" aria-labelledby="pinTitle" tabindex="-1">
+    <form id="pinForm" class="pin-dialog">
+      <button id="closePinBtn" type="button" class="icon-btn close-btn" aria-label="סגור">×</button>
+      <div class="pin-icon">⌁</div>
+      <h2 id="pinTitle">כניסה למרכז הניהול</h2>
+      <p>בחרו סוג הרשאה והזינו את הסיסמה המתאימה:</p>
+      <label>סוג הרשאה
+        <select id="pinRoleSelect">
+          <option value="content">מומחה תוכן (Content Admin)</option>
+          <option value="super">אדמין ראשי (Super Admin)</option>
+        </select>
+      </label>
+      <label>קוד גישה / סיסמה<input id="pinInput" type="password" inputmode="numeric" autocomplete="current-password" required></label>
+      <p id="pinError" class="form-error hidden">הקוד אינו נכון.</p>
+      <button id="submitPinBtn" class="btn primary full-width" type="submit">כניסה</button>
+    </form>
+  </div>
+
+  <div id="toastRegion" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+  <script src="images/catalog.js?v=10.1.0-visual-admin"></script>
+  <script src="app.js?v=10.1.0-visual-admin"></script>
+  <script src="core/integrity.js?v=10.1.0-visual-admin"></script>
+  <script src="core/persistence.js?v=10.1.0-visual-admin"></script>
+  <script src="core/shared-sync.js?v=10.1.0-visual-admin"></script>
+  <script src="core/inline-editor.js?v=10.1.0-visual-admin"></script>
+  <script src="core/boot.js?v=10.1.0-visual-admin"></script>
+</body>
+</html>

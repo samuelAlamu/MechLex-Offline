@@ -1,0 +1,46 @@
+{
+    "format":  "MechLexSharedState",
+    "formatVersion":  1,
+    "revision":  1,
+    "schemaVersion":  2,
+    "appVersion":  "10.1.0",
+    "updatedAt":  "2026-07-24T22:20:37.1815906Z",
+    "updatedBy":  "qa-initial",
+    "reason":  "qa-initial",
+    "checksum":  "a8fb79fdc7431923433782f453e93d1e0d184a08660ff4baaef65ff71d4fc363",
+    "shared":  {
+                   "data":  [
+                                {
+                                    "id":  "dom-qa",
+                                    "name":  "בדיקת QA",
+                                    "nameEn":  "QA",
+                                    "prefix":  "QA",
+                                    "color":  "#246b87",
+                                    "icon":  "Q",
+                                    "description":  "initial",
+                                    "subtopics":  [
+
+                                                  ],
+                                    "items":  [
+                                                  {
+                                                      "id":  "qa-term",
+                                                      "code":  "QA-001",
+                                                      "title":  "מושג initial",
+                                                      "name":  "מושג initial",
+                                                      "nameEn":  "Term initial",
+                                                      "definition":  "initial",
+                                                      "subtopic":  "direct"
+                                                  }
+                                              ]
+                                }
+                            ],
+                   "settings":  {
+                                    "uiText":  {
+                                                   "marker":  "initial"
+                                               }
+                                },
+                   "uiText":  {
+                                  "marker":  "initial"
+                              }
+               }
+}

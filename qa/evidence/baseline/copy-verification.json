@@ -1,0 +1,50 @@
+﻿[
+    {
+        "copy":  "baseline-preserved",
+        "filesExpected":  60,
+        "mismatches":  [
+
+                       ],
+        "verified":  true
+    },
+    {
+        "copy":  "normal",
+        "filesExpected":  60,
+        "mismatches":  [
+
+                       ],
+        "verified":  true
+    },
+    {
+        "copy":  "concurrency-a",
+        "filesExpected":  60,
+        "mismatches":  [
+
+                       ],
+        "verified":  true
+    },
+    {
+        "copy":  "concurrency-b",
+        "filesExpected":  60,
+        "mismatches":  [
+
+                       ],
+        "verified":  true
+    },
+    {
+        "copy":  "destructive",
+        "filesExpected":  60,
+        "mismatches":  [
+
+                       ],
+        "verified":  true
+    },
+    {
+        "copy":  "moved-path",
+        "filesExpected":  60,
+        "mismatches":  [
+
+                       ],
+        "verified":  true
+    }
+]

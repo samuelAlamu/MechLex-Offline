@@ -1,0 +1,46 @@
+{
+    "format":  "MechLexSharedState",
+    "formatVersion":  1,
+    "revision":  8,
+    "schemaVersion":  2,
+    "appVersion":  "10.1.0",
+    "updatedAt":  "2026-07-24T22:20:37.4986645Z",
+    "updatedBy":  "qa-a-7",
+    "reason":  "round-7-a",
+    "checksum":  "66c268eda4b72d9a044dbcf3654a9e5e98a1c7caf1601a83d3d31e13bc503449",
+    "shared":  {
+                   "data":  [
+                                {
+                                    "id":  "dom-qa",
+                                    "name":  "בדיקת QA",
+                                    "nameEn":  "QA",
+                                    "prefix":  "QA",
+                                    "color":  "#246b87",
+                                    "icon":  "Q",
+                                    "description":  "round 7 writer A",
+                                    "subtopics":  [
+
+                                                  ],
+                                    "items":  [
+                                                  {
+                                                      "id":  "qa-term",
+                                                      "code":  "QA-001",
+                                                      "title":  "מושג A7",
+                                                      "name":  "מושג A7",
+                                                      "nameEn":  "Term A7",
+                                                      "definition":  "round 7 writer A",
+                                                      "subtopic":  "direct"
+                                                  }
+                                              ]
+                                }
+                            ],
+                   "settings":  {
+                                    "uiText":  {
+                                                   "marker":  "A7"
+                                               }
+                                },
+                   "uiText":  {
+                                  "marker":  "A7"
+                              }
+               }
+}

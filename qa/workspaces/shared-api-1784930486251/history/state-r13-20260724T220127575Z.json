@@ -1,0 +1,46 @@
+{
+    "format":  "MechLexSharedState",
+    "formatVersion":  1,
+    "revision":  13,
+    "schemaVersion":  2,
+    "appVersion":  "10.1.0",
+    "updatedAt":  "2026-07-24T22:01:27.5646917Z",
+    "updatedBy":  "qa-a-12",
+    "reason":  "round-12-a",
+    "checksum":  "9bc5bf08c25ba26d6434b8395a9400ae93b5f247f9604b89887f61bf329f1d55",
+    "shared":  {
+                   "data":  [
+                                {
+                                    "id":  "dom-qa",
+                                    "name":  "בדיקת QA",
+                                    "nameEn":  "QA",
+                                    "prefix":  "QA",
+                                    "color":  "#246b87",
+                                    "icon":  "Q",
+                                    "description":  "round 12 writer A",
+                                    "subtopics":  [
+
+                                                  ],
+                                    "items":  [
+                                                  {
+                                                      "id":  "qa-term",
+                                                      "code":  "QA-001",
+                                                      "title":  "מושג A12",
+                                                      "name":  "מושג A12",
+                                                      "nameEn":  "Term A12",
+                                                      "definition":  "round 12 writer A",
+                                                      "subtopic":  "direct"
+                                                  }
+                                              ]
+                                }
+                            ],
+                   "settings":  {
+                                    "uiText":  {
+                                                   "marker":  "A12"
+                                               }
+                                },
+                   "uiText":  {
+                                  "marker":  "A12"
+                              }
+               }
+}

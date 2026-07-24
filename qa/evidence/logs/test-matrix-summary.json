@@ -1,0 +1,18 @@
+﻿[
+    {
+        "status":  "FAIL",
+        "count":  16
+    },
+    {
+        "status":  "INCONCLUSIVE",
+        "count":  7
+    },
+    {
+        "status":  "NOT TESTED",
+        "count":  69
+    },
+    {
+        "status":  "PASS",
+        "count":  15
+    }
+]

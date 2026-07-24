@@ -1,0 +1,405 @@
+{
+  "generatedAt": "2026-07-24T22:20:59.119Z",
+  "environment": {
+    "url": "http://127.0.0.1:8780/index.html",
+    "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+    "edgeVersion": 4970824
+  },
+  "pass": 20,
+  "fail": 3,
+  "results": [
+    {
+      "id": "OFF-001",
+      "status": "PASS",
+      "at": "2026-07-24T22:20:42.405Z",
+      "httpStatus": 200,
+      "coldStartMs": 854
+    },
+    {
+      "id": "SYNC-001",
+      "status": "PASS",
+      "at": "2026-07-24T22:20:42.448Z",
+      "initialRevision": 1,
+      "simulation": "One Edge context against a disposable shared-state folder."
+    },
+    {
+      "id": "SYNC-POLL-304",
+      "status": "FAIL",
+      "at": "2026-07-24T22:20:45.954Z",
+      "ready": true,
+      "statusText": "משותף · גרסה 1",
+      "kind": "synced",
+      "abortedPollRequests": 2,
+      "severity": "Critical",
+      "note": "The server answers 304 to a custom revision query; Edge reports the Fetch request as ERR_ABORTED and the client enters read-only mode."
+    },
+    {
+      "id": "CNT-BASE",
+      "status": "PASS",
+      "at": "2026-07-24T22:20:45.961Z",
+      "title": "מילון הנדסי מקצועי · MechLex Offline",
+      "lang": "he",
+      "dir": "rtl",
+      "domains": 4,
+      "terms": 8,
+      "first": {
+        "id": "term-gdt-001",
+        "name": "דאטום",
+        "nameEn": "Datum"
+      },
+      "overflow": 0
+    },
+    {
+      "id": "UX-003",
+      "status": "PASS",
+      "at": "2026-07-24T22:20:45.961Z",
+      "lang": "he",
+      "dir": "rtl"
+    },
+    {
+      "id": "SRCH-001",
+      "status": "PASS",
+      "at": "2026-07-24T22:20:46.687Z",
+      "query": "דאטום",
+      "results": 1
+    },
+    {
+      "id": "SRCH-003",
+      "status": "PASS",
+      "at": "2026-07-24T22:20:46.931Z",
+      "query": "Datum",
+      "results": 1
+    },
+    {
+      "id": "SRCH-007",
+      "status": "PASS",
+      "at": "2026-07-24T22:20:47.115Z",
+      "noResultText": "0 תוצאות"
+    },
+    {
+      "id": "CNT-OPEN",
+      "status": "PASS",
+      "at": "2026-07-24T22:20:47.468Z",
+      "openedTitle": "דאטום"
+    },
+    {
+      "id": "SRCH-009",
+      "status": "PASS",
+      "at": "2026-07-24T22:20:48.384Z",
+      "tabPresses": 12
+    },
+    {
+      "id": "AUTH-LOGIN-NEGATIVE",
+      "status": "PASS",
+      "at": "2026-07-24T22:20:48.553Z",
+      "note": "Incorrect PIN rejected by the visible workflow."
+    },
+    {
+      "id": "AUTH-003",
+      "status": "PASS",
+      "at": "2026-07-24T22:20:49.022Z",
+      "appearance": "none",
+      "data": "none",
+      "visual": true,
+      "role": "מומחה תוכן (Content Admin)"
+    },
+    {
+      "id": "AUTH-SUPER",
+      "status": "PASS",
+      "at": "2026-07-24T22:20:49.852Z",
+      "appearance": "block",
+      "data": "block",
+      "visualHidden": false,
+      "role": "אדמין ראשי (Super Admin)"
+    },
+    {
+      "id": "IMG-001",
+      "status": "NOT TESTED",
+      "at": "2026-07-24T22:20:50.485Z",
+      "matrix": [],
+      "note": "Skipped in this core-flow pass; executed in a separate fresh shared-state run."
+    },
+    {
+      "id": "CNT-010",
+      "status": "PASS",
+      "at": "2026-07-24T22:20:50.500Z",
+      "executed": 0,
+      "html": "<p>QA SAFE</p>window.__qaInjected=2<a target=\"_blank\" rel=\"noopener noreferrer\">bad</a>"
+    },
+    {
+      "id": "REC-009",
+      "status": "PASS",
+      "at": "2026-07-24T22:20:51.136Z",
+      "bytes": 32836,
+      "format": "MechLexFullAdminBackup",
+      "integrity": "SHA-256"
+    },
+    {
+      "id": "CNT-001",
+      "status": "PASS",
+      "at": "2026-07-24T22:20:51.601Z",
+      "created": "מושג QA זמני"
+    },
+    {
+      "id": "REC-011",
+      "status": "PASS",
+      "at": "2026-07-24T22:20:54.402Z",
+      "tempExists": false,
+      "terms": 8,
+      "secondIsolatedBrowserContext": true,
+      "backupPath": "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\qa\\evidence\\recovery\\browser-full-admin-backup.json"
+    },
+    {
+      "id": "UX-002-MOBILE",
+      "status": "PASS",
+      "at": "2026-07-24T22:20:55.474Z",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyScrollWidth": 390
+    },
+    {
+      "id": "UX-002-TABLET",
+      "status": "PASS",
+      "at": "2026-07-24T22:20:56.822Z",
+      "overflow": 0
+    },
+    {
+      "id": "UX-009",
+      "status": "PASS",
+      "at": "2026-07-24T22:20:57.676Z",
+      "note": "Keyboard focus trap passed; responsive widths passed. Automated color/assistive-tech audit remains partial."
+    },
+    {
+      "id": "AUTH-002",
+      "status": "FAIL",
+      "at": "2026-07-24T22:20:58.772Z",
+      "overlayVisible": true,
+      "role": "super",
+      "unlocked": true,
+      "dataTabDisplay": "block",
+      "severity": "Critical",
+      "note": "Direct console call bypassed the PIN workflow."
+    },
+    {
+      "id": "OFF-002",
+      "status": "PASS",
+      "at": "2026-07-24T22:20:59.119Z",
+      "requestCount": 64,
+      "external": []
+    },
+    {
+      "id": "BROWSER-CONSOLE",
+      "status": "FAIL",
+      "at": "2026-07-24T22:20:59.119Z",
+      "pageErrors": [],
+      "requestFailures": [
+        {
+          "url": "http://127.0.0.1:8780/api/shared-state?knownRevision=1",
+          "failure": {
+            "errorText": "net::ERR_ABORTED"
+          }
+        },
+        {
+          "url": "http://127.0.0.1:8780/api/shared-state?knownRevision=1",
+          "failure": {
+            "errorText": "net::ERR_ABORTED"
+          }
+        },
+        {
+          "url": "http://127.0.0.1:8780/api/shared-state?knownRevision=1",
+          "failure": {
+            "errorText": "net::ERR_ABORTED"
+          }
+        },
+        {
+          "url": "http://127.0.0.1:8780/api/shared-state?knownRevision=1",
+          "failure": {
+            "errorText": "net::ERR_ABORTED"
+          }
+        },
+        {
+          "url": "http://127.0.0.1:8780/api/shared-state?knownRevision=1",
+          "failure": {
+            "errorText": "net::ERR_ABORTED"
+          }
+        },
+        {
+          "url": "http://127.0.0.1:8780/api/shared-state?knownRevision=3",
+          "failure": {
+            "errorText": "net::ERR_ABORTED"
+          }
+        },
+        {
+          "url": "http://127.0.0.1:8780/api/shared-state?knownRevision=3",
+          "failure": {
+            "errorText": "net::ERR_ABORTED"
+          }
+        },
+        {
+          "url": "http://127.0.0.1:8780/api/shared-state?knownRevision=4",
+          "failure": {
+            "errorText": "net::ERR_ABORTED"
+          }
+        }
+      ],
+      "consoleMessages": [
+        {
+          "type": "verbose",
+          "text": "[DOM] Password forms should have (optionally hidden) username fields for accessibility: (More info: https://www.chromium.org/developers/design-documents/create-amazing-password-forms) %o"
+        },
+        {
+          "type": "verbose",
+          "text": "[DOM] Password forms should have (optionally hidden) username fields for accessibility: (More info: https://www.chromium.org/developers/design-documents/create-amazing-password-forms) %o"
+        },
+        {
+          "type": "verbose",
+          "text": "[DOM] Password forms should have (optionally hidden) username fields for accessibility: (More info: https://www.chromium.org/developers/design-documents/create-amazing-password-forms) %o"
+        },
+        {
+          "type": "verbose",
+          "text": "[DOM] Password forms should have (optionally hidden) username fields for accessibility: (More info: https://www.chromium.org/developers/design-documents/create-amazing-password-forms) %o"
+        }
+      ]
+    }
+  ],
+  "consoleMessages": [
+    {
+      "type": "verbose",
+      "text": "[DOM] Password forms should have (optionally hidden) username fields for accessibility: (More info: https://www.chromium.org/developers/design-documents/create-amazing-password-forms) %o"
+    },
+    {
+      "type": "verbose",
+      "text": "[DOM] Password forms should have (optionally hidden) username fields for accessibility: (More info: https://www.chromium.org/developers/design-documents/create-amazing-password-forms) %o"
+    },
+    {
+      "type": "verbose",
+      "text": "[DOM] Password forms should have (optionally hidden) username fields for accessibility: (More info: https://www.chromium.org/developers/design-documents/create-amazing-password-forms) %o"
+    },
+    {
+      "type": "verbose",
+      "text": "[DOM] Password forms should have (optionally hidden) username fields for accessibility: (More info: https://www.chromium.org/developers/design-documents/create-amazing-password-forms) %o"
+    }
+  ],
+  "pageErrors": [],
+  "requestFailures": [
+    {
+      "url": "http://127.0.0.1:8780/api/shared-state?knownRevision=1",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8780/api/shared-state?knownRevision=1",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8780/api/shared-state?knownRevision=1",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8780/api/shared-state?knownRevision=1",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8780/api/shared-state?knownRevision=1",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8780/api/shared-state?knownRevision=3",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8780/api/shared-state?knownRevision=3",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8780/api/shared-state?knownRevision=4",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    }
+  ],
+  "requests": [
+    "http://127.0.0.1:8780/index.html",
+    "http://127.0.0.1:8780/style.css?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/data/mechlex-data.js?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/images/catalog.js?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/app.js?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/core/integrity.js?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/core/persistence.js?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/core/shared-sync.js?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/core/inline-editor.js?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/core/boot.js?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/images/mechlex-icon.svg",
+    "http://127.0.0.1:8780/api/shared-health",
+    "http://127.0.0.1:8780/api/shared-state",
+    "http://127.0.0.1:8780/api/shared-state?knownRevision=1",
+    "http://127.0.0.1:8780/api/shared-state?knownRevision=1",
+    "http://127.0.0.1:8780/api/shared-state?knownRevision=1",
+    "http://127.0.0.1:8780/api/shared-state?knownRevision=1",
+    "http://127.0.0.1:8780/api/shared-state?knownRevision=1",
+    "http://127.0.0.1:8780/api/shared-state",
+    "http://127.0.0.1:8780/api/shared-state?knownRevision=1",
+    "http://127.0.0.1:8780/api/shared-state",
+    "http://127.0.0.1:8780/api/shared-state",
+    "http://127.0.0.1:8780/api/shared-state?knownRevision=3",
+    "http://127.0.0.1:8780/api/shared-state?knownRevision=3",
+    "http://127.0.0.1:8780/index.html",
+    "http://127.0.0.1:8780/style.css?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/data/mechlex-data.js?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/images/catalog.js?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/app.js?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/core/integrity.js?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/core/persistence.js?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/core/shared-sync.js?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/core/inline-editor.js?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/core/boot.js?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/images/mechlex-icon.svg",
+    "http://127.0.0.1:8780/api/shared-health",
+    "http://127.0.0.1:8780/api/shared-state",
+    "http://127.0.0.1:8780/index.html",
+    "http://127.0.0.1:8780/style.css?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/data/mechlex-data.js?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/images/catalog.js?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/app.js?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/core/integrity.js?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/core/persistence.js?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/core/shared-sync.js?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/core/inline-editor.js?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/core/boot.js?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/images/mechlex-icon.svg",
+    "http://127.0.0.1:8780/api/shared-health",
+    "http://127.0.0.1:8780/api/shared-state",
+    "http://127.0.0.1:8780/index.html",
+    "http://127.0.0.1:8780/style.css?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/data/mechlex-data.js?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/images/catalog.js?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/app.js?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/core/integrity.js?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/core/persistence.js?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/core/shared-sync.js?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/core/inline-editor.js?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/core/boot.js?v=10.1.0-visual-admin",
+    "http://127.0.0.1:8780/images/mechlex-icon.svg",
+    "http://127.0.0.1:8780/api/shared-health",
+    "http://127.0.0.1:8780/api/shared-state",
+    "http://127.0.0.1:8780/api/shared-state?knownRevision=4"
+  ],
+  "imageResults": [],
+  "performance": {
+    "coldStartMs": 854,
+    "imageMatrix": []
+  }
+}

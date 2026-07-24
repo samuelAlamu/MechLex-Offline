@@ -1,0 +1,903 @@
+{
+    "format":  "MechLexSharedState",
+    "formatVersion":  1,
+    "revision":  3,
+    "schemaVersion":  2,
+    "appVersion":  "10.1.0",
+    "updatedAt":  "2026-07-24T22:12:13.8127074Z",
+    "updatedBy":  "pc-mrzhwkvj-ggqn850z",
+    "reason":  "admin-change",
+    "checksum":  "72c0c6e69880596ee42887308311deafbd9d5f0da9d4df200514f5a109f8b665",
+    "shared":  {
+                   "data":  [
+                                {
+                                    "id":  "domain-gdt",
+                                    "name":  "מידות וטולרנסים גאומטריים",
+                                    "nameEn":  "Geometric Dimensioning \u0026 Tolerancing",
+                                    "prefix":  "GDT",
+                                    "icon":  "gdt",
+                                    "color":  "#1d6885",
+                                    "description":  "שפה הנדסית להגדרת גאומטריה מותרת, דאטומים, אזורי טולרנס ודרישות פונקציונליות של חלקים והרכבות.",
+                                    "subtopics":  [
+                                                      {
+                                                          "id":  "subtopic-gdt-datums",
+                                                          "name":  "דאטומים",
+                                                          "description":  "מישורי, צירי ונקודות ייחוס תאורטיים",
+                                                          "color":  "#1d6885",
+                                                          "children":  [
+
+                                                                       ]
+                                                      },
+                                                      {
+                                                          "id":  "subtopic-gdt-form",
+                                                          "name":  "טולרנסי צורה",
+                                                          "description":  "בקרת צורה עצמאית ללא דאטום",
+                                                          "color":  "#2b6e9e",
+                                                          "children":  [
+
+                                                                       ]
+                                                      },
+                                                      {
+                                                          "id":  "subtopic-gdt-location",
+                                                          "name":  "טולרנסי מיקום",
+                                                          "description":  "בקרת מיקום ומרכז מאפיינים",
+                                                          "color":  "#166534",
+                                                          "children":  [
+
+                                                                       ]
+                                                      },
+                                                      {
+                                                          "id":  "subtopic-gdt-material",
+                                                          "name":  "מצבי חומר",
+                                                          "description":  "מודיפיירים MMC, LMC וגבול וירטואלי",
+                                                          "color":  "#854d0e",
+                                                          "children":  [
+
+                                                                       ]
+                                                      }
+                                                  ],
+                                    "items":  [
+                                                  {
+                                                      "id":  "term-gdt-002",
+                                                      "code":  "GDT-002",
+                                                      "name":  "טולרנס מיקום",
+                                                      "nameEn":  "Position Tolerance",
+                                                      "subtopic":  "טולרנסי מיקום",
+                                                      "subSubtopic":  "",
+                                                      "aliases":  [
+                                                                      "True Position",
+                                                                      "מיקום אמיתי"
+                                                                  ],
+                                                      "symbol":  "⌖",
+                                                      "units":  "mm",
+                                                      "short":  "בקרת מיקום של ציר, מישור אמצע או מרכז מאפיין ביחס למיקום התאורטי המדויק.",
+                                                      "definition":  "בקרת מיקום פונקציונליתטולרנס מיקום מגדיר אזור טולרנס שבתוכו חייב להימצא הציר או המרכז הנגזר של מאפיין גודל. מבטיח הרכבה חליפית ומרווח ברגים תקין.",
+                                                      "definitionHtml":  "\u003ch3\u003eבקרת מיקום פונקציונלית\u003c/h3\u003e\u003cp\u003e\u003cstrong\u003eטולרנס מיקום\u003c/strong\u003e מגדיר אזור טולרנס שבתוכו חייב להימצא הציר או המרכז הנגזר של מאפיין גודל. מבטיח הרכבה חליפית ומרווח ברגים תקין.\u003c/p\u003e",
+                                                      "why":  "זהו אחד הכלים המרכזיים להבטחת הרכבה חליפית בין חלקים, משום שהוא משלב שליטה במיקום ובמקרים רבים גם בכיוון המאפיין.",
+                                                      "formula":  "TP = 2 · √(Δx² + Δy²)",
+                                                      "formulaNote":  "נוסחת חישוב סטייה דיאמטרלית במישור עבור דוגמה פשוטה.",
+                                                      "variables":  [
+                                                                        {
+                                                                            "symbol":  "TP",
+                                                                            "meaning":  "סטיית מיקום דיאמטרלית",
+                                                                            "unit":  "mm"
+                                                                        },
+                                                                        {
+                                                                            "symbol":  "Δx",
+                                                                            "meaning":  "סטייה בציר X מהמיקום התאורטי",
+                                                                            "unit":  "mm"
+                                                                        },
+                                                                        {
+                                                                            "symbol":  "Δy",
+                                                                            "meaning":  "סטייה בציר Y מהמיקום התאורטי",
+                                                                            "unit":  "mm"
+                                                                        }
+                                                                    ],
+                                                      "uses":  [
+                                                                   "תבניות חורים לברגים",
+                                                                   "מיקום פינים ומיסבים",
+                                                                   "שליטה בקואקסיאליות פונקציונלית"
+                                                               ],
+                                                      "cautions":  [
+                                                                       "אין להשוות ישירות סטייה חד־צירית לקוטר אזור הטולרנס.",
+                                                                       "יש לבדוק האם קיים מצב חומר MMC/LMC שמשנה את הטולרנס הזמין."
+                                                                   ],
+                                                      "standards":  [
+                                                                        "ASME Y14.5",
+                                                                        "ISO 1101"
+                                                                    ],
+                                                      "manufacturing":  "קידוח בקואורדינטות, עיבוד במרכז CNC ושימוש בדאטומים יציבים מפחיתים הצטברות שגיאות מיקום.",
+                                                      "inspection":  "CMM, מד־גובה על משטח ייחוס, גייג\u0027 פונקציונלי או מדידה אופטית.",
+                                                      "tags":  [
+                                                                   "Position",
+                                                                   "Hole Pattern",
+                                                                   "CMM",
+                                                                   "Assembly"
+                                                               ],
+                                                      "related":  [
+                                                                      "GDT-001"
+                                                                  ],
+                                                      "example":  {
+                                                                      "title":  "חישוב סטיית מיקום",
+                                                                      "given":  "מרכז החור סטה ב-Δx = 0.03 mm וב-Δy = 0.04 mm.",
+                                                                      "solution":  "TP = 2 · √(0.03² + 0.04²) = 2 · 0.05",
+                                                                      "result":  "TP = 0.10 mm"
+                                                                  },
+                                                      "imageName":  "טולרנס מיקום",
+                                                      "imageData":  "",
+                                                      "visualTitle":  "אזור טולרנס גלילי",
+                                                      "visualDescription":  "ציר החור בפועל חייב להימצא בתוך גליל במיקום התאורטי המדויק.",
+                                                      "createdAt":  "2026-07-21",
+                                                      "updatedAt":  "2026-07-21"
+                                                  },
+                                                  {
+                                                      "id":  "term-gdt-001",
+                                                      "code":  "GDT-001",
+                                                      "name":  "דאטום",
+                                                      "nameEn":  "Datum",
+                                                      "subtopic":  "דאטומים",
+                                                      "subSubtopic":  "",
+                                                      "aliases":  [
+                                                                      "בסיס ייחוס",
+                                                                      "Datum Reference"
+                                                                  ],
+                                                      "symbol":  "A / B / C",
+                                                      "units":  "ללא יחידות",
+                                                      "short":  "ייחוס תאורטי מדויק שממנו מגדירים מיקום, כיוון או סיבוב של מאפיינים אחרים.",
+                                                      "definition":  "QA SAFEwindow.__qaInjected=2bad",
+                                                      "definitionHtml":  "\u003cp\u003eQA SAFE\u003c/p\u003ewindow.__qaInjected=2\u003ca target=\"_blank\" rel=\"noopener noreferrer\"\u003ebad\u003c/a\u003e",
+                                                      "why":  "ללא מערכת ייחוס עקבית, ייצור ובחינה עלולים להתבצע מנקודות שונות ולתת תוצאות סותרות. בחירה נכונה של דאטומים מדמה את אופן הקיבוע וההעמסה האמיתיים של החלק.",
+                                                      "formula":  "Datum Reference Frame = A | B | C",
+                                                      "formulaNote":  "סדר הדאטומים מגדיר קדימות: ראשי, משני ושלישוני.",
+                                                      "variables":  [
+                                                                        {
+                                                                            "symbol":  "A",
+                                                                            "meaning":  "דאטום ראשי — מגביל בדרך כלל שלוש דרגות חופש",
+                                                                            "unit":  "—"
+                                                                        },
+                                                                        {
+                                                                            "symbol":  "B",
+                                                                            "meaning":  "דאטום משני — מגביל שתי דרגות חופש נוספות",
+                                                                            "unit":  "—"
+                                                                        },
+                                                                        {
+                                                                            "symbol":  "C",
+                                                                            "meaning":  "דאטום שלישוני — מגביל את דרגת החופש האחרונה",
+                                                                            "unit":  "—"
+                                                                        }
+                                                                    ],
+                                                      "uses":  [
+                                                                   "הגדרת מסגרת ייחוס לבדיקת מיקום חורים",
+                                                                   "קביעת אופן הצבת חלק ב-CMM",
+                                                                   "תכנון מתקני דפינה ובחינה"
+                                                               ],
+                                                      "cautions":  [
+                                                                       "אין לבחור דאטום רק לפי נוחות השרטוט; הבחירה צריכה לשקף ממשק פונקציונלי.",
+                                                                       "מאפיין דאטום ממשי אינו הדאטום התאורטי עצמו."
+                                                                   ],
+                                                      "standards":  [
+                                                                        "ASME Y14.5",
+                                                                        "ISO 5459"
+                                                                    ],
+                                                      "manufacturing":  "יש ליצור משטחי ייחוס יציבים ונגישים לדפינה. משטח דאטום קטן, לא רציף או גמיש עלול לייצר חזרתיות נמוכה.",
+                                                      "inspection":  "ניתן לממש את מערכת הדאטומים באמצעות פלטה, פינים, V-block או יישור מתמטי במכונת מדידה קואורדינטית.",
+                                                      "tags":  [
+                                                                   "GD\u0026T",
+                                                                   "Reference Frame",
+                                                                   "CMM",
+                                                                   "Fixture"
+                                                               ],
+                                                      "related":  [
+                                                                      "GDT-002"
+                                                                  ],
+                                                      "example":  {
+                                                                      "title":  "",
+                                                                      "given":  "",
+                                                                      "solution":  "",
+                                                                      "result":  ""
+                                                                  },
+                                                      "imageName":  "דאטום",
+                                                      "imageData":  "",
+                                                      "visualTitle":  "מסגרת ייחוס תלת־מישורית",
+                                                      "visualDescription":  "הדאטום הראשי A מייצב את החלק, B מכוון אותו ו-C משלים את הקיבוע.",
+                                                      "createdAt":  "2026-07-21",
+                                                      "updatedAt":  "2026-07-24"
+                                                  },
+                                                  {
+                                                      "id":  "663355c3-87e9-4430-a287-cc418f0cb52b",
+                                                      "code":  "GDT-003",
+                                                      "name":  "מושג QA זמני",
+                                                      "nameEn":  "Temporary QA Term",
+                                                      "subtopic":  "כללי",
+                                                      "subSubtopic":  "",
+                                                      "aliases":  [
+
+                                                                  ],
+                                                      "symbol":  "",
+                                                      "units":  "",
+                                                      "short":  "מושג שיוסר בשחזור",
+                                                      "definition":  "מושג שיוסר בשחזור",
+                                                      "definitionHtml":  "מושג שיוסר בשחזור",
+                                                      "why":  "",
+                                                      "formula":  "",
+                                                      "formulaNote":  "",
+                                                      "variables":  [
+
+                                                                    ],
+                                                      "uses":  [
+
+                                                               ],
+                                                      "cautions":  [
+
+                                                                   ],
+                                                      "standards":  [
+
+                                                                    ],
+                                                      "manufacturing":  "",
+                                                      "inspection":  "",
+                                                      "tags":  [
+
+                                                               ],
+                                                      "related":  [
+
+                                                                  ],
+                                                      "example":  {
+                                                                      "title":  "",
+                                                                      "given":  "",
+                                                                      "solution":  "",
+                                                                      "result":  ""
+                                                                  },
+                                                      "imageName":  "מושג QA זמני",
+                                                      "imageData":  "",
+                                                      "visualTitle":  "מושג QA זמני",
+                                                      "visualDescription":  "",
+                                                      "createdAt":  "2026-07-24",
+                                                      "updatedAt":  "2026-07-24"
+                                                  }
+                                              ]
+                                },
+                                {
+                                    "id":  "domain-mechanics",
+                                    "name":  "מכניקה וחוזק חומרים",
+                                    "nameEn":  "Mechanics \u0026 Strength of Materials",
+                                    "prefix":  "MEC",
+                                    "icon":  "mechanics",
+                                    "color":  "#7c4b1f",
+                                    "description":  "מאמצים, עיבורים, קשיחות, כפיפה, יציבות והתנהגות מכנית של רכיבים תחת עומס.",
+                                    "subtopics":  [
+                                                      {
+                                                          "id":  "subtopic-mec-stress",
+                                                          "name":  "מאמץ ועיבור",
+                                                          "description":  "תגובת החומר לעומסים ציריים",
+                                                          "color":  "#7c4b1f",
+                                                          "children":  [
+
+                                                                       ]
+                                                      },
+                                                      {
+                                                          "id":  "subtopic-mec-elasticity",
+                                                          "name":  "אלסטיות",
+                                                          "description":  "מודול יאנג והתנהגות ליניארית",
+                                                          "color":  "#a8532a",
+                                                          "children":  [
+
+                                                                       ]
+                                                      },
+                                                      {
+                                                          "id":  "subtopic-mec-bending",
+                                                          "name":  "כפיפה",
+                                                          "description":  "מומנט כפיפה ומאמצים בקורות",
+                                                          "color":  "#b45309",
+                                                          "children":  [
+
+                                                                       ]
+                                                      }
+                                                  ],
+                                    "items":  [
+                                                  {
+                                                      "id":  "term-mec-001",
+                                                      "code":  "MEC-001",
+                                                      "name":  "מאמץ נורמלי",
+                                                      "nameEn":  "Normal Stress",
+                                                      "subtopic":  "מאמץ ועיבור",
+                                                      "subSubtopic":  "",
+                                                      "aliases":  [
+                                                                      "מאמץ צירי"
+                                                                  ],
+                                                      "symbol":  "σ",
+                                                      "units":  "Pa, MPa",
+                                                      "short":  "כוח נורמלי ליחידת שטח חתך, במתיחה או בלחיצה.",
+                                                      "definition":  "מאמץ צירי פנימימאמץ נורמלי מתאר את עוצמת הכוח הפנימי הפועל בניצב לחתך. מתקבל מחלוקת הכוח הצירי בשטח החתך הנושא עומס.",
+                                                      "definitionHtml":  "\u003ch3\u003eמאמץ צירי פנימי\u003c/h3\u003e\u003cp\u003e\u003cstrong\u003eמאמץ נורמלי\u003c/strong\u003e מתאר את עוצמת הכוח הפנימי הפועל בניצב לחתך. מתקבל מחלוקת הכוח הצירי בשטח החתך הנושא עומס.\u003c/p\u003e",
+                                                      "why":  "זהו מדד בסיסי להשוואה בין העומס הפועל לבין חוזק החומר, והוא משמש בתכן מוטות, ברגים, עמודים וחיבורים.",
+                                                      "formula":  "σ = F / A",
+                                                      "formulaNote":  "הנוסחה מייצגת מאמץ ממוצע; ריכוזי מאמץ דורשים מודל מפורט יותר.",
+                                                      "variables":  [
+                                                                        {
+                                                                            "symbol":  "σ",
+                                                                            "meaning":  "מאמץ נורמלי",
+                                                                            "unit":  "Pa או MPa"
+                                                                        },
+                                                                        {
+                                                                            "symbol":  "F",
+                                                                            "meaning":  "כוח צירי",
+                                                                            "unit":  "N"
+                                                                        },
+                                                                        {
+                                                                            "symbol":  "A",
+                                                                            "meaning":  "שטח חתך נושא עומס",
+                                                                            "unit":  "m² או mm²"
+                                                                        }
+                                                                    ],
+                                                      "uses":  [
+                                                                   "בדיקת מוט מתיחה",
+                                                                   "תכן בורג",
+                                                                   "בדיקת עמוד בלחיצה"
+                                                               ],
+                                                      "cautions":  [
+                                                                       "יש לשמור עקביות יחידות: N/mm² שווה MPa.",
+                                                                       "בקרבת חורים והברגות המאמץ המקומי גבוה יותר."
+                                                                   ],
+                                                      "standards":  [
+                                                                        "Mechanics of Materials"
+                                                                    ],
+                                                      "manufacturing":  "שינויים חדים בחתך ופגמי פני שטח מעלים ריכוז מאמץ ומפחיתים חיי עייפות.",
+                                                      "inspection":  "בדיקת ממדים, אימות חומר ומדידת עיבורים תחת עומס.",
+                                                      "tags":  [
+                                                                   "Stress",
+                                                                   "Axial Load",
+                                                                   "Strength"
+                                                               ],
+                                                      "related":  [
+                                                                      "MEC-003"
+                                                                  ],
+                                                      "example":  {
+                                                                      "title":  "מוט במתיחה",
+                                                                      "given":  "כוח F = 20 kN, שטח A = 200 mm².",
+                                                                      "solution":  "σ = 20,000 / 200",
+                                                                      "result":  "σ = 100 MPa"
+                                                                  },
+                                                      "imageName":  "מאמץ נורמלי",
+                                                      "imageData":  "",
+                                                      "visualTitle":  "מוט תחת עומס צירי",
+                                                      "visualDescription":  "כוחות ציריים הפוכים יוצרים מאמץ נורמלי בחתך.",
+                                                      "createdAt":  "2026-07-21",
+                                                      "updatedAt":  "2026-07-21"
+                                                  },
+                                                  {
+                                                      "id":  "term-mec-003",
+                                                      "code":  "MEC-003",
+                                                      "name":  "מודול יאנג",
+                                                      "nameEn":  "Young\u0027s Modulus",
+                                                      "subtopic":  "אלסטיות",
+                                                      "subSubtopic":  "",
+                                                      "aliases":  [
+                                                                      "מודול אלסטיות"
+                                                                  ],
+                                                      "symbol":  "E",
+                                                      "units":  "Pa, GPa",
+                                                      "short":  "שיפוע עקומת מאמץ–עיבור בתחום האלסטי הליניארי ומדד לקשיחות החומר.",
+                                                      "definition":  "מדד קשיחות החומרמודול יאנג הוא היחס בין מאמץ לעיבור בתחום האלסטי. מבטא את התנגדות החומר לדפורמציה אלסטית.",
+                                                      "definitionHtml":  "\u003ch3\u003eמדד קשיחות החומר\u003c/h3\u003e\u003cp\u003e\u003cstrong\u003eמודול יאנג\u003c/strong\u003e הוא היחס בין מאמץ לעיבור בתחום האלסטי. מבטא את התנגדות החומר לדפורמציה אלסטית.\u003c/p\u003e",
+                                                      "why":  "המודול משפיע על שקיעה, סטייה, תדרים טבעיים וחלוקת עומסים.",
+                                                      "formula":  "E = σ / ε",
+                                                      "formulaNote":  "תקף בתחום האלסטי הליניארי.",
+                                                      "variables":  [
+                                                                        {
+                                                                            "symbol":  "E",
+                                                                            "meaning":  "מודול יאנג",
+                                                                            "unit":  "Pa או GPa"
+                                                                        },
+                                                                        {
+                                                                            "symbol":  "σ",
+                                                                            "meaning":  "מאמץ נורמלי",
+                                                                            "unit":  "Pa"
+                                                                        },
+                                                                        {
+                                                                            "symbol":  "ε",
+                                                                            "meaning":  "עיבור",
+                                                                            "unit":  "—"
+                                                                        }
+                                                                    ],
+                                                      "uses":  [
+                                                                   "חישוב שקיעת קורות",
+                                                                   "חישוב התארכות מוט",
+                                                                   "מודלים אלסטיים ב-FEA"
+                                                               ],
+                                                      "cautions":  [
+                                                                       "חומר חזק אינו בהכרח קשיח יותר.",
+                                                                       "המודול משתנה עם הטמפרטורה."
+                                                                   ],
+                                                      "standards":  [
+                                                                        "ISO 6892",
+                                                                        "ASTM E111"
+                                                                    ],
+                                                      "manufacturing":  "עיבוד מנוני משנה את חוזק הכניעה יותר מאשר את מודול יאנג.",
+                                                      "inspection":  "ניסוי מתיחה עם מדידת עיבור מדויקת.",
+                                                      "tags":  [
+                                                                   "Elasticity",
+                                                                   "Stiffness",
+                                                                   "Material Property"
+                                                               ],
+                                                      "related":  [
+                                                                      "MEC-001"
+                                                                  ],
+                                                      "example":  {
+                                                                      "title":  "",
+                                                                      "given":  "",
+                                                                      "solution":  "",
+                                                                      "result":  ""
+                                                                  },
+                                                      "imageName":  "מודול יאנג",
+                                                      "imageData":  "",
+                                                      "visualTitle":  "שיפוע התחום האלסטי",
+                                                      "visualDescription":  "E הוא השיפוע הליניארי הראשוני בעקומת מאמץ–עיבור.",
+                                                      "createdAt":  "2026-07-21",
+                                                      "updatedAt":  "2026-07-21"
+                                                  }
+                                              ]
+                                },
+                                {
+                                    "id":  "domain-flow",
+                                    "name":  "זרימה ומערכות נוזלים",
+                                    "nameEn":  "Fluid Flow \u0026 Systems",
+                                    "prefix":  "FLD",
+                                    "icon":  "flow",
+                                    "color":  "#2b6e9e",
+                                    "description":  "ספיקה, משטרי זרימה, הפסדי לחץ והתנהגות של נוזלים וגזים בצנרת ובמערכות.",
+                                    "subtopics":  [
+                                                      {
+                                                          "id":  "subtopic-fld-flowrate",
+                                                          "name":  "ספיקה",
+                                                          "description":  "מעבר נפח או מסה ביחידת זמן",
+                                                          "color":  "#2b6e9e",
+                                                          "children":  [
+
+                                                                       ]
+                                                      },
+                                                      {
+                                                          "id":  "subtopic-fld-regime",
+                                                          "name":  "משטר זרימה",
+                                                          "description":  "מספר ריינולדס וזרימה למינרית/טורבולנטית",
+                                                          "color":  "#0369a1",
+                                                          "children":  [
+
+                                                                       ]
+                                                      }
+                                                  ],
+                                    "items":  [
+                                                  {
+                                                      "id":  "term-fld-001",
+                                                      "code":  "FLD-001",
+                                                      "name":  "ספיקה נפחית",
+                                                      "nameEn":  "Volumetric Flow Rate",
+                                                      "subtopic":  "ספיקה",
+                                                      "subSubtopic":  "",
+                                                      "aliases":  [
+                                                                      "ספיקה",
+                                                                      "Flow Rate"
+                                                                  ],
+                                                      "symbol":  "Q",
+                                                      "units":  "m³/s, L/min",
+                                                      "short":  "נפח זורם העובר דרך חתך נתון ביחידת זמן.",
+                                                      "definition":  "קצב מעבר נפחספיקה נפחית היא נפח הזורם העובר דרך חתך ביחידת זמן. שווה למכפלת שטח החתך במהירות הממוצעת.",
+                                                      "definitionHtml":  "\u003ch3\u003eקצב מעבר נפח\u003c/h3\u003e\u003cp\u003e\u003cstrong\u003eספיקה נפחית\u003c/strong\u003e היא נפח הזורם העובר דרך חתך ביחידת זמן. שווה למכפלת שטח החתך במהירות הממוצעת.\u003c/p\u003e",
+                                                      "why":  "הספיקה קובעת קיבולת מערכת, זמני מילוי, מהירויות בצנרת, הפסדי לחץ והספקי משאבות.",
+                                                      "formula":  "Q = A·v",
+                                                      "formulaNote":  "לשדה מהירות לא אחיד הספיקה היא אינטגרל על פני החתך.",
+                                                      "variables":  [
+                                                                        {
+                                                                            "symbol":  "Q",
+                                                                            "meaning":  "ספיקה נפחית",
+                                                                            "unit":  "m³/s"
+                                                                        },
+                                                                        {
+                                                                            "symbol":  "A",
+                                                                            "meaning":  "שטח חתך הזרימה",
+                                                                            "unit":  "m²"
+                                                                        },
+                                                                        {
+                                                                            "symbol":  "v",
+                                                                            "meaning":  "מהירות ממוצעת",
+                                                                            "unit":  "m/s"
+                                                                        }
+                                                                    ],
+                                                      "uses":  [
+                                                                   "בחירת קוטר צינור",
+                                                                   "אפיון משאבה",
+                                                                   "חישוב זמן מילוי"
+                                                               ],
+                                                      "cautions":  [
+                                                                       "יש להבחין בין ספיקה נפחית לספיקה מסית."
+                                                                   ],
+                                                      "standards":  [
+                                                                        "ISO 5167"
+                                                                    ],
+                                                      "manufacturing":  "חספוס פנימי וחיבורים משפיעים על המהירות ועל הפסדי הלחץ.",
+                                                      "inspection":  "מד ספיקה, מדידת הפרש לחץ או מדידה נפחית מכוילת.",
+                                                      "tags":  [
+                                                                   "Flow",
+                                                                   "Pipe",
+                                                                   "Pump"
+                                                               ],
+                                                      "related":  [
+                                                                      "FLD-002"
+                                                                  ],
+                                                      "example":  {
+                                                                      "title":  "ספיקה בצינור",
+                                                                      "given":  "שטח A = 0.002 m², מהירות v = 3 m/s.",
+                                                                      "solution":  "Q = 0.002 · 3",
+                                                                      "result":  "Q = 0.006 m³/s = 6 L/s"
+                                                                  },
+                                                      "imageName":  "ספיקה נפחית",
+                                                      "imageData":  "",
+                                                      "visualTitle":  "מאזן זרימה בחתך",
+                                                      "visualDescription":  "הספיקה מתקבלת ממכפלת שטח החתך במהירות הממוצעת.",
+                                                      "createdAt":  "2026-07-21",
+                                                      "updatedAt":  "2026-07-21"
+                                                  },
+                                                  {
+                                                      "id":  "term-fld-002",
+                                                      "code":  "FLD-002",
+                                                      "name":  "מספר ריינולדס",
+                                                      "nameEn":  "Reynolds Number",
+                                                      "subtopic":  "משטר זרימה",
+                                                      "subSubtopic":  "",
+                                                      "aliases":  [
+                                                                      "Re"
+                                                                  ],
+                                                      "symbol":  "Re",
+                                                      "units":  "ללא יחידות",
+                                                      "short":  "מספר חסר ממד המבטא את היחס בין כוחות אינרציה לכוחות צמיגות.",
+                                                      "definition":  "אפיון משטר זרימהמספר ריינולדס מדרג את היחס בין כוחות אינרציה לכוחות צמיגות וקובע אם הזרימה היא למינרית או טורבולנטית.",
+                                                      "definitionHtml":  "\u003ch3\u003eאפיון משטר זרימה\u003c/h3\u003e\u003cp\u003e\u003cstrong\u003eמספר ריינולדס\u003c/strong\u003e מדרג את היחס בין כוחות אינרציה לכוחות צמיגות וקובע אם הזרימה היא למינרית או טורבולנטית.\u003c/p\u003e",
+                                                      "why":  "משטר הזרימה משפיע על הפסדי לחץ, מעבר חום, ערבוב ורעש.",
+                                                      "formula":  "Re = ρ·v·D / μ",
+                                                      "formulaNote":  "בצינור לא עגול משתמשים בקוטר הידראולי.",
+                                                      "variables":  [
+                                                                        {
+                                                                            "symbol":  "ρ",
+                                                                            "meaning":  "צפיפות הזורם",
+                                                                            "unit":  "kg/m³"
+                                                                        },
+                                                                        {
+                                                                            "symbol":  "v",
+                                                                            "meaning":  "מהירות",
+                                                                            "unit":  "m/s"
+                                                                        },
+                                                                        {
+                                                                            "symbol":  "D",
+                                                                            "meaning":  "קוטר צינור",
+                                                                            "unit":  "m"
+                                                                        },
+                                                                        {
+                                                                            "symbol":  "μ",
+                                                                            "meaning":  "צמיגות דינמית",
+                                                                            "unit":  "Pa·s"
+                                                                        }
+                                                                    ],
+                                                      "uses":  [
+                                                                   "בחירת מקדם חיכוך",
+                                                                   "תכנון מעבר חום",
+                                                                   "השוואת ניסוי למודל"
+                                                               ],
+                                                      "cautions":  [
+                                                                       "תכונות הזורם צריכות להילקח בטמפרטורת העבודה."
+                                                                   ],
+                                                      "standards":  [
+                                                                        "Fluid Mechanics"
+                                                                    ],
+                                                      "manufacturing":  "אי-עגילות וחספוס יכולים להקדים מעבר לטורבולנציה.",
+                                                      "inspection":  "חישוב מתוך ספיקה וקוטר או מדידות הפרשי לחץ.",
+                                                      "tags":  [
+                                                                   "Reynolds",
+                                                                   "Laminar",
+                                                                   "Turbulent"
+                                                               ],
+                                                      "related":  [
+                                                                      "FLD-001"
+                                                                  ],
+                                                      "example":  {
+                                                                      "title":  "",
+                                                                      "given":  "",
+                                                                      "solution":  "",
+                                                                      "result":  ""
+                                                                  },
+                                                      "imageName":  "מספר ריינולדס",
+                                                      "imageData":  "",
+                                                      "visualTitle":  "משטרי זרימה בצינור",
+                                                      "visualDescription":  "ב-Re נמוך הזרימה מסודרת; ב-Re גבוה מופיעות מערבולות.",
+                                                      "createdAt":  "2026-07-21",
+                                                      "updatedAt":  "2026-07-21"
+                                                  }
+                                              ]
+                                },
+                                {
+                                    "id":  "domain-prod",
+                                    "name":  "הנדסת חומרים ותהליכי ייצור",
+                                    "nameEn":  "Materials \u0026 Manufacturing Engineering",
+                                    "prefix":  "PROD",
+                                    "icon":  "manufacturing",
+                                    "color":  "#10b981",
+                                    "description":  "שיטות ייצור מתקדמות, עיבוד שבבי, חיתוך בלייזר וטכנולוגיות עיבוד חומרים.",
+                                    "subtopics":  [
+                                                      {
+                                                          "id":  "subtopic-prod-machining",
+                                                          "name":  "עיבוד שבבי וזיווד",
+                                                          "description":  "תהליכי הסרת שבב, כרסום וחיתוך מדויק",
+                                                          "color":  "#10b981",
+                                                          "children":  [
+
+                                                                       ]
+                                                      }
+                                                  ],
+                                    "items":  [
+                                                  {
+                                                      "id":  "term-prod-001",
+                                                      "code":  "PROD-001",
+                                                      "name":  "כרסום CNC (CNC Milling)",
+                                                      "nameEn":  "CNC Milling Process",
+                                                      "subtopic":  "עיבוד שבבי וזיווד",
+                                                      "subSubtopic":  "",
+                                                      "aliases":  [
+                                                                      "כרסום",
+                                                                      "Milling Process"
+                                                                  ],
+                                                      "symbol":  "CNC",
+                                                      "units":  "mm/min, RPM",
+                                                      "short":  "תהליך עיבוד שבבי מבוקר מחשב המסיר חומר מגוש גלם באמצעות כלי חיתוך מסתובב ליצירת חלקים גאומטריים מדויקים.",
+                                                      "definition":  "עיבוד שבבי ממוחשבכרסום CNC הוא תהליך ייצור מתקדם המסיר חומר מגוש גלם באמצעות כלי חיתוך מסתובב מבוקר מחשב, המבטיח דיוק גבוה ודיוק גאומטרי תלת־מימדי.",
+                                                      "definitionHtml":  "\u003ch3\u003eעיבוד שבבי ממוחשב\u003c/h3\u003e\u003cp\u003e\u003cstrong\u003eכרסום CNC\u003c/strong\u003e הוא תהליך ייצור מתקדם המסיר חומר מגוש גלם באמצעות כלי חיתוך מסתובב מבוקר מחשב, המבטיח דיוק גבוה ודיוק גאומטרי תלת־מימדי.\u003c/p\u003e",
+                                                      "why":  "מאפשר לייצר רכיבים מכניים מורכבים בטולרנסים הדוקים, חזרתיות גבוהה וגימור פני שטח איכותי.",
+                                                      "formula":  "Vf = fz · z · n",
+                                                      "formulaNote":  "מהירות הקדמה כתלוי בהזנה לשן, מספר שיניים ומהירות סיבוב.",
+                                                      "variables":  [
+                                                                        {
+                                                                            "symbol":  "Vf",
+                                                                            "meaning":  "מהירות הקדמה",
+                                                                            "unit":  "mm/min"
+                                                                        },
+                                                                        {
+                                                                            "symbol":  "fz",
+                                                                            "meaning":  "הזנה לשן",
+                                                                            "unit":  "mm/tooth"
+                                                                        },
+                                                                        {
+                                                                            "symbol":  "z",
+                                                                            "meaning":  "מספר שיני החיתוך",
+                                                                            "unit":  "—"
+                                                                        },
+                                                                        {
+                                                                            "symbol":  "n",
+                                                                            "meaning":  "מהירות סיבוב הציקלינדר",
+                                                                            "unit":  "RPM"
+                                                                        }
+                                                                    ],
+                                                      "uses":  [
+                                                                   "ייצור חלקים מוטסים ורפואיים",
+                                                                   "זיווד אלקטרוני ומארזי אלומיניום",
+                                                                   "תבניות ודגמים הנדסיים"
+                                                               ],
+                                                      "cautions":  [
+                                                                       "יש להקפיד על קשיחות הדפינה ורדיוס פינות פנימיות.",
+                                                                       "תכנון נכון של כיוון הסיבים ושיטות הקירור."
+                                                                   ],
+                                                      "standards":  [
+                                                                        "ISO 2768-mK",
+                                                                        "ASME Y14.5"
+                                                                    ],
+                                                      "manufacturing":  "שימוש בכרסומים מתאימים לסוג החומר, עיבוד מקדים (Roughing) ועיבוד סופי (Finishing).",
+                                                      "inspection":  "מדידת ממדים ומיקום באמצעות CMM, מד גובה ומיקרומטר.",
+                                                      "tags":  [
+                                                                   "CNC",
+                                                                   "Milling",
+                                                                   "Machining",
+                                                                   "Manufacturing"
+                                                               ],
+                                                      "related":  [
+                                                                      "PROD-002",
+                                                                      "GDT-001"
+                                                                  ],
+                                                      "example":  {
+                                                                      "title":  "",
+                                                                      "given":  "",
+                                                                      "solution":  "",
+                                                                      "result":  ""
+                                                                  },
+                                                      "imageName":  "כרסום CNC (CNC Milling)",
+                                                      "imageData":  "",
+                                                      "visualTitle":  "תהליך כרסום ממוחשב",
+                                                      "visualDescription":  "כלי החיתוך מסיר שבבים מגוש הגלם ליצירת המבנה הרצוי.",
+                                                      "createdAt":  "2026-07-22",
+                                                      "updatedAt":  "2026-07-22"
+                                                  },
+                                                  {
+                                                      "id":  "term-prod-002",
+                                                      "code":  "PROD-002",
+                                                      "name":  "חיתוך בלייזר (Laser Cutting)",
+                                                      "nameEn":  "Laser Beam Cutting",
+                                                      "subtopic":  "עיבוד שבבי וזיווד",
+                                                      "subSubtopic":  "",
+                                                      "aliases":  [
+                                                                      "חיתוך לייזר",
+                                                                      "Laser Cutting"
+                                                                  ],
+                                                      "symbol":  "LBC",
+                                                      "units":  "mm, kW",
+                                                      "short":  "טכנולוגיית חיתוך ממוחשבת המשתמשת בקרן לייזר בעוצמה גבוהה לחיתוך מדויק של פחים וצינורות בטולרנס גבוה.",
+                                                      "definition":  "חיתוך פחים בלייזרחיתוך בלייזר מבוסס על קרן אנרגיה ממוקדת המתיכה את החומר ויוצרת מתווה חיתוך נקי, מהיר ומדויק ללא מגע מכני ישיר בחלק.",
+                                                      "definitionHtml":  "\u003ch3\u003eחיתוך פחים בלייזר\u003c/h3\u003e\u003cp\u003e\u003cstrong\u003eחיתוך בלייזר\u003c/strong\u003e מבוסס על קרן אנרגיה ממוקדת המתיכה את החומר ויוצרת מתווה חיתוך נקי, מהיר ומדויק ללא מגע מכני ישיר בחלק.\u003c/p\u003e",
+                                                      "why":  "מספק מהירות חיתוך גבוהה, אפס בלאי כלי מכני, גמישות מלאה בשינויי תכנון ועובי חיתוך רחב.",
+                                                      "formula":  "E = P / v",
+                                                      "formulaNote":  "אנרגיה ליחידת אורך כתלוי בהספק הלייזר ומהירות החיתוך.",
+                                                      "variables":  [
+                                                                        {
+                                                                            "symbol":  "E",
+                                                                            "meaning":  "אנרגיה ליחידת אורך",
+                                                                            "unit":  "J/mm"
+                                                                        },
+                                                                        {
+                                                                            "symbol":  "P",
+                                                                            "meaning":  "הספק קרן הלייזר",
+                                                                            "unit":  "kW"
+                                                                        },
+                                                                        {
+                                                                            "symbol":  "v",
+                                                                            "meaning":  "מהירות החיתוך",
+                                                                            "unit":  "mm/s"
+                                                                        }
+                                                                    ],
+                                                      "uses":  [
+                                                                   "חיתוך פחי אלומיניום, נירוסטה ופלדה",
+                                                                   "ייצור שלדות ומבנים מרותכים",
+                                                                   "חיתוך צינורות ופרופילים"
+                                                               ],
+                                                      "cautions":  [
+                                                                       "חום החיתוך מייצר אזור מושפע חום (HAZ) דק בקצוות.",
+                                                                       "יש להתחשב בעובי קרן החיתוך (Kerf Width)."
+                                                                   ],
+                                                      "standards":  [
+                                                                        "ISO 9013"
+                                                                    ],
+                                                      "manufacturing":  "סידור אופטימלי של החלקים על גבי הפח (Nesting) לחיסכון בחומר גלם.",
+                                                      "inspection":  "בדיקת אנכיות קו החיתוך, ניקוי גרדים ומדידת אופטיקה.",
+                                                      "tags":  [
+                                                                   "Laser",
+                                                                   "SheetMetal",
+                                                                   "Cutting",
+                                                                   "Nesting"
+                                                               ],
+                                                      "related":  [
+                                                                      "PROD-001"
+                                                                  ],
+                                                      "example":  {
+                                                                      "title":  "",
+                                                                      "given":  "",
+                                                                      "solution":  "",
+                                                                      "result":  ""
+                                                                  },
+                                                      "imageName":  "חיתוך בלייזר (Laser Cutting)",
+                                                      "imageData":  "",
+                                                      "visualTitle":  "קרן לייזר חותכת פח מתכת",
+                                                      "visualDescription":  "מיקוד הקרן מתיך את החומר וגז העזר מפנה את השבב.",
+                                                      "createdAt":  "2026-07-22",
+                                                      "updatedAt":  "2026-07-22"
+                                                  }
+                                              ]
+                                }
+                            ],
+                   "settings":  {
+                                    "pin":  "1234",
+                                    "contentPin":  "1234",
+                                    "superPin":  "9999",
+                                    "uiRefreshVersion":  2,
+                                    "hierarchyDemoVersion":  0,
+                                    "colorDepthVersion":  1,
+                                    "appearance":  {
+                                                       "primary":  "#0f3d5e",
+                                                       "background":  "#dce7ec",
+                                                       "surface":  "#f2f6f7",
+                                                       "font":  "Arial",
+                                                       "fontSize":  17,
+                                                       "radius":  14,
+                                                       "density":  "comfortable",
+                                                       "buttonShadow":  "dynamic",
+                                                       "buttonHoverScale":  1.04,
+                                                       "buttonActiveScale":  0.97
+                                                   },
+                                    "fields":  {
+                                                   "symbol":  true,
+                                                   "units":  true,
+                                                   "formula":  true,
+                                                   "standards":  true,
+                                                   "example":  true,
+                                                   "cautions":  true,
+                                                   "manufacturing":  true,
+                                                   "inspection":  true,
+                                                   "related":  true
+                                               },
+                                    "uiText":  {
+                                                   "brandName":  "MECHLEX",
+                                                   "brandSubtitle":  "Engineering Knowledge System",
+                                                   "heroEyebrow":  "ENGINEERING REFERENCE · LEARNING · PRACTICE",
+                                                   "pageTitle":  "מילון הנדסי מקצועי",
+                                                   "heroDescription":  "גישה מהירה להגדרות, סימונים, נוסחאות, תקנים, דוגמאות יישומיות ושיקולי ייצור ובחינה.",
+                                                   "metricTermsLabel":  "מושגים זמינים",
+                                                   "metricTermsNote":  "במאגר הפעיל",
+                                                   "metricDomainsLabel":  "תחומי ידע",
+                                                   "metricDomainsNote":  "מסודרים לפי דיסציפלינה",
+                                                   "metricFavoritesLabel":  "מועדפים",
+                                                   "metricFavoritesNote":  "לגישה מהירה",
+                                                   "metricMasteredLabel":  "נלמדו",
+                                                   "metricMasteredNote":  "בהתקדמות האישית",
+                                                   "taxonomyTitle":  "מפת תחומים היררכית",
+                                                   "taxonomyPath":  "תחום ← תת־תחום ← תת־תת־תחום ← מושגים",
+                                                   "introTitle":  "המילון נפתח לפי תחומי ידע",
+                                                   "introDescription":  "בחרו אחד מכרטיסי התחומים למעלה כדי לחשוף את המבנה שלו ואת המושגים שבתוכו. אפשר גם לחפש מושג ישירות בשורת החיפוש.",
+                                                   "resultsTitle":  "כל המושגים",
+                                                   "contextLabel":  "כל המושגים",
+                                                   "resultsMeta":  "1 תוצאה",
+                                                   "progressText":  "טרם סומנו מושגים כנלמדו",
+                                                   "navAllLabel":  "כל המושגים",
+                                                   "navFavLabel":  "מועדפים",
+                                                   "navLearningLabel":  "בתהליך למידה",
+                                                   "navMasteredLabel":  "נלמדו",
+                                                   "navRecentLabel":  "נצפו לאחרונה",
+                                                   "sidebarDomainsHead":  "תחומי ידע",
+                                                   "taxonomySectionKicker":  "KNOWLEDGE MAP",
+                                                   "activeContextPrefix":  "מציג:",
+                                                   "resetFiltersBtn":  "איפוס מסננים",
+                                                   "subtopicFilterLabel":  "מיקום בהיררכיה",
+                                                   "sortSelectLabel":  "מיון",
+                                                   "mindMapViewBtn":  "מפת חשיבה",
+                                                   "emptyStateTitle":  "לא נמצאו מושגים מתאימים",
+                                                   "emptyStateDesc":  "נסה מונח אחר, קוד קטלוגי, שם באנגלית או איפוס של אחד המסננים.",
+                                                   "emptyResetBtn":  "איפוס חיפוש ומסננים",
+                                                   "mindMapInfoTitle":  "🕸️ מפת חשיבה ויזואלית (Mind Map)",
+                                                   "adminBtn":  "מרכז ניהול",
+                                                   "saveState":  "הנתונים נשמרים אוטומטית במחשב זה"
+                                               }
+                                },
+                   "uiText":  {
+                                  "brandName":  "MECHLEX",
+                                  "brandSubtitle":  "Engineering Knowledge System",
+                                  "heroEyebrow":  "ENGINEERING REFERENCE · LEARNING · PRACTICE",
+                                  "pageTitle":  "מילון הנדסי מקצועי",
+                                  "heroDescription":  "גישה מהירה להגדרות, סימונים, נוסחאות, תקנים, דוגמאות יישומיות ושיקולי ייצור ובחינה.",
+                                  "metricTermsLabel":  "מושגים זמינים",
+                                  "metricTermsNote":  "במאגר הפעיל",
+                                  "metricDomainsLabel":  "תחומי ידע",
+                                  "metricDomainsNote":  "מסודרים לפי דיסציפלינה",
+                                  "metricFavoritesLabel":  "מועדפים",
+                                  "metricFavoritesNote":  "לגישה מהירה",
+                                  "metricMasteredLabel":  "נלמדו",
+                                  "metricMasteredNote":  "בהתקדמות האישית",
+                                  "taxonomyTitle":  "מפת תחומים היררכית",
+                                  "taxonomyPath":  "תחום ← תת־תחום ← תת־תת־תחום ← מושגים",
+                                  "introTitle":  "המילון נפתח לפי תחומי ידע",
+                                  "introDescription":  "בחרו אחד מכרטיסי התחומים למעלה כדי לחשוף את המבנה שלו ואת המושגים שבתוכו. אפשר גם לחפש מושג ישירות בשורת החיפוש.",
+                                  "resultsTitle":  "כל המושגים",
+                                  "contextLabel":  "כל המושגים",
+                                  "resultsMeta":  "1 תוצאה",
+                                  "progressText":  "טרם סומנו מושגים כנלמדו",
+                                  "navAllLabel":  "כל המושגים",
+                                  "navFavLabel":  "מועדפים",
+                                  "navLearningLabel":  "בתהליך למידה",
+                                  "navMasteredLabel":  "נלמדו",
+                                  "navRecentLabel":  "נצפו לאחרונה",
+                                  "sidebarDomainsHead":  "תחומי ידע",
+                                  "taxonomySectionKicker":  "KNOWLEDGE MAP",
+                                  "activeContextPrefix":  "מציג:",
+                                  "resetFiltersBtn":  "איפוס מסננים",
+                                  "subtopicFilterLabel":  "מיקום בהיררכיה",
+                                  "sortSelectLabel":  "מיון",
+                                  "mindMapViewBtn":  "מפת חשיבה",
+                                  "emptyStateTitle":  "לא נמצאו מושגים מתאימים",
+                                  "emptyStateDesc":  "נסה מונח אחר, קוד קטלוגי, שם באנגלית או איפוס של אחד המסננים.",
+                                  "emptyResetBtn":  "איפוס חיפוש ומסננים",
+                                  "mindMapInfoTitle":  "🕸️ מפת חשיבה ויזואלית (Mind Map)",
+                                  "adminBtn":  "מרכז ניהול",
+                                  "saveState":  "הנתונים נשמרים אוטומטית במחשב זה"
+                              }
+               }
+}

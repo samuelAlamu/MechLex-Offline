@@ -1,0 +1,46 @@
+{
+    "format":  "MechLexSharedState",
+    "formatVersion":  1,
+    "revision":  4,
+    "schemaVersion":  2,
+    "appVersion":  "10.1.0",
+    "updatedAt":  "2026-07-24T22:01:27.2817539Z",
+    "updatedBy":  "qa-a-3",
+    "reason":  "round-3-a",
+    "checksum":  "e59ee2507b20805206cf9d8a3f56f94e71e24b3970196a474eb49953daf1cf49",
+    "shared":  {
+                   "data":  [
+                                {
+                                    "id":  "dom-qa",
+                                    "name":  "בדיקת QA",
+                                    "nameEn":  "QA",
+                                    "prefix":  "QA",
+                                    "color":  "#246b87",
+                                    "icon":  "Q",
+                                    "description":  "round 3 writer A",
+                                    "subtopics":  [
+
+                                                  ],
+                                    "items":  [
+                                                  {
+                                                      "id":  "qa-term",
+                                                      "code":  "QA-001",
+                                                      "title":  "מושג A3",
+                                                      "name":  "מושג A3",
+                                                      "nameEn":  "Term A3",
+                                                      "definition":  "round 3 writer A",
+                                                      "subtopic":  "direct"
+                                                  }
+                                              ]
+                                }
+                            ],
+                   "settings":  {
+                                    "uiText":  {
+                                                   "marker":  "A3"
+                                               }
+                                },
+                   "uiText":  {
+                                  "marker":  "A3"
+                              }
+               }
+}

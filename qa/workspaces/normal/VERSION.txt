@@ -1,0 +1,7 @@
+Application: MechLex
+Version: 10.1.0
+Schema-Version: 2
+Edition: Desktop Offline Visual Admin RTL
+Launch mode: Local loopback server via START_MECHLEX.bat
+Data compatibility: MechLex 8.x, 9.5.x, 9.6.x, 10.0.x and schema-2 JSON backups
+Documentation package: Embedded Word backup hierarchy

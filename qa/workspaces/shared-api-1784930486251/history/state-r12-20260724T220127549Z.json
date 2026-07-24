@@ -1,0 +1,46 @@
+{
+    "format":  "MechLexSharedState",
+    "formatVersion":  1,
+    "revision":  12,
+    "schemaVersion":  2,
+    "appVersion":  "10.1.0",
+    "updatedAt":  "2026-07-24T22:01:27.5386713Z",
+    "updatedBy":  "qa-a-11",
+    "reason":  "round-11-a",
+    "checksum":  "daeaa63399be544d43889361b7788ce3119d7404a4d268a85aa96a2056e4b219",
+    "shared":  {
+                   "data":  [
+                                {
+                                    "id":  "dom-qa",
+                                    "name":  "בדיקת QA",
+                                    "nameEn":  "QA",
+                                    "prefix":  "QA",
+                                    "color":  "#246b87",
+                                    "icon":  "Q",
+                                    "description":  "round 11 writer A",
+                                    "subtopics":  [
+
+                                                  ],
+                                    "items":  [
+                                                  {
+                                                      "id":  "qa-term",
+                                                      "code":  "QA-001",
+                                                      "title":  "מושג A11",
+                                                      "name":  "מושג A11",
+                                                      "nameEn":  "Term A11",
+                                                      "definition":  "round 11 writer A",
+                                                      "subtopic":  "direct"
+                                                  }
+                                              ]
+                                }
+                            ],
+                   "settings":  {
+                                    "uiText":  {
+                                                   "marker":  "A11"
+                                               }
+                                },
+                   "uiText":  {
+                                  "marker":  "A11"
+                              }
+               }
+}

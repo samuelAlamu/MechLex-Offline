@@ -1,0 +1,46 @@
+﻿{
+    "capturedAt":  "2026-07-24T22:17:21.4374200Z",
+    "sharedPath":  "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Shared_Data_Simulation",
+    "active":  {
+                   "format":  null,
+                   "revision":  null,
+                   "schemaVersion":  1,
+                   "appVersion":  "1.0",
+                   "reason":  "Performance test load",
+                   "domains":  10,
+                   "directTerms":  0,
+                   "nestedTerms":  2000,
+                   "hasChecksum":  false
+               },
+    "previous":  {
+                     "format":  "MechLexSharedState",
+                     "revision":  13,
+                     "schemaVersion":  2,
+                     "appVersion":  "10.1.0",
+                     "expectedChecksum":  "0f681c0d618ae68a41fb2d494d58b5826e6791adad87a22618269418b0a4ed75",
+                     "actualChecksum":  "0f681c0d618ae68a41fb2d494d58b5826e6791adad87a22618269418b0a4ed75",
+                     "checksumValid":  true
+                 },
+    "files":  [
+                  {
+                      "Path":  "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Shared_Data_Simulation\\.mechlex-state.lock",
+                      "Bytes":  0,
+                      "SHA256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                  },
+                  {
+                      "Path":  "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Shared_Data_Simulation\\state.31256.ebdbd93ed8b147bcae81972cff6ccdeb.tmp",
+                      "Bytes":  420,
+                      "SHA256":  "378d3718c23fd8b8e9839ee3cca2fe700d75a5cc10e69a029dce18f98208f85d"
+                  },
+                  {
+                      "Path":  "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Shared_Data_Simulation\\state.json",
+                      "Bytes":  846087,
+                      "SHA256":  "648647f78f8cf293a7ca44b168a4e63737816cb0c0481629367b1b1c8dadefd7"
+                  },
+                  {
+                      "Path":  "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Shared_Data_Simulation\\state.previous.json",
+                      "Bytes":  79852,
+                      "SHA256":  "d6097871d73bbb1f1c68c985aa41d1664a050a9a1633092245b4635342451ce6"
+                  }
+              ]
+}

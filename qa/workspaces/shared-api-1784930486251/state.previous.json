@@ -1,0 +1,46 @@
+{
+    "format":  "MechLexSharedState",
+    "formatVersion":  1,
+    "revision":  20,
+    "schemaVersion":  2,
+    "appVersion":  "10.1.0",
+    "updatedAt":  "2026-07-24T22:01:27.7664169Z",
+    "updatedBy":  "qa-a-19",
+    "reason":  "round-19-a",
+    "checksum":  "cc8f57b23550fb55c7fd552b2f1ca478fe5820d152c8dd3bf9e0a3449b811028",
+    "shared":  {
+                   "data":  [
+                                {
+                                    "id":  "dom-qa",
+                                    "name":  "בדיקת QA",
+                                    "nameEn":  "QA",
+                                    "prefix":  "QA",
+                                    "color":  "#246b87",
+                                    "icon":  "Q",
+                                    "description":  "round 19 writer A",
+                                    "subtopics":  [
+
+                                                  ],
+                                    "items":  [
+                                                  {
+                                                      "id":  "qa-term",
+                                                      "code":  "QA-001",
+                                                      "title":  "מושג A19",
+                                                      "name":  "מושג A19",
+                                                      "nameEn":  "Term A19",
+                                                      "definition":  "round 19 writer A",
+                                                      "subtopic":  "direct"
+                                                  }
+                                              ]
+                                }
+                            ],
+                   "settings":  {
+                                    "uiText":  {
+                                                   "marker":  "A19"
+                                               }
+                                },
+                   "uiText":  {
+                                  "marker":  "A19"
+                              }
+               }
+}

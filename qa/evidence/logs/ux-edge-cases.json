@@ -1,0 +1,282 @@
+{
+  "generatedAt": "2026-07-24T22:21:04.817Z",
+  "url": "http://127.0.0.1:8780/index.html",
+  "pass": 0,
+  "fail": 4,
+  "results": [
+    {
+      "id": "SRCH-005",
+      "status": "FAIL",
+      "at": "2026-07-24T22:21:01.874Z",
+      "query": "A | B",
+      "results": 8,
+      "totalTerms": 8,
+      "note": "A single-letter token matched nearly every English field."
+    },
+    {
+      "id": "UX-009-ARIA-TABS",
+      "status": "FAIL",
+      "at": "2026-07-24T22:21:03.092Z",
+      "tabState": [
+        {
+          "tab": "terms",
+          "active": false,
+          "ariaSelected": "true"
+        },
+        {
+          "tab": "domains",
+          "active": true,
+          "ariaSelected": "false"
+        },
+        {
+          "tab": "appearance",
+          "active": false,
+          "ariaSelected": "false"
+        },
+        {
+          "tab": "data",
+          "active": false,
+          "ariaSelected": "false"
+        }
+      ]
+    },
+    {
+      "id": "UX-005",
+      "status": "FAIL",
+      "at": "2026-07-24T22:21:03.351Z",
+      "originalName": "דאטום",
+      "draftStatus": "כל השינויים נשמרו",
+      "dialogsObserved": 0,
+      "overlayClassAfterClose": "overlay hidden",
+      "note": "The modified form closed without an unsaved-change warning."
+    },
+    {
+      "id": "UX-009-MOBILE-FOCUS",
+      "status": "FAIL",
+      "at": "2026-07-24T22:21:04.798Z",
+      "offscreenSidebarFocusCount": 11,
+      "focusSequence": [
+        {
+          "index": 0,
+          "id": "skipToContentBtn",
+          "text": "דלג לתוכן",
+          "tag": "BUTTON",
+          "x": 282.96875,
+          "right": 374,
+          "y": -60,
+          "outsideViewport": true,
+          "insideSidebar": false
+        },
+        {
+          "index": 1,
+          "id": "",
+          "text": "כל המושגים8",
+          "tag": "BUTTON",
+          "x": 420.5,
+          "right": 701.5,
+          "y": 109,
+          "outsideViewport": true,
+          "insideSidebar": true
+        },
+        {
+          "index": 2,
+          "id": "",
+          "text": "☆\n            מועדפים0",
+          "tag": "BUTTON",
+          "x": 420.5,
+          "right": 701.5,
+          "y": 155,
+          "outsideViewport": true,
+          "insideSidebar": true
+        },
+        {
+          "index": 3,
+          "id": "",
+          "text": "◔\n            בתהליך למידה0",
+          "tag": "BUTTON",
+          "x": 420.5,
+          "right": 701.5,
+          "y": 204.03125,
+          "outsideViewport": true,
+          "insideSidebar": true
+        },
+        {
+          "index": 4,
+          "id": "",
+          "text": "✓\n            נלמדו0",
+          "tag": "BUTTON",
+          "x": 420.5,
+          "right": 701.5,
+          "y": 253.0625,
+          "outsideViewport": true,
+          "insideSidebar": true
+        },
+        {
+          "index": 5,
+          "id": "",
+          "text": "↺\n            נצפו לאחרונה0",
+          "tag": "BUTTON",
+          "x": 420.5,
+          "right": 701.5,
+          "y": 302.09375,
+          "outsideViewport": true,
+          "insideSidebar": true
+        },
+        {
+          "index": 6,
+          "id": "clearDomainFilter",
+          "text": "×",
+          "tag": "BUTTON",
+          "x": 426.5,
+          "right": 451.5,
+          "y": 387.125,
+          "outsideViewport": true,
+          "insideSidebar": true
+        },
+        {
+          "index": 7,
+          "id": "",
+          "text": "מידות וטולרנסים גאומטריים2",
+          "tag": "BUTTON",
+          "x": 419.5,
+          "right": 702.5,
+          "y": 430.125,
+          "outsideViewport": true,
+          "insideSidebar": true
+        },
+        {
+          "index": 8,
+          "id": "",
+          "text": "מכניקה וחוזק חומרים2",
+          "tag": "BUTTON",
+          "x": 419.5,
+          "right": 702.5,
+          "y": 495.125,
+          "outsideViewport": true,
+          "insideSidebar": true
+        },
+        {
+          "index": 9,
+          "id": "",
+          "text": "זרימה ומערכות נוזלים2",
+          "tag": "BUTTON",
+          "x": 419.5,
+          "right": 702.5,
+          "y": 560.125,
+          "outsideViewport": true,
+          "insideSidebar": true
+        },
+        {
+          "index": 10,
+          "id": "",
+          "text": "הנדסת חומרים ותהליכי ייצור2",
+          "tag": "BUTTON",
+          "x": 419.5,
+          "right": 702.5,
+          "y": 625.125,
+          "outsideViewport": true,
+          "insideSidebar": true
+        },
+        {
+          "index": 11,
+          "id": "adminBtn",
+          "text": "מרכז ניהול",
+          "tag": "BUTTON",
+          "x": 422.5,
+          "right": 699.5,
+          "y": 717.125,
+          "outsideViewport": true,
+          "insideSidebar": true
+        },
+        {
+          "index": 12,
+          "id": "menuBtn",
+          "text": "☰",
+          "tag": "BUTTON",
+          "x": 340,
+          "right": 380,
+          "y": 19,
+          "outsideViewport": false,
+          "insideSidebar": false
+        },
+        {
+          "index": 13,
+          "id": "searchInput",
+          "text": "",
+          "tag": "INPUT",
+          "x": 78,
+          "right": 291,
+          "y": 17.84375,
+          "outsideViewport": false,
+          "insideSidebar": false
+        },
+        {
+          "index": 14,
+          "id": "themeBtn",
+          "text": "◐",
+          "tag": "BUTTON",
+          "x": 10,
+          "right": 50,
+          "y": 19,
+          "outsideViewport": false,
+          "insideSidebar": false
+        },
+        {
+          "index": 15,
+          "id": "toggleTaxonomyBtn",
+          "text": "KNOWLEDGE MAP\n              מפת תחומים היררכיתתחום",
+          "tag": "BUTTON",
+          "x": 11,
+          "right": 379,
+          "y": 853.34375,
+          "outsideViewport": true,
+          "insideSidebar": false
+        },
+        {
+          "index": 16,
+          "id": "sortSelect",
+          "text": "רלוונטיותשם המושגקוד קטלוגיעודכן לאחרונה",
+          "tag": "SELECT",
+          "x": 12,
+          "right": 330.0625,
+          "y": 976.34375,
+          "outsideViewport": true,
+          "insideSidebar": false
+        },
+        {
+          "index": 17,
+          "id": "gridViewBtn",
+          "text": "▦",
+          "tag": "BUTTON",
+          "x": 165.0625,
+          "right": 205.0625,
+          "y": 1034.34375,
+          "outsideViewport": true,
+          "insideSidebar": false
+        },
+        {
+          "index": 18,
+          "id": "listViewBtn",
+          "text": "☷",
+          "tag": "BUTTON",
+          "x": 121.0625,
+          "right": 161.0625,
+          "y": 1034.34375,
+          "outsideViewport": true,
+          "insideSidebar": false
+        },
+        {
+          "index": 19,
+          "id": "mindMapViewBtn",
+          "text": "🕸️מפת חשיבה",
+          "tag": "BUTTON",
+          "x": 16,
+          "right": 117.0625,
+          "y": 1034.34375,
+          "outsideViewport": true,
+          "insideSidebar": false
+        }
+      ]
+    }
+  ]
+}

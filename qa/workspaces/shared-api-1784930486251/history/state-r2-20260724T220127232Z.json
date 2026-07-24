@@ -1,0 +1,46 @@
+{
+    "format":  "MechLexSharedState",
+    "formatVersion":  1,
+    "revision":  2,
+    "schemaVersion":  2,
+    "appVersion":  "10.1.0",
+    "updatedAt":  "2026-07-24T22:01:27.2217156Z",
+    "updatedBy":  "qa-a-1",
+    "reason":  "round-1-a",
+    "checksum":  "2be6414865ad902bdd0dce81997ba8d3ec6a3bc2367bea537a033cd744210412",
+    "shared":  {
+                   "data":  [
+                                {
+                                    "id":  "dom-qa",
+                                    "name":  "בדיקת QA",
+                                    "nameEn":  "QA",
+                                    "prefix":  "QA",
+                                    "color":  "#246b87",
+                                    "icon":  "Q",
+                                    "description":  "round 1 writer A",
+                                    "subtopics":  [
+
+                                                  ],
+                                    "items":  [
+                                                  {
+                                                      "id":  "qa-term",
+                                                      "code":  "QA-001",
+                                                      "title":  "מושג A1",
+                                                      "name":  "מושג A1",
+                                                      "nameEn":  "Term A1",
+                                                      "definition":  "round 1 writer A",
+                                                      "subtopic":  "direct"
+                                                  }
+                                              ]
+                                }
+                            ],
+                   "settings":  {
+                                    "uiText":  {
+                                                   "marker":  "A1"
+                                               }
+                                },
+                   "uiText":  {
+                                  "marker":  "A1"
+                              }
+               }
+}

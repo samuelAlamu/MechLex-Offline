@@ -1,0 +1,7 @@
+# אפשר להזין כאן נתיב מוחלט לתיקייה משותפת, למשל:
+# \\SERVER\Shared\MechLex-Data
+# או:
+# Z:\MechLex-Data
+#
+# לצורך בדיקה מקומית שתי גרסאות MechLex משתמשות בתיקייה המדומה שלהלן.
+..\MechLex_Shared_Data_Simulation

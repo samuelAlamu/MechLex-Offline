@@ -1,0 +1,46 @@
+{
+    "format":  "MechLexSharedState",
+    "formatVersion":  1,
+    "revision":  15,
+    "schemaVersion":  2,
+    "appVersion":  "10.1.0",
+    "updatedAt":  "2026-07-24T22:01:27.6144380Z",
+    "updatedBy":  "qa-a-14",
+    "reason":  "round-14-a",
+    "checksum":  "b408b983cddab7e4c549548d89e7bb430497aac377c88b4bffd2d467e2d5a592",
+    "shared":  {
+                   "data":  [
+                                {
+                                    "id":  "dom-qa",
+                                    "name":  "בדיקת QA",
+                                    "nameEn":  "QA",
+                                    "prefix":  "QA",
+                                    "color":  "#246b87",
+                                    "icon":  "Q",
+                                    "description":  "round 14 writer A",
+                                    "subtopics":  [
+
+                                                  ],
+                                    "items":  [
+                                                  {
+                                                      "id":  "qa-term",
+                                                      "code":  "QA-001",
+                                                      "title":  "מושג A14",
+                                                      "name":  "מושג A14",
+                                                      "nameEn":  "Term A14",
+                                                      "definition":  "round 14 writer A",
+                                                      "subtopic":  "direct"
+                                                  }
+                                              ]
+                                }
+                            ],
+                   "settings":  {
+                                    "uiText":  {
+                                                   "marker":  "A14"
+                                               }
+                                },
+                   "uiText":  {
+                                  "marker":  "A14"
+                              }
+               }
+}

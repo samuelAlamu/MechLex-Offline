@@ -1,0 +1,46 @@
+{
+    "format":  "MechLexSharedState",
+    "formatVersion":  1,
+    "revision":  14,
+    "schemaVersion":  2,
+    "appVersion":  "10.1.0",
+    "updatedAt":  "2026-07-24T22:01:27.5913682Z",
+    "updatedBy":  "qa-a-13",
+    "reason":  "round-13-a",
+    "checksum":  "7c7fd9f967457356dde64ececac3c474da4e20534366c0f58b39c2c5dc7d725c",
+    "shared":  {
+                   "data":  [
+                                {
+                                    "id":  "dom-qa",
+                                    "name":  "בדיקת QA",
+                                    "nameEn":  "QA",
+                                    "prefix":  "QA",
+                                    "color":  "#246b87",
+                                    "icon":  "Q",
+                                    "description":  "round 13 writer A",
+                                    "subtopics":  [
+
+                                                  ],
+                                    "items":  [
+                                                  {
+                                                      "id":  "qa-term",
+                                                      "code":  "QA-001",
+                                                      "title":  "מושג A13",
+                                                      "name":  "מושג A13",
+                                                      "nameEn":  "Term A13",
+                                                      "definition":  "round 13 writer A",
+                                                      "subtopic":  "direct"
+                                                  }
+                                              ]
+                                }
+                            ],
+                   "settings":  {
+                                    "uiText":  {
+                                                   "marker":  "A13"
+                                               }
+                                },
+                   "uiText":  {
+                                  "marker":  "A13"
+                              }
+               }
+}
