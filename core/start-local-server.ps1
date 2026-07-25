@@ -262,6 +262,23 @@ try {
         continue
       }
 
+      if ($RawPath -eq "/api/can-write") {
+        if ($Method -ne "GET") {
+          Send-Response $Stream $Method 405 "Method Not Allowed" "application/json; charset=utf-8" (Json-Bytes @{ message = "Method Not Allowed" }) @("Allow: GET")
+          continue
+        }
+        $canWrite = $false
+        try {
+          $testHandle = [System.IO.FileStream]::new($StatePath, [System.IO.FileMode]::OpenOrCreate, [System.IO.FileAccess]::ReadWrite, [System.IO.FileShare]::ReadWrite)
+          $canWrite = $true
+          $testHandle.Close()
+        } catch {
+          $canWrite = $false
+        }
+        Send-Response $Stream $Method 200 "OK" "application/json; charset=utf-8" (Json-Bytes @{ canWrite = $canWrite })
+        continue
+      }
+
       if ($RawPath -eq "/api/shared-state") {
         if (-not (Origin-IsAllowed $request.Headers $Port)) {
           Send-Response $Stream $Method 403 "Forbidden" "application/json; charset=utf-8" (Json-Bytes @{ message = "Origin is not allowed" })
@@ -291,6 +308,10 @@ try {
         $payload = [System.Text.Encoding]::UTF8.GetString($request.Body) | ConvertFrom-Json
         if ($null -eq $payload.shared -or $payload.shared.data -isnot [System.Array]) {
           Send-Response $Stream $Method 422 "Unprocessable Entity" "application/json; charset=utf-8" (Json-Bytes @{ message = "The shared catalog is missing or invalid" })
+          continue
+        }
+        if ([int]$payload.schemaVersion -ne 2) {
+          Send-Response $Stream $Method 400 "Bad Request" "application/json; charset=utf-8" (Json-Bytes @{ message = "Schema version 2 is required" })
           continue
         }
         $lock = $null

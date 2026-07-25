@@ -2353,7 +2353,22 @@ function closePinDialog(options = {}) {
   setModalVisibility($("pinOverlay"), false, { restoreFocus: options?.restoreFocus !== false });
 }
 
-function openAdmin(role) {
+async function openAdmin(role) {
+  if (ML.sharedSync) {
+    try {
+      const response = await fetch("http://127.0.0.1:8765/api/can-write");
+      if (response.ok) {
+        const result = await response.json();
+        if (!result.canWrite) {
+          toast("אין לך הרשאת כתיבה לתיקייה המשותפת. גישת ניהול נדחתה.", "error");
+          return;
+        }
+      }
+    } catch (e) {
+      console.warn("Could not verify write access", e);
+    }
+  }
+
   const opener = modalFocusState.get($("pinOverlay")) || $("adminBtn");
   state.adminUnlocked = true;
   state.adminRole = role || state.adminRole || "content";
@@ -3943,5 +3958,14 @@ function init() {
       : "הנתונים נשמרים אוטומטית במחשב זה";
   saveAll(initMessage);
 }
+
+window.addEventListener("beforeunload", (e) => {
+  const isInlineEditorOpen = $("inlineEditorOverlay") && $("inlineEditorOverlay").getAttribute("aria-hidden") === "false";
+  const isDomainModalOpen = $("domainModal") && $("domainModal").getAttribute("aria-hidden") === "false";
+  if (isInlineEditorOpen || isDomainModalOpen) {
+    e.preventDefault();
+    e.returnValue = "";
+  }
+});
 
 // Boot is delegated to core/boot.js after extension modules load.

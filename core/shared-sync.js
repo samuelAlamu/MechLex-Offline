@@ -52,7 +52,7 @@
 
   async function request(url, options = {}) {
     const controller = new AbortController();
-    const timeout = window.setTimeout(() => controller.abort(), 5000);
+    const timeout = window.setTimeout(() => controller.abort(), 30000); // 30 seconds for 15MB+ payloads
     try {
       return await fetch(url, {
         cache: "no-store",
@@ -249,8 +249,9 @@
     const serialized = JSON.stringify(snapshot);
     const sharedChanged = serialized !== lastSharedSerialized;
     if (!syncReady && !lastCommittedSnapshot && !applyingRemote) {
-      lastSharedSerialized = serialized;
-      return baseSaveAll(message, options);
+      // Disconnected before first sync - fail closed
+      toast("התיקייה המשותפת אינה זמינה, לא ניתן לשמור שינויים.", "error");
+      return;
     }
     if (sharedChanged && (!syncReady || conflictActive) && !applyingRemote) {
       restoreCommittedSnapshot("shared-read-only-rollback");
