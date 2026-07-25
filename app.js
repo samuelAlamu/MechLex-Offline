@@ -1816,7 +1816,7 @@ function renderMindMap(filteredTerms) {
             html += `<div class="mm-node mm-node-term" id="mmnode-term-${term.id}" data-mm-term="${esc(term.id)}">
               ${term.image ? `<img src="images/${esc(term.image)}" class="mm-node-thumb" alt="" />` : ""}
               <span class="mm-node-code">${esc(term.code)}</span>
-              <strong>${esc(term.title)}</strong>
+              <strong>${esc(term.name)}</strong>
             </div>`;
           });
 
@@ -1829,7 +1829,7 @@ function renderMindMap(filteredTerms) {
         html += `<div class="mm-node mm-node-term" id="mmnode-term-${term.id}" data-mm-term="${esc(term.id)}">
           ${term.image ? `<img src="images/${esc(term.image)}" class="mm-node-thumb" alt="" />` : ""}
           <span class="mm-node-code">${esc(term.code)}</span>
-          <strong>${esc(term.title)}</strong>
+          <strong>${esc(term.name)}</strong>
         </div>`;
       });
 
@@ -1915,6 +1915,9 @@ function drawMindMapConnections() {
     const domainColor = parentNode.style.getPropertyValue("--domain-color") || "#7c3aed";
 
     childNodes.forEach((childNode) => {
+      // Do not draw connections to nodes that are hidden (e.g. collapsed parents)
+      if (childNode.offsetParent === null) return;
+      
       let cEl = childNode;
       let cLeft = 0, cTop = 0;
       while (cEl && cEl !== wrapper) {
