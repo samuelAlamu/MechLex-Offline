@@ -1,2 +1,0 @@
-window.MECHLEX_IMAGE_CATALOG = [];
-window.MECHLEX_EMBEDDED_IMAGES = {};
