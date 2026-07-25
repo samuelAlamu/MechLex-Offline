@@ -202,13 +202,12 @@ function Validate-StateData($dataArray) {
   foreach ($item in $dataArray) {
     if ([string]::IsNullOrWhiteSpace($item.id)) { return "Item is missing an id" }
     if (-not $ids.Add($item.id)) { return "Duplicate id found: $($item.id)" }
-    if ($item.type -notin @("domain", "subdomain", "term", "image")) { return "Unknown item type: $($item.type)" }
   }
   foreach ($item in $dataArray) {
     if (-not [string]::IsNullOrWhiteSpace($item.parentId) -and -not $ids.Contains($item.parentId)) {
       return "Dangling parentId reference in item $($item.id)"
     }
-    if ($item.type -eq "image" -and -not [string]::IsNullOrWhiteSpace($item.data)) {
+    if ($item.id.StartsWith("image-") -and -not [string]::IsNullOrWhiteSpace($item.data)) {
       if ($item.data -notmatch "^data:image/(png|jpeg|webp|gif|svg\+xml);base64,") {
         return "Invalid image data format for $($item.id)"
       }

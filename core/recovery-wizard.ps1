@@ -3,7 +3,6 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
-[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
 $Root = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot "..")).TrimEnd([System.IO.Path]::DirectorySeparatorChar, [System.IO.Path]::AltDirectorySeparatorChar)
 
@@ -39,22 +38,22 @@ function Write-Audit([string]$Msg) {
 }
 
 function Validate-StateData($dataArray) {
-  if ($null -eq $dataArray -or $dataArray -isnot [System.Array]) { return "נתונים חסרים או לא במבנה תקין" }
+  if ($null -eq $dataArray -or $dataArray -isnot [System.Array]) { return "Data missing or not an array" }
   $ids = New-Object System.Collections.Generic.HashSet[string]
   foreach ($item in $dataArray) {
-    if ([string]::IsNullOrWhiteSpace($item.id)) { return "לפריט חסר מזהה (id)" }
-    if (-not $ids.Add($item.id)) { return "מזהה כפול נמצא: $($item.id)" }
+    if ([string]::IsNullOrWhiteSpace($item.id)) { return "Item is missing an id" }
+    if (-not $ids.Add($item.id)) { return "Duplicate id found: $($item.id)" }
   }
   return $null
 }
 
 Write-Host "=============================================" -ForegroundColor Cyan
-Write-Host " אשף שחזור נתונים למילון MechLex" -ForegroundColor Cyan
+Write-Host " MechLex Data Recovery Wizard" -ForegroundColor Cyan
 Write-Host "=============================================" -ForegroundColor Cyan
-Write-Host "תיקייה משותפת: $SharedRoot"
+Write-Host "Shared folder: $SharedRoot"
 
 if (-not (Test-Path $SharedRoot)) {
-  Write-Host "התיקייה המשותפת אינה קיימת או אין אליה גישה." -ForegroundColor Red
+  Write-Host "Shared folder does not exist or access denied." -ForegroundColor Red
   exit 1
 }
 
@@ -67,18 +66,18 @@ if (Test-Path $HistoryPath) {
 }
 
 if ($backups.Count -eq 0) {
-  Write-Host "לא נמצאו גיבויים במערכת." -ForegroundColor Red
+  Write-Host "No backups found in the system." -ForegroundColor Red
   exit 1
 }
 
-Write-Host "`nסורק ומאמת גיבויים זמינים..."
+Write-Host "`nScanning and validating available backups..."
 
 $validBackups = @()
 $index = 1
 foreach ($file in $backups) {
   try {
     $content = Get-Content $file.FullName -Raw | ConvertFrom-Json -ErrorAction Stop
-    if ($content.schemaVersion -ne 2) { throw "גרסת סכימה אינה נתמכת" }
+    if ($content.schemaVersion -ne 2) { throw "Schema version not supported" }
     
     $err = Validate-StateData $content.shared.data
     if ($null -ne $err) { throw $err }
@@ -97,36 +96,36 @@ foreach ($file in $backups) {
 }
 
 if ($validBackups.Count -eq 0) {
-  Write-Host "לא נמצאו גיבויים תקינים לחלוטין (כולם פגומים)." -ForegroundColor Red
+  Write-Host "No fully valid backups found (all are corrupted)." -ForegroundColor Red
   exit 1
 }
 
-Write-Host "`nגיבויים זמינים ותקינים לשימוש:" -ForegroundColor Green
+Write-Host "`nValid backups available for use:" -ForegroundColor Green
 $validBackups | Format-Table Index, Revision, Date, Size, @{Name="File";Expression={$_.File.Name}}
 
-$choice = Read-Host "אנא הקלד את מספר הגיבוי שברצונך לשחזר (או 'q' ליציאה)"
+$choice = Read-Host "Please type the number of the backup you want to restore (or 'q' to quit)"
 if ($choice -eq 'q') { exit 0 }
 
 $selected = $validBackups | Where-Object { $_.Index -eq $choice }
 if ($null -eq $selected) {
-  Write-Host "בחירה לא חוקית." -ForegroundColor Red
+  Write-Host "Invalid selection." -ForegroundColor Red
   exit 1
 }
 
-Write-Host "בחרת בגיבוי מגרסה $($selected.Revision) שנוצר ב-$($selected.Date)"
-$confirm = Read-Host "האם אתה בטוח שברצונך לדרוס את המילון הנוכחי ולשחזר לגרסה זו? (Y/N)"
+Write-Host "You selected backup from revision $($selected.Revision) created at $($selected.Date)"
+$confirm = Read-Host "Are you sure you want to overwrite the current dictionary and restore this version? (Y/N)"
 if ($confirm -notmatch "^y$|^yes$") {
-  Write-Host "פעולת השחזור בוטלה."
+  Write-Host "Restore operation cancelled."
   exit 0
 }
 
-Write-Audit "התחלת פעולת שחזור ידנית על ידי מנהל מערכת לגרסה $($selected.Revision) מקובץ $($selected.File.Name)"
+Write-Audit "Manual restore operation started by admin to revision $($selected.Revision) from file $($selected.File.Name)"
 
 if (Test-Path $StatePath) {
   $safeCopy = Join-Path $SharedRoot "state.presafety.$([DateTime]::UtcNow.ToString('yyyyMMdd_HHmmss')).json"
   Copy-Item $StatePath $safeCopy -Force
-  Write-Host "עותק בטיחות של המצב הנוכחי נשמר כ-$safeCopy"
-  Write-Audit "נוצר עותק בטיחות מקדים: $safeCopy"
+  Write-Host "Safety copy of current state saved as $safeCopy"
+  Write-Audit "Created pre-safety copy: $safeCopy"
 }
 
 $tempPath = Join-Path $SharedRoot "state.restore.tmp"
@@ -141,14 +140,14 @@ try {
   
   # Verify after writing
   $verify = Get-Content $StatePath -Raw | ConvertFrom-Json
-  if ($verify.revision -ne $selected.Revision) { throw "שחזור נכשל - הגרסה אינה תואמת לאחר השמירה!" }
+  if ($verify.revision -ne $selected.Revision) { throw "Restore failed - Revision mismatch after saving!" }
   
-  Write-Host "`nהשחזור בוצע בהצלחה! המילון חזר לגרסה $($selected.Revision)" -ForegroundColor Green
-  Write-Audit "שחזור הסתיים בהצלחה לגרסה $($selected.Revision)"
+  Write-Host "`nRestore completed successfully! Dictionary restored to revision $($selected.Revision)" -ForegroundColor Green
+  Write-Audit "Restore completed successfully to revision $($selected.Revision)"
 } catch {
-  Write-Host "`nשגיאה קריטית במהלך השחזור: $_" -ForegroundColor Red
-  Write-Audit "שגיאה במהלך השחזור: $_"
+  Write-Host "`nCritical error during restore: $_" -ForegroundColor Red
+  Write-Audit "Error during restore: $_"
   if (Test-Path $tempPath) { Remove-Item $tempPath -Force }
 }
 
-Write-Host "ניתן כעת להפעיל את השרת המקומי מחדש."
+Write-Host "You can now restart the local server."

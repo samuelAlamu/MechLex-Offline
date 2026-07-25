@@ -32,7 +32,7 @@ Wait-Job $jobs | Out-Null
 $results = $jobs | Receive-Job
 
 $successCount = ($results | Where-Object { $_ -eq 200 }).Count
-$conflictCount = ($results | Where-Object { $_ -eq "Conflict" }).Count
+$conflictCount = ($results | Where-Object { $_ -eq "Conflict" -or $_ -eq 409 }).Count
 
 if ($successCount -eq 1 -and $conflictCount -eq 4) {
     Write-Host "PASS: Only 1 request succeeded, 4 were rejected as Conflict." -ForegroundColor Green
