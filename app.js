@@ -2360,7 +2360,7 @@ async function openAdmin(role, providedPin = null) {
     return;
   }
 
-  if (ML.sharedSync) {
+  if (window.MechLexCore && window.MechLexCore.sharedSync) {
     try {
       const response = await fetch("http://127.0.0.1:8765/api/can-write");
       if (response.ok) {

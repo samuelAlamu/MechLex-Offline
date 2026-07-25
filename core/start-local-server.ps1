@@ -8,7 +8,7 @@ $ErrorActionPreference = "Stop"
 $Root = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot "..")).TrimEnd([System.IO.Path]::DirectorySeparatorChar, [System.IO.Path]::AltDirectorySeparatorChar)
 $RootBoundary = $Root + [System.IO.Path]::DirectorySeparatorChar
 $Address = [System.Net.IPAddress]::Loopback
-$MaxBodyBytes = 100MB
+$MaxBodyBytes = 35MB
 
 function Resolve-SharedDataPath {
   $configured = $SharedDataPath
@@ -105,7 +105,7 @@ function Read-HttpRequest([System.IO.Stream]$Stream) {
     $headerBytes.Add([byte]$value)
     if ($value -eq $terminator[$matched]) { $matched += 1 } else { $matched = if ($value -eq 13) { 1 } else { 0 } }
   }
-  if ($matched -ne 4) { throw "Invalid or oversized HTTP headers" }
+  if ($matched -ne 4) { throw "HTTP_400: Invalid or oversized HTTP headers" }
   $headerText = [System.Text.Encoding]::ASCII.GetString($headerBytes.ToArray())
   $headerLines = $headerText -split "`r`n"
   $parts = $headerLines[0].Split(" ")
@@ -118,7 +118,7 @@ function Read-HttpRequest([System.IO.Stream]$Stream) {
     }
   }
   $contentLength = if ($headers.ContainsKey("content-length")) { [int64]$headers["content-length"] } else { 0 }
-  if ($contentLength -lt 0 -or $contentLength -gt $MaxBodyBytes) { throw "Request body is too large" }
+  if ($contentLength -lt 0 -or $contentLength -gt $MaxBodyBytes) { throw "HTTP_413: Request body is too large" }
   [byte[]]$body = New-Object byte[] $contentLength
   $offset = 0
   while ($offset -lt $contentLength) {
@@ -222,11 +222,21 @@ function Write-StateAtomically($Record) {
 
   $json = $Record | ConvertTo-Json -Depth 100
   $tempPath = Join-Path $SharedRoot ("state.{0}.{1}.tmp" -f $PID, [Guid]::NewGuid().ToString("N"))
-  [System.IO.File]::WriteAllText($tempPath, $json, [System.Text.UTF8Encoding]::new($false))
-  if (Test-Path -LiteralPath $StatePath -PathType Leaf) {
-    [System.IO.File]::Replace($tempPath, $StatePath, $PreviousPath, $true)
-  } else {
-    [System.IO.File]::Move($tempPath, $StatePath)
+  try {
+    $fs = [System.IO.FileStream]::new($tempPath, [System.IO.FileMode]::CreateNew, [System.IO.FileAccess]::Write, [System.IO.FileShare]::None)
+    $writer = [System.IO.StreamWriter]::new($fs, [System.Text.UTF8Encoding]::new($false))
+    $writer.Write($json)
+    $writer.Flush()
+    $fs.Flush($true)
+    $writer.Close()
+    
+    if (Test-Path -LiteralPath $StatePath -PathType Leaf) {
+      [System.IO.File]::Replace($tempPath, $StatePath, $PreviousPath, $true)
+    } else {
+      [System.IO.File]::Move($tempPath, $StatePath)
+    }
+  } finally {
+    if (Test-Path -LiteralPath $tempPath -PathType Leaf) { Remove-Item -LiteralPath $tempPath -Force -ErrorAction SilentlyContinue }
   }
   $safeTimestamp = ([DateTime]::UtcNow.ToString("yyyyMMddTHHmmssfffZ"))
   $historyFile = Join-Path $HistoryPath ("state-r{0}-{1}.json" -f $Record.revision, $safeTimestamp)
@@ -238,6 +248,24 @@ function Write-StateAtomically($Record) {
 function Origin-IsAllowed([hashtable]$Headers, [int]$ActivePort) {
   if (-not $Headers.ContainsKey("origin")) { return $true }
   return $Headers["origin"] -in @("http://127.0.0.1:$ActivePort", "http://localhost:$ActivePort")
+}
+
+function Test-MechLexRole([string]$RequiredRole) {
+  if ($env:MECHLEX_MOCK_ROLE) {
+    if ($RequiredRole -eq "Admin" -and $env:MECHLEX_MOCK_ROLE -match "Admin") { return $true }
+    if ($RequiredRole -eq "Editor" -and $env:MECHLEX_MOCK_ROLE -match "Admin|Editor") { return $true }
+    return $false
+  }
+  
+  $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
+  $principal = [System.Security.Principal.WindowsPrincipal]::new($identity)
+  if ($RequiredRole -eq "Admin") {
+    return $principal.IsInRole("MechLex_Admins") -or $principal.IsInRole([System.Security.Principal.WindowsBuiltInRole]::Administrator)
+  }
+  if ($RequiredRole -eq "Editor") {
+    return $principal.IsInRole("MechLex_Editors") -or $principal.IsInRole("MechLex_Admins") -or $principal.IsInRole([System.Security.Principal.WindowsBuiltInRole]::Administrator)
+  }
+  return $false
 }
 
 $SelectedPort = Find-AvailablePort $Port
@@ -317,14 +345,15 @@ try {
           continue
         }
         $canWrite = $false
+        $role = "Viewer"
         try {
           $testHandle = [System.IO.FileStream]::new($StatePath, [System.IO.FileMode]::OpenOrCreate, [System.IO.FileAccess]::ReadWrite, [System.IO.FileShare]::ReadWrite)
-          $canWrite = $true
           $testHandle.Close()
-        } catch {
-          $canWrite = $false
-        }
-        Send-Response $Stream $Method 200 "OK" "application/json; charset=utf-8" (Json-Bytes @{ canWrite = $canWrite })
+          if (Test-MechLexRole "Admin") { $role = "Admin"; $canWrite = $true }
+          elseif (Test-MechLexRole "Editor") { $role = "Editor"; $canWrite = $true }
+          else { $role = "Viewer" }
+        } catch {}
+        Send-Response $Stream $Method 200 "OK" "application/json; charset=utf-8" (Json-Bytes @{ canWrite = $canWrite; role = $role })
         continue
       }
 
@@ -358,7 +387,13 @@ try {
           Send-Response $Stream $Method 415 "Unsupported Media Type" "application/json; charset=utf-8" (Json-Bytes @{ message = "A MechLex JSON request is required" })
           continue
         }
-        $payload = [System.Text.Encoding]::UTF8.GetString($request.Body) | ConvertFrom-Json
+        $payload = $null
+        try {
+          $payload = [System.Text.Encoding]::UTF8.GetString($request.Body) | ConvertFrom-Json
+        } catch {
+          Send-Response $Stream $Method 400 "Bad Request" "application/json; charset=utf-8" (Json-Bytes @{ message = "Malformed JSON payload" })
+          continue
+        }
         if ($null -eq $payload.shared -or $payload.shared.data -isnot [System.Array]) {
           Send-Response $Stream $Method 422 "Unprocessable Entity" "application/json; charset=utf-8" (Json-Bytes @{ message = "The shared catalog is missing or invalid" })
           continue
@@ -378,6 +413,26 @@ try {
         try {
           $lock = Acquire-StateLock
           $current = Read-State
+          
+          # Phase 4 ACL Check
+          $isAdminChange = $false
+          if ($null -ne $current -and $null -ne $payload.shared.settings) {
+            $oldSettings = $current.shared.settings | ConvertTo-Json -Depth 10 -Compress
+            $newSettings = $payload.shared.settings | ConvertTo-Json -Depth 10 -Compress
+            if ($oldSettings -ne $newSettings) { $isAdminChange = $true }
+          } elseif ($null -eq $current) {
+            $isAdminChange = $true # Initial creation requires Admin
+          }
+          
+          if ($isAdminChange -and -not (Test-MechLexRole "Admin")) {
+            Send-Response $Stream $Method 403 "Forbidden" "application/json; charset=utf-8" (Json-Bytes @{ message = "Administrator rights required to modify settings or initialize catalog" })
+            continue
+          }
+          if (-not $isAdminChange -and -not (Test-MechLexRole "Editor")) {
+            Send-Response $Stream $Method 403 "Forbidden" "application/json; charset=utf-8" (Json-Bytes @{ message = "Editor rights required to modify content" })
+            continue
+          }
+
           $currentRevision = if ($null -eq $current) { 0 } else { [int]$current.revision }
           if ([int]$payload.expectedRevision -ne $currentRevision) {
             Send-Response $Stream $Method 409 "Conflict" "application/json; charset=utf-8" (Json-Bytes @{
@@ -431,7 +486,14 @@ try {
       }
     } catch {
       try {
-        Send-Response $Stream "GET" 500 "Internal Server Error" "application/json; charset=utf-8" (Json-Bytes @{ message = "Local server error"; detail = $_.Exception.Message })
+        $msg = $_.Exception.Message
+        if ($msg -like "HTTP_413:*") {
+          Send-Response $Stream "GET" 413 "Payload Too Large" "application/json; charset=utf-8" (Json-Bytes @{ message = $msg.Substring(9).Trim() })
+        } elseif ($msg -like "HTTP_400:*") {
+          Send-Response $Stream "GET" 400 "Bad Request" "application/json; charset=utf-8" (Json-Bytes @{ message = $msg.Substring(9).Trim() })
+        } else {
+          Send-Response $Stream "GET" 500 "Internal Server Error" "application/json; charset=utf-8" (Json-Bytes @{ message = "Local server error"; detail = $msg })
+        }
       } catch {}
       Write-Warning $_.Exception.Message
     } finally {
