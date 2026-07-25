@@ -17,6 +17,7 @@
   let lastSharedSerialized = "";
   let lastCommittedSnapshot = null;
   let suppressNextSuccessToast = false;
+  let isPublishing = false;
 
   function clientId() {
     let value = window.localStorage.getItem(CLIENT_ID_KEY);
@@ -149,6 +150,7 @@
   }
 
   async function publishSharedChange(reason = "content-change", expectedRevision = sharedRevision, snapshot = sharedSnapshot()) {
+    isPublishing = true;
     setSyncStatus("syncing", "מסנכרן לתיקייה המשותפת…");
     const response = await request(API_STATE, {
       method: "PUT",
@@ -163,6 +165,7 @@
       }),
     });
     const result = await response.json().catch(() => ({}));
+    isPublishing = false;
     if (response.status === 409) {
       conflictActive = true;
       setSyncStatus("conflict", `התנגשות · קיימת גרסה ${result.currentRevision ?? "חדשה"}`);
@@ -200,7 +203,20 @@
     return publishQueue;
   }
 
-  async function pollSharedState() {
+  function showRecoveryOverlay(errorMsg) {
+      document.body.innerHTML = `
+        <div style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(255,0,0,0.9);color:white;z-index:999999;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:sans-serif;direction:rtl;">
+          <h1 style="font-size:3rem;margin-bottom:1rem;">⚠️ שגיאה חמורה במערכת</h1>
+          <h2 style="font-size:1.5rem;margin-bottom:2rem;">המילון המשותף פגום ועבר למצב שחזור (Recovery Mode)</h2>
+          <p style="font-size:1.2rem;max-width:600px;text-align:center;margin-bottom:2rem;">
+            סיבת הקריסה: ${errorMsg}<br><br>
+            המערכת ננעלה לעריכה כדי למנוע אובדן מידע. אנא פנה למנהל המערכת על מנת שיפעיל את אשף השחזור (Recovery Wizard) במיידי.
+          </p>
+        </div>
+      `;
+    }
+
+    async function pollSharedState() {
     if (conflictActive || applyingRemote) return;
     try {
       const response = await request(`${API_STATE}?knownRevision=${sharedRevision}`);
@@ -230,8 +246,17 @@
     try {
       await ML.persistenceInitPromise;
       const health = await request(API_HEALTH);
-      if (!health.ok) throw new Error("Shared service is unavailable");
+      if (!health.ok && health.status !== 503) {
+        // Continue to parse healthInfo even if not ok, if it's a known error from our server
+      }
       const healthInfo = await health.json();
+      
+      if (healthInfo.mode === "recovery") {
+        showRecoveryOverlay(healthInfo.error);
+        return;
+      }
+      
+      if (!health.ok) throw new Error("Shared service is unavailable");
       if (healthInfo.stateExists) await loadLatest();
       else await publishSharedChange("initial-catalog", 0);
       lastSharedSerialized = JSON.stringify(sharedSnapshot());
@@ -288,5 +313,6 @@
     revision: () => sharedRevision,
     ready: () => syncReady,
     conflict: () => conflictActive,
+    syncing: () => isPublishing,
   };
 }());

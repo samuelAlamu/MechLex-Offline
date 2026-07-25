@@ -196,7 +196,31 @@ function Acquire-StateLock([int]$TimeoutMs = 5000) {
   throw "Shared state is busy. Try again."
 }
 
+function Validate-StateData($dataArray) {
+  if ($null -eq $dataArray -or $dataArray -isnot [System.Array]) { return "Data is missing or not an array" }
+  $ids = New-Object System.Collections.Generic.HashSet[string]
+  foreach ($item in $dataArray) {
+    if ([string]::IsNullOrWhiteSpace($item.id)) { return "Item is missing an id" }
+    if (-not $ids.Add($item.id)) { return "Duplicate id found: $($item.id)" }
+    if ($item.type -notin @("domain", "subdomain", "term", "image")) { return "Unknown item type: $($item.type)" }
+  }
+  foreach ($item in $dataArray) {
+    if (-not [string]::IsNullOrWhiteSpace($item.parentId) -and -not $ids.Contains($item.parentId)) {
+      return "Dangling parentId reference in item $($item.id)"
+    }
+    if ($item.type -eq "image" -and -not [string]::IsNullOrWhiteSpace($item.data)) {
+      if ($item.data -notmatch "^data:image/(png|jpeg|webp|gif|svg\+xml);base64,") {
+        return "Invalid image data format for $($item.id)"
+      }
+    }
+  }
+  return $null
+}
+
 function Write-StateAtomically($Record) {
+  $err = Validate-StateData $Record.shared.data
+  if ($null -ne $err) { throw "State Semantic Validation Failed: $err" }
+
   $json = $Record | ConvertTo-Json -Depth 100
   $tempPath = Join-Path $SharedRoot ("state.{0}.{1}.tmp" -f $PID, [Guid]::NewGuid().ToString("N"))
   [System.IO.File]::WriteAllText($tempPath, $json, [System.Text.UTF8Encoding]::new($false))
@@ -227,6 +251,30 @@ if ($SelectedPort -lt 0) {
 $Port = $SelectedPort
 $Url = "http://127.0.0.1:$Port/index.html"
 
+$global:RecoveryMode = $false
+$global:RecoveryError = ""
+$startupState = Read-State
+if ($null -ne $startupState) {
+  if ($startupState.schemaVersion -ne 2) {
+    $global:RecoveryMode = $true
+    $global:RecoveryError = "Invalid schemaVersion (Expected 2)"
+  } else {
+    $startupErr = Validate-StateData $startupState.shared.data
+    if ($null -ne $startupErr) {
+      $global:RecoveryMode = $true
+      $global:RecoveryError = $startupErr
+    }
+  }
+  if ($global:RecoveryMode) {
+    $timestamp = [DateTime]::UtcNow.ToString("yyyyMMdd_HHmmss")
+    $forensic = Join-Path $SharedRoot "state.corrupted.$timestamp.json"
+    Copy-Item -LiteralPath $StatePath -Destination $forensic -Force
+    Write-Warning "STATE CORRUPTION DETECTED: $($global:RecoveryError)"
+    Write-Warning "Forensic copy saved to $forensic"
+    Write-Warning "ENTERING RECOVERY MODE. Writes will be disabled until fixed."
+  }
+}
+
 $Listener = [System.Net.Sockets.TcpListener]::new($Address, $Port)
 $Listener.Start()
 if (-not $NoBrowser) { Start-Process $Url }
@@ -252,12 +300,14 @@ try {
           Send-Response $Stream $Method 405 "Method Not Allowed" "application/json; charset=utf-8" (Json-Bytes @{ message = "Method Not Allowed" }) @("Allow: GET, HEAD")
           continue
         }
+        $modeName = if ($global:RecoveryMode) { "recovery" } else { "offline-shared-folder" }
         $health = @{
-          ok = $true
-          mode = "offline-shared-folder"
+          ok = (-not $global:RecoveryMode)
+          mode = $modeName
           stateExists = [bool](Test-Path -LiteralPath $StatePath -PathType Leaf)
           writable = [bool]((Get-Item -LiteralPath $SharedRoot).Attributes -band [System.IO.FileAttributes]::ReadOnly) -eq $false
         }
+        if ($global:RecoveryMode) { $health.error = $global:RecoveryError }
         Send-Response $Stream $Method 200 "OK" "application/json; charset=utf-8" (Json-Bytes $health)
         continue
       }
@@ -301,6 +351,10 @@ try {
           Send-Response $Stream $Method 405 "Method Not Allowed" "application/json; charset=utf-8" (Json-Bytes @{ message = "Method Not Allowed" }) @("Allow: GET, HEAD, PUT")
           continue
         }
+        if ($global:RecoveryMode) {
+          Send-Response $Stream $Method 503 "Service Unavailable" "application/json; charset=utf-8" (Json-Bytes @{ message = "Server is in recovery mode. Writes are disabled." })
+          continue
+        }
         if ($request.Headers["x-mechlex-client"] -ne "1" -or $request.Headers["content-type"] -notmatch "^application/json") {
           Send-Response $Stream $Method 415 "Unsupported Media Type" "application/json; charset=utf-8" (Json-Bytes @{ message = "A MechLex JSON request is required" })
           continue
@@ -314,6 +368,13 @@ try {
           Send-Response $Stream $Method 400 "Bad Request" "application/json; charset=utf-8" (Json-Bytes @{ message = "Schema version 2 is required" })
           continue
         }
+        
+        $semanticErr = Validate-StateData $payload.shared.data
+        if ($null -ne $semanticErr) {
+          Send-Response $Stream $Method 422 "Unprocessable Entity" "application/json; charset=utf-8" (Json-Bytes @{ message = "Semantic validation failed: $semanticErr" })
+          continue
+        }
+
         $lock = $null
         try {
           $lock = Acquire-StateLock

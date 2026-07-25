@@ -2353,7 +2353,13 @@ function closePinDialog(options = {}) {
   setModalVisibility($("pinOverlay"), false, { restoreFocus: options?.restoreFocus !== false });
 }
 
-async function openAdmin(role) {
+async function openAdmin(role, providedPin = null) {
+  const expectedPin = role === "super" ? (settings.superPin || "9999") : (settings.contentPin || settings.pin || "1234");
+  if (providedPin !== expectedPin) {
+    toast("גישה נדחתה: סיסמה שגויה או חסרה", "error");
+    return;
+  }
+
   if (ML.sharedSync) {
     try {
       const response = await fetch("http://127.0.0.1:8765/api/can-write");
@@ -3828,7 +3834,7 @@ function bindEvents() {
     const enteredPin = $("pinInput").value.trim();
     const expectedPin = role === "super" ? (settings.superPin || "9999") : (settings.contentPin || settings.pin || "1234");
     if (enteredPin === expectedPin) {
-      openAdmin(role);
+      openAdmin(role, enteredPin);
     } else {
       $("pinError").classList.remove("hidden");
       $("pinInput").select();
@@ -3962,7 +3968,8 @@ function init() {
 window.addEventListener("beforeunload", (e) => {
   const isInlineEditorOpen = $("inlineEditorOverlay") && $("inlineEditorOverlay").getAttribute("aria-hidden") === "false";
   const isDomainModalOpen = $("domainModal") && $("domainModal").getAttribute("aria-hidden") === "false";
-  if (isInlineEditorOpen || isDomainModalOpen) {
+  const isSyncing = window.MechLexCore && window.MechLexCore.sharedSync && window.MechLexCore.sharedSync.syncing && window.MechLexCore.sharedSync.syncing();
+  if (isInlineEditorOpen || isDomainModalOpen || isSyncing) {
     e.preventDefault();
     e.returnValue = "";
   }
