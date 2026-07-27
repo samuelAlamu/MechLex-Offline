@@ -391,6 +391,29 @@ try {
         continue
       }
 
+      if ($RawPath -eq "/api/image-catalog") {
+        if ($Method -ne "GET") {
+          Send-Response $Stream $Method 405 "Method Not Allowed" "application/json; charset=utf-8" (Json-Bytes @{ message = "Method Not Allowed" }) @("Allow: GET")
+          continue
+        }
+        $imagesDir = Join-Path $Root "images"
+        $catalog = @()
+        if (Test-Path -LiteralPath $imagesDir -PathType Container) {
+          $allowedExts = @(".jpg", ".jpeg", ".png", ".webp", ".svg")
+          $files = Get-ChildItem -LiteralPath $imagesDir -File | Where-Object { $_.Extension.ToLowerInvariant() -in $allowedExts }
+          foreach ($f in $files) {
+            $catalog += @{
+              name = $f.Name
+              extension = $f.Extension
+              size = $f.Length
+              lastModified = $f.LastWriteTimeUtc.ToString("o")
+            }
+          }
+        }
+        Send-Response $Stream $Method 200 "OK" "application/json; charset=utf-8" (Json-Bytes $catalog)
+        continue
+      }
+
       if ($RawPath -eq "/api/shared-state") {
         if (-not (Origin-IsAllowed $request.Headers $Port)) {
           Send-Response $Stream $Method 403 "Forbidden" "application/json; charset=utf-8" (Json-Bytes @{ message = "Origin is not allowed" })

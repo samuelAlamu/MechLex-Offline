@@ -1,93 +1,21 @@
 "use strict";
 
 /* MechLex 10.1 persistence layer
-   IndexedDB is the primary full-state store. LocalStorage remains a lightweight
-   synchronous bootstrap mirror so older installations migrate without data loss. */
+   Simplified for Simple Team Mode: Data relies purely on shared-sync.js backend.
+   No IndexedDB or LocalStorage dictionary fallback. */
 (function installMechLexPersistence() {
   const ML = window.MechLexCore = window.MechLexCore || {};
-  const DB_NAME = "mechlex_offline_v95";
-  const DB_VERSION = 1;
-  const STATE_STORE = "state";
-  const SNAPSHOT_STORE = "snapshots";
-  const DRAFT_STORE = "drafts";
-  const MAIN_STATE_ID = "main";
-  const MAX_RESTORE_POINTS = 10;
   const FILE_OFFLINE_MODE = window.location.protocol === "file:";
   const LOCAL_RESTORE_KEY = "mechlex_v95_local_restore_points";
   const LOCAL_DRAFT_PREFIX = "mechlex_v95_draft_";
+  const MAX_RESTORE_POINTS = 10;
 
-  let dbPromise = null;
-  let database = null;
-  let persistenceMode = "localStorage";
-  let persistenceReady = false;
-  let saveQueue = Promise.resolve();
-  let estimateTimer = null;
-
-  function requestPromise(request) {
-    return new Promise((resolve, reject) => {
-      request.onsuccess = () => resolve(request.result);
-      request.onerror = () => reject(request.error || new Error("פעולת האחסון נכשלה"));
-    });
-  }
-
-  function openDatabase() {
-    if (FILE_OFFLINE_MODE) return Promise.reject(new Error("IndexedDB מושבת במצב file:// לצורך תאימות ויציבות"));
-    if (dbPromise) return dbPromise;
-    if (!window.indexedDB) return Promise.reject(new Error("IndexedDB אינו זמין בדפדפן זה"));
-    dbPromise = new Promise((resolve, reject) => {
-      const request = window.indexedDB.open(DB_NAME, DB_VERSION);
-      request.onupgradeneeded = () => {
-        const db = request.result;
-        if (!db.objectStoreNames.contains(STATE_STORE)) db.createObjectStore(STATE_STORE, { keyPath: "id" });
-        if (!db.objectStoreNames.contains(SNAPSHOT_STORE)) db.createObjectStore(SNAPSHOT_STORE, { keyPath: "id" });
-        if (!db.objectStoreNames.contains(DRAFT_STORE)) db.createObjectStore(DRAFT_STORE, { keyPath: "type" });
-      };
-      request.onsuccess = () => {
-        database = request.result;
-        database.onversionchange = () => database.close();
-        resolve(database);
-      };
-      request.onerror = () => reject(request.error || new Error("פתיחת IndexedDB נכשלה"));
-      request.onblocked = () => console.warn("MechLex IndexedDB upgrade is blocked by another open tab");
-    });
-    return dbPromise;
-  }
-
-  async function getRecord(storeName, key) {
-    const db = await openDatabase();
-    return requestPromise(db.transaction(storeName, "readonly").objectStore(storeName).get(key));
-  }
-
-  async function getAllRecords(storeName) {
-    const db = await openDatabase();
-    const store = db.transaction(storeName, "readonly").objectStore(storeName);
-    if (typeof store.getAll === "function") return requestPromise(store.getAll());
-    return new Promise((resolve, reject) => {
-      const items = [];
-      const request = store.openCursor();
-      request.onsuccess = () => {
-        const cursor = request.result;
-        if (!cursor) return resolve(items);
-        items.push(cursor.value);
-        cursor.continue();
-      };
-      request.onerror = () => reject(request.error || new Error("קריאת האחסון נכשלה"));
-    });
-  }
-
-  async function putRecord(storeName, value) {
-    const db = await openDatabase();
-    return requestPromise(db.transaction(storeName, "readwrite").objectStore(storeName).put(value));
-  }
-
-  async function deleteRecord(storeName, key) {
-    const db = await openDatabase();
-    return requestPromise(db.transaction(storeName, "readwrite").objectStore(storeName).delete(key));
-  }
+  let persistenceMode = "shared-folder-only";
+  let persistenceReady = true;
 
   function currentStateSnapshot() {
     return {
-      id: MAIN_STATE_ID,
+      id: "main",
       schemaVersion: SCHEMA_VERSION,
       appVersion: APP_VERSION,
       savedAt: new Date().toISOString(),
@@ -96,40 +24,6 @@
       settings: clone(settings),
       meta: clone(meta),
     };
-  }
-
-  function bootstrapCatalog() {
-    return data.map((domain) => ({
-      ...clone(domain),
-      items: domain.items.map((term) => ({
-        ...clone(term),
-        imageData: "",
-        embeddedImageStoredInIndexedDB: Boolean(term.imageData),
-      })),
-    }));
-  }
-
-  function writeBootstrapMirror() {
-    try {
-      window.localStorage.setItem(KEYS.data, JSON.stringify(persistenceMode === "indexedDB" ? bootstrapCatalog() : data));
-      window.localStorage.setItem(KEYS.prefs, JSON.stringify(prefs));
-      window.localStorage.setItem(KEYS.settings, JSON.stringify(settings));
-      window.localStorage.setItem(KEYS.meta, JSON.stringify(meta));
-      return true;
-    } catch (error) {
-      console.warn("MechLex bootstrap mirror could not be written", error);
-      return false;
-    }
-  }
-
-  function snapshotIsAtLeastAsNew(candidate) {
-    if (!candidate || !Array.isArray(candidate.data)) return false;
-    const candidateRevision = Number(candidate.meta?.dataRevision || 0);
-    const localRevision = Number(meta.dataRevision || 0);
-    if (candidateRevision !== localRevision) return candidateRevision > localRevision;
-    const candidateTime = Date.parse(candidate.meta?.lastSavedAt || candidate.savedAt || 0) || 0;
-    const localTime = Date.parse(meta.lastSavedAt || 0) || 0;
-    return candidateTime >= localTime;
   }
 
   function hydrateState(snapshot) {
@@ -149,31 +43,8 @@
   }
 
   async function persistFullState(reason = "save") {
-    const snapshot = currentStateSnapshot();
-    snapshot.reason = reason;
-    await putRecord(STATE_STORE, snapshot);
-    persistenceMode = "indexedDB";
-    persistenceReady = true;
-    storageIsPersistent = true;
-    meta.storageMode = "indexedDB";
-    meta.lastIndexedDbSaveAt = snapshot.savedAt;
-    writeBootstrapMirror();
-    return snapshot;
-  }
-
-  function queueFullStateSave(reason) {
-    saveQueue = saveQueue
-      .catch(() => undefined)
-      .then(() => persistFullState(reason))
-      .catch((error) => {
-        console.error("MechLex IndexedDB save failed", error);
-        persistenceReady = false;
-        persistenceMode = "localStorage";
-        meta.storageMode = "localStorage-fallback";
-        updateStorageStatus();
-        throw error;
-      });
-    return saveQueue;
+    // No-op: handled by shared-sync.js
+    return currentStateSnapshot();
   }
 
   function updateSaveMeta(options = {}) {
@@ -212,36 +83,27 @@
     clearTimeout(saveTimer);
     repairCatalogIntegrity(data);
     updateSaveMeta(options);
+    
+    // In simple team mode, we rely on shared-sync overriding this to do the actual save
+    // If we reach here directly and we are offline (file://), we refuse to save.
+    
     const saveState = $("saveState");
     if (saveState) {
-      saveState.textContent = persistenceMode === "indexedDB" ? "שומר ב־IndexedDB…" : "שומר שינויים…";
+      saveState.textContent = "שומר שינויים...";
       saveState.className = "save-state saving";
     }
 
-    let mirrorOkay = writeBootstrapMirror();
-    if (FILE_OFFLINE_MODE || !window.indexedDB) {
-      try {
-        window.localStorage.setItem(KEYS.data, JSON.stringify(data));
-        mirrorOkay = true;
-        storageIsPersistent = true;
-      } catch (error) {
-        storageIsPersistent = false;
-        console.error("MechLex LocalStorage fallback failed", error);
-        message = "האחסון המקומי מלא או חסום · הורד גיבוי מלא עכשיו";
-      }
+    if (FILE_OFFLINE_MODE) {
+      storageIsPersistent = false;
+      message = "במצב הפעלה מקומית (file://) לא ניתן לשמור שינויים · נדרשת הפעלה דרך השרת המקומי";
     } else {
-      queueFullStateSave(options.backupRelevant ? "content-change" : "state-save").catch(() => {
-        message = "שמירת IndexedDB נכשלה · הורד גיבוי מלא עכשיו";
-      });
+       storageIsPersistent = true;
     }
-
-    if (!mirrorOkay && persistenceMode !== "indexedDB") storageIsPersistent = false;
+    
     updateBackupStatus();
-    scheduleStorageStatusRefresh();
     saveTimer = setTimeout(() => {
       if (!saveState) return;
-      const durable = persistenceMode === "indexedDB" ? "נשמר ב־IndexedDB" : message;
-      saveState.textContent = storageIsPersistent ? durable : "השמירה הקבועה אינה זמינה · הורד גיבוי";
+      saveState.textContent = storageIsPersistent ? message : "השמירה הקבועה אינה זמינה";
       saveState.className = `save-state ${storageIsPersistent ? "saved" : "storage-error"}`;
     }, 420);
     return storageIsPersistent;
@@ -249,53 +111,18 @@
 
   async function initializePersistence() {
     if (FILE_OFFLINE_MODE) {
-      persistenceMode = "localStorage";
       persistenceReady = true;
-      storageIsPersistent = true;
-      meta.storageMode = "file-localStorage";
+      storageIsPersistent = false;
+      meta.storageMode = "file-offline";
       meta.persistentStorageGranted = false;
-      writeBootstrapMirror();
       updateStorageStatus();
-      await updateRestorePointStatus();
-      if (typeof ML.maybeRestoreDrafts === "function") ML.maybeRestoreDrafts();
       return;
     }
-    try {
-      const existing = await getRecord(STATE_STORE, MAIN_STATE_ID);
-      if (snapshotIsAtLeastAsNew(existing)) {
-        hydrateState(existing);
-        if (typeof ML.repairCatalogIntegrity === "function") ML.repairCatalogIntegrity({ silent: true });
-        clearTermForm();
-        clearDomainForm();
-        renderAll();
-        if (!$("adminOverlay")?.classList.contains("hidden")) renderAdmin();
-      }
-      persistenceMode = "indexedDB";
-      persistenceReady = true;
-      storageIsPersistent = true;
-      meta.storageMode = "indexedDB";
-      if (!meta.migratedToIndexedDBAt) meta.migratedToIndexedDBAt = new Date().toISOString();
-      await persistFullState(existing ? "startup-sync" : "localStorage-migration");
-      if (navigator.storage?.persisted) meta.persistentStorageGranted = await navigator.storage.persisted();
-      updateStorageStatus();
-      await updateRestorePointStatus();
-      if (typeof ML.maybeRestoreDrafts === "function") ML.maybeRestoreDrafts();
-    } catch (error) {
-      console.error("MechLex IndexedDB initialization failed", error);
-      persistenceMode = "localStorage";
-      persistenceReady = false;
-      meta.storageMode = "localStorage-fallback";
-      updateStorageStatus(error);
-      toast("IndexedDB אינו זמין; המערכת פועלת במצב LocalStorage מוגבל", "error");
-    }
-  }
-
-  function byteLabel(value) {
-    const bytes = Math.max(0, Number(value) || 0);
-    if (bytes < 1024) return `${bytes} B`;
-    if (bytes < 1024 ** 2) return `${(bytes / 1024).toFixed(1)} KB`;
-    if (bytes < 1024 ** 3) return `${(bytes / 1024 ** 2).toFixed(1)} MB`;
-    return `${(bytes / 1024 ** 3).toFixed(2)} GB`;
+    // We defer actual data loading to shared-sync.js
+    persistenceReady = true;
+    storageIsPersistent = true;
+    meta.storageMode = "shared-folder";
+    updateStorageStatus();
   }
 
   async function updateStorageStatus(error = null) {
@@ -303,47 +130,12 @@
     const badge = $("storageModeBadge");
     const fill = $("storageMeterFill");
     if (!status || !badge || !fill) return;
-    try {
-      let usage = new Blob([JSON.stringify(currentStateSnapshot())]).size;
-      let quota = persistenceMode === "indexedDB" ? 0 : 5 * 1024 * 1024;
-      if (!FILE_OFFLINE_MODE && navigator.storage?.estimate) {
-        const estimate = await navigator.storage.estimate();
-        usage = Number(estimate.usage || usage);
-        quota = Number(estimate.quota || quota);
-      }
-      const percent = quota ? Math.min(100, (usage / quota) * 100) : 0;
-      const persistent = Boolean(meta.persistentStorageGranted);
-      const localFile = FILE_OFFLINE_MODE;
-      badge.textContent = persistenceMode === "indexedDB" ? "IndexedDB פעיל" : (localFile ? "Offline מקומי פעיל" : "LocalStorage מוגבל");
-      badge.className = `health-badge ${persistenceMode === "indexedDB" || localFile ? "good" : "warning"}`;
-      status.innerHTML = `<strong>${persistenceMode === "indexedDB" ? "האחסון המלא פעיל וניתן להרחבה" : (localFile ? "מצב Offline מקומי פעיל — ללא קריאות רשת וללא IndexedDB" : "מצב אחסון מוגבל — מומלץ לגבות לעיתים קרובות")}</strong>
-        <span>נפח משוער: ${esc(byteLabel(usage))}${quota ? ` מתוך ${esc(byteLabel(quota))} (${percent.toFixed(1)}%)` : ""}</span>
-        <span>הגנה ממחיקה אוטומטית: ${persistent ? "אושרה בדפדפן" : "לא אושרה או אינה נתמכת"}${error ? ` · ${esc(error.message || String(error))}` : ""}</span>`;
-      fill.style.width = `${Math.max(1, percent)}%`;
-      fill.classList.toggle("warning", percent >= 75);
-    } catch (statusError) {
-      badge.textContent = "לא ניתן למדוד";
-      badge.className = "health-badge warning";
-      status.innerHTML = `<strong>לא ניתן לקבל נתוני נפח מהדפדפן</strong><span>${esc(statusError.message)}</span>`;
-    }
-  }
-
-  function scheduleStorageStatusRefresh() {
-    clearTimeout(estimateTimer);
-    estimateTimer = setTimeout(() => updateStorageStatus(), 650);
-  }
-
-  async function requestPersistentStorage() {
-    if (FILE_OFFLINE_MODE) return toast("בפתיחה מקובץ מקומי אין צורך בבקשת אחסון מתמשך. השתמש בגיבויי JSON כרגיל.", "success");
-    if (!navigator.storage?.persist) return toast("הדפדפן אינו תומך בבקשת אחסון מתמשך", "error");
-    try {
-      meta.persistentStorageGranted = await navigator.storage.persist();
-      saveAll(meta.persistentStorageGranted ? "הדפדפן אישר אחסון מתמשך" : "הדפדפן לא אישר אחסון מתמשך");
-      updateStorageStatus();
-      toast(meta.persistentStorageGranted ? "האחסון המקומי הוגן ככל שהדפדפן מאפשר" : "הבקשה לא אושרה; המשך להשתמש בגיבויי JSON", meta.persistentStorageGranted ? "success" : "error");
-    } catch (error) {
-      toast(`בקשת האחסון נכשלה: ${error.message}`, "error");
-    }
+    
+    badge.textContent = FILE_OFFLINE_MODE ? "Offline מקומי פעיל" : "אחסון משותף פעיל";
+    badge.className = `health-badge ${FILE_OFFLINE_MODE ? "warning" : "good"}`;
+    status.innerHTML = `<strong>${FILE_OFFLINE_MODE ? "מצב Offline מקומי פעיל — לא ניתן לשמור נתונים" : "האחסון המלא פעיל ומנוהל דרך השרת המקומי"}</strong>`;
+    fill.style.width = "100%";
+    fill.classList.remove("warning");
   }
 
   function readLocalRestorePoints() {
@@ -366,34 +158,23 @@
         reason,
         snapshot: currentStateSnapshot(),
       };
-      if (FILE_OFFLINE_MODE) {
-        const all = [restorePoint, ...readLocalRestorePoints()]
-          .sort((a, b) => String(b.createdAt).localeCompare(String(a.createdAt)))
-          .slice(0, MAX_RESTORE_POINTS);
-        writeLocalRestorePoints(all);
-      } else {
-        await putRecord(SNAPSHOT_STORE, restorePoint);
-        const all = (await getAllRecords(SNAPSHOT_STORE)).sort((a, b) => String(b.createdAt).localeCompare(String(a.createdAt)));
-        await Promise.all(all.slice(MAX_RESTORE_POINTS).map((item) => deleteRecord(SNAPSHOT_STORE, item.id)));
-      }
+      const all = [restorePoint, ...readLocalRestorePoints()]
+        .sort((a, b) => String(b.createdAt).localeCompare(String(a.createdAt)))
+        .slice(0, MAX_RESTORE_POINTS);
+      writeLocalRestorePoints(all);
+      
       meta.lastRestorePointAt = now;
       meta.lastRestorePointReason = reason;
-      writeBootstrapMirror();
       updateRestorePointStatus();
       return restorePoint;
     } catch (error) {
       console.warn("Could not create restore point", error);
-      try {
-        window.localStorage.setItem("mechlex_v95_emergency_restore", JSON.stringify({ createdAt: new Date().toISOString(), reason, snapshot: currentStateSnapshot() }));
-      } catch {}
       return null;
     }
   }
 
   async function latestRestorePoint() {
-    if (FILE_OFFLINE_MODE) return readLocalRestorePoints().sort((a, b) => String(b.createdAt).localeCompare(String(a.createdAt)))[0] || null;
-    const items = (await getAllRecords(SNAPSHOT_STORE)).sort((a, b) => String(b.createdAt).localeCompare(String(a.createdAt)));
-    return items[0] || null;
+    return readLocalRestorePoints().sort((a, b) => String(b.createdAt).localeCompare(String(a.createdAt)))[0] || null;
   }
 
   async function updateRestorePointStatus() {
@@ -405,7 +186,7 @@
         target.innerHTML = "<span>טרם נוצרה נקודת שחזור מקומית.</span>";
         return;
       }
-      target.innerHTML = `<strong>נקודת השחזור האחרונה</strong><span>${esc(formatDate(latest.createdAt))} · ${esc(latest.reason)}</span>`;
+      target.innerHTML = `<strong>נקודת השחזור האחרונה (מקומית בדפדפן)</strong><span>${esc(formatDate(latest.createdAt))} · ${esc(latest.reason)}</span>`;
     } catch {
       target.innerHTML = "<span>לא ניתן לקרוא נקודות שחזור כרגע.</span>";
     }
@@ -434,20 +215,17 @@
   async function saveDraft(type, payload) {
     try {
       const record = { type, updatedAt: new Date().toISOString(), payload };
-      if (FILE_OFFLINE_MODE) window.localStorage.setItem(`${LOCAL_DRAFT_PREFIX}${type}`, JSON.stringify(record));
-      else await putRecord(DRAFT_STORE, record);
+      window.localStorage.setItem(`${LOCAL_DRAFT_PREFIX}${type}`, JSON.stringify(record));
     } catch (error) { console.warn("Draft save failed", error); }
   }
   async function loadDraft(type) {
     try {
-      if (FILE_OFFLINE_MODE) return JSON.parse(window.localStorage.getItem(`${LOCAL_DRAFT_PREFIX}${type}`) || "null");
-      return await getRecord(DRAFT_STORE, type);
+      return JSON.parse(window.localStorage.getItem(`${LOCAL_DRAFT_PREFIX}${type}`) || "null");
     } catch { return null; }
   }
   async function deleteDraft(type) {
     try {
-      if (FILE_OFFLINE_MODE) window.localStorage.removeItem(`${LOCAL_DRAFT_PREFIX}${type}`);
-      else await deleteRecord(DRAFT_STORE, type);
+      window.localStorage.removeItem(`${LOCAL_DRAFT_PREFIX}${type}`);
     } catch {}
   }
 
@@ -594,7 +372,6 @@
   bindEvents = function enhancedPersistenceEvents() {
     baseBindEvents();
     $("refreshStorageStatusBtn")?.addEventListener("click", () => updateStorageStatus());
-    $("requestPersistentStorageBtn")?.addEventListener("click", requestPersistentStorage);
     $("restoreLatestSnapshotBtn")?.addEventListener("click", restoreLatestSnapshot);
   };
 
@@ -605,11 +382,6 @@
     return ML.persistenceInitPromise;
   };
 
-  ML.openDatabase = openDatabase;
-  ML.getRecord = getRecord;
-  ML.getAllRecords = getAllRecords;
-  ML.putRecord = putRecord;
-  ML.deleteRecord = deleteRecord;
   ML.persistFullState = persistFullState;
   ML.createRestorePoint = createRestorePoint;
   ML.updateRestorePointStatus = updateRestorePointStatus;

@@ -60,7 +60,17 @@ const RECOVERY_LIMIT = 8;
 const CONTENT_BACKUP_FORMAT = "MechLexContentBackup";
 const FULL_BACKUP_FORMAT = "MechLexFullAdminBackup";
 const PERSONAL_PROGRESS_FORMAT = "MechLexPersonalProgress";
-const IMAGE_CATALOG = new Set((window.MECHLEX_IMAGE_CATALOG || []).map((name) => String(name).trim()));
+let IMAGE_CATALOG = new Set();
+async function fetchImageCatalog() {
+  try {
+    const res = await fetch("/api/image-catalog", { headers: { "X-MechLex-Client": "1" } });
+    if (res.ok) {
+      const items = await res.json();
+      IMAGE_CATALOG = new Set(items.map(i => i.name.trim()));
+      renderAll(); // Re-render to resolve missing images once catalog is known
+    }
+  } catch(e) { console.warn("Failed to fetch image catalog", e); }
+}
 const EMBEDDED_IMAGES = window.MECHLEX_EMBEDDED_IMAGES || {};
 
 let storageIsPersistent = true;
@@ -3956,6 +3966,7 @@ function bindEvents() {
 }
 
 function init() {
+  fetchImageCatalog();
   bindEvents();
   clearTermForm();
   clearDomainForm();
