@@ -5,7 +5,11 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
-$Root = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot "..")).TrimEnd([System.IO.Path]::DirectorySeparatorChar, [System.IO.Path]::AltDirectorySeparatorChar)
+if ([string]::IsNullOrEmpty($PSScriptRoot)) {
+  $Root = [System.IO.Path]::GetFullPath($PWD.Path)
+} else {
+  $Root = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot "..")).TrimEnd([System.IO.Path]::DirectorySeparatorChar, [System.IO.Path]::AltDirectorySeparatorChar)
+}
 $RootBoundary = $Root + [System.IO.Path]::DirectorySeparatorChar
 $Address = [System.Net.IPAddress]::Loopback
 $MaxBodyBytes = 35MB
