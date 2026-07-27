@@ -1,0 +1,25 @@
+Path,Class,RequiredWhen,Reason
+START_MECHLEX.bat,immutable,normal,launcher
+core/start-local-server.ps1,immutable,normal,loopback helper static server and shared API
+SHARED_DATA_PATH.txt,immutable configuration,normal unless overridden,shared-path configuration
+index.html,immutable,normal,document entry
+style.css,immutable,normal,stylesheet imported by index
+data/mechlex-data.js,immutable,normal,embedded bootstrap catalogue
+images/catalog.js,immutable,normal,image catalogue imported by index
+images/mechlex-icon.svg,immutable,normal,application icon
+app.js,immutable,normal,main client
+core/integrity.js,immutable,normal,integrity wrapper imported by index
+core/persistence.js,immutable,normal,browser persistence wrapper imported by index
+core/shared-sync.js,immutable,normal,shared helper sync wrapper imported by index
+core/inline-editor.js,immutable,normal,inline editing wrapper imported by index
+core/boot.js,immutable,normal,boot verifier imported by index
+core/recovery-wizard.ps1,immutable,manual recovery only,recovery workflow
+state.json,mutable external,shared operation,authoritative state by contract
+state.previous.json,mutable external,after successful rotations,previous state
+.mechlex-state.lock,mutable external,during writes,cross-process lock target
+history/state-r*.json,mutable external,after successful writes,retained history
+dynamic JPEG PNG WebP,mutable external,when referenced by catalogue,content images
+Windows PowerShell 5.1 and .NET,host dependency,normal,helper runtime
+Installed browser,host dependency,normal,client runtime
+Filesystem or SMB access,host dependency,normal,shared state access
+Node and Playwright,QA only,never production runtime,not reached by launcher or imports

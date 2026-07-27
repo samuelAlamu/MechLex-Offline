@@ -1,0 +1,161 @@
+{
+  "generatedAt": "2026-07-24T22:20:35.984Z",
+  "runtimeFiles": {
+    "expected": 15,
+    "missing": []
+  },
+  "missingDocumentedQaAssets": [
+    "package.json",
+    "tests",
+    "MANIFEST_SHA256.txt"
+  ],
+  "catalog": {
+    "domains": 4,
+    "terms": 8,
+    "duplicateIds": [],
+    "duplicateCodes": []
+  },
+  "backups": [
+    {
+      "name": "content-backup-initial.json",
+      "format": "MechLexContentBackup",
+      "appVersion": "9.5.0",
+      "schemaVersion": 2,
+      "domains": 4,
+      "terms": 8,
+      "hasIntegrity": false
+    },
+    {
+      "name": "full-admin-backup-initial.json",
+      "format": "MechLexFullAdminBackup",
+      "appVersion": "9.5.0",
+      "schemaVersion": 2,
+      "domains": 4,
+      "terms": 8,
+      "hasIntegrity": false
+    }
+  ],
+  "scriptOrder": {
+    "expected": [
+      "data/mechlex-data.js",
+      "images/catalog.js",
+      "app.js",
+      "core/integrity.js",
+      "core/persistence.js",
+      "core/shared-sync.js",
+      "core/inline-editor.js",
+      "core/boot.js"
+    ],
+    "observed": [
+      "data/mechlex-data.js",
+      "images/catalog.js",
+      "app.js",
+      "core/integrity.js",
+      "core/persistence.js",
+      "core/shared-sync.js",
+      "core/inline-editor.js",
+      "core/boot.js"
+    ],
+    "matches": true
+  },
+  "versions": {
+    "version": "10.1.0",
+    "appVersion": "10.1.0",
+    "indexVersion": "10.1.0",
+    "changelogVersion": "10.1.1",
+    "installVersion": "9.6.1",
+    "consistent": false
+  },
+  "urls": [
+    {
+      "file": "app.js",
+      "value": "http://www.w3.org/2000/svg"
+    },
+    {
+      "file": "app.js",
+      "value": "http://www.w3.org/2000/svg"
+    },
+    {
+      "file": "core/start-local-server.ps1",
+      "value": "http://127.0.0.1:$TestPort/index.html"
+    },
+    {
+      "file": "core/start-local-server.ps1",
+      "value": "http://127.0.0.1:$ActivePort"
+    },
+    {
+      "file": "core/start-local-server.ps1",
+      "value": "http://localhost:$ActivePort"
+    },
+    {
+      "file": "core/start-local-server.ps1",
+      "value": "http://127.0.0.1:$ExistingPort/index.html"
+    },
+    {
+      "file": "core/start-local-server.ps1",
+      "value": "http://127.0.0.1:$ExistingPort/index.html"
+    },
+    {
+      "file": "core/start-local-server.ps1",
+      "value": "http://127.0.0.1:$Port/index.html"
+    }
+  ],
+  "activeExternalCandidates": [],
+  "results": [
+    {
+      "id": "STATIC-RUNTIME",
+      "status": "PASS",
+      "missingRuntime": []
+    },
+    {
+      "id": "STATIC-QA-ASSETS",
+      "status": "FAIL",
+      "missingDocumentedQaAssets": [
+        "package.json",
+        "tests",
+        "MANIFEST_SHA256.txt"
+      ]
+    },
+    {
+      "id": "CNT-INTEGRITY",
+      "status": "PASS"
+    },
+    {
+      "id": "REC-BACKUP-BASELINE",
+      "status": "FAIL",
+      "backups": [
+        {
+          "name": "content-backup-initial.json",
+          "format": "MechLexContentBackup",
+          "appVersion": "9.5.0",
+          "schemaVersion": 2,
+          "domains": 4,
+          "terms": 8,
+          "hasIntegrity": false
+        },
+        {
+          "name": "full-admin-backup-initial.json",
+          "format": "MechLexFullAdminBackup",
+          "appVersion": "9.5.0",
+          "schemaVersion": 2,
+          "domains": 4,
+          "terms": 8,
+          "hasIntegrity": false
+        }
+      ]
+    },
+    {
+      "id": "STATIC-SCRIPT-ORDER",
+      "status": "PASS"
+    },
+    {
+      "id": "STATIC-VERSIONS",
+      "status": "FAIL"
+    },
+    {
+      "id": "OFF-002-STATIC",
+      "status": "PASS",
+      "activeExternalCandidates": []
+    }
+  ]
+}

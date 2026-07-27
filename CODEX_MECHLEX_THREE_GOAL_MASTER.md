@@ -1,0 +1,500 @@
+# MECHLEX — THREE-GOAL CODEX QA, REMEDIATION AND RELEASE PROGRAM
+
+Version 2.0 — Post-Gemini Handoff
+
+## 0. Purpose
+
+This specification directs Codex through three strictly separated goals:
+
+1. **Independent deep QA and category scoring.**
+2. **Evidence-driven remediation until every required category is at least 9.5.**
+3. **Fresh independent re-audit of the frozen release candidate.**
+
+The numerical target is not permission to manufacture scores. A score is an output of executed evidence. When a target environment is missing, retain NOT TESTED and identify the exact environment or user action required.
+
+## 1. Supplied build identity and handoff claims
+
+The supplied Gemini handoff reports:
+
+- Commit: `5034fa3f76e4b6da97ca6f23ee055ef3de24e903`
+- Tag: `mechlex-final-gemini-handoff`
+- Branch: `qa/remediation-9-5-plus`
+- Active revision: `167`
+- Repository path on the original machine: `C:\Users\samue\Documents\Projects\Active\MechLex_Visual_Admin_Fork`
+- Handoff path: `handoff/`
+
+Do not trust these values until verified from Git and the actual filesystem.
+
+### 1.1 Mandatory handoff contradictions to resolve
+
+Codex must explicitly investigate and report each item:
+
+1. The handoff says “clean working directory” while also reporting untracked QA automation files.
+2. The handoff says only one file was committed, `app.js`, although many server, synchronization, recovery and data changes are claimed.
+3. It reports five production files, while its own inventory identifies many more runtime files.
+4. `08_TEST_EXECUTION_LEDGER.csv` contains only one test row, while the summary claims 108 executed PASS results.
+5. `09_EVIDENCE_INDEX.md` contains only evidence for one visual issue.
+6. The architecture document says Node.js `http-server`, while the inventory contains a PowerShell local-server implementation and earlier evidence described PowerShell/HttpListener.
+7. Endpoint names, shared-path configuration, atomic-write method and lock model conflict with earlier reports.
+8. The architecture mentions `MechLex_Config.json`, which is not clearly present in the inventory.
+9. The data document says semantic validation is client-side; earlier reports claimed server-side semantic validation.
+10. The change register contains only three changes and replaces all other required traceability with an unsupported note.
+11. The storage map claims file:// blocking, no IndexedDB fallback and Origin enforcement without code references or runtime evidence.
+12. The storage map says `mechlex_pin` is stored in localStorage; determine whether a usable PIN/secret is exposed and whether authorization relies on it.
+13. The operational runbook omits Content Expert and appears to allow a Viewer to become Administrator through a PIN.
+14. The inventory classifies hundreds of QA files as runtime-required and contains questionable Production and Safe-for-GitHub labels.
+15. The handoff archive does not contain several requested handoff documents and may not contain the actual code/evidence needed for reproduction.
+
+## 2. Authoritative product contract
+
+Treat these as mandatory unless the user explicitly changes them:
+
+### Runtime and deployment
+
+- The product is fully offline.
+- No Internet, cloud, remote API, CDN, remote fonts, analytics or external database.
+- A Local Helper may run on every workstation.
+- The Local Helper must bind only to `127.0.0.1`, run under the logged-in user, require no permanent service and no Administrator elevation for normal use.
+- Users launch through `START_MECHLEX.bat` or a safe Windows shortcut.
+- A browser favorite may target `http://127.0.0.1:8765/` when the helper is running.
+- Direct `file://.../index.html` execution must be blocked or redirect-only and may not load a second dictionary state.
+
+### Data and synchronization
+
+- The shared organizational folder is the sole source of truth.
+- Every acknowledged save must be durable in the shared source.
+- No IndexedDB/localStorage/cookie/cache fallback may become authoritative.
+- Shared-source failure must fail closed.
+- Multiple workstations must detect stale revisions and avoid silent lost updates.
+- Interrupted writes must leave the previous complete state or the new complete state, never a partial state.
+- Backup and recovery must be validated into a clean copy and the authoritative share.
+
+### Roles and security
+
+- Viewer: read-only.
+- Content Expert: edit dictionary content only.
+- Administrator: approved administrative configuration, structure and recovery actions.
+- UI hiding and client-side PIN checks are not security boundaries.
+- Every mutating endpoint must verify effective authority at write time.
+- Separate Windows principals/ACLs or an equally strong documented server-side model are required.
+
+### Content, media and UI
+
+- Valid JPEG, PNG and WebP images through at least `15,728,640` bytes must pass the full UI workflow.
+- Hebrew, English, Amharic, RTL/LTR, mathematical symbols and engineering units must persist exactly.
+- The hierarchy must support terms and subdomains together at the root and intermediate levels, and at least four nested levels.
+- At 100%–200% zoom, content must remain reachable without clipping.
+- Critical workflows must be keyboard accessible and provide visible focus and accessible status/error messages.
+- Edge 95 is a runtime requirement until formally removed.
+
+## 3. Required category scores
+
+Score each category independently from 0.0 to 10.0:
+
+1. Architecture and deployment model
+2. Offline operation and portability
+3. Reliability and failure handling
+4. Data integrity and schema evolution
+5. Synchronization and multi-user concurrency
+6. Backup, recovery and rollback
+7. Performance, capacity and large media
+8. Maintainability and regression infrastructure
+9. UX and workflow clarity
+10. Accessibility
+11. Security and permission enforcement
+12. Operational readiness and supportability
+13. Browser compatibility, including Edge 95
+
+Also report separately:
+
+- Evidence coverage percentage
+- Test execution coverage percentage
+- Product quality score
+- Release-readiness score
+- GO / GO WITH CONDITIONS / NO GO
+
+### 3.1 Conditions for a category score of 9.5 or higher
+
+All must be true:
+
+- every mandatory critical case is executed;
+- no open Blocker, Critical or Major finding remains in that category;
+- real runtime evidence exists for the intended environment;
+- regression tests exist and pass;
+- documentation matches actual behavior;
+- no mandatory gate is NOT TESTED or INCONCLUSIVE;
+- the score cites test IDs and evidence paths.
+
+Do not average away a release blocker.
+
+## 4. Workspace and required outputs
+
+Create and maintain:
+
+```text
+codex-qa/
+  GOAL_STATUS.md
+  BASELINE_IDENTITY.md
+  HANDOFF_VERIFICATION.md
+  QA_EXECUTION_PLAN.md
+  QA_TEST_MATRIX.csv
+  QA_FINDINGS.md
+  QA_RELEASE_GATES.md
+  architecture/
+    SYSTEM_MAP.md
+    ENDPOINT_MAP.md
+    DATA_FLOW.md
+    SOURCE_OF_TRUTH.md
+    PERSISTENCE_AND_LOCKING.md
+    ROLE_AND_PERMISSION_MODEL.md
+    BROWSER_STORAGE_MAP.md
+    DEPLOYMENT_CONTRACT.md
+  evidence/
+    baseline/
+    commands/
+    logs/
+    screenshots/
+    videos/
+    hashes/
+    browser/
+    concurrency/
+    permissions/
+    recovery/
+    performance/
+    accessibility/
+    compatibility/
+  tests/
+    unit/
+    integration/
+    browser/
+    concurrency/
+    failure-injection/
+    permissions/
+    performance/
+    accessibility/
+    compatibility/
+    fixtures/
+  patches/
+    PATCH_REGISTER.md
+  reports/
+    GOAL1_AUDIT_REPORT_HE.md
+    GOAL1_AUDIT_REPORT_EN.md
+    GOAL1_CATEGORY_SCORES.md
+    GOAL1_REPAIR_PLAN.md
+    GOAL2_REMEDIATION_REPORT_HE.md
+    GOAL2_CATEGORY_EVIDENCE.md
+    GOAL3_FINAL_RELEASE_REPORT_HE.md
+    GOAL3_FINAL_RELEASE_REPORT_EN.md
+    FINAL_CATEGORY_SCORES.md
+    EVIDENCE_INDEX.md
+    RESIDUAL_RISKS.md
+    OPERATIONS_GUIDE_HE.md
+.logs/
+  codex-mechlex-progress.md
+```
+
+QA-only dependencies and scripts must not become production runtime dependencies.
+
+# GOAL 1 — INDEPENDENT DEEP QA AND SCORING
+
+## 5. Goal 1 operating mode
+
+Goal 1 is audit-only. Do not modify production code, production data or the frozen tag. QA assets may be added under `codex-qa/` in an audit branch/copy.
+
+### 5.1 Baseline and Git truth
+
+Execute and record:
+
+- `git status --porcelain=v1 --untracked-files=all`
+- current branch and HEAD
+- tag target
+- local and remote commit existence
+- remote URL and privacy status when visible
+- diff from parent and from the earlier preserved baseline
+- tracked versus untracked QA files
+- submodules/LFS if any
+- recursive production-code manifest
+- mutable data manifest separately
+
+Do not continue destructive testing until a frozen copy and disposable workspaces exist.
+
+### 5.2 Handoff verification
+
+Create `HANDOFF_VERIFICATION.md` with a verdict for every handoff claim:
+
+- VERIFIED
+- CONTRADICTED
+- PARTIALLY VERIFIED
+- NOT VERIFIABLE
+
+Cite actual files, functions, commands and evidence.
+
+Rebuild the file inventory. Determine actual runtime dependency closure from `index.html`, launcher, server scripts and dynamic imports. Do not count QA copies as production files.
+
+### 5.3 Architecture and source-of-truth discovery
+
+Trace actual runtime behavior:
+
+- launcher command chain;
+- actual server technology and process;
+- binding and port;
+- static file root;
+- shared path selection and precedence;
+- every API endpoint/method;
+- request and response schemas;
+- process identity;
+- role/permission checks;
+- state load path;
+- save path;
+- revision logic;
+- conflict handling;
+- lock scope across process/session/machine;
+- temporary files, replace/rename and flush;
+- backups/history/recovery;
+- logs and shutdown;
+- browser cache/storage/file:// behavior.
+
+Search code and runtime for `localStorage`, `sessionStorage`, `indexedDB`, cookies, Cache API, service workers, embedded fallback data and local save paths.
+
+### 5.4 Test inventory truth
+
+Locate the original 107-case specification and all legitimate RV/post-remediation cases. Preserve every original ID and title. Do not accept generated `ML-001` or a narrative count.
+
+For each case record:
+
+- applicable or not;
+- executed or not;
+- exact environment;
+- exact command/manual steps;
+- result;
+- evidence;
+- finding;
+- severity.
+
+A compiled row is not an executed test.
+
+### 5.5 Goal 1 mandatory audit suites
+
+Execute as much as the real environment permits. Missing real environments remain NOT TESTED and affect scoring.
+
+#### A. Startup, offline and portability
+
+- Internet blocked cold start.
+- Clean browser profile/cache.
+- Launcher, direct localhost, UNC and mapped path.
+- Hebrew/spaces and long path.
+- missing file/share, read-only share, occupied port, duplicate launch, stale helper, shutdown.
+- active external-reference and network trace.
+- file:// direct opening: no dictionary, no local fallback, safe redirect/instruction only.
+
+#### B. Data and persistence
+
+- authoritative file identification and hashes;
+- create/edit/move/delete through UI;
+- save, close helper/browser, reopen;
+- malformed JSON, semantic corruption, duplicate IDs, dangling parents/images, unsupported schema;
+- interrupted write, locked file, read-only file, rename failure, zero-byte file;
+- UI success only after durable write.
+
+#### C. Multi-user synchronization
+
+At minimum distinguish:
+
+- same-helper parallel requests;
+- same-host two-helper/two-account UNC;
+- real two-workstation or two-VM SMB.
+
+Run different-record, same-record, stale revision, delete/edit, move/edit, image/image, rapid saves, disconnect before/during save and convergence. Do not treat same-host as cross-machine evidence.
+
+#### D. Roles and security
+
+Run helper under each tested Windows SID. Test Viewer, Content Expert and Administrator through UI, direct API, modified client state and filesystem. Test permission revocation during an open session, Origin/Host/CORS, LAN exposure, path-bearing endpoints, malformed/oversized bodies, XSS-safe rendering and secrets/PIN storage.
+
+#### E. Images and performance
+
+Use valid decodable JPEG/PNG/WebP fixtures at 1, 3, 5, 8, 10, 15,000,000 and 15,728,640 bytes. The mandatory path is UI select → preview → save → durable file → close → restart → reopen → decode/render → second isolated session. Measure p50/p95, full payload after Base64, memory and failures.
+
+#### F. Deep hierarchy and content QA
+
+Verify the Mechanical Engineering demo or create it through the real UI in a disposable dataset. Require terms directly under the root, subdomains at the same level, intermediate nodes containing both terms and subdomains, four or more levels, search from every depth, and full CRUD/move/delete/reopen/second-session evidence.
+
+#### G. UX and accessibility
+
+Use a real modern browser. Test keyboard-only operation, tab order, visible focus, modal focus management, accessible names/labels, ARIA live status/errors, contrast, RTL/LTR, 100–200% zoom, overflow/scrolling, disconnected/conflict/recovery/unsaved states. Use NVDA where available. Static DOM review alone is insufficient.
+
+#### H. Edge 95
+
+Run actual Edge 95 in an isolated VM if available. Static API/syntax review is separate and cannot replace runtime. If unavailable, mark runtime NOT TESTED and do not award 9.5+ compatibility or full GO.
+
+#### I. Recovery and operations
+
+Restore valid and invalid backups into a clean copy and authoritative test share; interrupt restore; validate rollback; reopen and create a new revision; verify from a second session. Test operational instructions with a non-developer clean account.
+
+### 5.6 Goal 1 deliverables
+
+Produce:
+
+- exact test counts and coverage;
+- all thirteen category scores with test/evidence citations;
+- findings and severity;
+- release gate status;
+- GO / GO WITH CONDITIONS / NO GO;
+- prioritized repair plan grouped P0/P1/P2;
+- precise environments still required.
+
+Do not change production code.
+
+# GOAL 2 — REMEDIATION TO 9.5+
+
+## 6. Goal 2 prerequisites and isolation
+
+Begin only after Goal 1 reports are reviewed. Create isolated worktrees/branches, for example:
+
+- `codex/remediation-core`
+- `codex/remediation-sync`
+- `codex/remediation-security`
+- `codex/remediation-ui`
+- `codex/remediation-compatibility`
+
+The main remediation integrator owns the final combined worktree. Do not edit the frozen baseline or merge automatically.
+
+### 6.1 Specialized workstreams
+
+Use separate subagents/threads when available:
+
+- Architecture and maintainability
+- Persistence and distributed SMB concurrency
+- Security and role authorization
+- Browser storage, launcher and offline deployment
+- Images/performance
+- UX/accessibility
+- Edge 95 compatibility
+- Independent diff/code review
+
+Each receives a bounded scope and evidence directory. Avoid simultaneous edits to the same files.
+
+### 6.2 Required patch protocol
+
+For every finding:
+
+1. reproduce on frozen baseline;
+2. register finding and root cause;
+3. create failing regression test or deterministic script;
+4. state hypothesis and falsifying observation;
+5. patch minimally in worktree;
+6. rerun focused test;
+7. inspect state/backups/images and hashes;
+8. run related suite and critical regression;
+9. request independent diff review;
+10. accept, revise or revert;
+11. document rollback and residual risk;
+12. commit with finding/test IDs.
+
+### 6.3 Likely remediation areas — verify before changing
+
+Do not assume these are defects; patch only if Goal 1 proves them:
+
+- Git/reproducibility and runtime file packaging;
+- incorrect/missing server endpoint validation and status codes;
+- request-body limits before full buffering;
+- cross-machine lock/re-read/revision/atomic replace;
+- true Viewer/Expert/Admin authorization;
+- PIN/secret exposure in browser storage;
+- Origin/Host/LAN/path security;
+- file:// and browser-state split;
+- large-image client/server path and memory;
+- deep hierarchy rendering/search/CRUD;
+- launcher health, duplicate process and diagnostics;
+- accessibility and 200% layout;
+- Edge 95 syntax/API/CSS fallbacks using local polyfills only;
+- oversized monolithic code, duplicate save paths and missing tests;
+- recovery UX and administrator runbooks.
+
+### 6.4 Goal 2 release-candidate contract
+
+Goal 2 is complete only when:
+
+- all Blocker/Critical/Major findings are closed;
+- every mandatory category has executed evidence supporting at least 9.5;
+- full critical regression is green;
+- data migration/backward compatibility is verified;
+- documentation and runbook match the implementation;
+- a release candidate commit and annotated tag exist;
+- recursive hashes and patch register are complete;
+- no mandatory gate remains NOT TESTED.
+
+If a physical/VM environment is unavailable, do not fake completion. Provide scripts and exact setup instructions, keep the affected goal gate blocked and request the missing environment/input.
+
+# GOAL 3 — FRESH INDEPENDENT RELEASE RE-AUDIT
+
+## 7. Goal 3 independence
+
+Start in a fresh Codex thread and a new audit copy. Use the Goal 2 release-candidate commit/tag. Do not modify production code during Goal 3. Do not rely on Goal 2 scores.
+
+### 7.1 Reverification
+
+- verify RC tag, commit, clean status and hashes;
+- verify no untracked runtime dependencies;
+- rerun the complete original + RV + new regression matrix;
+- repeat all critical tests rather than importing old PASS statuses;
+- use real two-workstation/VM SMB, distinct SIDs/ACLs, real UI 15 MiB, NVDA/accessibility and actual Edge 95;
+- inspect authoritative persisted files and second-session results;
+- independently review the full diff between frozen baseline and RC;
+- verify documentation with a clean non-developer user workflow.
+
+### 7.2 Final report contract
+
+Report exact:
+
+```text
+Release candidate commit/tag:
+Total catalogued:
+Applicable:
+Executed:
+PASS:
+FAIL:
+BLOCKED:
+NOT TESTED:
+INCONCLUSIVE:
+NOT APPLICABLE:
+Execution coverage:
+Evidence coverage:
+```
+
+Score all thirteen categories from zero. Explain every deduction. Issue exactly one:
+
+- GO
+- GO WITH CONDITIONS
+- NO GO
+
+A full GO and 9.5+ in every category require all mandatory environments and gates to be executed successfully. Do not award 9.5+ to a category with an untested mandatory requirement.
+
+## 8. Progress reporting
+
+At every checkpoint update:
+
+```text
+Current goal:
+Gate/workstream:
+Version/worktree:
+Inspected or changed:
+Commands executed:
+Evidence created:
+Verified result:
+Open findings:
+Remaining uncertainty:
+Next best action:
+Blocked and required input:
+```
+
+## 9. User approvals
+
+Request explicit user approval before:
+
+- pushing to a GitHub remote;
+- changing or migrating real user data;
+- restoring into the real authoritative share;
+- creating/removing Windows users, groups or ACLs;
+- installing or launching Edge 95 outside an isolated VM;
+- merging the release candidate to `main`;
+- deleting prior QA artifacts or backups.

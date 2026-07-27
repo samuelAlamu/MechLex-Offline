@@ -1,0 +1,63 @@
+{
+    "timestampUtc":  "2026-07-25T22:42:19.7810396Z",
+    "h0a":  "PASS",
+    "branch":  "qa/remediation-9-5-plus",
+    "head":  "5034fa3f76e4b6da97ca6f23ee055ef3de24e903",
+    "tag":  "mechlex-final-gemini-handoff",
+    "tagCommit":  "5034fa3f76e4b6da97ca6f23ee055ef3de24e903",
+    "archiveSha256":  "2e70276541322421431aa2fe3d00cbe537020b762ef530d4e75e04d10b3c9179",
+    "frozenTagFiles":  367,
+    "frozenTagBytes":  74124268,
+    "runtimeClosureFiles":  14,
+  "operationalRuntimeFiles":  1,
+    "realSharedPath":  "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Shared_Data_Simulation",
+    "realSharedFiles":  44,
+    "realSharedBytes":  17304795,
+    "sharedBaselineCopyHashMatch":  true,
+    "disposableWorkspaces":  [
+                                 {
+                                     "Workspace":  "normal",
+                                     "Path":  "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\normal",
+                                     "RuntimeHashMatch":  true,
+                                     "SharedDataHashMatch":  true,
+                                     "GuardEvidence":  "codex-qa/evidence/preactivation/guard-normal-target.json"
+                                 },
+                                 {
+                                     "Workspace":  "destructive",
+                                     "Path":  "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\destructive",
+                                     "RuntimeHashMatch":  true,
+                                     "SharedDataHashMatch":  true,
+                                     "GuardEvidence":  "codex-qa/evidence/preactivation/guard-destructive-target.json"
+                                 },
+                                 {
+                                     "Workspace":  "recovery",
+                                     "Path":  "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\recovery",
+                                     "RuntimeHashMatch":  true,
+                                     "SharedDataHashMatch":  true,
+                                     "GuardEvidence":  "codex-qa/evidence/preactivation/guard-recovery-target.json"
+                                 },
+                                 {
+                                     "Workspace":  "concurrency-a",
+                                     "Path":  "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\concurrency-a",
+                                     "RuntimeHashMatch":  true,
+                                     "SharedDataHashMatch":  true,
+                                     "GuardEvidence":  "codex-qa/evidence/preactivation/guard-concurrency-a-target.json"
+                                 },
+                                 {
+                                     "Workspace":  "concurrency-b",
+                                     "Path":  "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\concurrency-b",
+                                     "RuntimeHashMatch":  true,
+                                     "SharedDataHashMatch":  true,
+                                     "GuardEvidence":  "codex-qa/evidence/preactivation/guard-concurrency-b-target.json"
+                                 },
+                                 {
+                                     "Workspace":  "media",
+                                     "Path":  "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\media",
+                                     "RuntimeHashMatch":  true,
+                                     "SharedDataHashMatch":  true,
+                                     "GuardEvidence":  "codex-qa/evidence/preactivation/guard-media-target.json"
+                                 }
+                             ],
+    "productionModified":  false,
+    "realSharedModified":  false
+}

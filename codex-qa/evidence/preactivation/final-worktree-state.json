@@ -1,0 +1,16 @@
+{
+    "capturedUtc":  "2026-07-25T23:20:55.0404444Z",
+    "branch":  "qa/remediation-9-5-plus",
+    "head":  "5034fa3f76e4b6da97ca6f23ee055ef3de24e903",
+    "tagCommit":  "5034fa3f76e4b6da97ca6f23ee055ef3de24e903",
+    "headMatchesTag":  true,
+    "trackedChanges":  0,
+    "stagedPaths":  0,
+    "untrackedTotal":  1132,
+    "untrackedOutsideCodexQa":  47,
+    "untrackedUnderCodexQa":  1085,
+    "ignoredTotal":  752,
+    "productionTrackedTreeUnchanged":  true,
+    "realSharedContentAndMetadataUnchanged":  true,
+    "goal1Active":  false
+}

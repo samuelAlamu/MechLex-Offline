@@ -2365,7 +2365,7 @@ async function openAdmin(role, providedPin = null) {
 
   if (window.MechLexCore && window.MechLexCore.sharedSync) {
     try {
-      const response = await fetch("http://127.0.0.1:8765/api/can-write");
+      const response = await fetch("/api/can-write", { cache: "no-store" });
       if (response.ok) {
         const result = await response.json();
         if (!result.canWrite) {

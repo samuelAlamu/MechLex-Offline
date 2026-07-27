@@ -1,0 +1,5 @@
+﻿"Store","KeyOrScope","DictionaryAuthority","SecretRisk","Source"
+"localStorage","mechlex_v6_settings and other MechLex keys","Yes in fallback/file mode; settings always","PIN-bearing settings","app.js:47-56,841-861,958-1001; core/persistence.js:112-123"
+"IndexedDB","MechLexDB/full state","Primary browser persistence in persistence layer","Full settings included","core/persistence.js:36-60,88-99,135-160"
+"file:// localStorage","FILE_OFFLINE_MODE","Functional local save branch","Local alternate dictionary","core/persistence.js:15,222-287,369-449"
+"Shared state","shared.settings","Intended sole organizational source","PIN-bearing settings cloned into shared snapshot","core/shared-sync.js:31-36,74-104,152-166"

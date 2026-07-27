@@ -1,0 +1,188 @@
+{
+    "format":  "MechLexSharedState",
+    "formatVersion":  1,
+    "revision":  19,
+    "schemaVersion":  2,
+    "appVersion":  "10.1.0",
+    "updatedAt":  "2026-07-25T17:49:55.5711101Z",
+    "updatedBy":  "pc-ms0nzc8f-pteg50re",
+    "reason":  "admin-change",
+    "checksum":  "aface10cfbc0a5742b15b54f1450dc0d58ee5107c6496b2fc4764ef89acbe928",
+    "shared":  {
+                   "data":  [
+                                {
+                                    "id":  "test-1",
+                                    "name":  "תחום 1",
+                                    "nameEn":  "",
+                                    "prefix":  "D1",
+                                    "icon":  "general",
+                                    "color":  "#246b87",
+                                    "description":  "",
+                                    "subtopics":  [
+
+                                                  ],
+                                    "items":  [
+
+                                              ]
+                                },
+                                {
+                                    "id":  "52f1239f-6306-421c-9e8d-fbc5bb4eee89",
+                                    "name":  "Test 15MB Domain",
+                                    "nameEn":  "",
+                                    "prefix":  "TMD",
+                                    "icon":  "general",
+                                    "color":  "#246b87",
+                                    "description":  "",
+                                    "subtopics":  [
+
+                                                  ],
+                                    "items":  [
+
+                                              ]
+                                },
+                                {
+                                    "id":  "5c337160-6531-4478-83bd-cebb6eae7967",
+                                    "name":  "Test 15MB Domain CXIZ",
+                                    "nameEn":  "",
+                                    "prefix":  "TCXIZ",
+                                    "icon":  "general",
+                                    "color":  "#246b87",
+                                    "description":  "",
+                                    "subtopics":  [
+
+                                                  ],
+                                    "items":  [
+
+                                              ]
+                                },
+                                {
+                                    "id":  "3735952d-aa14-4522-83ea-d1d398242e02",
+                                    "items":  [
+
+                                              ],
+                                    "subtopics":  [
+
+                                                  ],
+                                    "name":  "Test 15MB Domain 13D7",
+                                    "nameEn":  "",
+                                    "prefix":  "T13D7",
+                                    "icon":  "general",
+                                    "color":  "#246b87",
+                                    "description":  ""
+                                }
+                            ],
+                   "settings":  {
+                                    "pin":  "1234",
+                                    "contentPin":  "1234",
+                                    "superPin":  "9999",
+                                    "uiRefreshVersion":  0,
+                                    "hierarchyDemoVersion":  0,
+                                    "colorDepthVersion":  0,
+                                    "appearance":  {
+                                                       "primary":  "#0f3d5e",
+                                                       "background":  "#dce7ec",
+                                                       "surface":  "#f2f6f7",
+                                                       "font":  "Arial",
+                                                       "fontSize":  17,
+                                                       "radius":  14,
+                                                       "density":  "comfortable",
+                                                       "buttonShadow":  "dynamic",
+                                                       "buttonHoverScale":  1.04,
+                                                       "buttonActiveScale":  0.97
+                                                   },
+                                    "fields":  {
+                                                   "symbol":  true,
+                                                   "units":  true,
+                                                   "formula":  true,
+                                                   "standards":  true,
+                                                   "example":  true,
+                                                   "cautions":  true,
+                                                   "manufacturing":  true,
+                                                   "inspection":  true,
+                                                   "related":  true
+                                               },
+                                    "uiText":  {
+                                                   "brandName":  "MECHLEX",
+                                                   "brandSubtitle":  "Engineering Knowledge System",
+                                                   "heroEyebrow":  "ENGINEERING REFERENCE · LEARNING · PRACTICE",
+                                                   "pageTitle":  "מילון הנדסי",
+                                                   "heroDescription":  "גישה מהירה להגדרות, סימונים, נוסחאות, תקנים, דוגמאות יישומיות ושיקולי ייצור ובחינה.",
+                                                   "metricTermsLabel":  "מושגים זמינים",
+                                                   "metricTermsNote":  "במאגר הפעיל",
+                                                   "metricDomainsLabel":  "תחומי ידע",
+                                                   "metricDomainsNote":  "מסודרים לפי דיסציפלינה",
+                                                   "metricFavoritesLabel":  "מועדפים",
+                                                   "metricFavoritesNote":  "לגישה מהירה",
+                                                   "metricMasteredLabel":  "נלמדו",
+                                                   "metricMasteredNote":  "בהתקדמות האישית",
+                                                   "taxonomyTitle":  "מפת תחומים היררכית",
+                                                   "taxonomyPath":  "תחום ← תת־תחום ← תת־תת־תחום ← מושגים",
+                                                   "introTitle":  "המילון נפתח לפי תחומי ידע",
+                                                   "introDescription":  "בחרו אחד מכרטיסי התחומים למעלה כדי לחשוף את המבנה שלו ואת המושגים שבתוכו. אפשר גם לחפש מושג ישירות בשורת החיפוש.",
+                                                   "resultsTitle":  "כל המושגים",
+                                                   "contextLabel":  "כל המושגים",
+                                                   "resultsMeta":  "0 תוצאות",
+                                                   "progressText":  "טרם סומנו מושגים כנלמדו",
+                                                   "navAllLabel":  "כל המושגים",
+                                                   "navFavLabel":  "מועדפים",
+                                                   "navLearningLabel":  "בתהליך למידה",
+                                                   "navMasteredLabel":  "נלמדו",
+                                                   "navRecentLabel":  "נצפו לאחרונה",
+                                                   "sidebarDomainsHead":  "תחומי ידע",
+                                                   "taxonomySectionKicker":  "KNOWLEDGE MAP",
+                                                   "activeContextPrefix":  "מציג:",
+                                                   "resetFiltersBtn":  "איפוס מסננים",
+                                                   "subtopicFilterLabel":  "מיקום בהיררכיה",
+                                                   "sortSelectLabel":  "מיון",
+                                                   "mindMapViewBtn":  "מפת חשיבה",
+                                                   "emptyStateTitle":  "לא נמצאו מושגים מתאימים",
+                                                   "emptyStateDesc":  "נסה מונח אחר, קוד קטלוגי, שם באנגלית או איפוס של אחד המסננים.",
+                                                   "emptyResetBtn":  "איפוס חיפוש ומסננים",
+                                                   "mindMapInfoTitle":  "🕸️ מפת חשיבה ויזואלית (Mind Map)",
+                                                   "adminBtn":  "מרכז ניהול",
+                                                   "saveState":  "נשמר ב־IndexedDB"
+                                               }
+                                },
+                   "uiText":  {
+                                  "brandName":  "MECHLEX",
+                                  "brandSubtitle":  "Engineering Knowledge System",
+                                  "heroEyebrow":  "ENGINEERING REFERENCE · LEARNING · PRACTICE",
+                                  "pageTitle":  "מילון הנדסי",
+                                  "heroDescription":  "גישה מהירה להגדרות, סימונים, נוסחאות, תקנים, דוגמאות יישומיות ושיקולי ייצור ובחינה.",
+                                  "metricTermsLabel":  "מושגים זמינים",
+                                  "metricTermsNote":  "במאגר הפעיל",
+                                  "metricDomainsLabel":  "תחומי ידע",
+                                  "metricDomainsNote":  "מסודרים לפי דיסציפלינה",
+                                  "metricFavoritesLabel":  "מועדפים",
+                                  "metricFavoritesNote":  "לגישה מהירה",
+                                  "metricMasteredLabel":  "נלמדו",
+                                  "metricMasteredNote":  "בהתקדמות האישית",
+                                  "taxonomyTitle":  "מפת תחומים היררכית",
+                                  "taxonomyPath":  "תחום ← תת־תחום ← תת־תת־תחום ← מושגים",
+                                  "introTitle":  "המילון נפתח לפי תחומי ידע",
+                                  "introDescription":  "בחרו אחד מכרטיסי התחומים למעלה כדי לחשוף את המבנה שלו ואת המושגים שבתוכו. אפשר גם לחפש מושג ישירות בשורת החיפוש.",
+                                  "resultsTitle":  "כל המושגים",
+                                  "contextLabel":  "כל המושגים",
+                                  "resultsMeta":  "0 תוצאות",
+                                  "progressText":  "טרם סומנו מושגים כנלמדו",
+                                  "navAllLabel":  "כל המושגים",
+                                  "navFavLabel":  "מועדפים",
+                                  "navLearningLabel":  "בתהליך למידה",
+                                  "navMasteredLabel":  "נלמדו",
+                                  "navRecentLabel":  "נצפו לאחרונה",
+                                  "sidebarDomainsHead":  "תחומי ידע",
+                                  "taxonomySectionKicker":  "KNOWLEDGE MAP",
+                                  "activeContextPrefix":  "מציג:",
+                                  "resetFiltersBtn":  "איפוס מסננים",
+                                  "subtopicFilterLabel":  "מיקום בהיררכיה",
+                                  "sortSelectLabel":  "מיון",
+                                  "mindMapViewBtn":  "מפת חשיבה",
+                                  "emptyStateTitle":  "לא נמצאו מושגים מתאימים",
+                                  "emptyStateDesc":  "נסה מונח אחר, קוד קטלוגי, שם באנגלית או איפוס של אחד המסננים.",
+                                  "emptyResetBtn":  "איפוס חיפוש ומסננים",
+                                  "mindMapInfoTitle":  "🕸️ מפת חשיבה ויזואלית (Mind Map)",
+                                  "adminBtn":  "מרכז ניהול",
+                                  "saveState":  "נשמר ב־IndexedDB"
+                              }
+               }
+}

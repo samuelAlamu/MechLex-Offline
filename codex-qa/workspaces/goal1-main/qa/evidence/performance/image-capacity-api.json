@@ -1,0 +1,107 @@
+{
+  "generatedAt": "2026-07-24T22:21:33.059Z",
+  "environment": {
+    "port": 8792,
+    "sharedRoot": "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\qa\\workspaces\\image-api-1784931665452",
+    "node": "v24.14.0"
+  },
+  "clientTimeoutMs": 5000,
+  "matrix": [
+    {
+      "sizeMb": 1,
+      "inputBytes": 1048576,
+      "base64Length": 1398126,
+      "requestBytes": 1398713,
+      "putStatus": 200,
+      "putMs": 196,
+      "getStatus": 200,
+      "getMs": 338,
+      "exceedsClientFiveSecondTimeout": false,
+      "returnedLength": 1398126,
+      "valid": true,
+      "stateFileBytes": 1400408
+    },
+    {
+      "sizeMb": 3,
+      "inputBytes": 3145728,
+      "base64Length": 4194326,
+      "requestBytes": 4194913,
+      "putStatus": 200,
+      "putMs": 318,
+      "getStatus": 200,
+      "getMs": 938,
+      "exceedsClientFiveSecondTimeout": false,
+      "returnedLength": 4194326,
+      "valid": true,
+      "stateFileBytes": 4196608
+    },
+    {
+      "sizeMb": 5,
+      "inputBytes": 5242880,
+      "base64Length": 6990530,
+      "requestBytes": 6991117,
+      "putStatus": 200,
+      "putMs": 499,
+      "getStatus": 200,
+      "getMs": 2311,
+      "exceedsClientFiveSecondTimeout": false,
+      "returnedLength": 6990530,
+      "valid": true,
+      "stateFileBytes": 6992812
+    },
+    {
+      "sizeMb": 8,
+      "inputBytes": 8388608,
+      "base64Length": 11184834,
+      "requestBytes": 11185421,
+      "putStatus": 200,
+      "putMs": 1040,
+      "getStatus": 200,
+      "getMs": 3979,
+      "exceedsClientFiveSecondTimeout": false,
+      "returnedLength": 11184834,
+      "valid": true,
+      "stateFileBytes": 11187116
+    },
+    {
+      "sizeMb": 10,
+      "inputBytes": 10485760,
+      "base64Length": 13981038,
+      "requestBytes": 13981626,
+      "putStatus": 200,
+      "putMs": 1203,
+      "getStatus": 200,
+      "getMs": 4474,
+      "exceedsClientFiveSecondTimeout": false,
+      "returnedLength": 13981038,
+      "valid": true,
+      "stateFileBytes": 13983321
+    },
+    {
+      "sizeMb": 15,
+      "inputBytes": 15728640,
+      "base64Length": 20971542,
+      "requestBytes": 20972130,
+      "putStatus": 200,
+      "putMs": 2085,
+      "getStatus": 200,
+      "getMs": 9084,
+      "exceedsClientFiveSecondTimeout": true,
+      "returnedLength": 20971542,
+      "valid": true,
+      "stateFileBytes": 20973825
+    }
+  ],
+  "allServerRoundTripsValid": true,
+  "allWithinClientTimeout": false,
+  "serverLog": [
+    "MechLex is running at http://127.0.0.1:8792/index.html",
+    "\n",
+    "Shared data folder: C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\qa\\workspaces\\image-api-1784931665452",
+    "\n",
+    "Local-only server: no inbound network port is opened.",
+    "\n",
+    "Keep this window open while using the dictionary. Press Ctrl+C to stop.",
+    "\n"
+  ]
+}

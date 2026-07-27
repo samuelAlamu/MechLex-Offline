@@ -1,0 +1,330 @@
+{
+  "generatedAt": "2026-07-24T22:20:38.005Z",
+  "environment": {
+    "platform": "win32",
+    "node": "v24.14.0",
+    "port": 8791,
+    "serverRoot": "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\qa\\workspaces\\concurrency-a",
+    "sharedRoot": "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\qa\\workspaces\\shared-api-1784931636182"
+  },
+  "pass": 12,
+  "fail": 0,
+  "results": [
+    {
+      "id": "OFF-010",
+      "status": "PASS",
+      "at": "2026-07-24T22:20:37.079Z",
+      "note": "Loopback server became reachable on the requested local-only port.",
+      "port": 8791
+    },
+    {
+      "id": "OFF-007",
+      "status": "PASS",
+      "at": "2026-07-24T22:20:37.088Z",
+      "health": {
+        "writable": true,
+        "ok": true,
+        "stateExists": false,
+        "mode": "offline-shared-folder"
+      }
+    },
+    {
+      "id": "OFF-008",
+      "status": "PASS",
+      "at": "2026-07-24T22:20:37.099Z",
+      "observedStatus": 404,
+      "note": "Missing state did not initialize an empty authoritative file on GET."
+    },
+    {
+      "id": "AUTH-008-ORIGIN",
+      "status": "PASS",
+      "at": "2026-07-24T22:20:37.104Z",
+      "observedStatus": 403
+    },
+    {
+      "id": "OFF-007-METHOD",
+      "status": "PASS",
+      "at": "2026-07-24T22:20:37.117Z",
+      "observedStatus": 405
+    },
+    {
+      "id": "CNT-001-API",
+      "status": "PASS",
+      "at": "2026-07-24T22:20:37.240Z",
+      "observedStatus": 200,
+      "response": {
+        "updatedAt": "2026-07-24T22:20:37.1815906Z",
+        "ok": true,
+        "checksum": "a8fb79fdc7431923433782f453e93d1e0d184a08660ff4baaef65ff71d4fc363",
+        "revision": 1
+      }
+    },
+    {
+      "id": "SYNC-005",
+      "status": "PASS",
+      "at": "2026-07-24T22:20:37.257Z",
+      "observedStatus": 409,
+      "response": {
+        "updatedAt": "2026-07-24T22:20:37.1815906Z",
+        "message": "A newer shared revision already exists",
+        "updatedBy": "qa-initial",
+        "currentRevision": 1
+      }
+    },
+    {
+      "id": "SYNC-004",
+      "status": "PASS",
+      "at": "2026-07-24T22:20:37.944Z",
+      "iterations": 20,
+      "safeIterations": 20,
+      "rounds": [
+        {
+          "round": 1,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 2,
+          "safe": true,
+          "winner": "round-1-a"
+        },
+        {
+          "round": 2,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 3,
+          "safe": true,
+          "winner": "round-2-a"
+        },
+        {
+          "round": 3,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 4,
+          "safe": true,
+          "winner": "round-3-a"
+        },
+        {
+          "round": 4,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 5,
+          "safe": true,
+          "winner": "round-4-a"
+        },
+        {
+          "round": 5,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 6,
+          "safe": true,
+          "winner": "round-5-a"
+        },
+        {
+          "round": 6,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 7,
+          "safe": true,
+          "winner": "round-6-a"
+        },
+        {
+          "round": 7,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 8,
+          "safe": true,
+          "winner": "round-7-a"
+        },
+        {
+          "round": 8,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 9,
+          "safe": true,
+          "winner": "round-8-a"
+        },
+        {
+          "round": 9,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 10,
+          "safe": true,
+          "winner": "round-9-a"
+        },
+        {
+          "round": 10,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 11,
+          "safe": true,
+          "winner": "round-10-a"
+        },
+        {
+          "round": 11,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 12,
+          "safe": true,
+          "winner": "round-11-a"
+        },
+        {
+          "round": 12,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 13,
+          "safe": true,
+          "winner": "round-12-a"
+        },
+        {
+          "round": 13,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 14,
+          "safe": true,
+          "winner": "round-13-a"
+        },
+        {
+          "round": 14,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 15,
+          "safe": true,
+          "winner": "round-14-a"
+        },
+        {
+          "round": 15,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 16,
+          "safe": true,
+          "winner": "round-15-a"
+        },
+        {
+          "round": 16,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 17,
+          "safe": true,
+          "winner": "round-16-a"
+        },
+        {
+          "round": 17,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 18,
+          "safe": true,
+          "winner": "round-17-a"
+        },
+        {
+          "round": 18,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 19,
+          "safe": true,
+          "winner": "round-18-a"
+        },
+        {
+          "round": 19,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 20,
+          "safe": true,
+          "winner": "round-19-a"
+        },
+        {
+          "round": 20,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 21,
+          "safe": true,
+          "winner": "round-20-a"
+        }
+      ],
+      "limitation": "Two concurrent HTTP writers on one Windows workstation; not two physical SMB clients."
+    },
+    {
+      "id": "REC-001-ATOMIC-STRUCTURE",
+      "status": "PASS",
+      "at": "2026-07-24T22:20:37.948Z",
+      "currentHash": "82f77f18678a56ed71cd54c7580e6e36957a103a0709d8cac8f91cda549eb335",
+      "previousExists": true,
+      "historyCount": 21,
+      "note": "Observed temp-replace history behavior under executed writes; process-kill timing is covered separately."
+    },
+    {
+      "id": "REC-006",
+      "status": "PASS",
+      "at": "2026-07-24T22:20:37.973Z",
+      "malformedStatus": 500,
+      "recoveredStatus": 200,
+      "sourcePreservedForManualRecovery": true
+    },
+    {
+      "id": "REC-007",
+      "status": "PASS",
+      "at": "2026-07-24T22:20:37.993Z",
+      "checksumFailureStatus": 500,
+      "recoveredStatus": 200
+    },
+    {
+      "id": "SYNC-010",
+      "status": "PASS",
+      "at": "2026-07-24T22:20:37.994Z",
+      "finalRevision": 21,
+      "expectedRevision": 21,
+      "finalStateBytes": 2145
+    }
+  ],
+  "serverLog": [
+    "MechLex is running at http://127.0.0.1:8791/index.html",
+    "\n",
+    "Shared data folder: C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\qa\\workspaces\\shared-api-1784931636182",
+    "\n",
+    "Local-only server: no inbound network port is opened.",
+    "\n",
+    "Keep this window open while using the dictionary. Press Ctrl+C to stop.",
+    "\n",
+    "WARNING: Invalid object passed in, ':' or '}' expected. (1): {",
+    "\n",
+    "WARNING: Shared state checksum validation failed. Restore state.previous.json or a history revision.\n"
+  ]
+}

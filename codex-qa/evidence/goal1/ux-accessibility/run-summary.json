@@ -1,0 +1,8 @@
+﻿{
+    "timestampUtc":  "2026-07-25T23:40:58.0810122Z",
+    "testExitCode":  0,
+    "reportExists":  true,
+    "port":  8786,
+    "realSharedDataUsed":  false,
+    "note":  "At non-8765 ports, the product hard-coded can-write fetch is blocked by same-origin CSP and openAdmin catches the error, which is product fail-open behavior."
+}

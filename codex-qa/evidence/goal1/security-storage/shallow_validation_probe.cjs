@@ -1,0 +1,17 @@
+const fs=require("fs"),path=require("path"),cp=require("child_process"),crypto=require("crypto");
+const root=path.resolve(__dirname,"../../../.."),workspace=path.join(root,"codex-qa/workspaces/normal");
+const source=path.join(workspace,"shared-data"),share=path.join(__dirname,`validation-share-${Date.now()}`),port=8914;
+fs.cpSync(source,share,{recursive:true});
+cp.execFileSync("powershell.exe",["-NoProfile","-ExecutionPolicy","Bypass","-File",path.join(root,"codex-qa/scripts/real-shared-path-guard.ps1"),"-ProjectRoot",root,"-TestPath",share,"-OutputPath",path.join(__dirname,"guard-validation.json")]);
+const state=path.join(share,"state.json"),hash=()=>crypto.createHash("sha256").update(fs.readFileSync(state)).digest("hex");
+const before=hash(), helper=cp.spawn("powershell.exe",["-NoProfile","-ExecutionPolicy","Bypass","-File",path.join(workspace,"core/start-local-server.ps1"),"-Port",String(port),"-NoBrowser","-SharedDataPath",share],{env:{...process.env,MECHLEX_MOCK_ROLE:"Admin"},stdio:"ignore"});
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+(async()=>{await wait(1200);const base=`http://127.0.0.1:${port}`;
+ const rec=await fetch(base+"/api/shared-state").then(r=>r.json()), payload=JSON.parse(JSON.stringify(rec));
+ const domain=payload.shared.data[0], originalNestedCount=(domain.items||[]).length;
+ domain.items=domain.items||[];domain.items.push({id:domain.items[0]?.id||"DUPLICATE-NESTED",parentId:"MISSING-NESTED-PARENT",name:"invalid nested semantic marker"});
+ const res=await fetch(base+"/api/shared-state",{method:"PUT",headers:{"Content-Type":"application/json","X-MechLex-Client":"1",Origin:base},body:JSON.stringify({schemaVersion:payload.schemaVersion,expectedRevision:payload.revision,shared:payload.shared})});
+ const text=await res.text(),after=hash(),reloaded=JSON.parse(fs.readFileSync(state,"utf8"));
+ const result={timestampUtc:new Date().toISOString(),status:res.status,response:text.slice(0,1000),mutation:{nestedDuplicateId:domain.items.at(-1).id,nestedDanglingParent:domain.items.at(-1).parentId,originalNestedCount},persistedFile:{changed:before!==after,beforeSha256:before,afterSha256:after,invalidMarkerPersisted:JSON.stringify(reloaded).includes("invalid nested semantic marker")},restartSessionVisibility:"Persisted authoritative file; observable after helper/browser restart and by another session using this disposable share",realSharedDataUsed:false};
+ fs.writeFileSync(path.join(__dirname,"G1-SEC-06-shallow-validation.json"),JSON.stringify(result,null,2));helper.kill();fs.rmSync(share,{recursive:true,force:true});
+})().catch(e=>{try{helper.kill()}catch{};process.stderr.write(String(e.stack||e));process.exit(1)});

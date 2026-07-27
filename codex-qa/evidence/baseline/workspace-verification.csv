@@ -1,0 +1,7 @@
+﻿"Workspace","Path","RuntimeHashMatch","SharedDataHashMatch","GuardEvidence"
+"normal","C:\Users\samue\Documents\Projects\Active\MechLex_Visual_Admin_Fork\codex-qa\workspaces\normal","True","True","codex-qa/evidence/preactivation/guard-normal-target.json"
+"destructive","C:\Users\samue\Documents\Projects\Active\MechLex_Visual_Admin_Fork\codex-qa\workspaces\destructive","True","True","codex-qa/evidence/preactivation/guard-destructive-target.json"
+"recovery","C:\Users\samue\Documents\Projects\Active\MechLex_Visual_Admin_Fork\codex-qa\workspaces\recovery","True","True","codex-qa/evidence/preactivation/guard-recovery-target.json"
+"concurrency-a","C:\Users\samue\Documents\Projects\Active\MechLex_Visual_Admin_Fork\codex-qa\workspaces\concurrency-a","True","True","codex-qa/evidence/preactivation/guard-concurrency-a-target.json"
+"concurrency-b","C:\Users\samue\Documents\Projects\Active\MechLex_Visual_Admin_Fork\codex-qa\workspaces\concurrency-b","True","True","codex-qa/evidence/preactivation/guard-concurrency-b-target.json"
+"media","C:\Users\samue\Documents\Projects\Active\MechLex_Visual_Admin_Fork\codex-qa\workspaces\media","True","True","codex-qa/evidence/preactivation/guard-media-target.json"

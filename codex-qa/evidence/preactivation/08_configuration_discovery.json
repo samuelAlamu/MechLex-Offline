@@ -1,0 +1,14 @@
+{
+    "claimedFile":  "MechLex_Config.json",
+    "filesFound":  [
+
+                   ],
+    "actualSources":  [
+                          "-SharedDataPath parameter",
+                          "MECHLEX_SHARED_DATA_PATH",
+                          "SHARED_DATA_PATH.txt",
+                          "sibling MechLex_Shared_Data default"
+                      ],
+    "generatedClaimSource":  "generate_md.js:21; handoff/03_ARCHITECTURE_TRUTH.md:15",
+    "runtimeSource":  "core/start-local-server.ps1:1-4,13-31"
+}

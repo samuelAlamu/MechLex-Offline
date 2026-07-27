@@ -1,0 +1,8 @@
+Suite,AuthoritativeSource,Representation,UniqueCases,Rule,SHA256
+Original107,C:\Users\samue\Downloads\MechLex_Gemini_Comprehensive_QA_Audit_Prompt.txt,title-bearing specification,107,preserve every ID and title,cb0ff2dbded77875cffd8f902a84d509502803b928939db5422f37df96f7eb95
+Historical107,C:\Users\samue\Documents\Projects\Active\MechLex_Visual_Admin_Fork\qa\QA_TEST_MATRIX.csv,historical result matrix without titles,107,IDs corroborate original but statuses are not inherited,16577ae6ebf590c7df713822b26187b753f968bba5c29207ce9d745c95de6d4e
+RV,C:\Users\samue\Documents\Projects\Active\MechLex_Visual_Admin_Fork\qa\MechLex_Gemini_Post_Remediation_Deep_QA_v3.md,title-bearing additive specification,59,count once,5d1f51e407e0b3d99c748f70ffc98472ad98dd11d11b7263ebc3aa7392043d99
+RV-duplicate,C:\Users\samue\Documents\Projects\Active\MechLex_Visual_Admin_Fork\qa\MechLex_Gemini_Post_Remediation_Deep_QA_v3.txt,byte-identical duplicate,0,do not count again,5d1f51e407e0b3d99c748f70ffc98472ad98dd11d11b7263ebc3aa7392043d99
+Post-remediation,C:\Users\samue\Documents\Projects\Active\MechLex_Visual_Admin_Fork\handoff\08_TEST_EXECUTION_LEDGER.csv,one named case QA-001,1,retain case but do not inherit PASS,57516d20582a3735177497b1170d74aff137915ac2494ce14bd919cc8d0b951d
+H0-derived,codex-qa/evidence/goal1/catalogue-architecture/H0_DERIVED_CASES.csv,new frozen-version investigations,13,execute independently,
+Final,,,180,107+59+1+13,

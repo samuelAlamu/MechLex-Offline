@@ -1,0 +1,79 @@
+{
+  "timestampUtc": "2026-07-25T23:18:11.912Z",
+  "browser": "Microsoft Edge 150.0.4078.83",
+  "target": "http://127.0.0.1:8897/index.html",
+  "isolation": "Disposable normal workspace and disposable browser profile",
+  "initial": {
+    "protocol": "http:",
+    "title": "מילון הנדסי · MechLex Offline",
+    "domainCount": 1,
+    "termCount": 142,
+    "dataSource": "shared-folder",
+    "localStorageKeys": [
+      "mechlex_v6_data",
+      "mechlex_v6_prefs",
+      "mechlex_v6_settings",
+      "mechlex_v8_meta"
+    ],
+    "indexedDbNames": [
+      "mechlex_offline_v95"
+    ],
+    "serverCanWrite": false,
+    "serverRole": "Viewer"
+  },
+  "authorityBoundary": {
+    "clientSuperAdminOpened": true,
+    "directPutStatus": 403,
+    "directPutRejected": true,
+    "note": "No PIN value or shared payload was recorded."
+  },
+  "failedHelper": {
+    "healthUnavailable": true,
+    "attemptedMarker": "H0_FAILED_HELPER_1785021481323",
+    "inMemoryAfterSave": "H0_FAILED_HELPER_1785021481323",
+    "storedAfterSave": "הנדסת מכונות",
+    "indexedDbAfterSave": "הנדסת מכונות",
+    "durableIndexedDbMarker": false,
+    "rolledBack": false,
+    "saveReturnedPersistent": true
+  },
+  "pageErrors": [],
+  "consoleMessages": [
+    {
+      "type": "verbose",
+      "text": "[DOM] Password forms should have (optionally hidden) username fields for accessibility: (More info: https://www.chromium.org/developers/design-documents/create-amazing-password-forms) %o"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CONNECTION_REFUSED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CONNECTION_REFUSED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CONNECTION_REFUSED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CONNECTION_REFUSED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CONNECTION_REFUSED"
+    }
+  ],
+  "verdicts": {
+    "localhostFunctional": true,
+    "clientSidePinAuthorityProven": true,
+    "clientAuthorityNotServerAuthority": true,
+    "failedHelperLocalSaveFallbackProven": false,
+    "failedHelperFailClosedProven": false
+  },
+  "realSharedDataUsed": false
+}

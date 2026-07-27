@@ -1,0 +1,33 @@
+{
+    "timestampUtc":  "2026-07-25T23:05:18.4094815Z",
+    "result":  "PASS",
+    "sourceFrozenTag":  "mechlex-final-gemini-handoff",
+    "sourceShared":  "hash-verified read-only baseline copy; not the real shared directory",
+    "manifests":  [
+                      {
+                          "file":  "mutable-shared-data-sha256.csv",
+                          "rows":  44,
+                          "sha256":  "3335a2e232544f27370ae3f0471d9020408132aeb0c40b809f5d0864b75496a7"
+                      },
+                      {
+                          "file":  "backup-and-history-sha256.csv",
+                          "rows":  41,
+                          "sha256":  "ffb932e7f67f538ddbc6ae8370fb7405f0e24d83386d6ddc09629a8220a0b513"
+                      },
+                      {
+                          "file":  "image-assets-sha256.csv",
+                          "rows":  28,
+                          "sha256":  "2f44718161cd7acd677958636f4b33d99f92d7bd2167508d1587bf1ce2c6a6b9"
+                      },
+                      {
+                          "file":  "qa-files-sha256.csv",
+                          "rows":  305,
+                          "sha256":  "eb13d7a65de85dbc60ad984bcc0301b97787414008f9a9d7ddfb8a37834caae3"
+                      },
+                      {
+                          "file":  "documentation-sha256.csv",
+                          "rows":  45,
+                          "sha256":  "19ce35582f7d01ae44de78f9b82bac9a0d58c2d9704d67e884a3cccb2b7614d3"
+                      }
+                  ]
+}

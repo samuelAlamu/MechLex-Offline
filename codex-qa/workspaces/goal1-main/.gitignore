@@ -1,0 +1,15 @@
+﻿# MechLex Data and Sensitive Files
+qa/workspaces/
+*/backups/
+*/history/
+state*.json
+.mechlex-state.lock
+qa/QA_TEST_MATRIX*.csv
+
+# Temporary Scripts
+test*.ps1
+build*.ps1
+
+# Windows
+Thumbs.db
+Desktop.ini

@@ -1,0 +1,11 @@
+﻿{
+    "timestampUtc":  "2026-07-25T23:30:54.6426521Z",
+    "source":  "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\frozen-tag",
+    "target":  "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\goal1-main",
+    "frozenFiles":  367,
+    "frozenCopyHashMatchBeforeQaConfig":  true,
+    "sharedSource":  "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\shared-baseline-readonly-copy",
+    "sharedTarget":  "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\goal1-main\\shared-data",
+    "guardEvidence":  "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\evidence\\goal1\\baseline\\guard-goal1-main.json",
+    "realSharedDataUsed":  false
+}

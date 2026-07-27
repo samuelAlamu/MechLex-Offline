@@ -1,0 +1,31 @@
+{
+  "timestampUtc": "2026-07-25T23:31:17.824Z",
+  "environment": "same host, Viewer mock, disposable shared copy/profile",
+  "initial": {
+    "source": "shared-folder",
+    "domains": 1,
+    "serverRole": "Viewer",
+    "serverCanWrite": false,
+    "first": "הנדסת מכונות"
+  },
+  "authority": {
+    "clientSuperAdminOpened": true,
+    "directPutStatus": 403
+  },
+  "failure": {
+    "healthUnavailable": true,
+    "before": "הנדסת מכונות",
+    "inMemory": "הנדסת מכונות",
+    "localStorage": "הנדסת מכונות",
+    "indexedDb": "הנדסת מכונות",
+    "saveReturnedTrue": true,
+    "rolledBack": true
+  },
+  "persistedFileResult": {
+    "sharedManifestUnchanged": true
+  },
+  "restartAndOtherSession": {
+    "notRunReason": "helper intentionally stopped; marker absent from durable browser stores and shared files, so no durable cross-session observation is possible"
+  },
+  "realSharedDataUsed": false
+}

@@ -1,0 +1,40 @@
+{
+  "timestampUtc": "2026-07-25T23:30:10.540Z",
+  "browser": "Microsoft Edge 150.0.4078.83",
+  "target": "disposable frozen workspace via file://",
+  "before": {
+    "protocol": "file:",
+    "domains": 4,
+    "terms": 8,
+    "source": "embedded",
+    "first": "מידות וטולרנסים גאומטריים",
+    "keys": [
+      "mechlex_v6_data",
+      "mechlex_v6_prefs",
+      "mechlex_v6_settings",
+      "mechlex_v8_meta"
+    ]
+  },
+  "injection": {
+    "original": "מידות וטולרנסים גאומטריים",
+    "injected": "G1_FILE_1785022203435"
+  },
+  "reload1": {
+    "first": "G1_FILE_1785022203435",
+    "source": "local",
+    "rendered": true
+  },
+  "restart": {
+    "first": "G1_FILE_1785022203435",
+    "source": "local"
+  },
+  "errors": [],
+  "persistence": {
+    "persistedFile": "none",
+    "browserMemory": "marker loaded",
+    "browserStorage": "localStorage mechlex_v6_data",
+    "survivesBrowserRestart": true,
+    "otherProfileObservable": false
+  },
+  "proven": true
+}

@@ -1,0 +1,14 @@
+TestID,Title,Distinct required boundary,Related existing cases
+H0-001,Direct file mode must not open a functional dictionary,Open index.html by file URI and record rendered catalogue and available workflows,OFF-001; ARCH-RV-002
+H0-002,File-mode LocalStorage dictionary must not become source local,Seed mechlex_v6_data then reload and inspect data source storage and rendered content,AUTH-006; SYNC-RV-001
+H0-003,Client PIN must not grant durable Super Admin authority,Modify client state and exercise Super Admin UI then inspect server and persisted-file outcomes,AUTH-002; AUTH-006; AUTH-RV-004
+H0-004,UI role and durable authority mapping across all supported roles,Map Viewer Content Expert and Administrator UI actions to helper role Windows SID groups and filesystem authority,AUTH-003; AUTH-004; AUTH-007; AUTH-RV-005
+H0-005,Viewer can-write probe must not create or modify authoritative state,Compare state.json existence length hash timestamps and content before and after GET api/can-write under Viewer,AUTH-001; AUTH-RV-003
+H0-006,Host header allowlist on every route,Send expected and hostile Host values to static health can-write and shared-state routes,AUTH-RV-006; AUTH-RV-009
+H0-007,Origin policy on every route and method,Test absent null same-origin hostile and malformed Origin on all API routes and mutating methods,AUTH-RV-006
+H0-008,Deep nested hierarchy validation at the server boundary,Submit invalid IDs parents duplicates and malformed nested nodes below top level and inspect durable file,STATE-RV-003; STATE-RV-004; REC-007
+H0-009,Semantic reference validation at the server boundary,Submit dangling cross-references image references hierarchy cycles and mixed nested corruption and inspect durable file,CNT-011; STATE-RV-004
+H0-010,Failed-helper save acknowledgement durability and rollback,Stop helper mutate through each editing workflow call saveAll then inspect return UI memory storage files restart and second session,SYNC-RV-001; SYNC-RV-002; UX-RV-003
+H0-011,Non-default helper port capability and authority discovery,Launch guarded disposable helper on selected fallback port and verify UI capability check role and writes target the active helper,ARCH-RV-002; AUTH-RV-009
+H0-012,Existing-helper reuse must verify project version and shared path,Present an existing loopback helper for a different disposable project or share and verify launcher fails closed,ARCH-RV-002; AUTH-RV-009
+H0-013,Production mock-role override must not elevate durable authority,Exercise MECHLEX_MOCK_ROLE under guarded disposable identities and map API and persisted-file results,AUTH-RV-002; AUTH-RV-005

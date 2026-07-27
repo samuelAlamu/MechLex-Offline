@@ -1,0 +1,56 @@
+﻿{
+    "generatedAt":  "2026-07-24T22:21:34.5467134Z",
+    "command":  "powershell -NoProfile -ExecutionPolicy Bypass -File .\\qa\\scripts\\run-critical-regression.ps1",
+    "overall":  "FAIL",
+    "pass":  3,
+    "fail":  5,
+    "notTested":  1,
+    "results":  [
+                    {
+                        "id":  "STATIC-SYNTAX",
+                        "status":  "PASS",
+                        "note":  "All active JavaScript files passed node --check."
+                    },
+                    {
+                        "id":  "STATIC-AUDIT",
+                        "status":  "FAIL",
+                        "note":  "3 failing static gates."
+                    },
+                    {
+                        "id":  "SHARED-API",
+                        "status":  "PASS",
+                        "note":  "12 passed, 0 failed; includes 20 concurrent stale-write rounds."
+                    },
+                    {
+                        "id":  "BROWSER-CORE",
+                        "status":  "FAIL",
+                        "note":  "20 passed, 3 failed."
+                    },
+                    {
+                        "id":  "BROWSER-UX-EDGES",
+                        "status":  "FAIL",
+                        "note":  "0 passed, 4 failed."
+                    },
+                    {
+                        "id":  "IMAGE-1-15MB-SERVER",
+                        "status":  "PASS",
+                        "note":  "All six sizes were written and read through the server API."
+                    },
+                    {
+                        "id":  "IMAGE-1-15MB-CLIENT-TIMEOUT",
+                        "status":  "FAIL",
+                        "note":  "The 15MB state read exceeded the client\u0027s fixed 5-second timeout."
+                    },
+                    {
+                        "id":  "PRODUCTION-SHARED-STATE",
+                        "status":  "FAIL",
+                        "note":  "Configured active state is a schema-1 unsigned performance fixture; preserved previous revision 13 validates."
+                    },
+                    {
+                        "id":  "EDGE-95",
+                        "status":  "NOT TESTED",
+                        "note":  "Installed Edge is 150.0.4078.83; actual Edge 95 is unavailable."
+                    }
+                ],
+    "commandLog":  "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\qa\\evidence\\commands\\critical-regression-20260724T222035302Z.log"
+}

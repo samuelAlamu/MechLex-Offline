@@ -1,0 +1,7 @@
+* 5034fa3 (HEAD -> qa/remediation-9-5-plus, tag: mechlex-final-gemini-handoff) Fix UI bugs regarding empty node rendering and hidden SVG lines
+* 2957b68 (tag: mechlex-pre-qa-hierarchy-2026-07-25) chore: Pre-QA Hierarchy Demo state backup
+* 5d76f9d (tag: mechlex-pre-qa-remediation-2026-07-25, origin/qa/remediation-9-5-plus, origin/main, main) chore: Secure repository by adding .gitignore and removing sensitive files
+* d7cea8f fix: restore working semantic validation, fix sync states, and secure admin endpoints
+* 20835d4 feat: phase 1 to 4 implemented, including recovery wizard and sync protection
+* 2e2dff4 Baseline freeze before Evidence-Driven Remediation Program
+* ad9b1ed Initial commit of MechLex Offline Visual Admin

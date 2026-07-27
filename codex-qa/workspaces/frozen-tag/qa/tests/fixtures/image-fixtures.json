@@ -1,0 +1,44 @@
+[
+  {
+    "file": "mechlex-qa-1mb.png",
+    "bytes": 1048576,
+    "format": "PNG",
+    "valid": true
+  },
+  {
+    "file": "mechlex-qa-3mb.png",
+    "bytes": 3145728,
+    "format": "PNG",
+    "valid": true
+  },
+  {
+    "file": "mechlex-qa-5mb.png",
+    "bytes": 5242880,
+    "format": "PNG",
+    "valid": true
+  },
+  {
+    "file": "mechlex-qa-8mb.png",
+    "bytes": 8388608,
+    "format": "PNG",
+    "valid": true
+  },
+  {
+    "file": "mechlex-qa-10mb.png",
+    "bytes": 10485760,
+    "format": "PNG",
+    "valid": true
+  },
+  {
+    "file": "mechlex-qa-15mb.png",
+    "bytes": 15728640,
+    "format": "PNG",
+    "valid": true
+  },
+  {
+    "file": "mechlex-qa-corrupt.png",
+    "bytes": 29,
+    "format": "PNG",
+    "valid": false
+  }
+]

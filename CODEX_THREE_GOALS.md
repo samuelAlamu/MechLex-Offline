@@ -1,0 +1,21 @@
+# MechLex — Three Codex Goals
+
+> Place this file and `CODEX_MECHLEX_THREE_GOAL_MASTER.md` in the repository root. Run the goals sequentially in three separate Codex threads. Do not activate the next goal until the prior goal has produced its mandatory deliverables and the user has reviewed them.
+
+## Goal 1 — Independent deep QA and truthful scoring
+
+```text
+/goal Independently audit the frozen MechLex build identified in CODEX_MECHLEX_THREE_GOAL_MASTER.md. First verify Git, commit, tag, runtime files, authoritative data, architecture and every handoff claim; treat the supplied handoff as untrusted until proven. Do not change production code. Build a case-level QA matrix, execute every test supported by the environment, create missing QA-only tests, gather reproducible evidence, and score every required category from zero. Explicitly mark unavailable real environments NOT TESTED and do not convert simulation or static review into runtime proof. Produce the complete Goal 1 reports and an evidence-backed repair plan. Goal 1 completes only when the frozen baseline is preserved, the actual architecture/source of truth are mapped, test counts are exact, every score cites executed evidence, and a GO / GO WITH CONDITIONS / NO GO decision is issued without modifying production behavior.
+```
+
+## Goal 2 — Repair and raise every category to evidence-backed 9.5+
+
+```text
+/goal Using the accepted Goal 1 findings and repair plan, improve MechLex in isolated Git worktrees until every required quality category is supported by a score of at least 9.5, or until a precise external-environment blocker is proven. Do not modify or merge into the frozen baseline. For every defect, reproduce it first, create a failing regression test or deterministic reproduction, apply the smallest defensible patch, inspect persisted artifacts, run focused and full regression, obtain an independent diff review, and record rollback and residual risk. Do not weaken requirements, skip cases, reduce the 15 MB requirement, substitute same-host tests for cross-machine SMB, or award scores for unexecuted evidence. Preserve offline operation, shared-folder source of truth, no local content fallback, role boundaries, file:// safety, Edge 95 requirement, deep hierarchy, image support, and existing data. Goal 2 completes only when a frozen release candidate, patch register, green regression package and category-by-category evidence support 9.5+; otherwise leave the goal blocked with exact required input.
+```
+
+## Goal 3 — Fresh independent release re-audit
+
+```text
+/goal Perform a fresh independent release audit of the frozen MechLex release candidate produced by Goal 2. Work in a new thread and audit copy, do not modify production code, and do not trust Goal 2 scores or conclusions. Verify the release-candidate commit/tag and hashes, rerun the complete original and newly added test matrix, repeat all mandatory critical tests in real target environments, inspect durable files and second-session results, and independently review the final diff from the original frozen baseline. Recalculate every category score from zero and issue a detailed Hebrew and English final report. A category may receive 9.5+ only when all mandatory cases are executed, no Blocker/Critical/Major remains, runtime evidence is reproducible, documentation matches behavior, and no mandatory gate is NOT TESTED. Goal 3 completes only with exact test counts, evidence coverage, category scores, residual risks and one final GO / GO WITH CONDITIONS / NO GO decision.
+```

@@ -1,0 +1,7 @@
+MechLex is running at http://127.0.0.1:8785/index.html
+Shared data folder: C:\Users\samue\Documents\Projects\Active\MechLex_Visual_Admin_Fork\codex-qa\workspaces\goal1-main\shared-data
+Local-only server: no inbound network port is opened.
+Keep this window open while using the dictionary. Press Ctrl+C to stop.
+WARNING: HTTP_400: Invalid or oversized HTTP headers
+WARNING: Exception calling "Write" with "3" argument(s): "Unable to write data to the transport connection: An 
+established connection was aborted by the software in your host machine."

@@ -1,0 +1,42 @@
+﻿[
+    {
+        "File":  "app.js",
+        "ExitCode":  0,
+        "Output":  ""
+    },
+    {
+        "File":  "core/boot.js",
+        "ExitCode":  0,
+        "Output":  ""
+    },
+    {
+        "File":  "core/inline-editor.js",
+        "ExitCode":  0,
+        "Output":  ""
+    },
+    {
+        "File":  "core/integrity.js",
+        "ExitCode":  0,
+        "Output":  ""
+    },
+    {
+        "File":  "core/persistence.js",
+        "ExitCode":  0,
+        "Output":  ""
+    },
+    {
+        "File":  "core/shared-sync.js",
+        "ExitCode":  0,
+        "Output":  ""
+    },
+    {
+        "File":  "data/mechlex-data.js",
+        "ExitCode":  0,
+        "Output":  ""
+    },
+    {
+        "File":  "images/catalog.js",
+        "ExitCode":  0,
+        "Output":  ""
+    }
+]

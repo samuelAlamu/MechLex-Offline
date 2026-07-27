@@ -1,0 +1,427 @@
+{
+  "generatedAt": "2026-07-25T23:30:54.738Z",
+  "frozenCommit": "5034fa3f76e4b6da97ca6f23ee055ef3de24e903",
+  "environment": {
+    "platform": "win32",
+    "node": "v20.15.0",
+    "hostname": "SAMUEL_MAIN",
+    "runRoot": "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\evidence\\goal1\\concurrency-recovery-performance\\run-goal1-20260726"
+  },
+  "tests": [
+    {
+      "id": "SYNC-G1-001",
+      "status": "PASS",
+      "tier": "1-same-helper",
+      "at": "2026-07-25T23:30:56.046Z",
+      "steps": "Initialize disposable state through helper",
+      "httpStatus": 200,
+      "revision": 1
+    },
+    {
+      "id": "SYNC-004",
+      "status": "PASS",
+      "tier": "1-same-helper",
+      "at": "2026-07-25T23:30:57.191Z",
+      "criterion": "exactly one 200 and one 409 each round",
+      "rounds": [
+        {
+          "i": 0,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 2,
+          "reason": "tier1-A-0"
+        },
+        {
+          "i": 1,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 3,
+          "reason": "tier1-A-1"
+        },
+        {
+          "i": 2,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 4,
+          "reason": "tier1-A-2"
+        },
+        {
+          "i": 3,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 5,
+          "reason": "tier1-A-3"
+        },
+        {
+          "i": 4,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 6,
+          "reason": "tier1-A-4"
+        },
+        {
+          "i": 5,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 7,
+          "reason": "tier1-A-5"
+        },
+        {
+          "i": 6,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 8,
+          "reason": "tier1-A-6"
+        },
+        {
+          "i": 7,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 9,
+          "reason": "tier1-A-7"
+        },
+        {
+          "i": 8,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 10,
+          "reason": "tier1-A-8"
+        },
+        {
+          "i": 9,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 11,
+          "reason": "tier1-A-9"
+        },
+        {
+          "i": 10,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 12,
+          "reason": "tier1-A-10"
+        },
+        {
+          "i": 11,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 13,
+          "reason": "tier1-A-11"
+        },
+        {
+          "i": 12,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 14,
+          "reason": "tier1-A-12"
+        },
+        {
+          "i": 13,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 15,
+          "reason": "tier1-A-13"
+        },
+        {
+          "i": 14,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 16,
+          "reason": "tier1-A-14"
+        },
+        {
+          "i": 15,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 17,
+          "reason": "tier1-A-15"
+        },
+        {
+          "i": 16,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 18,
+          "reason": "tier1-A-16"
+        },
+        {
+          "i": 17,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 19,
+          "reason": "tier1-A-17"
+        },
+        {
+          "i": 18,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 20,
+          "reason": "tier1-A-18"
+        },
+        {
+          "i": 19,
+          "statuses": [
+            200,
+            409
+          ],
+          "revision": 21,
+          "reason": "tier1-A-19"
+        }
+      ],
+      "limitation": "Different-record snapshots are not merged; stale writer must retry and manually incorporate peer state."
+    },
+    {
+      "id": "SYNC-010",
+      "status": "PASS",
+      "tier": "1-same-helper",
+      "at": "2026-07-25T23:30:57.193Z",
+      "persistedSha256": "6670ccd1b645bf83a66cb9a7d07e1550dc4245c4b5958610146759a401609244",
+      "persistedBytes": 2145,
+      "revision": 21,
+      "historyCount": 21
+    },
+    {
+      "id": "SYNC-G1-002",
+      "status": "PASS",
+      "tier": "2-two-helpers-one-host",
+      "at": "2026-07-25T23:30:58.806Z",
+      "statuses": [
+        200,
+        409
+      ],
+      "helperARevision": 22,
+      "helperBRevision": 22,
+      "persistedSha256": "0e3cb03d1537781adea0668b96c16ede6b01b874c54468faa9839f0feaafce7f",
+      "persistedReason": "tier2-helper-A",
+      "limitation": "Two helper processes and ports under the same Windows SID/host/local filesystem; not separate accounts and not real SMB."
+    },
+    {
+      "id": "SYNC-G1-003",
+      "status": "NOT TESTED",
+      "tier": "3-two-machines-real-SMB",
+      "at": "2026-07-25T23:30:58.806Z",
+      "required": "Two separate Windows machines or VMs, distinct SIDs/ACLs, authoritative UNC SMB share, disconnect/failure injection and cross-machine reopen.",
+      "blocker": "No second workstation/VM, separate Windows principals, ACL authorization, or real cross-machine SMB topology available/approved."
+    },
+    {
+      "id": "REC-G1-001",
+      "status": "PASS",
+      "tier": "disposable-recovery",
+      "at": "2026-07-25T23:31:01.744Z",
+      "writes": 36,
+      "finalRevision": 36,
+      "historyCount": 30,
+      "historyRetentionExpected": 30,
+      "currentSha256": "0daa0b0731218223fa776f89474c06d3fd1d20616d8817701d39c4912695a092",
+      "previousSha256": "e3ccc839510e8c3a7e70011329e252366f80fe370fe9cf058da893711bedbb7d",
+      "currentBytes": 2157,
+      "previousBytes": 2157
+    },
+    {
+      "id": "REC-G1-002",
+      "status": "PASS",
+      "tier": "disposable-recovery",
+      "at": "2026-07-25T23:31:05.147Z",
+      "wizardExit": 0,
+      "restoredRevision": 35,
+      "reopenedRevision": 35,
+      "corruptCandidateIgnored": true,
+      "persistedSha256": "e3ccc839510e8c3a7e70011329e252366f80fe370fe9cf058da893711bedbb7d",
+      "secondSession": "fresh helper process on same host"
+    },
+    {
+      "id": "REC-G1-003",
+      "status": "NOT TESTED",
+      "tier": "cross-machine-recovery",
+      "at": "2026-07-25T23:31:05.147Z",
+      "required": "Restore into authoritative test SMB share, interrupted restore at replace boundary, verify rollback and reopen from second workstation.",
+      "blocker": "Real two-workstation SMB topology unavailable; controlled process-kill timing during restore not safely deterministic in current harness."
+    },
+    {
+      "id": "IMG-G1-API",
+      "status": "PASS",
+      "tier": "API-only-disposable",
+      "at": "2026-07-25T23:31:47.615Z",
+      "measurements": [
+        {
+          "name": "mechlex-qa-1mb.png",
+          "inputBytes": 1048576,
+          "base64Bytes": 1398126,
+          "requestBytes": 1398685,
+          "putStatus": 200,
+          "putMs": 332,
+          "getStatus": 200,
+          "getMs": 461,
+          "valid": true,
+          "exceedsClient5000ms": false
+        },
+        {
+          "name": "mechlex-qa-3mb.png",
+          "inputBytes": 3145728,
+          "base64Bytes": 4194326,
+          "requestBytes": 4194885,
+          "putStatus": 200,
+          "putMs": 516,
+          "getStatus": 200,
+          "getMs": 2320,
+          "valid": true,
+          "exceedsClient5000ms": false
+        },
+        {
+          "name": "mechlex-qa-5mb.png",
+          "inputBytes": 5242880,
+          "base64Bytes": 6990530,
+          "requestBytes": 6991089,
+          "putStatus": 200,
+          "putMs": 2154,
+          "getStatus": 200,
+          "getMs": 5449,
+          "valid": true,
+          "exceedsClient5000ms": true
+        },
+        {
+          "name": "mechlex-qa-8mb.png",
+          "inputBytes": 8388608,
+          "base64Bytes": 11184834,
+          "requestBytes": 11185393,
+          "putStatus": 200,
+          "putMs": 2348,
+          "getStatus": 200,
+          "getMs": 9240,
+          "valid": true,
+          "exceedsClient5000ms": true
+        },
+        {
+          "name": "mechlex-qa-10mb.png",
+          "inputBytes": 10485760,
+          "base64Bytes": 13981038,
+          "requestBytes": 13981603,
+          "putStatus": 200,
+          "putMs": 3297,
+          "getStatus": 200,
+          "getMs": 5646,
+          "valid": true,
+          "exceedsClient5000ms": true
+        },
+        {
+          "name": "mechlex-qa-15mb.png",
+          "inputBytes": 15728640,
+          "base64Bytes": 20971542,
+          "requestBytes": 20972107,
+          "putStatus": 200,
+          "putMs": 1797,
+          "getStatus": 200,
+          "getMs": 6987,
+          "valid": true,
+          "exceedsClient5000ms": true
+        }
+      ],
+      "limitation": "API persistence only; not UI select/preview/decode/restart/second isolated browser. Only PNG fixtures exist; JPEG/WebP and exact 15,000,000-byte fixture absent."
+    },
+    {
+      "id": "IMG-G1-MANDATORY",
+      "status": "NOT TESTED",
+      "tier": "full-UI-media",
+      "at": "2026-07-25T23:31:47.615Z",
+      "required": "Valid decodable JPEG, PNG, WebP at 1/3/5/8/10/15,000,000/15,728,640 bytes through UI preview-save-restart-render-second session.",
+      "available": "PNG fixtures at 1/3/5/8/10 MiB and exactly 15,728,640 bytes; API round trips executed."
+    },
+    {
+      "id": "PERF-G1-CAPACITY",
+      "status": "PASS",
+      "tier": "API-only-disposable",
+      "at": "2026-07-25T23:31:50.505Z",
+      "measurements": [
+        {
+          "terms": 100,
+          "requestBytes": 14809,
+          "status": 200,
+          "putMs": 823,
+          "revision": 7
+        },
+        {
+          "terms": 1000,
+          "requestBytes": 151714,
+          "status": 200,
+          "putMs": 134,
+          "revision": 8
+        },
+        {
+          "terms": 5000,
+          "requestBytes": 783714,
+          "status": 200,
+          "putMs": 481,
+          "revision": 9
+        },
+        {
+          "terms": 10000,
+          "requestBytes": 1583719,
+          "status": 200,
+          "putMs": 1419,
+          "revision": 10
+        }
+      ],
+      "limitation": "Synthetic flat API snapshots; browser render/search/memory and deep mixed hierarchy workflows not executed by this harness."
+    },
+    {
+      "id": "HIER-G1-UI",
+      "status": "NOT TESTED",
+      "tier": "browser-workflow",
+      "at": "2026-07-25T23:31:50.505Z",
+      "required": "Four-plus mixed hierarchy levels with root/intermediate terms+subdomains, search at every depth, CRUD/move/delete/reopen/second session.",
+      "blocker": "No dedicated reliable UI fixture/automation executed in this bounded concurrency/recovery/performance run; API shallow payload is not hierarchy proof."
+    }
+  ],
+  "serverLogs": {
+    "tier1": "MechLex is running at http://127.0.0.1:8891/index.html\nShared data folder: C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\evidence\\goal1\\concurrency-recovery-performance\\run-goal1-20260726\\shared-concurrency\nLocal-only server: no inbound network port is opened.\nKeep this window open while using the dictionary. Press Ctrl+C to stop.\n",
+    "tier2-a": "MechLex is running at http://127.0.0.1:8892/index.html\nShared data folder: C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\evidence\\goal1\\concurrency-recovery-performance\\run-goal1-20260726\\shared-concurrency\nLocal-only server: no inbound network port is opened.\nKeep this window open while using the dictionary. Press Ctrl+C to stop.\n",
+    "tier2-b": "MechLex is running at http://127.0.0.1:8893/index.html\nShared data folder: C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\evidence\\goal1\\concurrency-recovery-performance\\run-goal1-20260726\\shared-concurrency\nLocal-only server: no inbound network port is opened.\nKeep this window open while using the dictionary. Press Ctrl+C to stop.\n",
+    "recovery": "MechLex is running at http://127.0.0.1:8894/index.html\nShared data folder: C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\evidence\\goal1\\concurrency-recovery-performance\\run-goal1-20260726\\shared-recovery\nLocal-only server: no inbound network port is opened.\nKeep this window open while using the dictionary. Press Ctrl+C to stop.\n",
+    "recovery-restart": "MechLex is running at http://127.0.0.1:8895/index.html\nShared data folder: C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\evidence\\goal1\\concurrency-recovery-performance\\run-goal1-20260726\\shared-recovery\nLocal-only server: no inbound network port is opened.\nKeep this window open while using the dictionary. Press Ctrl+C to stop.\n",
+    "performance": "MechLex is running at http://127.0.0.1:8896/index.html\nShared data folder: C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\evidence\\goal1\\concurrency-recovery-performance\\run-goal1-20260726\\shared-performance\nLocal-only server: no inbound network port is opened.\nKeep this window open while using the dictionary. Press Ctrl+C to stop.\n"
+  },
+  "summary": {
+    "PASS": 8,
+    "FAIL": 0,
+    "BLOCKED": 0,
+    "NOT TESTED": 4,
+    "INCONCLUSIVE": 0
+  }
+}

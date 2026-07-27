@@ -1,0 +1,88 @@
+{
+    "timestampUtc":  "2026-07-25T22:43:54.3802386Z",
+    "result":  "PASS",
+    "cases":  [
+                  {
+                      "Name":  "direct-real",
+                      "Input":  "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Shared_Data_Simulation",
+                      "ExpectedBlocked":  true,
+                      "ActualBlocked":  true,
+                      "ExitCode":  23,
+                      "Passed":  true,
+                      "Evidence":  "codex-qa/evidence/preactivation/guard-case-direct-real.json"
+                  },
+                  {
+                      "Name":  "relative-real",
+                      "Input":  "..\\MechLex_Shared_Data_Simulation",
+                      "ExpectedBlocked":  true,
+                      "ActualBlocked":  true,
+                      "ExitCode":  23,
+                      "Passed":  true,
+                      "Evidence":  "codex-qa/evidence/preactivation/guard-case-relative-real.json"
+                  },
+                  {
+                      "Name":  "real-descendant",
+                      "Input":  "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Shared_Data_Simulation\\history",
+                      "ExpectedBlocked":  true,
+                      "ActualBlocked":  true,
+                      "ExitCode":  23,
+                      "Passed":  true,
+                      "Evidence":  "codex-qa/evidence/preactivation/guard-case-real-descendant.json"
+                  },
+                  {
+                      "Name":  "safe-workspace",
+                      "Input":  "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\normal",
+                      "ExpectedBlocked":  false,
+                      "ActualBlocked":  false,
+                      "ExitCode":  0,
+                      "Passed":  true,
+                      "Evidence":  "codex-qa/evidence/preactivation/guard-case-safe-workspace.json"
+                  },
+                  {
+                      "Name":  "environment-expanded-real",
+                      "Input":  "%MECHLEX_GUARD_REAL_ALIAS%",
+                      "ExpectedBlocked":  true,
+                      "ActualBlocked":  true,
+                      "ExitCode":  23,
+                      "Passed":  true,
+                      "Evidence":  "codex-qa/evidence/preactivation/guard-case-environment-expanded-real.json"
+                  },
+                  {
+                      "Name":  "junction-alias",
+                      "Input":  "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\guard-synthetic-junction",
+                      "ExpectedBlocked":  true,
+                      "ActualBlocked":  true,
+                      "ExitCode":  23,
+                      "Passed":  true,
+                      "Evidence":  "codex-qa/evidence/preactivation/guard-case-junction-alias.json"
+                  }
+              ],
+    "mappedDriveEnvironment":  "NOT AVAILABLE",
+    "mappedDrives":  [
+
+                     ],
+    "localShareAliasesDiscovered":  [
+                                        {
+                                            "Name":  "ADMIN$",
+                                            "Path":  "C:\\WINDOWS",
+                                            "Type":  2147483648
+                                        },
+                                        {
+                                            "Name":  "C$",
+                                            "Path":  "C:\\",
+                                            "Type":  2147483648
+                                        }
+                                    ],
+    "coverage":  [
+                     "direct local path",
+                     "relative SHARED_DATA_PATH-style path",
+                     "descendant path",
+                     "safe unrelated workspace",
+                     "environment-variable-expanded path",
+                     "junction/reparse alias resolved to the same physical directory",
+                     "mapped-drive expansion implemented; runtime environment recorded",
+                     "UNC/final-path/file-identity comparison implemented; local share inventory recorded"
+                 ],
+    "productionModified":  false,
+    "realSharedModified":  false
+}

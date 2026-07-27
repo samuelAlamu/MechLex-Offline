@@ -1,0 +1,75 @@
+{
+  "timestampUtc": "2026-07-25T22:57:51.963Z",
+  "engine": "Installed Microsoft Edge via Playwright channel=msedge",
+  "browserVersion": "150.0.4078.83",
+  "target": "file:///C:/Users/samue/Documents/Projects/Active/MechLex_Visual_Admin_Fork/codex-qa/workspaces/normal/index.html",
+  "isolation": {
+    "disposableWorkspace": "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\normal",
+    "disposableProfile": "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\browser-file-profile",
+    "realSharedDataUsed": false
+  },
+  "before": {
+    "protocol": "file:",
+    "title": "מילון הנדסי מקצועי · MechLex Offline",
+    "mainVisible": true,
+    "domainCount": 4,
+    "termCount": 8,
+    "firstDomainName": "H0_FILE_STORAGE_1785020240087",
+    "dataSource": "local",
+    "storagePersistentFlag": true,
+    "localStorage": [
+      {
+        "key": "mechlex_v6_data",
+        "byteLength": 22962
+      },
+      {
+        "key": "mechlex_v6_prefs",
+        "byteLength": 89
+      },
+      {
+        "key": "mechlex_v6_settings",
+        "byteLength": 2697
+      },
+      {
+        "key": "mechlex_v8_meta",
+        "byteLength": 401
+      }
+    ],
+    "sensitiveSettingPaths": [
+      "pin",
+      "contentPin",
+      "superPin"
+    ]
+  },
+  "mutation": {
+    "original": "H0_FILE_STORAGE_1785020240087",
+    "changedTo": "H0_FILE_STORAGE_1785020267846"
+  },
+  "saveAllEntry": {
+    "keyPresent": true,
+    "byteLength": 22962,
+    "firstDomainName": "H0_FILE_STORAGE_1785020240087"
+  },
+  "directBrowserStorageInjection": {
+    "key": "mechlex_v6_data",
+    "original": "H0_FILE_STORAGE_1785020240087",
+    "changedTo": "H0_FILE_STORAGE_1785020267846",
+    "byteLength": 22962
+  },
+  "afterReload": {
+    "protocol": "file:",
+    "domainCount": 4,
+    "firstDomainName": "H0_FILE_STORAGE_1785020267846",
+    "dataSource": "local",
+    "markerRendered": true,
+    "saveStateText": "הנתונים נשמרים אוטומטית במחשב זה"
+  },
+  "indexedDb": {
+    "supported": true,
+    "names": []
+  },
+  "consoleMessages": [],
+  "pageErrors": [],
+  "verdict": "MANDATORY RELEASE-GATE FINDING: functional file:// dictionary persisted authoritative content in browser storage",
+  "provenAlternateAuthority": true
+}

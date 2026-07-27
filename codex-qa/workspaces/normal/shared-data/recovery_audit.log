@@ -1,0 +1,15 @@
+[2026-07-25T16:17:59.9862418Z] Manual restore operation started by admin to revision 13 from file state-r13-20260724T133713504Z.json
+[2026-07-25T16:17:59.9983615Z] Created pre-safety copy: C:\Users\samue\Documents\Projects\Active\MechLex_Shared_Data_Simulation\state.presafety.20260725_161759.json
+[2026-07-25T16:18:00.0461325Z] Restore completed successfully to revision 13
+[2026-07-25T16:28:15.0555874Z] Manual restore operation started by admin to revision 14 from file state.previous.json
+[2026-07-25T16:28:15.0682900Z] Created pre-safety copy: C:\Users\samue\Documents\Projects\Active\MechLex_Shared_Data_Simulation\state.presafety.20260725_162815.json
+[2026-07-25T16:28:15.0812727Z] Restore completed successfully to revision 14
+[2026-07-25T16:28:20.6932172Z] Manual restore operation started by admin to revision 15 from file state-r15-20260725T162040958Z.json
+[2026-07-25T16:28:20.7049397Z] Created pre-safety copy: C:\Users\samue\Documents\Projects\Active\MechLex_Shared_Data_Simulation\state.presafety.20260725_162820.json
+[2026-07-25T16:28:20.7179063Z] Restore completed successfully to revision 15
+[2026-07-25T16:28:26.2096293Z] Manual restore operation started by admin to revision 14 from file state-r14-20260725T162012357Z.json
+[2026-07-25T16:28:26.2221054Z] Created pre-safety copy: C:\Users\samue\Documents\Projects\Active\MechLex_Shared_Data_Simulation\state.presafety.20260725_162826.json
+[2026-07-25T16:28:26.2348098Z] Restore completed successfully to revision 14
+[2026-07-25T16:28:31.5758380Z] Manual restore operation started by admin to revision 13 from file state-r13-20260724T133713504Z.json
+[2026-07-25T16:28:31.5892867Z] Created pre-safety copy: C:\Users\samue\Documents\Projects\Active\MechLex_Shared_Data_Simulation\state.presafety.20260725_162831.json
+[2026-07-25T16:28:31.6290737Z] Restore completed successfully to revision 13

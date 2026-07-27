@@ -1,0 +1,59 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20260725012035
+Username: SAMUEL_MAIN\samue
+RunAs User: SAMUEL_MAIN\samue
+Configuration Name: 
+Machine: SAMUEL_MAIN (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\qa\scripts\run-critical-regression.ps1
+Process ID: 21036
+PSVersion: 5.1.26100.8875
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.8875
+BuildVersion: 10.0.26100.8875
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+
+
+
+
+
+
+
+
+[PASS] STATIC-SYNTAX: All active JavaScript files passed node --check.
+{"reportPath":"C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Adm
+in_Fork\\qa\\evidence\\logs\\static-audit.json","results":[{"id":"STATIC-RUNTIME
+","status":"PASS","missingRuntime":[]},{"id":"STATIC-QA-ASSETS","status":"FAIL",
+"missingDocumentedQaAssets":["package.json","tests","MANIFEST_SHA256.txt"]},{"id
+":"CNT-INTEGRITY","status":"PASS"},{"id":"REC-BACKUP-BASELINE","status":"FAIL","
+backups":[{"name":"content-backup-initial.json","format":"MechLexContentBackup",
+"appVersion":"9.5.0","schemaVersion":2,"domains":4,"terms":8,"hasIntegrity":fals
+e},{"name":"full-admin-backup-initial.json","format":"MechLexFullAdminBackup","a
+ppVersion":"9.5.0","schemaVersion":2,"domains":4,"terms":8,"hasIntegrity":false}
+]},{"id":"STATIC-SCRIPT-ORDER","status":"PASS"},{"id":"STATIC-VERSIONS","status"
+:"FAIL"},{"id":"OFF-002-STATIC","status":"PASS","activeExternalCandidates":[]}]}
+[FAIL] STATIC-AUDIT: 3 failing static gates.
+{"pass":12,"fail":0,"evidenceFile":"C:\\Users\\samue\\Documents\\Projects\\Activ
+e\\MechLex_Visual_Admin_Fork\\qa\\evidence\\logs\\shared-api-results.json","shar
+edRoot":"C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_For
+k\\qa\\workspaces\\shared-api-1784931636182"}
+[PASS] SHARED-API: 12 passed, 0 failed; includes 20 concurrent stale-write rounds.
+{"pass":20,"fail":3,"reportPath":"C:\\Users\\samue\\Documents\\Projects\\Active\
+\MechLex_Visual_Admin_Fork\\qa\\evidence\\logs\\browser-qa-results.json"}
+[FAIL] BROWSER-CORE: 20 passed, 3 failed.
+in_Fork\\qa\\evidence\\logs\\ux-edge-cases.json","pass":0,"fail":4}
+[FAIL] BROWSER-UX-EDGES: 0 passed, 4 failed.
+
+[PASS] IMAGE-1-15MB-SERVER: All six sizes were written and read through the server API.
+[FAIL] IMAGE-1-15MB-CLIENT-TIMEOUT: The 15MB state read exceeded the client's fixed 5-second timeout.
+[FAIL] PRODUCTION-SHARED-STATE: Configured active state is a schema-1 unsigned performance fixture; preserved previous revision 13 validates.
+[NOT TESTED] EDGE-95: Installed Edge is 150.0.4078.83; actual Edge 95 is unavailable.
+CRITICAL REGRESSION: FAIL (3 pass, 5 fail, 1 not tested)
+**********************
+Windows PowerShell transcript end
+End time: 20260725012134
+**********************

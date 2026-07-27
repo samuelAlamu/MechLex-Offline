@@ -1,0 +1,104 @@
+# MechLex Complete Pre-activation Evidence Index
+
+Generated: 2026-07-25T23:20:55.4540292Z
+
+This index covers every H0/H0-A evidence artifact, execution script, bounded browser reproduction, control document and checkpoint report. The two index files are excluded from their own hash list to avoid self-reference.
+
+- Indexed artifacts: 89
+- Production tracked changes: 0
+- Real shared data unchanged: True
+- Goal 1 active: False
+
+| Path | SHA-256 | Bytes | Category | Supports |
+|---|---|---:|---|---|
+| `codex-qa/evidence/baseline/backup-and-history-sha256.csv` | `ffb932e7f67f538ddbc6ae8370fb7405f0e24d83386d6ddc09629a8220a0b513` | 8806 | H0-A baseline | H0-A |
+| `codex-qa/evidence/baseline/documentation-sha256.csv` | `19ce35582f7d01ae44de78f9b82bac9a0d58c2d9704d67e884a3cccb2b7614d3` | 8728 | H0-A baseline | H0-A |
+| `codex-qa/evidence/baseline/frozen-tag.zip` | `2e70276541322421431aa2fe3d00cbe537020b762ef530d4e75e04d10b3c9179` | 10692280 | H0-A baseline | H0-A |
+| `codex-qa/evidence/baseline/frozen-tag-sha256.csv` | `badaa5afbdf797e79e6d494d11147fb14ff116149b0ebdb64470377dfb9c3f69` | 61343 | H0-A baseline | H0-A |
+| `codex-qa/evidence/baseline/h0a-category-manifest-summary.json` | `65aee71b207fbf3be18055c9a9a6a276f78dc764206758a6946a2d03353cfdd1` | 1580 | H0-A baseline | H0-A |
+| `codex-qa/evidence/baseline/h0a-summary.json` | `3cc8052281abdcefc77c7310a79f458df401d7c83d20331f4b5f2d3b75e53619` | 4130 | H0-A baseline | H0-A |
+| `codex-qa/evidence/baseline/image-assets-sha256.csv` | `2f44718161cd7acd677958636f4b33d99f92d7bd2167508d1587bf1ce2c6a6b9` | 5906 | H0-A baseline | H0-A |
+| `codex-qa/evidence/baseline/mutable-shared-data-sha256.csv` | `3335a2e232544f27370ae3f0471d9020408132aeb0c40b809f5d0864b75496a7` | 9013 | H0-A baseline | H0-A |
+| `codex-qa/evidence/baseline/operational-runtime-sha256.csv` | `858a614e8c08bb587f7ab34c15079b83d98a85406d4a25347fa32de214f00d3a` | 185 | H0-A baseline | H0-A |
+| `codex-qa/evidence/baseline/qa-files-sha256.csv` | `eb13d7a65de85dbc60ad984bcc0301b97787414008f9a9d7ddfb8a37834caae3` | 61292 | H0-A baseline | H0-A |
+| `codex-qa/evidence/baseline/real-shared-readonly-sha256.csv` | `0828ffddc3b06b99ea293cf26037e9bf77ae691998f2416cbf705db9ed755266` | 6612 | H0-A baseline | H0-A |
+| `codex-qa/evidence/baseline/runtime-closure-sha256.csv` | `14b31fb4a5033807f8d5265afcd4bf70a412bd7796d17870373a61f5fefc9e25` | 1821 | H0-A baseline | H0-A |
+| `codex-qa/evidence/baseline/shared-baseline-copy-sha256.csv` | `0828ffddc3b06b99ea293cf26037e9bf77ae691998f2416cbf705db9ed755266` | 6612 | H0-A baseline | H0-A |
+| `codex-qa/evidence/baseline/workspace-verification.csv` | `52262ce43eec3903da7799b03bac59ac6fad4dec1247210cef4234fafa74f4b5` | 1214 | H0-A baseline | H0-A |
+| `codex-qa/evidence/preactivation/01_git_identity.json` | `b25dbc8aa5592bdac0728a14b154837595a811d4935fc81eb37895654641b031` | 866 | Git identity/worktree | HC-01 |
+| `codex-qa/evidence/preactivation/01_git_status_authorized_h0_start.txt` | `7bb04c7992fe7c92880a831c2e77f9836b81181cca377af469df4a5eb681f61a` | 1946 | Git identity/worktree | HC-01 |
+| `codex-qa/evidence/preactivation/01_remote_refs.txt` | `ce066daa8e14c68a3b48906154af7c7a75f48fa78f8063b6b6c617a362cd9a1b` | 365 | Git identity/worktree | HC-01 |
+| `codex-qa/evidence/preactivation/02_commit_change_map.csv` | `abfc5744d55e2c64447b6855de5a3f46294f27e54e872619ace4890f63642ee9` | 198213 | Commit trace | HC-02, HC-10 |
+| `codex-qa/evidence/preactivation/02_commit_graph.txt` | `2f1b592d075e933eddb702016335d3c8302115cbb8cbfc1c46c972bba4d131af` | 734 | Commit trace | HC-02, HC-10 |
+| `codex-qa/evidence/preactivation/03_runtime_dependency_closure.csv` | `dc50f62c4b371834eb612bc527268bf6f19df54bb37ededadf182567b2f2cbd1` | 1347 | Runtime closure | HC-03 |
+| `codex-qa/evidence/preactivation/04_test_claim_reconciliation.csv` | `5770602e2c2128db21940613d971c9db0eca6a0a1dc56e25c655a4ee450ae18b` | 259 | Test reconciliation | HC-04 |
+| `codex-qa/evidence/preactivation/05_handoff_evidence_audit.csv` | `0c416b0557b6be1c96002d9bec10e541c4dfa7e0cbf4eb670d52ce670f8cc4b0` | 362 | Evidence reconciliation | HC-05, HC-15 |
+| `codex-qa/evidence/preactivation/06_launcher_helper_trace.csv` | `59137fed032f3057cc5ac43d7e1126111cf1b79115e99a02ab820ddd3624ccfa` | 723 | Helper runtime | HC-06 |
+| `codex-qa/evidence/preactivation/07_endpoint_map.csv` | `2aa7c7accca8a5d1379c55ca114b5c436d2a2aead660f5e40e1a6720b49fe058` | 627 | Endpoint/path/write model | HC-07 |
+| `codex-qa/evidence/preactivation/07_path_lock_atomic_model.json` | `c6598faf1f3e315813a72d156106c2739a2867f546a8e6ec6c38c8a0e61ad5d3` | 915 | Endpoint/path/write model | HC-07 |
+| `codex-qa/evidence/preactivation/08_configuration_discovery.json` | `97ec2c01300eb540ee78e2ed43f2b39256af23351713bc9c647636738fc8aaab` | 524 | Configuration | HC-08 |
+| `codex-qa/evidence/preactivation/09_validation_boundary_map.csv` | `cd3a74857e60c8ce31f1f0632b79aad83b7065f39ceeeae96d2178e00af533b0` | 597 | Validation | HC-09 |
+| `codex-qa/evidence/preactivation/10_reconstructed_change_register.csv` | `e4cdd36553dd490251889ee16349417ecc426af699bee7fa6e9be5f751455ebe` | 183753 | Change traceability | HC-10 |
+| `codex-qa/evidence/preactivation/11_12_localhost_failed-helper_authority-probe.json` | `1670b632bf99dbc8ddd9cb6ec5f9566e8704b7d47b99937e17bc9b0ed9602b30` | 2417 | Browser/file storage | HC-11, HC-12 |
+| `codex-qa/evidence/preactivation/11_12_localhost-probe-shared-verification.json` | `aee97afd0d7012a50ca519b0e9918d765fcbaa16ae3123be75dfb096714a45fe` | 190 | Browser/file storage | HC-11, HC-12 |
+| `codex-qa/evidence/preactivation/11_browser_storage_static_map.csv` | `fa2fe321e50afdb7dd8a31fb93e92fc8609751c7be573e3e77f8860f235804db` | 724 | Browser/file storage | HC-11, HC-12 |
+| `codex-qa/evidence/preactivation/11_file-storage-after-reload.png` | `7010924e641d2558576319a8b6936822b6b7806d13ee718b4af4a2180e34cb38` | 655567 | Browser/file storage | HC-11, HC-12 |
+| `codex-qa/evidence/preactivation/11_file-storage-runtime-probe.json` | `c1d05c9c5a4c601a7cc4ec1cfe237c870f569a637a6a507d27c8c4ec5cc1a4f1` | 2324 | Browser/file storage | HC-11, HC-12 |
+| `codex-qa/evidence/preactivation/12_pin_secret_exposure_REDACTED.csv` | `8c8ea1196e4076b94560d43ece9b546a36ddd0980949b823155603d249144591` | 597 | Sanitized PIN audit | HC-12 |
+| `codex-qa/evidence/preactivation/13_role_permission_model.csv` | `e0de6804815a25699366c113b07258645af343425b7f12c42e560cfec439d71d` | 937 | Roles/permissions | HC-13 |
+| `codex-qa/evidence/preactivation/14_inventory_label_errors.csv` | `377e3f2d1d31be4b737a4e72fd50280271eb9fea35c5ee7c2d868d8a0b29d880` | 75045 | Inventory | HC-14 |
+| `codex-qa/evidence/preactivation/14_rebuilt_file_inventory.csv` | `ba6573a23a1b0c8bae122e2371807ddfc30a253826a9fbdba50d31913b7a19b4` | 32791 | Inventory | HC-14 |
+| `codex-qa/evidence/preactivation/15_handoff_completeness.csv` | `bcd56031d88ac4bc6935ccf8453bece97b9912dc661cc60046536f1192227f99` | 1307 | Handoff completeness | HC-15 |
+| `codex-qa/evidence/preactivation/15_tag_handoff_tree.txt` | `a65bab3626da77c81a4ea0e3f6ef484caca7e44910fc44a56839c118f5fd062a` | 95 | Handoff completeness | HC-15 |
+| `codex-qa/evidence/preactivation/final-git-status.txt` | `0b3a6eff04aa362dc68aa4d2d183eb43fd7dbaa6e58e670c71652e92c70fbdb8` | 91484 | Control document | H0 |
+| `codex-qa/evidence/preactivation/final-worktree-state.json` | `a8f5bfbaca2834c59983e059e396e4c009d0c8a808325c6887fd0ee4079b3580` | 559 | Control document | H0 |
+| `codex-qa/evidence/preactivation/guard-case-direct-real.json` | `e0fac5938f6efbf54f188758d626be758bb63fbfa585c7e03b5fc52c7aa14995` | 3302 | Real-share safety guard | H0-A |
+| `codex-qa/evidence/preactivation/guard-case-environment-expanded-real.json` | `5f84a8c14d29ebd6b821df4fefad207a6769c846bef18b59df593d86e1ab630b` | 3251 | Real-share safety guard | H0-A |
+| `codex-qa/evidence/preactivation/guard-case-junction-alias.json` | `7e06bffae8204bacb0734f7a08fb5248d1a98601ee3908f29b8e438363750ded` | 5170 | Real-share safety guard | H0-A |
+| `codex-qa/evidence/preactivation/guard-case-mapped-drive-alias.json` | `afb239ee5fb09444f601e4f0047ede1a6ddfe0f5fb7cae881e4a023f0ce2f170` | 4751 | Real-share safety guard | H0-A |
+| `codex-qa/evidence/preactivation/guard-case-real-descendant.json` | `b03c74470a8d22ee614acd97fffdb27877f52d16aecf4e909a658280f9c39a88` | 3368 | Real-share safety guard | H0-A |
+| `codex-qa/evidence/preactivation/guard-case-relative-real.json` | `91b94964ad07cbb0f60155cd0ac570d5e6acc9fc24b95c09f1a9c8ed51d399bb` | 3216 | Real-share safety guard | H0-A |
+| `codex-qa/evidence/preactivation/guard-case-safe-workspace.json` | `674c7da1b57de78f0871ff5e34353064643592855e05f10ff63008a8e4486c04` | 3149 | Real-share safety guard | H0-A |
+| `codex-qa/evidence/preactivation/guard-case-unc-local-alias.json` | `33fd82ccad14a31fffb2919b338d8559d55af68605f52737fd5c16b459437008` | 5090 | Real-share safety guard | H0-A |
+| `codex-qa/evidence/preactivation/guard-concurrency-a-target.json` | `9caa235b3f73ca603aa8bb814fa5af2d0b77a9c26f33916206a439778e771bf9` | 2954 | Real-share safety guard | H0-A |
+| `codex-qa/evidence/preactivation/guard-concurrency-b-target.json` | `4303d55f1323d76fee9edeeee538a8ea8340e3c4a98bcdc24143f4331008e3da` | 2954 | Real-share safety guard | H0-A |
+| `codex-qa/evidence/preactivation/guard-destructive-target.json` | `8988fa872b7489815ccdb4b3202b93610f1bf6e9d5a09a0c6c8ece6853581ee7` | 2946 | Real-share safety guard | H0-A |
+| `codex-qa/evidence/preactivation/guard-direct-real-test.json` | `948b9b27a5aed04941dbe3810d32a6c1a50233d722162d9c220a47a9b64ad396` | 3302 | Real-share safety guard | H0-A |
+| `codex-qa/evidence/preactivation/guard-localhost-authority-shared.json` | `780f765440a6fdda7586aa36e83c11bd74e721f019573c0f8d444e5c26fa7ea5` | 3227 | Real-share safety guard | H0-A |
+| `codex-qa/evidence/preactivation/guard-localhost-browser-shared.json` | `22604660229ead5139dc30c4a6446be3748343ccc61760823afcc620826eb580` | 3227 | Real-share safety guard | H0-A |
+| `codex-qa/evidence/preactivation/guard-media-target.json` | `cba015e2721a1f0dd67b6c021b7b5acf820c26d67d24c3d1ac0fbc6a1db8e81d` | 2922 | Real-share safety guard | H0-A |
+| `codex-qa/evidence/preactivation/guard-normal-target.json` | `e1b577353f871c7ada949b3812f823bb3023297b28d92a21b1516ef25a542262` | 2926 | Real-share safety guard | H0-A |
+| `codex-qa/evidence/preactivation/guard-path-alias-test-summary.json` | `c75b2181338fff05349d293c85c6b7f42ae0d903cd3e8c53f8495778c25e4a7e` | 1379 | Real-share safety guard | H0-A |
+| `codex-qa/evidence/preactivation/guard-recovery-target.json` | `c0656d686319b06732d1693aed4c4454c0e94dbf99996c744d352503a5476c7a` | 2934 | Real-share safety guard | H0-A |
+| `codex-qa/evidence/preactivation/guard-runtime-normal-shared.json` | `640511ad8acb65e4bc33ac3c0cd4a621395ab9f165a2a543daa80a9b24f10886` | 3227 | Real-share safety guard | H0-A |
+| `codex-qa/evidence/preactivation/guard-runtime-viewer-empty-shared.json` | `c802b09eb5599a062c0bf484057f5114270753d0e0467ccf0e4d01d4f2d2a997` | 3521 | Real-share safety guard | H0-A |
+| `codex-qa/evidence/preactivation/guard-shared-baseline-target.json` | `d4faf9ea9b27c2ef6b8006ca9f2f4c2f8b4ea5cfe4e58cab161d2894f862f43c` | 3018 | Real-share safety guard | H0-A |
+| `codex-qa/evidence/preactivation/h0-localhost-helper.stderr.log` | `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855` | 0 | Helper runtime log | HC-06, HC-13 |
+| `codex-qa/evidence/preactivation/h0-localhost-helper.stdout.log` | `9ffa96fa0a5f2aff7dfa21e97df69b74b717874c9378062f545b4a61debe9471` | 360 | Helper runtime log | HC-06, HC-13 |
+| `codex-qa/evidence/preactivation/h0-normal-helper.stderr.log` | `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855` | 0 | Helper runtime log | HC-06, HC-13 |
+| `codex-qa/evidence/preactivation/h0-normal-helper.stdout.log` | `95677a6fa1afdd62f865b2c6a7861be2a0fe9903b98f3e0d141779f5b8fe8ea9` | 360 | Helper runtime log | HC-06, HC-13 |
+| `codex-qa/evidence/preactivation/h0-viewer-helper.stderr.log` | `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855` | 0 | Helper runtime log | HC-06, HC-13 |
+| `codex-qa/evidence/preactivation/h0-viewer-helper.stdout.log` | `cf9ce0aeee69a6858436351b6654acef81ce7f2a94454c38894d0461e3d5a665` | 409 | Helper runtime log | HC-06, HC-13 |
+| `codex-qa/evidence/preactivation/real-shared-final-verification.json` | `836d252cfb4445df1bf755cd16cce477c3494b81b3690cd5363b1ae780a008e0` | 579 | Real-share final proof | H0-A |
+| `codex-qa/evidence/preactivation/real-shared-path-guard-test-summary.json` | `977df84c0ca89b3c0e1e50d08d6faa708214325083bf87ecc8689158a85303f1` | 4409 | Control document | H0 |
+| `codex-qa/evidence/preactivation/runtime-probes.json` | `de5dca451b2a4689d8ff6de703a1f525d87f97cd4a3b8f8b38ba7f9e750b1bbc` | 64207 | Bounded helper runtime | HC-06, HC-07, HC-09, HC-11, HC-12, HC-13 |
+| `codex-qa/evidence/preactivation/static-evidence-summary.json` | `4b6a8d219c72dd470daec957c293443ef95386724322e42afd6f6bc5af9b7083` | 534 | Control document | H0 |
+| `codex-qa/evidence/review/H0_INDEPENDENT_REVIEW.md` | `90e49d222abf45d7a256312246da90c768a964e099ffe1697f266805c35bfd6c` | 1950 | Independent review | H0 exit |
+| `codex-qa/GOAL_STATUS.md` | `16ec4b9c2830df4fb4aa3f7b833395c465e935d6e4bc3f6b29301f8f8993eaab` | 510 | Control document | H0 |
+| `codex-qa/HANDOFF_VERIFICATION.md` | `47a39e2c51208a64a528137e30b7f443004344f6bebbce94fd8ed2eca2b7c268` | 18752 | Control document | H0 |
+| `codex-qa/QA_EXECUTION_PLAN.md` | `21be02862c0203a1feb96eabf66de3639141147bc19583f62d88046804f2e175` | 24316 | Control document | H0 |
+| `codex-qa/reports/H0_CHECKPOINT_HE.md` | `f0e69c1cc5cd887a2ceb8f9c41d1367b3e8e6eba96faca67dcba89a8f659d60c` | 7100 | Checkpoint report | H0 |
+| `codex-qa/scripts/collect-h0-static-evidence.ps1` | `b94e728e6792d3e5d2f8cfa0522547fabc1ae51162e19280c18e16d7dbe2a169` | 20944 | Reproduction asset | H0/H0-A |
+| `codex-qa/scripts/complete-h0a-category-manifests.ps1` | `575dbec4e9d2ccf9179f97f5cc83d2b03d444efe5edf4715c565841f6349de26` | 3527 | Reproduction asset | H0/H0-A |
+| `codex-qa/scripts/finalize-h0-evidence.ps1` | `679e30269ad8243144e337acb619cac5e9b7644241cd64943b728fdfe069dc83` | 8623 | Reproduction asset | H0/H0-A |
+| `codex-qa/scripts/invoke-h0a.ps1` | `abdf8b43919ad981af790ed78a30c4c5d21002ea2b4f52f88ce8d7cc9be6f676` | 9948 | Reproduction asset | H0/H0-A |
+| `codex-qa/scripts/real-shared-path-guard.ps1` | `910051d27a0b93e987d2227c4def8d254130d3892618fa2e82fd71bf0ad85211` | 9105 | Reproduction asset | H0/H0-A |
+| `codex-qa/scripts/run-h0-localhost-browser-probe.ps1` | `d78c93c9ca21a6f191a7bc3ea5c38b3703f1cbaa26a5f92caf0b7d54c1163f8c` | 3341 | Reproduction asset | H0/H0-A |
+| `codex-qa/scripts/run-h0-runtime-probes.ps1` | `af444d21cab13b56a1f9e9ec4fc7ed755fe37ba3fc567363ee3ab5df5754e84d` | 11466 | Reproduction asset | H0/H0-A |
+| `codex-qa/scripts/test-guard-path-aliases.ps1` | `721fab3f16af4ef07422bd92a38c11eac10accff05c0d91ba7547fd82ace1210` | 2730 | Reproduction asset | H0/H0-A |
+| `codex-qa/scripts/test-real-shared-path-guard.ps1` | `bb14497e42b7874073b7d7c1c432a93a2e7cc22f49bd82726f61560a86efc366` | 4369 | Reproduction asset | H0/H0-A |
+| `codex-qa/scripts/verify-real-shared-unchanged.ps1` | `fce2d2e8808163507e656c7b0781c1b211d8bf4ac4639966c41c324281073c6c` | 2948 | Reproduction asset | H0/H0-A |
+| `codex-qa/tests/preactivation/file-storage-probe.cjs` | `7233db5daabf3e9d1a08ae721da7ed63d3460e0562cc885cdabfa40671f8c8da` | 6403 | Reproduction asset | H0/H0-A |
+| `codex-qa/tests/preactivation/localhost-authority-probe.cjs` | `b0246ff5d0fdc738ab8d1cf6ca616666dfb54698ece2c1862a804de654daf327` | 6504 | Reproduction asset | H0/H0-A |
+
+Machine-readable copy: codex-qa/evidence/PREACTIVATION_EVIDENCE_INDEX.csv.

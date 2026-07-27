@@ -1,0 +1,59 @@
+{
+  "timestampUtc": "2026-07-25T23:41:56.643Z",
+  "browser": "Microsoft Edge 150.0.4078.83",
+  "url": "http://127.0.0.1:8787/index.html",
+  "main": {
+    "url": "http://127.0.0.1:8787/index.html",
+    "passes": 38,
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "impact": "serious",
+        "nodes": 3
+      },
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "nodes": 50
+      }
+    ],
+    "violations": []
+  },
+  "admin": {
+    "visible": true,
+    "url": "http://127.0.0.1:8787/index.html",
+    "passes": 28,
+    "incomplete": [
+      {
+        "id": "aria-input-field-name",
+        "impact": "serious",
+        "nodes": 1
+      },
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "nodes": 29
+      }
+    ],
+    "violations": []
+  },
+  "mobile": {
+    "url": "http://127.0.0.1:8787/index.html",
+    "passes": 38,
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "impact": "serious",
+        "nodes": 3
+      },
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "nodes": 48
+      }
+    ],
+    "violations": []
+  },
+  "nvda": "NOT TESTED — not installed/authorized",
+  "realSharedDataUsed": false
+}

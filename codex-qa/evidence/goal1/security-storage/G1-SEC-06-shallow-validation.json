@@ -1,0 +1,18 @@
+{
+  "timestampUtc": "2026-07-25T23:31:42.171Z",
+  "status": 200,
+  "response": "{\"updatedAt\":\"2026-07-25T23:31:42.0276820Z\",\"ok\":true,\"checksum\":\"ab1a8abb26020e59f3a24350440dda0bbf3de541e105d2a4eeb6c76f14c360f5\",\"revision\":168}",
+  "mutation": {
+    "nestedDuplicateId": "22066f8d-a32c-474a-97c8-58641c9d6cff",
+    "nestedDanglingParent": "MISSING-NESTED-PARENT",
+    "originalNestedCount": 142
+  },
+  "persistedFile": {
+    "changed": true,
+    "beforeSha256": "24fc3167c320a9b54d7f9dfc1ed442888af9f2ecd0ada312d0e91699720c0a77",
+    "afterSha256": "8b54e580f5135fab14aa5acd89ec3e7e6af8452d4455b4bd2ef24c007d20da57",
+    "invalidMarkerPersisted": true
+  },
+  "restartSessionVisibility": "Persisted authoritative file; observable after helper/browser restart and by another session using this disposable share",
+  "realSharedDataUsed": false
+}

@@ -1,0 +1,23 @@
+{
+    "timestampUtc":  "2026-07-25T22:51:33.0003404Z",
+    "syntheticProtectedPath":  "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\guard-synthetic-source",
+    "note":  "Synthetic QA-only directory; no organizational data was used.",
+    "results":  [
+                    {
+                        "case":  "UNC alias",
+                        "testPath":  "\\\\localhost\\C$\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\guard-synthetic-source",
+                        "expected":  "BLOCK",
+                        "exitCode":  23,
+                        "verdict":  "PASS",
+                        "evidence":  "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\evidence\\preactivation\\guard-case-unc-local-alias.json"
+                    },
+                    {
+                        "case":  "Mapped-drive alias",
+                        "testPath":  "Q:\\",
+                        "expected":  "BLOCK",
+                        "exitCode":  23,
+                        "verdict":  "PASS",
+                        "evidence":  "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\evidence\\preactivation\\guard-case-mapped-drive-alias.json"
+                    }
+                ]
+}

@@ -1,0 +1,3 @@
+﻿"Source","Claimed","Rows","ExecutedRows","CreditablePass","Verdict"
+"handoff/08_TEST_EXECUTION_LEDGER.csv","108","1","1","1","108 PASS unsupported"
+"qa/QA_TEST_MATRIX.csv","107","107","31","15","Historical input only; no statuses inherited into Goal 1"

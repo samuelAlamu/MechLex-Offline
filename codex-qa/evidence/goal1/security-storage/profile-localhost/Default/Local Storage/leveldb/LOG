@@ -1,0 +1,5 @@
+2026/07/26-02:31:07.923 5638 Creating DB C:\Users\samue\Documents\Projects\Active\MechLex_Visual_Admin_Fork\codex-qa\evidence\goal1\security-storage\profile-localhost\Default\Local Storage\leveldb since it was missing.
+2026/07/26-02:31:07.942 5638 Reusing MANIFEST C:\Users\samue\Documents\Projects\Active\MechLex_Visual_Admin_Fork\codex-qa\evidence\goal1\security-storage\profile-localhost\Default\Local Storage\leveldb/MANIFEST-000001
+2026/07/26-02:31:17.100 1230 Level-0 table #5: started
+2026/07/26-02:31:17.114 1230 Level-0 table #5: 33816 bytes OK
+2026/07/26-02:31:17.119 1230 Delete type=0 #3

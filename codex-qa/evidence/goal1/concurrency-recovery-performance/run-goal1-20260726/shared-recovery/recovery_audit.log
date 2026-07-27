@@ -1,0 +1,3 @@
+[2026-07-25T23:31:04.0119125Z] Manual restore operation started by admin to revision 35 from file state.previous.json
+[2026-07-25T23:31:04.0331881Z] Created pre-safety copy: C:\Users\samue\Documents\Projects\Active\MechLex_Visual_Admin_Fork\codex-qa\evidence\goal1\concurrency-recovery-performance\run-goal1-20260726\shared-recovery\state.presafety.20260725_233104.json
+[2026-07-25T23:31:04.0527135Z] Restore completed successfully to revision 35

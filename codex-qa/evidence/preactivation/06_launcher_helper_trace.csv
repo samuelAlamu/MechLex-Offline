@@ -1,0 +1,6 @@
+﻿"Claim","Handoff","Actual","Source"
+"Helper technology","Node.js http-server","PowerShell System.Net.Sockets.TcpListener","START_MECHLEX.bat:4; core/start-local-server.ps1:305"
+"Bind","127.0.0.1:8765","IPAddress.Loopback, requested port; may move/reuse","core/start-local-server.ps1:8-9,56-78,271-311"
+"Static serving","Node standard server","Custom PowerShell HTTP parser/static route","core/start-local-server.ps1:472-486"
+"UI write check","Current helper","Hard-coded http://127.0.0.1:8765/api/can-write","app.js:2366-2378"
+"Existing-helper identity","Reuse same product instance","Checks only title prefix and mainContent id; does not verify project, commit or shared path","core/start-local-server.ps1:56-78"

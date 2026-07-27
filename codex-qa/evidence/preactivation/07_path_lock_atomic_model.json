@@ -1,0 +1,16 @@
+{
+    "pathPrecedence":  [
+                           "-SharedDataPath parameter",
+                           "MECHLEX_SHARED_DATA_PATH",
+                           "SHARED_DATA_PATH.txt",
+                           "sibling MechLex_Shared_Data default"
+                       ],
+    "pathNormalizationInProduct":  "GetFullPath only; no env expansion inside file value, reparse resolution or UNC/mapped physical identity",
+    "lock":  ".mechlex-state.lock; FileShare.None; 5 second retry",
+    "staleWrite":  "Lock, re-read, expectedRevision comparison",
+    "temp":  "state.\u003cpid\u003e.\u003cguid\u003e.tmp",
+    "durableFlush":  "StreamWriter.Flush then FileStream.Flush(true)",
+    "replace":  "File.Replace(temp,state,previous,true), else Move for initial state",
+    "history":  "copy written revision; retain newest 30",
+    "source":  "core/start-local-server.ps1:13-39,187-245,412-467"
+}

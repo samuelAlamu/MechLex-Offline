@@ -1,0 +1,13 @@
+{
+    "timestampUtc":  "2026-07-25T23:49:28.6140177Z",
+    "realSharedPath":  "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Shared_Data_Simulation",
+    "baselineEvidence":  "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\evidence\\baseline\\real-shared-readonly-sha256.csv",
+    "baselineFileCount":  44,
+    "currentFileCount":  44,
+    "contentAndPathMatch":  true,
+    "timestampsAlsoMatch":  true,
+    "differences":  [
+
+                    ],
+    "verdict":  "PASS - real shared organizational data is unchanged"
+}

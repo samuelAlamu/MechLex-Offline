@@ -1,0 +1,795 @@
+{
+    "timestampUtc":  "2026-07-25T22:56:26.4863264Z",
+    "environment":  {
+                        "powerShell":  "5.1.26100.8875",
+                        "identityName":  "SAMUEL_MAIN\\samue",
+                        "os":  {
+                                   "Caption":  "Microsoft Windows 11 Home",
+                                   "Version":  "10.0.26200",
+                                   "BuildNumber":  "26200",
+                                   "OSArchitecture":  "64-bit"
+                               },
+                        "builtInAdministrator":  false
+                    },
+    "normalHelper":  {
+                         "hostileHostProbe":  {
+                                                  "host":  "evil.example",
+                                                  "statusLine":  "HTTP/1.1 200 OK",
+                                                  "accepted":  true
+                                              },
+                         "binding":  [
+                                         {
+                                             "LocalAddress":  "127.0.0.1",
+                                             "LocalPort":  8895,
+                                             "RemoteAddress":  "0.0.0.0",
+                                             "RemotePort":  0,
+                                             "State":  2,
+                                             "OwningProcess":  11848
+                                         }
+                                     ],
+                         "beforeManifest":  [
+                                                {
+                                                    "path":  ".mechlex-state.lock",
+                                                    "length":  0,
+                                                    "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                                    "lastWriteTimeUtc":  "2026-07-23T16:38:17.4483451Z"
+                                                },
+                                                {
+                                                    "path":  "history\\state-r137-20260725T183520406Z.json",
+                                                    "length":  453535,
+                                                    "sha256":  "46f2fbbdf72104a75bf1b22c40d1dc1f572c2dee3aa171197637d85a68e7fc18",
+                                                    "lastWriteTimeUtc":  "2026-07-25T18:35:20.3586170Z"
+                                                },
+                                                {
+                                                    "path":  "history\\state-r138-20260725T183522954Z.json",
+                                                    "length":  457117,
+                                                    "sha256":  "acbe4f90d2ce68762f92e7441012af09e4e17ace8ff0ad49a0cfece7e513c62e",
+                                                    "lastWriteTimeUtc":  "2026-07-25T18:35:22.9198344Z"
+                                                },
+                                                {
+                                                    "path":  "history\\state-r139-20260725T183525589Z.json",
+                                                    "length":  460707,
+                                                    "sha256":  "8610381775d4e967fbe39dc9d935d80d14f2936a69a4dc5ebe119f307f688596",
+                                                    "lastWriteTimeUtc":  "2026-07-25T18:35:25.5494686Z"
+                                                },
+                                                {
+                                                    "path":  "history\\state-r140-20260725T183528597Z.json",
+                                                    "length":  467057,
+                                                    "sha256":  "e284161e1ccac1b20c657302a7c4aa492e97c1bc34a0c9dcc0917bb9b822afff",
+                                                    "lastWriteTimeUtc":  "2026-07-25T18:35:28.5582899Z"
+                                                },
+                                                {
+                                                    "path":  "history\\state-r141-20260725T183531502Z.json",
+                                                    "length":  470595,
+                                                    "sha256":  "bcb28e9d120a98be03bdf37b9b2591327be120053ef5548cb8c7ce0f29824550",
+                                                    "lastWriteTimeUtc":  "2026-07-25T18:35:31.4783241Z"
+                                                },
+                                                {
+                                                    "path":  "history\\state-r142-20260725T183533098Z.json",
+                                                    "length":  474201,
+                                                    "sha256":  "54d2a709488e1277674fc16950d0451a1708b2f522a35aba68b2ebd48df5a207",
+                                                    "lastWriteTimeUtc":  "2026-07-25T18:35:33.0663459Z"
+                                                },
+                                                {
+                                                    "path":  "history\\state-r143-20260725T183535086Z.json",
+                                                    "length":  477725,
+                                                    "sha256":  "7717d6ac1c03ab48c7c32b50a44d517d5cbc98f788a145c3dcf0e15acfa4a521",
+                                                    "lastWriteTimeUtc":  "2026-07-25T18:35:35.0603758Z"
+                                                },
+                                                {
+                                                    "path":  "history\\state-r144-20260725T183537335Z.json",
+                                                    "length":  481361,
+                                                    "sha256":  "c59976276d340d0d18d055bb8a77231965fa71abec4b5d19084d17d5c69a0528",
+                                                    "lastWriteTimeUtc":  "2026-07-25T18:35:37.2781947Z"
+                                                },
+                                                {
+                                                    "path":  "history\\state-r145-20260725T183540271Z.json",
+                                                    "length":  484841,
+                                                    "sha256":  "bf1792f6f7529b56f431d3bb72a3d256bd54b38cb97a3fb5937f8cb2f58ce62f",
+                                                    "lastWriteTimeUtc":  "2026-07-25T18:35:40.2402529Z"
+                                                },
+                                                {
+                                                    "path":  "history\\state-r146-20260725T183541299Z.json",
+                                                    "length":  488329,
+                                                    "sha256":  "f9c75a573c2b022de8179a22ef55b918fc1ce9c72de2195ce97f8d63142f871b",
+                                                    "lastWriteTimeUtc":  "2026-07-25T18:35:41.2640420Z"
+                                                },
+                                                {
+                                                    "path":  "history\\state-r147-20260725T183543350Z.json",
+                                                    "length":  491805,
+                                                    "sha256":  "22437aee40e83d77a7a8b8b4daaedcf884c5e59028f2c4ebd3000ca9ff577acf",
+                                                    "lastWriteTimeUtc":  "2026-07-25T18:35:43.3235122Z"
+                                                },
+                                                {
+                                                    "path":  "history\\state-r148-20260725T183546259Z.json",
+                                                    "length":  495441,
+                                                    "sha256":  "dd9a0e4d54311df5042ce929512270fe3f79e748bae9cfbda9ae7b87898feb59",
+                                                    "lastWriteTimeUtc":  "2026-07-25T18:35:46.2310243Z"
+                                                },
+                                                {
+                                                    "path":  "history\\state-r149-20260725T183547511Z.json",
+                                                    "length":  499105,
+                                                    "sha256":  "f2c2f8b080c830c19be8318ba7e99c767b7035ab57009d737d80083053842148",
+                                                    "lastWriteTimeUtc":  "2026-07-25T18:35:47.4801798Z"
+                                                },
+                                                {
+                                                    "path":  "history\\state-r150-20260725T183549552Z.json",
+                                                    "length":  502705,
+                                                    "sha256":  "136142cf1b8aab5f29a56d330e192969d4e017993e68663303a82b9dd97e0588",
+                                                    "lastWriteTimeUtc":  "2026-07-25T18:35:49.5221573Z"
+                                                },
+                                                {
+                                                    "path":  "history\\state-r151-20260725T183552263Z.json",
+                                                    "length":  506265,
+                                                    "sha256":  "2fb324a064c91249d7eb01fefcec2f5db5cebd8c1b9947a944e02d1820c63e49",
+                                                    "lastWriteTimeUtc":  "2026-07-25T18:35:52.2337190Z"
+                                                },
+                                                {
+                                                    "path":  "history\\state-r152-20260725T183553705Z.json",
+                                                    "length":  509799,
+                                                    "sha256":  "b7aca9a8ca67cd9a742e29d711537dafb62c927e8a9a824ff097ed83375670bb",
+                                                    "lastWriteTimeUtc":  "2026-07-25T18:35:53.6877801Z"
+                                                },
+                                                {
+                                                    "path":  "history\\state-r153-20260725T183555806Z.json",
+                                                    "length":  513385,
+                                                    "sha256":  "c09ecdcbeac9ad4557e70a82e883327db42a3c72620a88a624e7b9bb402a2cbb",
+                                                    "lastWriteTimeUtc":  "2026-07-25T18:35:55.7743362Z"
+                                                },
+                                                {
+                                                    "path":  "history\\state-r154-20260725T183558506Z.json",
+                                                    "length":  517021,
+                                                    "sha256":  "332354937a8a8484de8d1a9bc9e918a3d17b03f732d40fc35f94b4164f011ebe",
+                                                    "lastWriteTimeUtc":  "2026-07-25T18:35:58.4812089Z"
+                                                },
+                                                {
+                                                    "path":  "history\\state-r155-20260725T183601305Z.json",
+                                                    "length":  523463,
+                                                    "sha256":  "46f3befd606f14c566ee6b54376f6c7651be2c3886d2378672a1e817a5b0499a",
+                                                    "lastWriteTimeUtc":  "2026-07-25T18:36:01.2826063Z"
+                                                },
+                                                {
+                                                    "path":  "history\\state-r156-20260725T183602617Z.json",
+                                                    "length":  527005,
+                                                    "sha256":  "508e0b2eccb66764630c392535c5f77adc4927677d6440ebe9c66916640f63e4",
+                                                    "lastWriteTimeUtc":  "2026-07-25T18:36:02.6017417Z"
+                                                },
+                                                {
+                                                    "path":  "history\\state-r157-20260725T183604733Z.json",
+                                                    "length":  530535,
+                                                    "sha256":  "b9e8d8c9f242df824324d36a7304982dd61277c0c6a97359c83969af529a808b",
+                                                    "lastWriteTimeUtc":  "2026-07-25T18:36:04.7011201Z"
+                                                },
+                                                {
+                                                    "path":  "history\\state-r158-20260725T183607325Z.json",
+                                                    "length":  534077,
+                                                    "sha256":  "ef31d6b7c1dd3627720849cd095ae4ba7d513a248c96c159aa08c3b572b4da53",
+                                                    "lastWriteTimeUtc":  "2026-07-25T18:36:07.3025826Z"
+                                                },
+                                                {
+                                                    "path":  "history\\state-r159-20260725T183609261Z.json",
+                                                    "length":  537631,
+                                                    "sha256":  "a1909092474f2028db32260e62cd437921b04faf64f056f5842fbb962cfa2f3e",
+                                                    "lastWriteTimeUtc":  "2026-07-25T18:36:09.2347917Z"
+                                                },
+                                                {
+                                                    "path":  "history\\state-r160-20260725T183611330Z.json",
+                                                    "length":  541127,
+                                                    "sha256":  "58bfa5e9df843c523b93ba539499114035fcd4007a84ce9b4c0cff85c8fccb4f",
+                                                    "lastWriteTimeUtc":  "2026-07-25T18:36:11.3037531Z"
+                                                },
+                                                {
+                                                    "path":  "history\\state-r161-20260725T183613390Z.json",
+                                                    "length":  544717,
+                                                    "sha256":  "12e5154fbfb08b05bb634b1c25c3b959f3ae96bfdeafa72e07c886fb3e967419",
+                                                    "lastWriteTimeUtc":  "2026-07-25T18:36:13.3571238Z"
+                                                },
+                                                {
+                                                    "path":  "history\\state-r162-20260725T183616293Z.json",
+                                                    "length":  548247,
+                                                    "sha256":  "1e170e3fdf26f85d9505ce3a31942b7bb9e3979e40cb67db4a22899abdd698a2",
+                                                    "lastWriteTimeUtc":  "2026-07-25T18:36:16.2733195Z"
+                                                },
+                                                {
+                                                    "path":  "history\\state-r163-20260725T183617533Z.json",
+                                                    "length":  551741,
+                                                    "sha256":  "4d9ad1312b1687db5f41170e977c7e31f7112314988517aeaa096fe468940108",
+                                                    "lastWriteTimeUtc":  "2026-07-25T18:36:17.5094689Z"
+                                                },
+                                                {
+                                                    "path":  "history\\state-r164-20260725T183619609Z.json",
+                                                    "length":  555125,
+                                                    "sha256":  "a7b64af0f7e907229dce57782b223d9780252e9ea760843d821d350445dd323c",
+                                                    "lastWriteTimeUtc":  "2026-07-25T18:36:19.5791524Z"
+                                                },
+                                                {
+                                                    "path":  "history\\state-r165-20260725T183625259Z.json",
+                                                    "length":  555138,
+                                                    "sha256":  "5b9c532e163678a07b286dde326292ecbf547bea3b336971c3a8b8eaac30f86f",
+                                                    "lastWriteTimeUtc":  "2026-07-25T18:36:25.2235246Z"
+                                                },
+                                                {
+                                                    "path":  "history\\state-r166-20260725T183628315Z.json",
+                                                    "length":  551741,
+                                                    "sha256":  "7dfb00d6396a6ea3b3c759dda242952dc9ba7c639068c9d6ce8427838798837a",
+                                                    "lastWriteTimeUtc":  "2026-07-25T18:36:28.2859934Z"
+                                                },
+                                                {
+                                                    "path":  "recovery_audit.log",
+                                                    "length":  1875,
+                                                    "sha256":  "b454e9fd90c50ec4ebcad479087dba14a213064ffc6de168554b2741eb745441",
+                                                    "lastWriteTimeUtc":  "2026-07-25T16:28:31.6301254Z"
+                                                },
+                                                {
+                                                    "path":  "state.31256.ebdbd93ed8b147bcae81972cff6ccdeb.tmp",
+                                                    "length":  420,
+                                                    "sha256":  "378d3718c23fd8b8e9839ee3cca2fe700d75a5cc10e69a029dce18f98208f85d",
+                                                    "lastWriteTimeUtc":  "2026-07-24T18:26:42.5396685Z"
+                                                },
+                                                {
+                                                    "path":  "state.corrupted.20260725_161654.json",
+                                                    "length":  483,
+                                                    "sha256":  "830d9d1a36c1c99a53354ac33191123d2a050c24d64b6ee755524280ac6b2e13",
+                                                    "lastWriteTimeUtc":  "2026-07-25T10:40:40.6192516Z"
+                                                },
+                                                {
+                                                    "path":  "state.corrupted.20260725_161838.json",
+                                                    "length":  79852,
+                                                    "sha256":  "d6097871d73bbb1f1c68c985aa41d1664a050a9a1633092245b4635342451ce6",
+                                                    "lastWriteTimeUtc":  "2026-07-24T13:37:13.4695429Z"
+                                                },
+                                                {
+                                                    "path":  "state.corrupted.json",
+                                                    "length":  846087,
+                                                    "sha256":  "648647f78f8cf293a7ca44b168a4e63737816cb0c0481629367b1b1c8dadefd7",
+                                                    "lastWriteTimeUtc":  "2026-07-24T18:29:23.5965539Z"
+                                                },
+                                                {
+                                                    "path":  "state.json",
+                                                    "length":  552765,
+                                                    "sha256":  "24fc3167c320a9b54d7f9dfc1ed442888af9f2ecd0ada312d0e91699720c0a77",
+                                                    "lastWriteTimeUtc":  "2026-07-25T18:53:45.7192730Z"
+                                                },
+                                                {
+                                                    "path":  "state.json.qa-hierarchy-backup",
+                                                    "length":  13443,
+                                                    "sha256":  "c59397090f105d51d805b23c0dbe433251c3580316f28791dbd4c9e2d50e8eb4",
+                                                    "lastWriteTimeUtc":  "2026-07-25T17:49:55.5981078Z"
+                                                },
+                                                {
+                                                    "path":  "state.presafety.20260725_161759.json",
+                                                    "length":  483,
+                                                    "sha256":  "830d9d1a36c1c99a53354ac33191123d2a050c24d64b6ee755524280ac6b2e13",
+                                                    "lastWriteTimeUtc":  "2026-07-25T10:40:40.6192516Z"
+                                                },
+                                                {
+                                                    "path":  "state.presafety.20260725_162815.json",
+                                                    "length":  677,
+                                                    "sha256":  "c897856b95c3509cad113b265bac09b78abfe68b6e3499451b553a8eeedb857e",
+                                                    "lastWriteTimeUtc":  "2026-07-25T16:20:40.9311542Z"
+                                                },
+                                                {
+                                                    "path":  "state.presafety.20260725_162820.json",
+                                                    "length":  677,
+                                                    "sha256":  "f4e1f56bbd70bf8d4632b68d0bccf1fd2f784b04b1a677e5253b3cb3a2c748bf",
+                                                    "lastWriteTimeUtc":  "2026-07-25T16:20:12.3307024Z"
+                                                },
+                                                {
+                                                    "path":  "state.presafety.20260725_162826.json",
+                                                    "length":  677,
+                                                    "sha256":  "c897856b95c3509cad113b265bac09b78abfe68b6e3499451b553a8eeedb857e",
+                                                    "lastWriteTimeUtc":  "2026-07-25T16:20:40.9311542Z"
+                                                },
+                                                {
+                                                    "path":  "state.presafety.20260725_162831.json",
+                                                    "length":  677,
+                                                    "sha256":  "f4e1f56bbd70bf8d4632b68d0bccf1fd2f784b04b1a677e5253b3cb3a2c748bf",
+                                                    "lastWriteTimeUtc":  "2026-07-25T16:20:12.3307024Z"
+                                                },
+                                                {
+                                                    "path":  "state.previous.json",
+                                                    "length":  555138,
+                                                    "sha256":  "5b9c532e163678a07b286dde326292ecbf547bea3b336971c3a8b8eaac30f86f",
+                                                    "lastWriteTimeUtc":  "2026-07-25T18:36:25.2235246Z"
+                                                }
+                                            ],
+                         "process":  {
+                                         "ProcessId":  11848,
+                                         "Name":  "powershell.exe",
+                                         "ExecutablePath":  "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                                         "CommandLine":  "\"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\normal\\core\\start-local-server.ps1\" -Port 8895 -NoBrowser -SharedDataPath \"C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\normal\\shared-data\" "
+                                     },
+                         "afterManifest":  [
+                                               {
+                                                   "path":  ".mechlex-state.lock",
+                                                   "length":  0,
+                                                   "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                                   "lastWriteTimeUtc":  "2026-07-23T16:38:17.4483451Z"
+                                               },
+                                               {
+                                                   "path":  "history\\state-r137-20260725T183520406Z.json",
+                                                   "length":  453535,
+                                                   "sha256":  "46f2fbbdf72104a75bf1b22c40d1dc1f572c2dee3aa171197637d85a68e7fc18",
+                                                   "lastWriteTimeUtc":  "2026-07-25T18:35:20.3586170Z"
+                                               },
+                                               {
+                                                   "path":  "history\\state-r138-20260725T183522954Z.json",
+                                                   "length":  457117,
+                                                   "sha256":  "acbe4f90d2ce68762f92e7441012af09e4e17ace8ff0ad49a0cfece7e513c62e",
+                                                   "lastWriteTimeUtc":  "2026-07-25T18:35:22.9198344Z"
+                                               },
+                                               {
+                                                   "path":  "history\\state-r139-20260725T183525589Z.json",
+                                                   "length":  460707,
+                                                   "sha256":  "8610381775d4e967fbe39dc9d935d80d14f2936a69a4dc5ebe119f307f688596",
+                                                   "lastWriteTimeUtc":  "2026-07-25T18:35:25.5494686Z"
+                                               },
+                                               {
+                                                   "path":  "history\\state-r140-20260725T183528597Z.json",
+                                                   "length":  467057,
+                                                   "sha256":  "e284161e1ccac1b20c657302a7c4aa492e97c1bc34a0c9dcc0917bb9b822afff",
+                                                   "lastWriteTimeUtc":  "2026-07-25T18:35:28.5582899Z"
+                                               },
+                                               {
+                                                   "path":  "history\\state-r141-20260725T183531502Z.json",
+                                                   "length":  470595,
+                                                   "sha256":  "bcb28e9d120a98be03bdf37b9b2591327be120053ef5548cb8c7ce0f29824550",
+                                                   "lastWriteTimeUtc":  "2026-07-25T18:35:31.4783241Z"
+                                               },
+                                               {
+                                                   "path":  "history\\state-r142-20260725T183533098Z.json",
+                                                   "length":  474201,
+                                                   "sha256":  "54d2a709488e1277674fc16950d0451a1708b2f522a35aba68b2ebd48df5a207",
+                                                   "lastWriteTimeUtc":  "2026-07-25T18:35:33.0663459Z"
+                                               },
+                                               {
+                                                   "path":  "history\\state-r143-20260725T183535086Z.json",
+                                                   "length":  477725,
+                                                   "sha256":  "7717d6ac1c03ab48c7c32b50a44d517d5cbc98f788a145c3dcf0e15acfa4a521",
+                                                   "lastWriteTimeUtc":  "2026-07-25T18:35:35.0603758Z"
+                                               },
+                                               {
+                                                   "path":  "history\\state-r144-20260725T183537335Z.json",
+                                                   "length":  481361,
+                                                   "sha256":  "c59976276d340d0d18d055bb8a77231965fa71abec4b5d19084d17d5c69a0528",
+                                                   "lastWriteTimeUtc":  "2026-07-25T18:35:37.2781947Z"
+                                               },
+                                               {
+                                                   "path":  "history\\state-r145-20260725T183540271Z.json",
+                                                   "length":  484841,
+                                                   "sha256":  "bf1792f6f7529b56f431d3bb72a3d256bd54b38cb97a3fb5937f8cb2f58ce62f",
+                                                   "lastWriteTimeUtc":  "2026-07-25T18:35:40.2402529Z"
+                                               },
+                                               {
+                                                   "path":  "history\\state-r146-20260725T183541299Z.json",
+                                                   "length":  488329,
+                                                   "sha256":  "f9c75a573c2b022de8179a22ef55b918fc1ce9c72de2195ce97f8d63142f871b",
+                                                   "lastWriteTimeUtc":  "2026-07-25T18:35:41.2640420Z"
+                                               },
+                                               {
+                                                   "path":  "history\\state-r147-20260725T183543350Z.json",
+                                                   "length":  491805,
+                                                   "sha256":  "22437aee40e83d77a7a8b8b4daaedcf884c5e59028f2c4ebd3000ca9ff577acf",
+                                                   "lastWriteTimeUtc":  "2026-07-25T18:35:43.3235122Z"
+                                               },
+                                               {
+                                                   "path":  "history\\state-r148-20260725T183546259Z.json",
+                                                   "length":  495441,
+                                                   "sha256":  "dd9a0e4d54311df5042ce929512270fe3f79e748bae9cfbda9ae7b87898feb59",
+                                                   "lastWriteTimeUtc":  "2026-07-25T18:35:46.2310243Z"
+                                               },
+                                               {
+                                                   "path":  "history\\state-r149-20260725T183547511Z.json",
+                                                   "length":  499105,
+                                                   "sha256":  "f2c2f8b080c830c19be8318ba7e99c767b7035ab57009d737d80083053842148",
+                                                   "lastWriteTimeUtc":  "2026-07-25T18:35:47.4801798Z"
+                                               },
+                                               {
+                                                   "path":  "history\\state-r150-20260725T183549552Z.json",
+                                                   "length":  502705,
+                                                   "sha256":  "136142cf1b8aab5f29a56d330e192969d4e017993e68663303a82b9dd97e0588",
+                                                   "lastWriteTimeUtc":  "2026-07-25T18:35:49.5221573Z"
+                                               },
+                                               {
+                                                   "path":  "history\\state-r151-20260725T183552263Z.json",
+                                                   "length":  506265,
+                                                   "sha256":  "2fb324a064c91249d7eb01fefcec2f5db5cebd8c1b9947a944e02d1820c63e49",
+                                                   "lastWriteTimeUtc":  "2026-07-25T18:35:52.2337190Z"
+                                               },
+                                               {
+                                                   "path":  "history\\state-r152-20260725T183553705Z.json",
+                                                   "length":  509799,
+                                                   "sha256":  "b7aca9a8ca67cd9a742e29d711537dafb62c927e8a9a824ff097ed83375670bb",
+                                                   "lastWriteTimeUtc":  "2026-07-25T18:35:53.6877801Z"
+                                               },
+                                               {
+                                                   "path":  "history\\state-r153-20260725T183555806Z.json",
+                                                   "length":  513385,
+                                                   "sha256":  "c09ecdcbeac9ad4557e70a82e883327db42a3c72620a88a624e7b9bb402a2cbb",
+                                                   "lastWriteTimeUtc":  "2026-07-25T18:35:55.7743362Z"
+                                               },
+                                               {
+                                                   "path":  "history\\state-r154-20260725T183558506Z.json",
+                                                   "length":  517021,
+                                                   "sha256":  "332354937a8a8484de8d1a9bc9e918a3d17b03f732d40fc35f94b4164f011ebe",
+                                                   "lastWriteTimeUtc":  "2026-07-25T18:35:58.4812089Z"
+                                               },
+                                               {
+                                                   "path":  "history\\state-r155-20260725T183601305Z.json",
+                                                   "length":  523463,
+                                                   "sha256":  "46f3befd606f14c566ee6b54376f6c7651be2c3886d2378672a1e817a5b0499a",
+                                                   "lastWriteTimeUtc":  "2026-07-25T18:36:01.2826063Z"
+                                               },
+                                               {
+                                                   "path":  "history\\state-r156-20260725T183602617Z.json",
+                                                   "length":  527005,
+                                                   "sha256":  "508e0b2eccb66764630c392535c5f77adc4927677d6440ebe9c66916640f63e4",
+                                                   "lastWriteTimeUtc":  "2026-07-25T18:36:02.6017417Z"
+                                               },
+                                               {
+                                                   "path":  "history\\state-r157-20260725T183604733Z.json",
+                                                   "length":  530535,
+                                                   "sha256":  "b9e8d8c9f242df824324d36a7304982dd61277c0c6a97359c83969af529a808b",
+                                                   "lastWriteTimeUtc":  "2026-07-25T18:36:04.7011201Z"
+                                               },
+                                               {
+                                                   "path":  "history\\state-r158-20260725T183607325Z.json",
+                                                   "length":  534077,
+                                                   "sha256":  "ef31d6b7c1dd3627720849cd095ae4ba7d513a248c96c159aa08c3b572b4da53",
+                                                   "lastWriteTimeUtc":  "2026-07-25T18:36:07.3025826Z"
+                                               },
+                                               {
+                                                   "path":  "history\\state-r159-20260725T183609261Z.json",
+                                                   "length":  537631,
+                                                   "sha256":  "a1909092474f2028db32260e62cd437921b04faf64f056f5842fbb962cfa2f3e",
+                                                   "lastWriteTimeUtc":  "2026-07-25T18:36:09.2347917Z"
+                                               },
+                                               {
+                                                   "path":  "history\\state-r160-20260725T183611330Z.json",
+                                                   "length":  541127,
+                                                   "sha256":  "58bfa5e9df843c523b93ba539499114035fcd4007a84ce9b4c0cff85c8fccb4f",
+                                                   "lastWriteTimeUtc":  "2026-07-25T18:36:11.3037531Z"
+                                               },
+                                               {
+                                                   "path":  "history\\state-r161-20260725T183613390Z.json",
+                                                   "length":  544717,
+                                                   "sha256":  "12e5154fbfb08b05bb634b1c25c3b959f3ae96bfdeafa72e07c886fb3e967419",
+                                                   "lastWriteTimeUtc":  "2026-07-25T18:36:13.3571238Z"
+                                               },
+                                               {
+                                                   "path":  "history\\state-r162-20260725T183616293Z.json",
+                                                   "length":  548247,
+                                                   "sha256":  "1e170e3fdf26f85d9505ce3a31942b7bb9e3979e40cb67db4a22899abdd698a2",
+                                                   "lastWriteTimeUtc":  "2026-07-25T18:36:16.2733195Z"
+                                               },
+                                               {
+                                                   "path":  "history\\state-r163-20260725T183617533Z.json",
+                                                   "length":  551741,
+                                                   "sha256":  "4d9ad1312b1687db5f41170e977c7e31f7112314988517aeaa096fe468940108",
+                                                   "lastWriteTimeUtc":  "2026-07-25T18:36:17.5094689Z"
+                                               },
+                                               {
+                                                   "path":  "history\\state-r164-20260725T183619609Z.json",
+                                                   "length":  555125,
+                                                   "sha256":  "a7b64af0f7e907229dce57782b223d9780252e9ea760843d821d350445dd323c",
+                                                   "lastWriteTimeUtc":  "2026-07-25T18:36:19.5791524Z"
+                                               },
+                                               {
+                                                   "path":  "history\\state-r165-20260725T183625259Z.json",
+                                                   "length":  555138,
+                                                   "sha256":  "5b9c532e163678a07b286dde326292ecbf547bea3b336971c3a8b8eaac30f86f",
+                                                   "lastWriteTimeUtc":  "2026-07-25T18:36:25.2235246Z"
+                                               },
+                                               {
+                                                   "path":  "history\\state-r166-20260725T183628315Z.json",
+                                                   "length":  551741,
+                                                   "sha256":  "7dfb00d6396a6ea3b3c759dda242952dc9ba7c639068c9d6ce8427838798837a",
+                                                   "lastWriteTimeUtc":  "2026-07-25T18:36:28.2859934Z"
+                                               },
+                                               {
+                                                   "path":  "recovery_audit.log",
+                                                   "length":  1875,
+                                                   "sha256":  "b454e9fd90c50ec4ebcad479087dba14a213064ffc6de168554b2741eb745441",
+                                                   "lastWriteTimeUtc":  "2026-07-25T16:28:31.6301254Z"
+                                               },
+                                               {
+                                                   "path":  "state.31256.ebdbd93ed8b147bcae81972cff6ccdeb.tmp",
+                                                   "length":  420,
+                                                   "sha256":  "378d3718c23fd8b8e9839ee3cca2fe700d75a5cc10e69a029dce18f98208f85d",
+                                                   "lastWriteTimeUtc":  "2026-07-24T18:26:42.5396685Z"
+                                               },
+                                               {
+                                                   "path":  "state.corrupted.20260725_161654.json",
+                                                   "length":  483,
+                                                   "sha256":  "830d9d1a36c1c99a53354ac33191123d2a050c24d64b6ee755524280ac6b2e13",
+                                                   "lastWriteTimeUtc":  "2026-07-25T10:40:40.6192516Z"
+                                               },
+                                               {
+                                                   "path":  "state.corrupted.20260725_161838.json",
+                                                   "length":  79852,
+                                                   "sha256":  "d6097871d73bbb1f1c68c985aa41d1664a050a9a1633092245b4635342451ce6",
+                                                   "lastWriteTimeUtc":  "2026-07-24T13:37:13.4695429Z"
+                                               },
+                                               {
+                                                   "path":  "state.corrupted.json",
+                                                   "length":  846087,
+                                                   "sha256":  "648647f78f8cf293a7ca44b168a4e63737816cb0c0481629367b1b1c8dadefd7",
+                                                   "lastWriteTimeUtc":  "2026-07-24T18:29:23.5965539Z"
+                                               },
+                                               {
+                                                   "path":  "state.json",
+                                                   "length":  552765,
+                                                   "sha256":  "24fc3167c320a9b54d7f9dfc1ed442888af9f2ecd0ada312d0e91699720c0a77",
+                                                   "lastWriteTimeUtc":  "2026-07-25T18:53:45.7192730Z"
+                                               },
+                                               {
+                                                   "path":  "state.json.qa-hierarchy-backup",
+                                                   "length":  13443,
+                                                   "sha256":  "c59397090f105d51d805b23c0dbe433251c3580316f28791dbd4c9e2d50e8eb4",
+                                                   "lastWriteTimeUtc":  "2026-07-25T17:49:55.5981078Z"
+                                               },
+                                               {
+                                                   "path":  "state.presafety.20260725_161759.json",
+                                                   "length":  483,
+                                                   "sha256":  "830d9d1a36c1c99a53354ac33191123d2a050c24d64b6ee755524280ac6b2e13",
+                                                   "lastWriteTimeUtc":  "2026-07-25T10:40:40.6192516Z"
+                                               },
+                                               {
+                                                   "path":  "state.presafety.20260725_162815.json",
+                                                   "length":  677,
+                                                   "sha256":  "c897856b95c3509cad113b265bac09b78abfe68b6e3499451b553a8eeedb857e",
+                                                   "lastWriteTimeUtc":  "2026-07-25T16:20:40.9311542Z"
+                                               },
+                                               {
+                                                   "path":  "state.presafety.20260725_162820.json",
+                                                   "length":  677,
+                                                   "sha256":  "f4e1f56bbd70bf8d4632b68d0bccf1fd2f784b04b1a677e5253b3cb3a2c748bf",
+                                                   "lastWriteTimeUtc":  "2026-07-25T16:20:12.3307024Z"
+                                               },
+                                               {
+                                                   "path":  "state.presafety.20260725_162826.json",
+                                                   "length":  677,
+                                                   "sha256":  "c897856b95c3509cad113b265bac09b78abfe68b6e3499451b553a8eeedb857e",
+                                                   "lastWriteTimeUtc":  "2026-07-25T16:20:40.9311542Z"
+                                               },
+                                               {
+                                                   "path":  "state.presafety.20260725_162831.json",
+                                                   "length":  677,
+                                                   "sha256":  "f4e1f56bbd70bf8d4632b68d0bccf1fd2f784b04b1a677e5253b3cb3a2c748bf",
+                                                   "lastWriteTimeUtc":  "2026-07-25T16:20:12.3307024Z"
+                                               },
+                                               {
+                                                   "path":  "state.previous.json",
+                                                   "length":  555138,
+                                                   "sha256":  "5b9c532e163678a07b286dde326292ecbf547bea3b336971c3a8b8eaac30f86f",
+                                                   "lastWriteTimeUtc":  "2026-07-25T18:36:25.2235246Z"
+                                               }
+                                           ],
+                         "probes":  [
+                                        {
+                                            "method":  "GET",
+                                            "path":  "/api/shared-health",
+                                            "requestHeaders":  {
+
+                                                               },
+                                            "status":  200,
+                                            "reason":  "OK",
+                                            "contentType":  "application/json; charset=utf-8",
+                                            "bodyLength":  77,
+                                            "bodySha256":  "7dfcaca883935f99bc211fa1797ab61de26b9f0bf44add2e27b2f538e4f0978f",
+                                            "safeBodySummary":  {
+                                                                    "writable":  true,
+                                                                    "ok":  true,
+                                                                    "stateExists":  true,
+                                                                    "mode":  "offline-shared-folder"
+                                                                }
+                                        },
+                                        {
+                                            "method":  "HEAD",
+                                            "path":  "/api/shared-health",
+                                            "requestHeaders":  {
+
+                                                               },
+                                            "status":  200,
+                                            "reason":  "OK",
+                                            "contentType":  "application/json; charset=utf-8",
+                                            "bodyLength":  0,
+                                            "bodySha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                            "safeBodySummary":  null
+                                        },
+                                        {
+                                            "method":  "POST",
+                                            "path":  "/api/shared-health",
+                                            "requestHeaders":  {
+
+                                                               },
+                                            "status":  405,
+                                            "reason":  "Method Not Allowed",
+                                            "contentType":  "application/json; charset=utf-8",
+                                            "bodyLength":  32,
+                                            "bodySha256":  "e6c16eb5d6d048f671ece25cbfd6e8cf00c47e9fe992f16cb39111be8d148289",
+                                            "safeBodySummary":  {
+                                                                    "message":  "Method Not Allowed"
+                                                                }
+                                        },
+                                        {
+                                            "method":  "GET",
+                                            "path":  "/api/can-write",
+                                            "requestHeaders":  {
+
+                                                               },
+                                            "status":  200,
+                                            "reason":  "OK",
+                                            "contentType":  "application/json; charset=utf-8",
+                                            "bodyLength":  34,
+                                            "bodySha256":  "cbf75d67040c4eafe91d088e13260e4c4db1f4b63afa36d39d563fcaad20e73f",
+                                            "safeBodySummary":  {
+                                                                    "canWrite":  false,
+                                                                    "role":  "Viewer"
+                                                                }
+                                        },
+                                        {
+                                            "method":  "GET",
+                                            "path":  "/api/shared-state",
+                                            "requestHeaders":  {
+
+                                                               },
+                                            "status":  200,
+                                            "reason":  "OK",
+                                            "contentType":  "application/json; charset=utf-8",
+                                            "bodyLength":  159333,
+                                            "bodySha256":  "95b6f98d2ebc559b0c5bccd92aefeb123a79d620e0376dee286dc0402a2b217a",
+                                            "safeBodySummary":  {
+                                                                    "schemaVersion":  2,
+                                                                    "revision":  167,
+                                                                    "sharedTopLevelKeys":  [
+                                                                                               "data",
+                                                                                               "settings",
+                                                                                               "uiText"
+                                                                                           ],
+                                                                    "dataItemCount":  1
+                                                                }
+                                        },
+                                        {
+                                            "method":  "HEAD",
+                                            "path":  "/api/shared-state",
+                                            "requestHeaders":  {
+
+                                                               },
+                                            "status":  200,
+                                            "reason":  "OK",
+                                            "contentType":  "application/json; charset=utf-8",
+                                            "bodyLength":  0,
+                                            "bodySha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                            "safeBodySummary":  {
+                                                                    "schemaVersion":  null,
+                                                                    "revision":  null,
+                                                                    "sharedTopLevelKeys":  [
+                                                                                               null
+                                                                                           ],
+                                                                    "dataItemCount":  1
+                                                                }
+                                        },
+                                        {
+                                            "method":  "GET",
+                                            "path":  "/api/shared-state?knownRevision=167",
+                                            "requestHeaders":  {
+
+                                                               },
+                                            "status":  304,
+                                            "reason":  "Not Modified",
+                                            "contentType":  "application/json; charset=utf-8",
+                                            "bodyLength":  0,
+                                            "bodySha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                            "safeBodySummary":  {
+                                                                    "schemaVersion":  null,
+                                                                    "revision":  null,
+                                                                    "sharedTopLevelKeys":  [
+                                                                                               null
+                                                                                           ],
+                                                                    "dataItemCount":  1
+                                                                }
+                                        },
+                                        {
+                                            "method":  "GET",
+                                            "path":  "/api/shared-state",
+                                            "requestHeaders":  {
+                                                                   "Origin":  "http://evil.example"
+                                                               },
+                                            "status":  403,
+                                            "reason":  "Forbidden",
+                                            "contentType":  "application/json; charset=utf-8",
+                                            "bodyLength":  35,
+                                            "bodySha256":  "ac341402a8b14be65f5b5d8b3ae05868751e55d36313e6740b993319e28b1a5e",
+                                            "safeBodySummary":  {
+                                                                    "message":  "Origin is not allowed"
+                                                                }
+                                        },
+                                        {
+                                            "method":  "GET",
+                                            "path":  "/api/shared-state",
+                                            "requestHeaders":  {
+                                                                   "Origin":  "http://127.0.0.1:8895"
+                                                               },
+                                            "status":  200,
+                                            "reason":  "OK",
+                                            "contentType":  "application/json; charset=utf-8",
+                                            "bodyLength":  159333,
+                                            "bodySha256":  "95b6f98d2ebc559b0c5bccd92aefeb123a79d620e0376dee286dc0402a2b217a",
+                                            "safeBodySummary":  {
+                                                                    "schemaVersion":  2,
+                                                                    "revision":  167,
+                                                                    "sharedTopLevelKeys":  [
+                                                                                               "data",
+                                                                                               "settings",
+                                                                                               "uiText"
+                                                                                           ],
+                                                                    "dataItemCount":  1
+                                                                }
+                                        },
+                                        {
+                                            "method":  "PUT",
+                                            "path":  "/api/shared-state",
+                                            "requestHeaders":  {
+                                                                   "Content-Type":  "application/json",
+                                                                   "Origin":  "http://127.0.0.1:8895",
+                                                                   "X-MechLex-Client":  "1"
+                                                               },
+                                            "status":  422,
+                                            "reason":  "Unprocessable Entity",
+                                            "contentType":  "application/json; charset=utf-8",
+                                            "bodyLength":  71,
+                                            "bodySha256":  "5c8018a56fe05ce9caf1876fdf8e5ba67f2ab7178f2245c25ddc60c7480c1791",
+                                            "safeBodySummary":  {
+                                                                    "message":  "Semantic validation failed: Duplicate id found: duplicate"
+                                                                }
+                                        }
+                                    ],
+                         "sharedManifestUnchanged":  true,
+                         "invalidSemanticActual":  422,
+                         "invalidSemanticExpected":  422
+                     },
+    "viewerCanWriteSideEffect":  {
+                                     "durableWriteByViewerProven":  true,
+                                     "mockRole":  "Viewer",
+                                     "note":  "MECHLEX_MOCK_ROLE was inherited by this disposable helper process only.",
+                                     "after":  {
+                                                   "stateExists":  true,
+                                                   "stateLength":  0,
+                                                   "stateSha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                                   "files":  {
+                                                                 "path":  "state.json",
+                                                                 "length":  0,
+                                                                 "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                                                 "lastWriteTimeUtc":  "2026-07-25T22:56:26.4351640Z"
+                                                             }
+                                               },
+                                     "before":  {
+                                                    "stateExists":  false,
+                                                    "files":  {
+
+                                                              }
+                                                },
+                                     "response":  {
+                                                      "method":  "GET",
+                                                      "path":  "/api/can-write",
+                                                      "requestHeaders":  {
+
+                                                                         },
+                                                      "status":  200,
+                                                      "reason":  "OK",
+                                                      "contentType":  "application/json; charset=utf-8",
+                                                      "bodyLength":  34,
+                                                      "bodySha256":  "cbf75d67040c4eafe91d088e13260e4c4db1f4b63afa36d39d563fcaad20e73f",
+                                                      "safeBodySummary":  {
+                                                                              "canWrite":  false,
+                                                                              "role":  "Viewer"
+                                                                          }
+                                                  }
+                                 },
+    "releaseGateFindings":  [
+                                "Host header not validated",
+                                "Viewer GET /api/can-write created a durable state.json file"
+                            ],
+    "realSharedDataUsed":  false
+}

@@ -1,0 +1,7 @@
+REMOTE HEADS (exit 0)
+5d76f9d7d29a3fa8cf672eda712e573ea037bd7c	refs/heads/main
+5d76f9d7d29a3fa8cf672eda712e573ea037bd7c	refs/heads/qa/remediation-9-5-plus
+
+REMOTE TAGS (exit 0)
+a1cf2f77ac2b46fbe237513917cc9bbd4b744cc7	refs/tags/mechlex-pre-qa-remediation-2026-07-25
+5d76f9d7d29a3fa8cf672eda712e573ea037bd7c	refs/tags/mechlex-pre-qa-remediation-2026-07-25^{}

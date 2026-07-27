@@ -1,0 +1,16 @@
+{
+    "format":  "MechLexSharedState",
+    "formatVersion":  1,
+    "revision":  15,
+    "schemaVersion":  1,
+    "appVersion":  "",
+    "updatedAt":  "2026-07-24T18:26:42.5356670Z",
+    "updatedBy":  "",
+    "reason":  "",
+    "checksum":  "8fe32e407a1038ee38753b70e5374b3a46d6ae9d5f16cd5b73c53abaca8f5ed0",
+    "shared":  {
+                   "data":  [
+
+                            ]
+               }
+}

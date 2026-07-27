@@ -1,0 +1,15 @@
+{
+    "timestampUtc":  "2026-07-25T23:20:35.8273969Z",
+    "result":  "PASS",
+    "head":  "5034fa3f76e4b6da97ca6f23ee055ef3de24e903",
+    "tagCommit":  "5034fa3f76e4b6da97ca6f23ee055ef3de24e903",
+    "trackedProductionChanges":  0,
+    "authorizedH0StartUntracked":  48,
+    "runtimeClosureRows":  19,
+    "handoffLedgerRows":  1,
+    "handoffEvidenceReferences":  3,
+    "handoffInventoryRows":  632,
+    "handoffInventoryRuntimeLabelErrors":  617,
+    "suppliedHandoffFiles":  11,
+    "trackedHandoffFilesAtTag":  0
+}

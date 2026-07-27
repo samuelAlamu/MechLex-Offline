@@ -1,0 +1,10 @@
+﻿{
+    "timestampUtc":  "2026-07-25T23:40:06.4655413Z",
+    "browserExitCode":  0,
+    "reportExists":  true,
+    "beforeFileCount":  44,
+    "afterFileCount":  44,
+    "sharedChangedDuringDisposableTest":  true,
+    "mockRole":  "Admin (disposable helper process only)",
+    "realSharedDataUsed":  false
+}

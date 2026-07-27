@@ -1,0 +1,44 @@
+{
+    "canWrite":  {
+                     "body":  "{\"canWrite\":false,\"role\":\"Viewer\"}",
+                     "status":  200
+                 },
+    "mockRole":  "Viewer",
+    "after":  {
+                  "length":  0,
+                  "sha256":  "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+                  "exists":  true
+              },
+    "before":  {
+                   "exists":  false
+               },
+    "realSharedDataUsed":  false,
+    "identity":  "SAMUEL_MAIN\\samue",
+    "timestampUtc":  "2026-07-25T23:30:36.2642655Z",
+    "hostOrigin":  [
+                       {
+                           "host":  "evil.example",
+                           "path":  "/api/shared-health",
+                           "status":  "HTTP/1.1 200 OK",
+                           "origin":  ""
+                       },
+                       {
+                           "host":  "127.0.0.1:8912",
+                           "path":  "/api/shared-state",
+                           "status":  "HTTP/1.1 403 Forbidden",
+                           "origin":  "http://evil.example"
+                       },
+                       {
+                           "host":  "evil.example",
+                           "path":  "/api/shared-health",
+                           "status":  "HTTP/1.1 200 OK",
+                           "origin":  "http://evil.example"
+                       },
+                       {
+                           "host":  "127.0.0.1:8912",
+                           "path":  "/api/shared-state",
+                           "status":  "HTTP/1.1 403 Forbidden",
+                           "origin":  "null"
+                       }
+                   ]
+}

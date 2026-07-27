@@ -10,6 +10,10 @@ $RootBoundary = $Root + [System.IO.Path]::DirectorySeparatorChar
 $Address = [System.Net.IPAddress]::Loopback
 $MaxBodyBytes = 35MB
 
+# Small trusted-team mode: Windows group membership is not required.
+# Set to $false in the future to restore MechLex_Admins / MechLex_Editors enforcement.
+$SimpleTeamMode = $true
+
 function Resolve-SharedDataPath {
   $configured = $SharedDataPath
   if ([string]::IsNullOrWhiteSpace($configured)) { $configured = $env:MECHLEX_SHARED_DATA_PATH }
@@ -23,7 +27,7 @@ function Resolve-SharedDataPath {
     }
   }
   if ([string]::IsNullOrWhiteSpace($configured)) {
-    $configured = Join-Path (Split-Path -Parent $Root) "MechLex_Shared_Data"
+    $configured = Join-Path $Root "MechLex_Shared_Data_Simulation"
   } elseif (-not [System.IO.Path]::IsPathRooted($configured)) {
     $configured = Join-Path $Root $configured
   }
@@ -250,7 +254,34 @@ function Origin-IsAllowed([hashtable]$Headers, [int]$ActivePort) {
   return $Headers["origin"] -in @("http://127.0.0.1:$ActivePort", "http://localhost:$ActivePort")
 }
 
+function Test-SharedFolderWriteAccess {
+  $probePath = Join-Path $SharedRoot (".mechlex-write-probe.{0}.{1}.tmp" -f $PID, [Guid]::NewGuid().ToString("N"))
+  $probeStream = $null
+  try {
+    $probeStream = [System.IO.FileStream]::new(
+      $probePath,
+      [System.IO.FileMode]::CreateNew,
+      [System.IO.FileAccess]::Write,
+      [System.IO.FileShare]::None
+    )
+    $probeStream.WriteByte(0)
+    $probeStream.Flush($true)
+    return $true
+  } catch {
+    return $false
+  } finally {
+    if ($null -ne $probeStream) { $probeStream.Dispose() }
+    if (Test-Path -LiteralPath $probePath -PathType Leaf) {
+      Remove-Item -LiteralPath $probePath -Force -ErrorAction SilentlyContinue
+    }
+  }
+}
+
 function Test-MechLexRole([string]$RequiredRole) {
+  if ($SimpleTeamMode) {
+    return $RequiredRole -in @("Admin", "Editor")
+  }
+
   if ($env:MECHLEX_MOCK_ROLE) {
     if ($RequiredRole -eq "Admin" -and $env:MECHLEX_MOCK_ROLE -match "Admin") { return $true }
     if ($RequiredRole -eq "Editor" -and $env:MECHLEX_MOCK_ROLE -match "Admin|Editor") { return $true }
@@ -332,7 +363,7 @@ try {
           ok = (-not $global:RecoveryMode)
           mode = $modeName
           stateExists = [bool](Test-Path -LiteralPath $StatePath -PathType Leaf)
-          writable = [bool]((Get-Item -LiteralPath $SharedRoot).Attributes -band [System.IO.FileAttributes]::ReadOnly) -eq $false
+          writable = [bool](Test-SharedFolderWriteAccess)
         }
         if ($global:RecoveryMode) { $health.error = $global:RecoveryError }
         Send-Response $Stream $Method 200 "OK" "application/json; charset=utf-8" (Json-Bytes $health)
@@ -347,11 +378,14 @@ try {
         $canWrite = $false
         $role = "Viewer"
         try {
-          $testHandle = [System.IO.FileStream]::new($StatePath, [System.IO.FileMode]::OpenOrCreate, [System.IO.FileAccess]::ReadWrite, [System.IO.FileShare]::ReadWrite)
-          $testHandle.Close()
-          if (Test-MechLexRole "Admin") { $role = "Admin"; $canWrite = $true }
-          elseif (Test-MechLexRole "Editor") { $role = "Editor"; $canWrite = $true }
-          else { $role = "Viewer" }
+          $folderWritable = Test-SharedFolderWriteAccess
+          if ($folderWritable -and (Test-MechLexRole "Admin")) {
+            $role = "Admin"
+            $canWrite = $true
+          } elseif ($folderWritable -and (Test-MechLexRole "Editor")) {
+            $role = "Editor"
+            $canWrite = $true
+          }
         } catch {}
         Send-Response $Stream $Method 200 "OK" "application/json; charset=utf-8" (Json-Bytes @{ canWrite = $canWrite; role = $role })
         continue

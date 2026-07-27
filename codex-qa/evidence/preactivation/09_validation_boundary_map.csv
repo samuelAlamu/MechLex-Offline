@@ -1,0 +1,5 @@
+﻿"Boundary","Checks","Coverage","Source"
+"Server startup","schema 2 plus Validate-StateData","Top-level shared.data only","core/start-local-server.ps1:283-301"
+"Server PUT","body structure, schema 2, Validate-StateData","Top-level IDs/parents and limited image data URL","core/start-local-server.ps1:397-409,199-216"
+"Atomic write","Validate-StateData again","Same limited top-level coverage","core/start-local-server.ps1:219-221"
+"Client","IDs, codes, names, definitions, hierarchy, related refs and repair","Materially richer, still client-side","core/integrity.js:28-85,117-179,350-463"

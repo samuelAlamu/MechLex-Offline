@@ -1,0 +1,2 @@
+Test ID,Title,Requirement,Environment,Executed yes/no,Execution date,Command or manual steps,PASS / FAIL / BLOCKED / NOT TESTED / INCONCLUSIVE / NOT APPLICABLE,Evidence path,Finding ID,Severity,Notes
+QA-001,UI Empty Node Bug,UI,Win11,Yes,2026-07-25,Playwright,PASS,screenshots/,None,Low,Fixed SVG lines and undefined titles

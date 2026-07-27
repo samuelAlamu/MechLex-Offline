@@ -1,0 +1,6 @@
+2026/07/26-02:18:04.936 49f0 Reusing MANIFEST C:\Users\samue\Documents\Projects\Active\MechLex_Visual_Admin_Fork\codex-qa\workspaces\browser-localhost-profile\Default\EdgeCoupons/coupons_data.db/MANIFEST-000001
+2026/07/26-02:18:04.938 49f0 Recovering log #7
+2026/07/26-02:18:04.939 49f0 Reusing old log C:\Users\samue\Documents\Projects\Active\MechLex_Visual_Admin_Fork\codex-qa\workspaces\browser-localhost-profile\Default\EdgeCoupons/coupons_data.db/000007.log 
+2026/07/26-02:18:05.296 2ff8 Level-0 table #11: started
+2026/07/26-02:18:05.304 2ff8 Level-0 table #11: 683212 bytes OK
+2026/07/26-02:18:05.307 2ff8 Delete type=0 #7

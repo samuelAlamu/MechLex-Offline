@@ -1,0 +1,48 @@
+{
+    "timestampUtc":  "2026-07-25T23:30:54.2165446Z",
+    "projectRoot":  "c:\\users\\samue\\documents\\projects\\active\\mechlex_visual_admin_fork",
+    "testPath":  {
+                     "Source":  "TestPath",
+                     "Raw":  "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\evidence\\goal1\\concurrency-recovery-performance\\run-goal1-20260726\\shared-concurrency",
+                     "Expanded":  "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\evidence\\goal1\\concurrency-recovery-performance\\run-goal1-20260726\\shared-concurrency",
+                     "LexicalPath":  "c:\\users\\samue\\documents\\projects\\active\\mechlex_visual_admin_fork\\codex-qa\\evidence\\goal1\\concurrency-recovery-performance\\run-goal1-20260726\\shared-concurrency",
+                     "MappedUncPath":  null,
+                     "ProviderPath":  "c:\\users\\samue\\documents\\projects\\active\\mechlex_visual_admin_fork\\codex-qa\\evidence\\goal1\\concurrency-recovery-performance\\run-goal1-20260726\\shared-concurrency",
+                     "FinalPath":  "c:\\users\\samue\\documents\\projects\\active\\mechlex_visual_admin_fork\\codex-qa\\evidence\\goal1\\concurrency-recovery-performance\\run-goal1-20260726\\shared-concurrency",
+                     "FileId":  "bc7c94c2:00080000:001d2400",
+                     "Exists":  true,
+                     "Aliases":  [
+                                     "c:\\users\\samue\\documents\\projects\\active\\mechlex_visual_admin_fork\\codex-qa\\evidence\\goal1\\concurrency-recovery-performance\\run-goal1-20260726\\shared-concurrency"
+                                 ]
+                 },
+    "protectedPaths":  [
+                           {
+                               "Source":  "SHARED_DATA_PATH.txt",
+                               "Raw":  "..\\MechLex_Shared_Data_Simulation",
+                               "Expanded":  "..\\MechLex_Shared_Data_Simulation",
+                               "LexicalPath":  "c:\\users\\samue\\documents\\projects\\active\\mechlex_shared_data_simulation",
+                               "MappedUncPath":  null,
+                               "ProviderPath":  "c:\\users\\samue\\documents\\projects\\active\\mechlex_shared_data_simulation",
+                               "FinalPath":  "c:\\users\\samue\\documents\\projects\\active\\mechlex_shared_data_simulation",
+                               "FileId":  "bc7c94c2:00130000:0011e1fd",
+                               "Exists":  true,
+                               "Aliases":  [
+                                               "c:\\users\\samue\\documents\\projects\\active\\mechlex_shared_data_simulation"
+                                           ]
+                           }
+                       ],
+    "blocked":  false,
+    "matches":  [
+
+                ],
+    "comparisonMethods":  [
+                              "environment-variable expansion",
+                              "relative-to-project normalization",
+                              "case and separator normalization",
+                              "mapped-drive ProviderName or DisplayRoot expansion",
+                              "Resolve-Path provider resolution",
+                              "GetFinalPathNameByHandle link/junction resolution",
+                              "volume-serial and file-index physical identity",
+                              "same-directory and descendant blocking"
+                          ]
+}

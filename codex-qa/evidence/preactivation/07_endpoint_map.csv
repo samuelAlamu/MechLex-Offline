@@ -1,0 +1,5 @@
+﻿"Path","Methods","Success","Other","OriginCheck","MutationRisk","Source"
+"/api/shared-health","GET, HEAD","200","405","No","No direct write; writable flag is directory attribute only","core/start-local-server.ps1:325-340"
+"/api/can-write","GET","200","405","No","OpenOrCreate can create state.json before role result","core/start-local-server.ps1:342-358"
+"/api/shared-state","GET, HEAD, PUT","200/304","400,403,404,405,409,415,422,503","Present Origin only","PUT writes; GET/HEAD read","core/start-local-server.ps1:360-469"
+"/* static","GET, HEAD","200","403,404,405","No","None","core/start-local-server.ps1:472-486"

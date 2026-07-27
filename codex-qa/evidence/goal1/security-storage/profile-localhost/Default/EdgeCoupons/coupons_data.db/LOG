@@ -1,0 +1,5 @@
+2026/07/26-02:31:11.152 2b04 Creating DB C:\Users\samue\Documents\Projects\Active\MechLex_Visual_Admin_Fork\codex-qa\evidence\goal1\security-storage\profile-localhost\Default\EdgeCoupons/coupons_data.db since it was missing.
+2026/07/26-02:31:11.224 2b04 Reusing MANIFEST C:\Users\samue\Documents\Projects\Active\MechLex_Visual_Admin_Fork\codex-qa\evidence\goal1\security-storage\profile-localhost\Default\EdgeCoupons/coupons_data.db/MANIFEST-000001
+2026/07/26-02:31:11.455 3df8 Level-0 table #5: started
+2026/07/26-02:31:11.463 3df8 Level-0 table #5: 683052 bytes OK
+2026/07/26-02:31:11.466 3df8 Delete type=0 #3

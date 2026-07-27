@@ -1,0 +1,8 @@
+﻿"Layer","Role","Authority","Enforcement","Source"
+"UI","Viewer/locked","Browse; no admin panel","Client state","app.js, index.html"
+"UI","Content Expert","Terms/domains UI; appearance/data tabs hidden","Client PIN/state only","app.js:2359-2403; index.html:428-525"
+"UI","Super Admin","All admin UI","Client PIN/state only","app.js:2359-2403"
+"Helper","Viewer","No intended PUT","Windows groups/filesystem; GET can-write may create state","core/start-local-server.ps1:253-268,342-356"
+"Helper","Editor","Any non-settings shared-state delta","MechLex_Editors or override plus filesystem","core/start-local-server.ps1:417-434"
+"Helper","Admin","Settings delta or initial catalog","MechLex_Admins/Administrators or override plus filesystem","core/start-local-server.ps1:253-268,417-434"
+"Recovery wizard","Filesystem user","Restore state","Filesystem access and interactive prompt; no app role","core/recovery-wizard.ps1:106-150"
