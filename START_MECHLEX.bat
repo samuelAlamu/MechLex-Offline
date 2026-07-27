@@ -1,5 +1,6 @@
 @echo off
 setlocal
-cd /d "%~dp0"
-start "MechLex Local Server" /min powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0core\start-local-server.ps1"
+pushd "%~dp0"
+start "MechLex Local Server" /min powershell.exe -WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass -Command "$script = Get-Content -Raw -LiteralPath 'core\start-local-server.ps1'; Invoke-Command -ScriptBlock ([scriptblock]::Create($script))"
+popd
 endlocal

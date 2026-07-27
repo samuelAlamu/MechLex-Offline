@@ -63,8 +63,9 @@ function Test-MechLexServer([int]$TestPort) {
     $httpClient = New-Object System.Net.Http.HttpClient
     $httpClient.Timeout = [TimeSpan]::FromSeconds(2)
     try {
-      $html = $httpClient.GetStringAsync("http://127.0.0.1:$TestPort/index.html").GetAwaiter().GetResult()
-      return $html.Contains("<title>MechLex") -and $html.Contains("id=`"mainContent`"")
+      $resp = $httpClient.GetStringAsync("http://127.0.0.1:$TestPort/api/server-path").GetAwaiter().GetResult()
+      $serverRoot = ($resp | ConvertFrom-Json).rootPath
+      return ($serverRoot -eq $Root)
     } finally {
       $httpClient.Dispose()
     }
@@ -352,6 +353,11 @@ try {
       $RawPath = ($RawTarget -split "\?")[0]
       $knownRevision = -1
       if ($RawTarget -match "[?&]knownRevision=([0-9]+)") { $knownRevision = [int]$Matches[1] }
+
+      if ($RawPath -eq "/api/server-path") {
+        Send-Response $Stream $Method 200 "OK" "application/json; charset=utf-8" (Json-Bytes @{ rootPath = $Root })
+        continue
+      }
 
       if ($RawPath -eq "/api/shared-health") {
         if ($Method -notin @("GET", "HEAD")) {
