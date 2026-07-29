@@ -3753,13 +3753,15 @@ function bindEvents() {
   bindInteractiveMotion();
   $("skipToContentBtn").addEventListener("click", () => $("mainContent").focus({ preventScroll: true }) || $("mainContent").scrollIntoView({ behavior: "smooth", block: "start" }));
   $("searchInput").addEventListener("input", (event) => { state.query = event.target.value; renderFilters(); renderDictionary(); });
-  $("subtopicFilter").addEventListener("change", (event) => {
-    const location = decodeHierarchyLocation(event.target.value);
-    if (!location) { state.subtopic = "all"; state.subSubtopic = "all"; }
-    else { state.domainId = location.domainId; state.subtopic = location.subtopic; state.subSubtopic = location.subSubtopic || "all"; }
-    renderAll();
-  });
-  $("sortSelect").addEventListener("change", (event) => { state.sort = event.target.value; renderAll(); });
+  if ($("subtopicFilter")) {
+    $("subtopicFilter").addEventListener("change", (event) => {
+      const location = decodeHierarchyLocation(event.target.value);
+      if (!location) { state.subtopic = "all"; state.subSubtopic = "all"; }
+      else { state.domainId = location.domainId; state.subtopic = location.subtopic; state.subSubtopic = location.subSubtopic || "all"; }
+      renderAll();
+    });
+  }
+  if ($("sortSelect")) $("sortSelect").addEventListener("change", (event) => { state.sort = event.target.value; renderAll(); });
   $("resetFiltersBtn").addEventListener("click", resetFilters);
   $("emptyResetBtn").addEventListener("click", resetFilters);
   $("clearDomainFilter").addEventListener("click", () => { state.domainId = "all"; state.subtopic = "all"; state.subSubtopic = "all"; renderAll(); });
