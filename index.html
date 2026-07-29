@@ -94,18 +94,20 @@
       </header>
 
       <main id="mainContent" class="main-content" tabindex="-1">
-        <section class="hero" aria-labelledby="pageTitle">
-          <div>
-            <p id="heroEyebrow" class="eyebrow">ENGINEERING REFERENCE · LEARNING · PRACTICE</p>
-            <h1 id="pageTitle">מילון הנדסי מקצועי</h1>
-            <p id="heroDescription">גישה מהירה להגדרות, סימונים, נוסחאות, תקנים, דוגמאות יישומיות ושיקולי ייצור ובחינה.</p>
-          </div>
-        </section>
+        <div class="top-dashboard-row" style="display: flex; gap: 24px; align-items: stretch; margin-bottom: 24px; flex-wrap: wrap;">
+          <section class="hero" aria-labelledby="pageTitle" style="flex: 1; min-width: 300px; margin-bottom: 0;">
+            <div>
+              <p id="heroEyebrow" class="eyebrow">ENGINEERING REFERENCE · LEARNING · PRACTICE</p>
+              <h1 id="pageTitle">מילון הנדסי מקצועי</h1>
+              <p id="heroDescription">גישה מהירה להגדרות, סימונים, נוסחאות, תקנים, דוגמאות יישומיות ושיקולי ייצור ובחינה.</p>
+            </div>
+          </section>
 
-        <section class="metrics" aria-label="נתוני המילון">
-          <article><span id="metricTermsLabel">מושגים זמינים</span><strong id="termCount">0</strong><small id="metricTermsNote">במאגר הפעיל</small></article>
-          <article><span id="metricDomainsLabel">תחומי ידע</span><strong id="domainCount">0</strong><small id="metricDomainsNote">מסודרים לפי דיסציפלינה</small></article>
-        </section>
+          <section class="metrics" aria-label="נתוני המילון" style="flex: 1; min-width: 300px; margin: 0; align-self: center;">
+            <article><span id="metricTermsLabel">מושגים זמינים</span><strong id="termCount">0</strong><small id="metricTermsNote">במאגר הפעיל</small></article>
+            <article><span id="metricDomainsLabel">תחומי ידע</span><strong id="domainCount">0</strong><small id="metricDomainsNote">מסודרים לפי דיסציפלינה</small></article>
+          </section>
+        </div>
 
         <section id="taxonomyExplorer" class="taxonomy-explorer" aria-label="ניווט לפי תחום, תת־תחום ותת־תת־תחום">
           <div class="taxonomy-header-bar">

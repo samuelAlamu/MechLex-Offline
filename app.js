@@ -1145,19 +1145,19 @@ function renderMetrics() {
   const terms = allTerms();
   const learning = terms.filter((term) => getTermStatus(term.id) === "learning").length;
   const mastered = terms.filter((term) => getTermStatus(term.id) === "mastered").length;
-  $("termCount").textContent = terms.length;
-  $("domainCount").textContent = data.length;
-  $("favCount").textContent = prefs.favorites.filter((id) => terms.some((term) => term.id === id)).length;
-  $("masteredCount").textContent = mastered;
-  $("navAllCount").textContent = terms.length;
-  $("navFavCount").textContent = prefs.favorites.length;
-  $("navLearningCount").textContent = learning;
-  $("navMasteredCount").textContent = mastered;
-  $("navRecentCount").textContent = prefs.recent.length;
+  if ($("termCount")) $("termCount").textContent = terms.length;
+  if ($("domainCount")) $("domainCount").textContent = data.length;
+  if ($("favCount")) $("favCount").textContent = prefs.favorites.filter((id) => terms.some((term) => term.id === id)).length;
+  if ($("masteredCount")) $("masteredCount").textContent = mastered;
+  if ($("navAllCount")) $("navAllCount").textContent = terms.length;
+  if ($("navFavCount")) $("navFavCount").textContent = prefs.favorites.length;
+  if ($("navLearningCount")) $("navLearningCount").textContent = learning;
+  if ($("navMasteredCount")) $("navMasteredCount").textContent = mastered;
+  if ($("navRecentCount")) $("navRecentCount").textContent = prefs.recent.length;
   const percent = terms.length ? Math.round((mastered / terms.length) * 100) : 0;
-  $("progressPercent").textContent = `${percent}%`;
-  $("progressRing").style.setProperty("--progress", `${percent * 3.6}deg`);
-  $("progressText").textContent = mastered ? `${mastered} מתוך ${terms.length} מושגים סומנו כנלמדו` : "טרם סומנו מושגים כנלמדו";
+  if ($("progressPercent")) $("progressPercent").textContent = `${percent}%`;
+  if ($("progressRing")) $("progressRing").style.setProperty("--progress", `${percent * 3.6}deg`);
+  if ($("progressText")) $("progressText").textContent = mastered ? `${mastered} מתוך ${terms.length} מושגים סומנו כנלמדו` : "טרם סומנו מושגים כנלמדו";
 }
 
 function renderDomainNavigation() {
