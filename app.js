@@ -2367,10 +2367,9 @@ function toast(message, type = "") {
 }
 
 function openPinDialog() {
-  $("pinInput").value = "";
-  $("pinError").classList.add("hidden");
+  if ($("pinError")) $("pinError").classList.add("hidden");
   if ($("pinRoleSelect")) $("pinRoleSelect").value = state.adminRole || "content";
-  setModalVisibility($("pinOverlay"), true, { initialFocus: $("pinInput") });
+  setModalVisibility($("pinOverlay"), true, { initialFocus: $("pinRoleSelect") || $("closePinBtn") });
 }
 
 function closePinDialog(options = {}) {
@@ -2378,11 +2377,8 @@ function closePinDialog(options = {}) {
 }
 
 async function openAdmin(role, providedPin = null) {
-  const expectedPin = role === "super" ? (settings.superPin || "9999") : (settings.contentPin || settings.pin || "1234");
-  if (providedPin !== expectedPin) {
-    toast("גישה נדחתה: סיסמה שגויה או חסרה", "error");
-    return;
-  }
+  // Password requirement removed as requested
+
 
   if (window.MechLexCore && window.MechLexCore.sharedSync) {
     try {
