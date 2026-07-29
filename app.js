@@ -1279,30 +1279,10 @@ function taxonomyTermListMarkup(terms, label = "מושגים") {
 }
 
 function renderTaxonomyExplorer() {
-  if (state.domainId === "all") {
-    $("domainTabs").innerHTML = `
-      <div class="domain-picker-intro">
-        <div><span class="domain-picker-kicker">נקודת ההתחלה</span><h2>באיזה תחום תרצו לעיין?</h2><p>בחרו תחום אחד. רק לאחר הבחירה יוצגו תתי־התחומים, תתי־תתי־התחומים והמושגים השייכים אליו.</p></div>
-        <span class="domain-picker-count"><b>${data.length}</b> תחומי ידע</span>
-      </div>
-      <div class="domain-picker-grid">${data.map((domain, index) => {
-        const subtopics = domainSubtopicEntries(domain);
-        const childCount = subtopics.reduce((sum, item) => sum + item.children.length, 0);
-        return `<button type="button" class="domain-picker-card" data-explorer-domain="${esc(domain.id)}" style="--domain-color:${esc(domain.color)};--domain-index:${index}">
-          <span class="domain-picker-number">${String(index + 1).padStart(2, "0")}</span>
-          <span class="domain-picker-copy"><span class="taxonomy-level-label">תחום</span><strong>${esc(domain.name)}</strong>${domain.nameEn ? `<small dir="ltr">${esc(domain.nameEn)}</small>` : ""}${domain.description ? `<p>${esc(domain.description)}</p>` : ""}</span>
-          <span class="domain-picker-stats"><span><b>${domain.items.length}</b> מושגים</span><span><b>${subtopics.length}</b> תתי־תחומים</span><span><b>${childCount}</b> תתי־תתי־תחומים</span></span>
-          <span class="domain-picker-action">פתחו את התחום <b aria-hidden="true">←</b></span>
-        </button>`;
-      }).join("")}</div>`;
-    $$('[data-explorer-domain]').forEach((button) => button.addEventListener("click", () => selectHierarchyLocation(button.dataset.explorerDomain)));
-    return;
-  }
-
-  const source = data.filter((domain) => domain.id === state.domainId);
+  const source = state.domainId === "all" ? data : data.filter((domain) => domain.id === state.domainId);
   $("domainTabs").innerHTML = `
     <div class="taxonomy-tree-toolbar">
-      <button type="button" class="taxonomy-all-domains" data-explorer-domain="all"><span aria-hidden="true">→</span> חזרה לכל התחומים</button>
+      ${state.domainId !== "all" ? `<button type="button" class="taxonomy-all-domains" data-explorer-domain="all"><span aria-hidden="true">→</span> חזרה לכל התחומים</button>` : ""}
       <div class="taxonomy-legend" aria-label="מקרא"><span class="level-domain">תחום</span><span>←</span><span class="level-subtopic">תת־תחום</span><span>←</span><span class="level-child">תת־תת־תחום</span><span>← מושגים</span></div>
     </div>
     <div class="taxonomy-domain-grid">${source.map((domain) => {
