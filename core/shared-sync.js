@@ -37,17 +37,11 @@
   }
 
   function setSyncStatus(kind, text) {
-    let badge = document.getElementById("sharedSyncStatus");
-    if (!badge) {
-      badge = document.createElement("span");
-      badge.id = "sharedSyncStatus";
-      badge.className = "shared-sync-status";
-      badge.setAttribute("role", "status");
-      badge.setAttribute("aria-live", "polite");
-      document.getElementById("saveState")?.insertAdjacentElement("afterend", badge);
+    const badge = document.getElementById("saveState");
+    if (badge) {
+      badge.className = `save-state shared-sync-status ${kind}`;
+      badge.textContent = text;
     }
-    badge.className = `shared-sync-status ${kind}`;
-    badge.textContent = text;
     document.documentElement.dataset.sharedSync = kind;
   }
 
@@ -89,8 +83,9 @@
         },
         uiText: { ...(record.shared.uiText || record.shared.settings?.uiText || {}) },
       };
-      settings.contentPin = String(settings.contentPin || settings.pin || "1234");
-      settings.superPin = String(settings.superPin || "9999");
+      delete settings.contentPin;
+      delete settings.superPin;
+      delete settings.pin;
       sharedRevision = Number(record.revision || 0);
       meta.sharedRevision = sharedRevision;
       meta.sharedUpdatedAt = record.updatedAt || "";
@@ -195,7 +190,7 @@
         }
         if (error.message !== "Shared revision conflict") {
           syncReady = false;
-          setSyncStatus("offline", "התיקייה המשותפת אינה זמינה · קריאה בלבד");
+          setSyncStatus("offline", "החיבור לשרת (START_MECHLEX) נותק · קריאה בלבד");
           toast("השמירה המשותפת נכשלה ולכן שינוי התוכן בוטל. המערכת עברה למצב קריאה בלבד.", "error");
         }
         return null;
@@ -220,20 +215,20 @@
     if (conflictActive || applyingRemote) return;
     try {
       const response = await request(`${API_STATE}?knownRevision=${sharedRevision}`);
-      if (response.status === 304) {
+      if (!response.ok) throw new Error(`Polling failed (${response.status})`);
+      const record = await response.json();
+      if (record.status === "unchanged") {
         syncReady = true;
         setSyncStatus("synced", `משותף · גרסה ${sharedRevision}`);
         return;
       }
-      if (!response.ok) throw new Error(`Polling failed (${response.status})`);
-      const record = await response.json();
       if (Number(record.revision || 0) > sharedRevision) {
         applyRemoteRecord(record, "shared-poll");
         toast("שינויים ממחשב אחר נטענו", "success");
       }
     } catch {
       syncReady = false;
-      setSyncStatus("offline", "התיקייה המשותפת אינה זמינה · קריאה בלבד");
+      setSyncStatus("offline", "החיבור לשרת (START_MECHLEX) נותק · קריאה בלבד");
     }
   }
 
@@ -263,7 +258,7 @@
       window.setInterval(pollSharedState, POLL_INTERVAL_MS);
     } catch (error) {
       console.warn("MechLex shared sync initialization unavailable", error);
-      setSyncStatus("offline", "התיקייה המשותפת אינה זמינה · קריאה בלבד");
+      setSyncStatus("offline", "החיבור לשרת (START_MECHLEX) נותק · קריאה בלבד");
       toast("לא ניתן להתחבר למקור המידע המשותף. לא ניתן לפרסם שינויי תוכן עד שהחיבור יחזור.", "error");
     }
   }
@@ -275,7 +270,7 @@
     const sharedChanged = serialized !== lastSharedSerialized;
     if (!syncReady && !lastCommittedSnapshot && !applyingRemote) {
       // Disconnected before first sync - fail closed
-      toast("התיקייה המשותפת אינה זמינה, לא ניתן לשמור שינויים.", "error");
+      // toast("החיבור לשרת נותק. ודאו שהחלון השחור פתוח.", "error"); // user requested removal
       return;
     }
     if (sharedChanged && (!syncReady || conflictActive) && !applyingRemote) {
