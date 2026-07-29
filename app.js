@@ -1176,6 +1176,10 @@ function renderDomainNavigation() {
     </section>`;
   }).join("");
   $$('[data-domain-id]').forEach((button) => button.addEventListener("click", () => {
+    if (document.body.classList.contains("visual-edit-mode") && window.ML?.visualEditor?.openStructuredEditor && button.dataset.domainId !== "all") {
+      window.ML.visualEditor.openStructuredEditor("domain", button.dataset.domainId);
+      return;
+    }
     closeMobileSidebar();
     selectHierarchyLocation(state.domainId === button.dataset.domainId ? "all" : button.dataset.domainId);
   }));
@@ -1328,6 +1332,10 @@ function renderTaxonomyExplorer() {
       </article>`;
     }).join("")}</div>`;
   $$('[data-explorer-domain]').forEach((button) => button.addEventListener("click", () => {
+    if (document.body.classList.contains("visual-edit-mode") && window.ML?.visualEditor?.openStructuredEditor && button.dataset.explorerDomain !== "all") {
+      window.ML.visualEditor.openStructuredEditor("domain", button.dataset.explorerDomain);
+      return;
+    }
     selectHierarchyLocation(button.dataset.explorerDomain);
   }));
   $$('[data-tree-subtopic]').forEach((button) => button.addEventListener("click", () => {
@@ -2285,6 +2293,10 @@ function startRandomSession() {
 }
 
 function openTerm(termId, options = {}) {
+  if (document.body.classList.contains("visual-edit-mode") && window.ML?.visualEditor?.openStructuredEditor) {
+    window.ML.visualEditor.openStructuredEditor("term", termId);
+    return;
+  }
   const term = findTerm(termId);
   if (!term) return;
   if (options.randomSession !== true) resetRandomSession();
@@ -3845,14 +3857,7 @@ function bindEvents() {
     event?.preventDefault();
     event?.stopPropagation();
     const role = $("pinRoleSelect")?.value || "content";
-    const enteredPin = $("pinInput").value.trim();
-    const expectedPin = role === "super" ? (settings.superPin || "9999") : (settings.contentPin || settings.pin || "1234");
-    if (enteredPin === expectedPin) {
-      openAdmin(role, enteredPin);
-    } else {
-      $("pinError").classList.remove("hidden");
-      $("pinInput").select();
-    }
+    openAdmin(role, "");
   };
 
   $("adminBtn").addEventListener("click", openPinDialog);

@@ -345,5 +345,6 @@
     exit: exitVisualMode,
     active: () => visualMode,
     applyUiText,
+    openStructuredEditor
   };
 }());

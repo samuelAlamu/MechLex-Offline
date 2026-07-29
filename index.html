@@ -670,15 +670,13 @@
       <button id="closePinBtn" type="button" class="icon-btn close-btn" aria-label="סגור">×</button>
       <div class="pin-icon">⌁</div>
       <h2 id="pinTitle">כניסה למרכז הניהול</h2>
-      <p>בחרו סוג הרשאה והזינו את הסיסמה המתאימה:</p>
+      <p style="color: var(--danger); font-weight: 500;">אזהרה: אתם נכנסים למצב עריכה. שינויים שתבצעו כאן יישמרו וישפיעו על שאר המשתמשים במילון.</p>
       <label>סוג הרשאה
         <select id="pinRoleSelect">
           <option value="content">מומחה תוכן (Content Admin)</option>
           <option value="super">אדמין ראשי (Super Admin)</option>
         </select>
       </label>
-      <label>קוד גישה / סיסמה<input id="pinInput" type="password" inputmode="numeric" autocomplete="current-password" required></label>
-      <p id="pinError" class="form-error hidden">הקוד אינו נכון.</p>
       <button id="submitPinBtn" class="btn primary full-width" type="submit">כניסה</button>
     </form>
   </div>
