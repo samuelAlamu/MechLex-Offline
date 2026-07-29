@@ -1357,7 +1357,7 @@ function availableHierarchyLocations() {
 }
 
 function renderFilters() {
-  $("sortSelect").value = state.sort;
+  if ($("sortSelect")) $("sortSelect").value = state.sort;
   const locations = availableHierarchyLocations();
   const locationExists = state.subtopic === "all" || locations.some(({ subtopics }) => subtopics.some((subtopic) => subtopic.name === state.subtopic && (state.subSubtopic === "all" || subtopic.children.some((child) => child.name === state.subSubtopic))));
   if (!locationExists) { state.subtopic = "all"; state.subSubtopic = "all"; }
@@ -1365,11 +1365,14 @@ function renderFilters() {
     const rows = subtopics.map((subtopic) => `<option value="${esc(encodeHierarchyLocation(domain.id, subtopic.name))}">תת־תחום: ${esc(subtopic.name)}</option>${subtopic.children.map((child) => `<option value="${esc(encodeHierarchyLocation(domain.id, subtopic.name, child.name))}">↳ תת־תת־תחום: ${esc(child.name)}</option>`).join("")}`).join("");
     return state.domainId === "all" ? `<optgroup label="${esc(domain.name)}">${rows}</optgroup>` : rows;
   }).join("");
-  $("subtopicFilter").disabled = state.domainId === "all";
-  $("subtopicFilter").innerHTML = state.domainId === "all"
-    ? `<option value="all">בחרו תחום תחילה</option>`
-    : `<option value="all">כל המיקומים בתחום</option>${options}`;
-  $("subtopicFilter").value = state.subtopic === "all" ? "all" : encodeHierarchyLocation(state.domainId, state.subtopic, state.subSubtopic === "all" ? "" : state.subSubtopic);
+  const subtopicFilter = $("subtopicFilter");
+  if (subtopicFilter) {
+    subtopicFilter.disabled = state.domainId === "all";
+    subtopicFilter.innerHTML = state.domainId === "all"
+      ? `<option value="all">בחרו תחום תחילה</option>`
+      : `<option value="all">כל המיקומים בתחום</option>${options}`;
+    subtopicFilter.value = state.subtopic === "all" ? "all" : encodeHierarchyLocation(state.domainId, state.subtopic, state.subSubtopic === "all" ? "" : state.subSubtopic);
+  }
   $("searchInput").value = state.query;
 
   const domain = data.find((item) => item.id === state.domainId);
@@ -1395,6 +1398,22 @@ function renderFilters() {
     if (key === "collection") state.collection = "all";
     renderAll();
   }));
+
+  if ($("subtopicFilter")) {
+    $("subtopicFilter").addEventListener("change", (event) => {
+      const val = event.target.value;
+      if (val === "all") {
+        state.subtopic = "all";
+        state.subSubtopic = "all";
+      } else {
+        const decoded = decodeHierarchyLocation(val);
+        state.subtopic = decoded.subtopic;
+        state.subSubtopic = decoded.subSubtopic || "all";
+      }
+      renderAll();
+    });
+  }
+  if ($("sortSelect")) $("sortSelect").addEventListener("change", (event) => { state.sort = event.target.value; renderAll(); });
 }
 
 function statusLabel(status) {
@@ -2531,7 +2550,7 @@ function subtopicRowMarkup(item = {}) {
   const children = normalizeSubSubtopics(item.children || []);
   return `<section class="subtopic-editor-row" data-subtopic-row data-subtopic-id="${esc(item.id || uid())}">
     <div class="subtopic-editor-main">
-      <span class="hierarchy-level-badge">תת־תחום</span>
+      <span class="hierarchy-level-badge">תת־חום</span>
       <input data-subtopic-name aria-label="שם תת־התחום" placeholder="שם תת־התחום" value="${esc(item.name || "")}">
       <input data-subtopic-description aria-label="תיאור תת־התחום" placeholder="תיאור קצר (אופציונלי)" value="${esc(item.description || "")}">
       <input data-subtopic-color type="color" aria-label="צבע תת־התחום" value="${esc(item.color || "#496a80")}" title="צבע">

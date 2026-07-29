@@ -103,24 +103,19 @@
             </div>
           </section>
 
-          <section class="metrics" aria-label="נתוני המילון" style="flex: 1; min-width: 300px; margin: 0; align-self: center;">
+          <section class="metrics" aria-label="נתוני המילון" style="flex: 1; min-width: 200px; margin: 0; align-self: center;">
             <article><span id="metricTermsLabel">מושגים זמינים</span><strong id="termCount">0</strong><small id="metricTermsNote">במאגר הפעיל</small></article>
             <article><span id="metricDomainsLabel">תחומי ידע</span><strong id="domainCount">0</strong><small id="metricDomainsNote">מסודרים לפי דיסציפלינה</small></article>
           </section>
-        </div>
 
-        <section id="taxonomyExplorer" class="taxonomy-explorer" aria-label="ניווט לפי תחום, תת־תחום ותת־תת־תחום">
-          <div class="taxonomy-header-bar">
-            <button id="toggleTaxonomyBtn" type="button" class="taxonomy-summary" title="כווץ/הרחב מפת תחומים">
+          <div class="taxonomy-header-bar" style="flex: 1.5; min-width: 280px; align-self: center; border-radius: 20px;">
+            <button id="toggleTaxonomyBtn" type="button" class="taxonomy-summary" title="כווץ/הרחב מפת תחומים" style="width: 100%; border-radius: 20px; background: color-mix(in srgb, var(--surface) 78%, transparent);">
               <span class="section-kicker">KNOWLEDGE MAP</span>
-              <span><strong id="taxonomyTitle">מפת תחומים היררכית</strong><small id="taxonomyPath">תחום ← תת־תחום ← תת־תת־תחום ← מושגים</small></span>
+              <span><strong id="taxonomyTitle">מפת תחומים היררכית</strong></span>
               <span id="taxonomyArrow" class="taxonomy-toggle" aria-hidden="true">▲</span>
             </button>
-
-            <section id="controlPanel" class="control-panel taxonomy-integrated-controls" aria-label="סינון ומיון">
-              <div class="filters">
-                <label><span>מיקום בהיררכיה</span><select id="subtopicFilter"><option value="all">כל התחומים והרמות</option></select></label>
-                <label><span>מיון</span><select id="sortSelect"><option value="relevance">רלוונטיות</option><option value="name">שם המושג</option><option value="code">קוד קטלוגי</option><option value="updated">עודכן לאחרונה</option></select></label>
+            <section id="controlPanel" class="control-panel taxonomy-integrated-controls" aria-label="סינון ומיון" style="justify-content: center; background: none; border: none; box-shadow: none; padding-top: 0;">
+              <div class="filters" style="justify-content: center;">
                 <div class="view-switch" aria-label="צורת תצוגה">
                   <button id="gridViewBtn" class="icon-btn active" title="תצוגת כרטיסים" aria-label="תצוגת כרטיסים">▦</button>
                   <button id="listViewBtn" class="icon-btn" title="תצוגת רשימה" aria-label="תצוגת רשימה">☷</button>
@@ -129,6 +124,9 @@
               </div>
             </section>
           </div>
+        </div>
+
+        <section id="taxonomyExplorer" class="taxonomy-explorer" aria-label="ניווט לפי תחום, תת־תחום ותת־תת־תחום" style="margin-top: -12px;">
           <div id="taxonomyContent" class="taxonomy-content">
             <div id="domainTabs" class="taxonomy-tree" aria-label="עץ תחומי ידע"></div>
           </div>
