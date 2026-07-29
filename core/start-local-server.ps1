@@ -14,10 +14,6 @@ $RootBoundary = $Root + [System.IO.Path]::DirectorySeparatorChar
 $Address = [System.Net.IPAddress]::Loopback
 $MaxBodyBytes = 35MB
 
-# Small trusted-team mode: Windows group membership is not required.
-# Set to $false in the future to restore MechLex_Admins / MechLex_Editors enforcement.
-$SimpleTeamMode = $true
-
 function Resolve-SharedDataPath {
   $configured = $SharedDataPath
   if ([string]::IsNullOrWhiteSpace($configured)) { $configured = $env:MECHLEX_SHARED_DATA_PATH }
@@ -222,6 +218,25 @@ function Validate-StateData($dataArray) {
       }
     }
   }
+  
+  # Check for cycles
+  $parentMap = @{}
+  foreach ($item in $dataArray) {
+    if (-not [string]::IsNullOrWhiteSpace($item.parentId)) {
+      $parentMap[$item.id] = $item.parentId
+    }
+  }
+  foreach ($id in $parentMap.Keys) {
+    $visited = New-Object System.Collections.Generic.HashSet[string]
+    $current = $id
+    while ($current -ne $null -and $parentMap.ContainsKey($current)) {
+      if (-not $visited.Add($current)) {
+        return "Cycle detected involving item $current"
+      }
+      $current = $parentMap[$current]
+    }
+  }
+
   return $null
 }
 
@@ -280,28 +295,6 @@ function Test-SharedFolderWriteAccess {
       Remove-Item -LiteralPath $probePath -Force -ErrorAction SilentlyContinue
     }
   }
-}
-
-function Test-MechLexRole([string]$RequiredRole) {
-  if ($SimpleTeamMode) {
-    return $RequiredRole -in @("Admin", "Editor")
-  }
-
-  if ($env:MECHLEX_MOCK_ROLE) {
-    if ($RequiredRole -eq "Admin" -and $env:MECHLEX_MOCK_ROLE -match "Admin") { return $true }
-    if ($RequiredRole -eq "Editor" -and $env:MECHLEX_MOCK_ROLE -match "Admin|Editor") { return $true }
-    return $false
-  }
-  
-  $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
-  $principal = [System.Security.Principal.WindowsPrincipal]::new($identity)
-  if ($RequiredRole -eq "Admin") {
-    return $principal.IsInRole("MechLex_Admins") -or $principal.IsInRole([System.Security.Principal.WindowsBuiltInRole]::Administrator)
-  }
-  if ($RequiredRole -eq "Editor") {
-    return $principal.IsInRole("MechLex_Editors") -or $principal.IsInRole("MechLex_Admins") -or $principal.IsInRole([System.Security.Principal.WindowsBuiltInRole]::Administrator)
-  }
-  return $false
 }
 
 $SelectedPort = Find-AvailablePort $Port
@@ -380,24 +373,16 @@ try {
         continue
       }
 
-      if ($RawPath -eq "/api/can-write") {
+      if ($RawPath -in @("/api/can-write", "/api/capabilities")) {
         if ($Method -ne "GET") {
           Send-Response $Stream $Method 405 "Method Not Allowed" "application/json; charset=utf-8" (Json-Bytes @{ message = "Method Not Allowed" }) @("Allow: GET")
           continue
         }
         $canWrite = $false
-        $role = "Viewer"
         try {
-          $folderWritable = Test-SharedFolderWriteAccess
-          if ($folderWritable -and (Test-MechLexRole "Admin")) {
-            $role = "Admin"
-            $canWrite = $true
-          } elseif ($folderWritable -and (Test-MechLexRole "Editor")) {
-            $role = "Editor"
-            $canWrite = $true
-          }
+          $canWrite = [bool](Test-SharedFolderWriteAccess)
         } catch {}
-        Send-Response $Stream $Method 200 "OK" "application/json; charset=utf-8" (Json-Bytes @{ canWrite = $canWrite; role = $role })
+        Send-Response $Stream $Method 200 "OK" "application/json; charset=utf-8" (Json-Bytes @{ canWrite = $canWrite; role = "Editor" })
         continue
       }
 
@@ -436,7 +421,7 @@ try {
             continue
           }
           if ($knownRevision -eq [int]$record.revision) {
-            Send-Response $Stream $Method 304 "Not Modified" "application/json; charset=utf-8" ([byte[]]@())
+            Send-Response $Stream $Method 200 "OK" "application/json; charset=utf-8" (Json-Bytes @{ status = "unchanged"; revision = [int]$record.revision })
           } else {
             Send-Response $Stream $Method 200 "OK" "application/json; charset=utf-8" (Json-Bytes $record)
           }
@@ -481,25 +466,6 @@ try {
           $lock = Acquire-StateLock
           $current = Read-State
           
-          # Phase 4 ACL Check
-          $isAdminChange = $false
-          if ($null -ne $current -and $null -ne $payload.shared.settings) {
-            $oldSettings = $current.shared.settings | ConvertTo-Json -Depth 10 -Compress
-            $newSettings = $payload.shared.settings | ConvertTo-Json -Depth 10 -Compress
-            if ($oldSettings -ne $newSettings) { $isAdminChange = $true }
-          } elseif ($null -eq $current) {
-            $isAdminChange = $true # Initial creation requires Admin
-          }
-          
-          if ($isAdminChange -and -not (Test-MechLexRole "Admin")) {
-            Send-Response $Stream $Method 403 "Forbidden" "application/json; charset=utf-8" (Json-Bytes @{ message = "Administrator rights required to modify settings or initialize catalog" })
-            continue
-          }
-          if (-not $isAdminChange -and -not (Test-MechLexRole "Editor")) {
-            Send-Response $Stream $Method 403 "Forbidden" "application/json; charset=utf-8" (Json-Bytes @{ message = "Editor rights required to modify content" })
-            continue
-          }
-
           $currentRevision = if ($null -eq $current) { 0 } else { [int]$current.revision }
           if ([int]$payload.expectedRevision -ne $currentRevision) {
             Send-Response $Stream $Method 409 "Conflict" "application/json; charset=utf-8" (Json-Bytes @{

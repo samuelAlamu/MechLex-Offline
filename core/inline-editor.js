@@ -42,7 +42,6 @@
     ["emptyStateDesc", "#emptyState p"],
     ["emptyResetBtn", "#emptyResetBtn"],
     ["mindMapInfoTitle", ".mind-map-info strong"],
-    ["adminBtn", "#adminBtn"],
     ["saveState", "#saveState"],
   ];
   let visualMode = false;
@@ -113,6 +112,61 @@
       if (!node.dataset.visualBound) {
         node.dataset.visualBound = "true";
         node.addEventListener("blur", () => saveInlineText(node));
+      }
+    });
+    document.querySelectorAll("[data-domain-edit-id]").forEach((node) => {
+      node.contentEditable = visualMode ? "true" : "false";
+      node.classList.toggle("visual-inline-target", visualMode);
+      if (!node.dataset.visualBound) {
+        node.dataset.visualBound = "true";
+        node.addEventListener("blur", () => {
+          const id = node.dataset.domainEditId;
+          const next = node.textContent.replace(/\s+/g, " ").trim();
+          if (!next) { node.textContent = node.dataset.beforeEdit || ""; return; }
+          const domain = data.find(d => d.id === id);
+          if (domain && domain.name !== next) {
+            domain.name = next;
+            saveAll(`שם התחום שונה ל-“${next}”`, { backupRelevant: "system" });
+          }
+        });
+        node.addEventListener("focus", () => { node.dataset.beforeEdit = node.textContent; });
+        node.addEventListener("click", (event) => {
+          if (visualMode) event.stopPropagation();
+        });
+        node.addEventListener("dblclick", (event) => {
+          if (visualMode) event.stopPropagation();
+        });
+        node.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" && !event.shiftKey) { event.preventDefault(); node.blur(); }
+        });
+      }
+    });
+    document.querySelectorAll("[data-term-edit-id]").forEach((node) => {
+      node.contentEditable = visualMode ? "true" : "false";
+      node.classList.toggle("visual-inline-target", visualMode);
+      if (!node.dataset.visualBound) {
+        node.dataset.visualBound = "true";
+        node.addEventListener("blur", () => {
+          const id = node.dataset.termEditId;
+          const next = node.textContent.replace(/\s+/g, " ").trim();
+          if (!next) { node.textContent = node.dataset.beforeEdit || ""; return; }
+          const terms = allTerms() || [];
+          const term = terms.find(t => t.id === id);
+          if (term && term.name !== next) {
+            term.name = next;
+            saveAll(`שם המושג שונה ל-“${next}”`, { backupRelevant: "system" });
+          }
+        });
+        node.addEventListener("focus", () => { node.dataset.beforeEdit = node.textContent; });
+        node.addEventListener("click", (event) => {
+          if (visualMode) event.stopPropagation();
+        });
+        node.addEventListener("dblclick", (event) => {
+          if (visualMode) event.stopPropagation();
+        });
+        node.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" && !event.shiftKey) { event.preventDefault(); node.blur(); }
+        });
       }
     });
   }
@@ -217,8 +271,8 @@
     toolbar.querySelector("#visualAddTerm").addEventListener("click", () => openStructuredEditor("term"));
     toolbar.querySelector("#visualAddDomain").addEventListener("click", () => openStructuredEditor("domain"));
     toolbar.querySelector("#visualSaveAll").addEventListener("click", () => {
-      if (document.activeElement && document.activeElement.dataset?.inlineKey) {
-        saveInlineText(document.activeElement);
+      if (document.activeElement && document.activeElement.isContentEditable) {
+        document.activeElement.blur();
       }
       for (const [key, selector] of textTargets) {
         const el = document.querySelector(selector);

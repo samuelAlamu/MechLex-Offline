@@ -1,0 +1,30 @@
+{
+  "changed": [
+    "index.html",
+    "app.js",
+    "README_HE.txt"
+  ],
+  "unchanged": [
+    "core\\boot.js",
+    "core\\inline-editor.js",
+    "core\\integrity.js",
+    "core\\persistence.js",
+    "core\\README.md",
+    "core\\recovery-wizard.ps1",
+    "core\\shared-sync.js",
+    "core\\start-local-server.ps1",
+    "images\\another-image.png",
+    "images\\catalog.js",
+    "images\\mechlex-icon.svg",
+    "images\\README.md",
+    "images\\README_IMAGES.txt",
+    "images\\test-image.jpg",
+    "backups\\content-backup-initial.json",
+    "backups\\full-admin-backup-initial.json",
+    "backups\\full-admin-backup-latest.json",
+    "backups\\README.md",
+    "style.css",
+    "SHARED_DATA_PATH.txt",
+    "START_MECHLEX.bat"
+  ]
+}

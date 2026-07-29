@@ -150,6 +150,11 @@ button, .term-card { -webkit-tap-highlight-color: transparent; }
   cursor: pointer;
   transition: background .16s, color .16s, transform .16s;
 }
+.nav-item span, .domain-nav button span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .nav-item:hover, .domain-nav button:hover { background: var(--surface-2); color: var(--text-strong); }
 .nav-item.active { background: var(--primary-soft); color: var(--primary); font-weight: 700; }
 .nav-item b, .domain-nav b { font-size: .75rem; min-width: 25px; text-align: center; padding: 1px 6px; border: 1px solid var(--line); border-radius: 999px; }

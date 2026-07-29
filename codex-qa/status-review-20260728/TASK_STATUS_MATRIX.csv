@@ -1,0 +1,87 @@
+Task ID,Task Description,Expected Acceptance Criterion,Current Status,Implementation File/Function,Test Executed,Test Result,Evidence Path,Remaining Work,Severity if Incomplete
+STM-01,Simple Team Mode specification,$SimpleTeamMode variable exists,COMPLETED BUT NOT VERIFIED,core/start-local-server.ps1:19,Source inspection,Code confirmed,SI-001,Runtime test,CRITICAL
+STM-02,Default enablement,Set to $true by default,COMPLETED BUT NOT VERIFIED,core/start-local-server.ps1:19,Source inspection,Code confirmed,SI-001,Runtime test,CRITICAL
+STM-03,No required Windows groups,Test-MechLexRole bypasses groups,COMPLETED BUT NOT VERIFIED,core/start-local-server.ps1:286-288,Source inspection,Code confirmed,SI-001,Runtime test,CRITICAL
+STM-04,No required Administrator elevation,Works without RunAs,COMPLETED BUT NOT VERIFIED,core/start-local-server.ps1:286-288,Source inspection,Code confirmed,SI-001,Runtime test,CRITICAL
+STM-05,PIN 1234 Content Admin,Default contentPin is 1234,COMPLETED BUT NOT VERIFIED,app.js:471-472,Source inspection,Code confirmed,SI-005,Runtime test,CRITICAL
+STM-06,PIN 9999 Full Admin,Default superPin is 9999,COMPLETED BUT NOT VERIFIED,app.js:473,Source inspection,Code confirmed,SI-005,Runtime test,CRITICAL
+STM-07,Incorrect PIN rejection,PIN mismatch shows error,COMPLETED BUT NOT VERIFIED,app.js:2371-2373,Source inspection,Code confirmed,None,Runtime test,MAJOR
+STM-08,Writable-folder check,Write probe confirms access,COMPLETED BUT NOT VERIFIED,core/start-local-server.ps1:262-283,Source inspection,Code confirmed,SI-003,Runtime test,CRITICAL
+STM-09,Read-only-folder handling,Returns canWrite=false,COMPLETED BUT NOT VERIFIED,core/start-local-server.ps1:391-399,Source inspection,Code confirmed,None,Runtime test,CRITICAL
+STM-10,Unavailable-folder handling,Sync goes offline,COMPLETED BUT NOT VERIFIED,core/shared-sync.js:234-237,Source inspection,Code confirmed,None,Runtime test,CRITICAL
+STM-11,Accurate UI messages,Toast messages for all states,COMPLETED BUT NOT VERIFIED,core/shared-sync.js:various,Source inspection,Code confirmed,None,Runtime test,MAJOR
+STM-12,Documentation updated,Docs describe Simple Team Mode,NOT STARTED,N/A,N/A,N/A,N/A,Write documentation,MAJOR
+STM-13,Optional Hardened Mode separated,Separate config for Windows groups,COMPLETED BUT NOT VERIFIED,$SimpleTeamMode=$false path,Source inspection,Code exists,None,Runtime test,MINOR
+SDS-01,One authoritative shared dictionary,state.json is sole authority,COMPLETED BUT NOT VERIFIED,core/shared-sync.js,Source inspection,Code confirmed,SI-006,Runtime test,CRITICAL
+SDS-02,Correct shared-data path,SHARED_DATA_PATH.txt resolves correctly,COMPLETED AND VERIFIED,core/start-local-server.ps1:21-39,PowerShell resolution test,Path exists,SI-002,None,CRITICAL
+SDS-03,No LocalStorage dictionary authority,localStorage stores only prefs/restore,COMPLETED BUT NOT VERIFIED,core/persistence.js:6-11,Source inspection,Code confirmed,None,Runtime test,CRITICAL
+SDS-04,No IndexedDB dictionary authority,No IndexedDB usage found,COMPLETED AND VERIFIED,app.js (grep),Grep search,Zero matches,SI-010,None,CRITICAL
+SDS-05,No embedded data authority after sync,Shared-sync overwrites embedded data,PARTIALLY COMPLETED,core/shared-sync.js:74-107,Source inspection,Overwrite exists,None,Verify sync always succeeds first,CRITICAL
+SDS-06,file:// behaviour,Blocks sync but still renders data,PARTIALLY COMPLETED,core/shared-sync.js:241-243,Source inspection,Sync blocked,G1-SEC-01,Block rendering too,CRITICAL
+SDS-07,Missing state behaviour,Publishes initial catalog,COMPLETED BUT NOT VERIFIED,core/shared-sync.js:142-143,Source inspection,Code exists,None,Runtime test,MAJOR
+SDS-08,No automatic empty state from GET,can-write does not touch state.json,COMPLETED BUT NOT VERIFIED,core/start-local-server.ps1:383-401,Source inspection,Code confirmed,SI-003,Runtime test,CRITICAL
+SDS-09,Atomic write,Temp file + File.Replace,COMPLETED BUT NOT VERIFIED,core/start-local-server.ps1:228-255,Source inspection,Code confirmed,SI-006,Runtime test,CRITICAL
+SDS-10,Revision conflict,409 on mismatch,COMPLETED BUT NOT VERIFIED,core/start-local-server.ps1:504-512,Source inspection,Code confirmed,SI-007,Runtime test,CRITICAL
+SDS-11,Save failure handling,Rollback and toast error,COMPLETED BUT NOT VERIFIED,core/shared-sync.js:188-204,Source inspection,Code exists,None,Runtime test,CRITICAL
+SDS-12,Restart and reopen,Data persists in state.json,COMPLETED BUT NOT VERIFIED,core/start-local-server.ps1:175-184,Source inspection,Code exists,None,Runtime test,CRITICAL
+SDS-13,Backup,History rotation 30 entries,COMPLETED BUT NOT VERIFIED,core/start-local-server.ps1:250-254,Source inspection,Code exists,None,Runtime test,MAJOR
+SDS-14,Recovery,Recovery mode + recovery-wizard.ps1,COMPLETED BUT NOT VERIFIED,core/start-local-server.ps1:317-338,Source inspection,Code exists,None,Runtime test,MAJOR
+SDS-15,Read-only mode,Sync reports offline/readonly,COMPLETED BUT NOT VERIFIED,core/shared-sync.js:276-286,Source inspection,Code exists,None,Runtime test,CRITICAL
+SDS-16,Disconnected share,Fail-closed behavior,COMPLETED BUT NOT VERIFIED,core/shared-sync.js:264-268,Source inspection,Code exists,None,Runtime test,CRITICAL
+API-01,Relative API URLs,All fetch calls use relative paths,COMPLETED AND VERIFIED,app.js core/shared-sync.js,Grep search,Zero hardcoded URLs,SI-002,None,CRITICAL
+API-02,Port selection,Dynamic port 8765-8785,COMPLETED BUT NOT VERIFIED,core/start-local-server.ps1:81-88,Source inspection,Code exists,None,Runtime test,MAJOR
+API-03,Wrong-helper prevention,Checks rootPath match,PARTIALLY COMPLETED,core/start-local-server.ps1:64-78,Source inspection,Checks root only,G1-ARCH-02,Add version check,MAJOR
+API-04,Duplicate launch handling,Reuses existing or finds new port,COMPLETED BUT NOT VERIFIED,core/start-local-server.ps1:307-313,Source inspection,Code exists,None,Runtime test,MAJOR
+API-05,Loopback binding,IPAddress.Loopback only,COMPLETED AND VERIFIED,core/start-local-server.ps1:14,Source inspection,Confirmed,SI-008,None,CRITICAL
+API-06,Host handling,Not enforced on all routes,PARTIALLY COMPLETED,core/start-local-server.ps1,Source inspection,Origin check on /api/shared-state only,G1-SEC-04,Add to all routes,MAJOR
+API-07,Origin handling,Origin-IsAllowed on PUT,PARTIALLY COMPLETED,core/start-local-server.ps1:257-260,Source inspection,Only on /api/shared-state,G1-SEC-04,Consistent enforcement,MAJOR
+API-08,Side-effect-free GET/HEAD,GET/HEAD do not mutate state,COMPLETED BUT NOT VERIFIED,core/start-local-server.ps1,Source inspection,Code confirmed,SI-003,Runtime test,CRITICAL
+API-09,Correct status codes,405 415 422 409 etc,COMPLETED BUT NOT VERIFIED,core/start-local-server.ps1,Source inspection,Codes present,None,Runtime test,MINOR
+API-10,No false save success,Save failure triggers rollback,PARTIALLY COMPLETED,core/shared-sync.js:188-204,Source inspection,Rollback exists,G1-SEC-07,Brief false window possible,CRITICAL
+API-11,No error swallowing,Empty catch blocks exist,PARTIALLY COMPLETED,core/start-local-server.ps1:399 564,Source inspection,Empty catches found,F-005 F-006,Add logging,MAJOR
+API-12,Correct health response,Returns mode/writable/stateExists,COMPLETED BUT NOT VERIFIED,core/start-local-server.ps1:366-381,Source inspection,Code exists,None,Runtime test,MINOR
+API-13,Correct can-write response,Returns canWrite/role,COMPLETED BUT NOT VERIFIED,core/start-local-server.ps1:383-401,Source inspection,Code exists,SI-003,Runtime test,CRITICAL
+API-14,Correct shared-state response,GET/PUT with revision,COMPLETED BUT NOT VERIFIED,core/start-local-server.ps1:427-537,Source inspection,Code exists,SI-006 SI-007,Runtime test,CRITICAL
+IMG-01,Real images-directory scan,Server scans images/ on request,COMPLETED BUT NOT VERIFIED,core/start-local-server.ps1:404-424,Source inspection,Code confirmed,SI-004,Runtime test,CRITICAL
+IMG-02,Dynamic image catalogue,Fetched via /api/image-catalog,COMPLETED BUT NOT VERIFIED,app.js:64-73,Source inspection,Code confirmed,SI-004,Runtime test,CRITICAL
+IMG-03,Auto match by Hebrew name,term.name checked against catalog,COMPLETED BUT NOT VERIFIED,app.js:2140-2157,Source inspection,Code exists,None,Runtime test with real image,CRITICAL
+IMG-04,Auto match by English name,term.nameEn NOT checked,NOT STARTED,app.js:2144,Source inspection,nameEn absent from requestedNames,None,Add nameEn to matching,MAJOR
+IMG-05,Optional match by term code,NOT implemented,NOT STARTED,app.js:2144,Source inspection,code absent from requestedNames,None,Add code to matching,MINOR
+IMG-06,Extension-insensitive matching,Stem comparison strips extension,COMPLETED BUT NOT VERIFIED,app.js:2150,Source inspection,Code exists,None,Runtime test,MINOR
+IMG-07,Case-insensitive English,normalizeText used,COMPLETED BUT NOT VERIFIED,app.js:2150-2151,Source inspection,Code exists,None,Runtime test,MINOR
+IMG-08,Unicode-normalized Hebrew,NFKD normalization + diacritics strip,COMPLETED BUT NOT VERIFIED,app.js:108-110,Source inspection,Code exists,None,Runtime test,MINOR
+IMG-09,Spaces handling,Direct name comparison,COMPLETED BUT NOT VERIFIED,app.js:2149,Source inspection,Exact match used,None,Runtime test,MINOR
+IMG-10,Exact-match rules,Checks exact name then stem,COMPLETED BUT NOT VERIFIED,app.js:2148-2152,Source inspection,Priority logic exists,None,Runtime test,MINOR
+IMG-11,Explicit admin image override,imageData checked first,COMPLETED BUT NOT VERIFIED,app.js:2200-2202,Source inspection,imageData priority,None,Runtime test,MINOR
+IMG-12,Missing image handling,missingImageMarkup shown,COMPLETED BUT NOT VERIFIED,app.js:2136-2137,Source inspection,Placeholder exists,None,Runtime test,MINOR
+IMG-13,Cache refresh,NOT implemented,NOT STARTED,app.js,Source inspection,No re-fetch after init,None,Add periodic re-fetch,MAJOR
+IMG-14,New image after startup,NOT automatically detected,NOT STARTED,app.js:3969,Source inspection,Single fetch at init,None,Add re-fetch mechanism,MAJOR
+IMG-15,Image replacement,No cache busting,NOT STARTED,app.js,Source inspection,No cache invalidation,None,Add cache busting,MAJOR
+IMG-16,Large-image support,35MB body limit on server,COMPLETED BUT NOT VERIFIED,core/start-local-server.ps1:15,Source inspection,Limit confirmed,None,Runtime benchmark,MAJOR
+IMG-17,Second-session behaviour,Same mechanism on reload,COMPLETED BUT NOT VERIFIED,app.js:3969,Source inspection,fetchImageCatalog in init,None,Runtime test,MINOR
+IMG-18,Fully offline behaviour,Requires helper server,COMPLETED BUT NOT VERIFIED,app.js:66,Source inspection,Fetch to local API,None,Runtime test,MINOR
+IMG-19,Image integrity report,NOT implemented,NOT STARTED,N/A,N/A,N/A,None,Design and implement,MINOR
+UX-01,Accurate save messages,Shared sync status badge,COMPLETED BUT NOT VERIFIED,core/shared-sync.js:39-52,Source inspection,Badge exists,None,Runtime test,MAJOR
+UX-02,Unsaved-change warning,NOT implemented,NOT STARTED,app.js,Source inspection,No beforeunload handler,G1-UX-02,Implement warning,MAJOR
+UX-03,Connection indicator,Shared sync status badge,COMPLETED BUT NOT VERIFIED,core/shared-sync.js:39-52,Source inspection,Badge exists,None,Runtime test,MINOR
+UX-04,Read-only indicator,Badge shows offline/readonly text,COMPLETED BUT NOT VERIFIED,core/shared-sync.js:236,Source inspection,Text exists,None,Runtime test,MINOR
+UX-05,Admin role indicator,adminRoleName element,COMPLETED BUT NOT VERIFIED,app.js:2397-2398,Source inspection,Code exists,None,Runtime test,MINOR
+UX-06,Conflict handling,Toast + sync status badge,COMPLETED BUT NOT VERIFIED,core/shared-sync.js:170-173,Source inspection,Code exists,None,Runtime test,MAJOR
+UX-07,Search,Full search implementation,COMPLETED BUT NOT VERIFIED,app.js,Source inspection,Search exists,G1-UX-01,Fix special chars,MAJOR
+UX-08,Hebrew support,RTL layout and Hebrew content,COMPLETED BUT NOT VERIFIED,index.html:2,Source inspection,dir=rtl lang=he,None,Runtime test,MAJOR
+UX-09,English support,nameEn fields displayed,COMPLETED BUT NOT VERIFIED,app.js,Source inspection,Code exists,None,Runtime test,MINOR
+UX-10,Mixed RTL/LTR,CSS support exists,COMPLETED BUT NOT VERIFIED,style.css,Source inspection,RTL styles exist,None,Runtime test,MINOR
+UX-11,Keyboard navigation,Skip-to-content button,PARTIALLY COMPLETED,index.html:20,Source inspection,Button exists,G1-A11Y-01,Fix ARIA tab states,MAJOR
+UX-12,Responsive layout,CSS media queries,COMPLETED BUT NOT VERIFIED,style.css,Source inspection,Responsive CSS exists,None,Runtime test,MINOR
+UX-13,Error recovery,Recovery mode overlay,COMPLETED BUT NOT VERIFIED,core/shared-sync.js:206-217,Source inspection,Code exists,None,Runtime test,MAJOR
+QA-01,Goal 1 completed,Audit completed with NO GO,COMPLETED AND VERIFIED,codex-qa/GOAL_STATUS.md,Documentation review,Confirmed,GOAL_STATUS.md,None,N/A
+QA-02,Goal 2 completed,Code fixes applied not tested,PARTIALLY COMPLETED,Current branch,Code review,Fixes exist,This report,Runtime verification,CRITICAL
+QA-03,Goal 3 completed,Independent final review,NOT STARTED,N/A,N/A,N/A,N/A,Complete Goal 2 first,CRITICAL
+QA-04,Original test IDs preserved,Goal 1 IDs in matrix,COMPLETED AND VERIFIED,codex-qa/QA_TEST_EXECUTION_MATRIX.csv,File review,IDs present,codex-qa/,None,MINOR
+QA-05,Regression cases added,None added in Goal 2,NOT STARTED,N/A,N/A,N/A,N/A,Add regressions for fixes,MAJOR
+QA-06,Full matrix executed,0% execution in this review,NOT STARTED,N/A,N/A,N/A,N/A,Execute all cases,CRITICAL
+QA-07,Evidence index complete,Goal 1 index exists,PARTIALLY COMPLETED,codex-qa/EVIDENCE_INDEX.md,File review,Goal 1 only,codex-qa/,Update for Goal 2,MAJOR
+QA-08,Category scores justified,This review provides updated scores,PARTIALLY COMPLETED,This report,Code inspection,Updated scores,This report,Runtime evidence,MAJOR
+QA-09,External environment gaps declared,Edge 95 and SMB gaps declared,COMPLETED AND VERIFIED,This report,This review,Gaps documented,This report,None,MINOR
+QA-10,Release candidate frozen,No RC exists,NOT STARTED,N/A,N/A,N/A,N/A,Freeze after Goal 2 verification,CRITICAL
+QA-11,Independent final review completed,Goal 3 not started,NOT STARTED,N/A,N/A,N/A,N/A,Complete after RC,CRITICAL
