@@ -126,20 +126,12 @@
           </div>
         </div>
 
-        <section id="taxonomyExplorer" class="taxonomy-explorer" aria-label="ניווט לפי תחום, תת־תחום ותת־תת־תחום" style="margin-top: -12px;">
-          <div id="taxonomyContent" class="taxonomy-content">
-            <div id="domainTabs" class="taxonomy-tree" aria-label="עץ תחומי ידע"></div>
-          </div>
-        </section>
-
-        <section id="domainSelectionState" class="domain-selection-state">
-          <span class="domain-selection-icon" aria-hidden="true">⌁</span>
-          <div><strong id="introTitle">המילון נפתח לפי תחומי ידע</strong><p id="introDescription">בחרו אחד מכרטיסי התחומים למעלה כדי לחשוף את המבנה שלו ואת המושגים שבתוכו. אפשר גם לחפש מושג ישירות בשורת החיפוש.</p></div>
-        </section>
+        
 
 
 
-        <section id="resultsHead" class="results-head">
+        <div id="searchResultsWrapper" style="display: flex; flex-direction: column; width: 100%; flex-shrink: 0; min-height: min-content;">
+<section id="resultsHead" class="results-head">
           <div class="results-head-titles">
             <div id="activeContext" class="active-context">
               <span>מציג:</span><strong id="contextLabel">כל המושגים</strong>
@@ -181,6 +173,20 @@
           <p>נסה מונח אחר, קוד קטלוגי, שם באנגלית או איפוס של אחד המסננים.</p>
           <button id="emptyResetBtn" class="btn primary">איפוס חיפוש ומסננים</button>
         </section>
+</div>
+
+<section id="taxonomyExplorer" class="taxonomy-explorer" aria-label="ניווט לפי תחום, תת־תחום ותת־תת־תחום" >
+          <div id="taxonomyContent" class="taxonomy-content">
+            <div id="domainTabs" class="taxonomy-tree" aria-label="עץ תחומי ידע"></div>
+          </div>
+        </section>
+
+<section id="domainSelectionState" class="domain-selection-state">
+          <span class="domain-selection-icon" aria-hidden="true">⌁</span>
+          <div><strong id="introTitle">המילון נפתח לפי תחומי ידע</strong><p id="introDescription">בחרו אחד מכרטיסי התחומים למעלה כדי לחשוף את המבנה שלו ואת המושגים שבתוכו. אפשר גם לחפש מושג ישירות בשורת החיפוש.</p></div>
+        </section>
+
+
       </main>
     </div>
   </div>

@@ -1037,13 +1037,12 @@ html, body {
     height: auto !important;
     min-height: 0 !important;
     overflow: visible !important;
-    display: grid !important;
-    grid-template-columns: minmax(0, 1fr) !important;
-    grid-template-rows: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
     gap: 10px !important;
   }
   .dictionary-grid,
-  .empty-state { grid-row: auto !important; min-height: 0; }
+  .empty-state { min-height: min-content !important; flex-shrink: 0; }
   .dictionary-grid { overflow: visible !important; padding-inline-end: 0 !important; scrollbar-gutter: auto !important; }
 }
 
@@ -1457,7 +1456,8 @@ body {
 .results-head h2 { font-size: 1.55rem !important; }
 .results-head p { margin-top: 4px; font-size: .88rem; }
 
-.dictionary-grid { grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 18px; }
+.dictionary-grid { grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 18px; margin-bottom: 24px; }
+.empty-state { margin-bottom: 24px; }
 .term-card { min-height: 260px; padding: 22px; border-radius: 16px; box-shadow: 0 10px 26px rgba(12,35,49,.10), 0 2px 7px rgba(12,35,49,.06); }
 .term-card::before { width: 6px; }
 .term-card:hover { transform: translateY(-5px); border-color: var(--domain-color); box-shadow: 0 22px 46px color-mix(in srgb, var(--domain-color) 14%, rgba(12,35,49,.13)); }
