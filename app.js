@@ -1788,7 +1788,7 @@ function renderMindMap(filteredTerms) {
 
   filteredDomains.forEach((domain) => {
     const domainNodeId = `domain-${domain.id}`;
-    const isDomainCollapsed = mindMapCollapsedNodes.has(domainNodeId);
+    const isDomainCollapsed = state.query.trim() ? false : mindMapCollapsedNodes.has(domainNodeId);
     const domainTerms = domain.items.filter((t) => termIdsSet.has(t.id));
     const entries = domainSubtopicEntries(domain);
 
@@ -1802,7 +1802,7 @@ function renderMindMap(filteredTerms) {
 
     entries.forEach((subtopic) => {
       const subtopicNodeId = `subtopic-${domain.id}-${subtopic.name}`;
-      const isSubtopicCollapsed = mindMapCollapsedNodes.has(subtopicNodeId);
+      const isSubtopicCollapsed = state.query.trim() ? false : mindMapCollapsedNodes.has(subtopicNodeId);
       const subtopicTerms = domainTerms.filter((term) => term.subtopic === subtopic.name);
       if (subtopicTerms.length === 0 && state.query.trim()) return;
 
@@ -1817,7 +1817,7 @@ function renderMindMap(filteredTerms) {
       if (subtopic.children.length > 0) {
         subtopic.children.forEach((child) => {
           const childNodeId = `child-${domain.id}-${subtopic.name}-${child.name}`;
-          const isChildCollapsed = mindMapCollapsedNodes.has(childNodeId);
+          const isChildCollapsed = state.query.trim() ? false : mindMapCollapsedNodes.has(childNodeId);
           const childTerms = subtopicTerms.filter((term) => term.subSubtopic === child.name);
           if (childTerms.length === 0 && state.query.trim()) return;
 
@@ -1851,6 +1851,15 @@ function renderMindMap(filteredTerms) {
       });
 
       html += `</div></div>`;
+    });
+
+    const directDomainTerms = domainTerms.filter((t) => !t.subtopic || t.subtopic === "direct" || !entries.some((e) => e.name === t.subtopic));
+    directDomainTerms.forEach((term) => {
+      html += `<div class="mm-node mm-node-term" id="mmnode-term-${term.id}" data-mm-term="${esc(term.id)}">
+        ${term.image ? `<img src="images/${esc(term.image)}" class="mm-node-thumb" alt="" />` : ""}
+        <span class="mm-node-code">${esc(term.code)}</span>
+        <strong>${esc(term.name)}</strong>
+      </div>`;
     });
 
     html += `</div></div>`;
