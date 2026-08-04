@@ -8,6 +8,17 @@
   <link rel="icon" href="images/mechlex-icon.svg" type="image/svg+xml">
   <title>MechLex 10.1.0 · מילון הנדסי עם עריכה חזותית</title>
   <script>
+    /* MechLex direct file:// execution redirect to Local Server (127.0.0.1:8765) */
+    (function enforceServerAccess() {
+      if (window.location.protocol === "file:") {
+        var serverHost = "http://127.0.0.1:8765/";
+        var pageName = window.location.pathname.split("/").pop() || "index.html";
+        var targetUrl = serverHost + pageName + window.location.search + window.location.hash;
+        window.location.replace(targetUrl);
+      }
+    }());
+  </script>
+  <script>
     (function () {
       var supportsColorMix = !!(window.CSS && CSS.supports && CSS.supports("color", "color-mix(in srgb, #000 50%, #fff)"));
       if (!supportsColorMix) document.documentElement.className += " legacy-edge95";

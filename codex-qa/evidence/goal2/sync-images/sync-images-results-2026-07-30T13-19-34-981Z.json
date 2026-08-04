@@ -1,0 +1,289 @@
+{
+  "generatedAt": "2026-07-30T13:20:57.133Z",
+  "projectRoot": "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork",
+  "workspaceRoot": "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\sync-images-2026-07-30T13-19-34-981Z",
+  "evidenceRoot": "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\evidence\\goal2\\sync-images",
+  "environment": {
+    "platform": "win32",
+    "node": "v20.15.0",
+    "powershell": "Windows PowerShell invoked with -NoProfile",
+    "stationA": {
+      "port": 51160,
+      "root": "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\sync-images-2026-07-30T13-19-34-981Z\\station-a"
+    },
+    "stationB": {
+      "port": 51161,
+      "root": "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\sync-images-2026-07-30T13-19-34-981Z\\station-b"
+    },
+    "sharedRoot": "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\sync-images-2026-07-30T13-19-34-981Z\\shared"
+  },
+  "sourceHashes": {
+    "server": "aa4cb8e410c4df7d38415dfb25fddf982c1c87d97477e7e38e76d6339e50a484",
+    "sharedSync": "ab04a11d4887498ebef5f86d25289970029973ff84340fa8664f330b2f3a0d39",
+    "recovery": "113b0a692dbc877bc92aba1203ef1d98832e050664ece46a6686ed6ccc1fa1ca"
+  },
+  "summary": {
+    "pass": 8,
+    "fail": 5,
+    "notTested": [
+      "Real SMB share with two physical workstations",
+      "Power-loss during File.Replace/Flush",
+      "Actual Edge 95 runtime and 15 MiB image rendering"
+    ]
+  },
+  "results": [
+    {
+      "id": "SYNC-STATIONS-HEALTH",
+      "expected": "Two independent loopback helpers point to the same disposable shared folder",
+      "observed": {
+        "stationA": {
+          "writable": true,
+          "ok": true,
+          "stateExists": false,
+          "mode": "offline-shared-folder"
+        },
+        "stationB": {
+          "writable": true,
+          "ok": true,
+          "stateExists": false,
+          "mode": "offline-shared-folder"
+        }
+      },
+      "status": "PASS",
+      "at": "2026-07-30T13:19:36.762Z"
+    },
+    {
+      "id": "SYNC-TERM-AVAILABLE-ALL-STATIONS",
+      "expected": "A term saved through station A is readable through independent station B",
+      "observed": {
+        "putStatus": 200,
+        "getStatus": 200,
+        "revision": 1,
+        "term": "Term added-on-a"
+      },
+      "status": "PASS",
+      "at": "2026-07-30T13:19:37.256Z",
+      "limitation": "Executed with two helper processes on one Windows host sharing one folder; real SMB/multi-PC propagation remains NOT TESTED."
+    },
+    {
+      "id": "SYNC-POLL-304",
+      "expected": "HTTP 304 Not Modified for a known current revision",
+      "observed": {
+        "status": 200,
+        "body": "{\"revision\":1,\"status\":\"unchanged\"}"
+      },
+      "status": "FAIL",
+      "at": "2026-07-30T13:19:37.276Z"
+    },
+    {
+      "id": "SYNC-REVISION-409",
+      "expected": "A stale expectedRevision is rejected with 409 and state bytes do not change",
+      "observed": {
+        "status": 409,
+        "response": {
+          "updatedAt": "2026-07-30T13:19:36.9623079Z",
+          "message": "A newer shared revision already exists",
+          "updatedBy": "station-a",
+          "currentRevision": 1
+        },
+        "beforeSha256": "5adb758fcef4b5f1dc652deed27124eedd9e0d0317dde98be64d4f9ad6d8046f",
+        "afterSha256": "5adb758fcef4b5f1dc652deed27124eedd9e0d0317dde98be64d4f9ad6d8046f"
+      },
+      "status": "PASS",
+      "at": "2026-07-30T13:19:37.421Z"
+    },
+    {
+      "id": "SYNC-CROSS-HELPER-RACE",
+      "expected": "Exactly one writer commits and one receives 409",
+      "observed": {
+        "statuses": [
+          409,
+          200
+        ],
+        "finalRevision": 2,
+        "finalReason": "race-b"
+      },
+      "status": "PASS",
+      "at": "2026-07-30T13:19:37.595Z",
+      "limitation": "Same-host two-process test, not physical SMB contention."
+    },
+    {
+      "id": "SYNC-ATOMIC-STRUCTURE",
+      "expected": "File.Replace lineage exists, previous/history exist, and no temp file remains after successful writes",
+      "observed": {
+        "previousExists": true,
+        "historyCount": 2,
+        "tempFiles": []
+      },
+      "status": "PASS",
+      "at": "2026-07-30T13:19:37.597Z",
+      "limitation": "Power-loss and real SMB atomicity were not tested."
+    },
+    {
+      "id": "SYNC-RECURSIVE-SEMANTIC-VALIDATION",
+      "expected": "HTTP 422 rejects a nested term missing id/code/name/definition and containing invalid base64",
+      "observed": {
+        "status": 200,
+        "response": {
+          "updatedAt": "2026-07-30T13:19:37.6052440Z",
+          "ok": true,
+          "checksum": "7f91d994a2acb205ea5b8cfd043d93e7afaacf0df38571a70ec4bdc01b20bf0d",
+          "revision": 3
+        }
+      },
+      "status": "FAIL",
+      "at": "2026-07-30T13:19:37.661Z"
+    },
+    {
+      "id": "IMAGE-EXACT-15MIB-PNG",
+      "expected": "A valid exact 15,728,640-byte image is accepted, persisted, and returned byte-for-byte through the second helper",
+      "observed": {
+        "fixture": {
+          "format": "PNG",
+          "verifiedFormat": "PNG",
+          "dimensions": [
+            2,
+            2
+          ],
+          "path": "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\sync-images-2026-07-30T13-19-34-981Z\\fixtures\\exact-15mib.png",
+          "bytes": 15728640
+        },
+        "requestBytes": 20972336,
+        "base64Characters": 20971542,
+        "putStatus": 200,
+        "putMs": 2478,
+        "getStatus": 200,
+        "getParseMs": 420,
+        "returnedCharacters": 20971542,
+        "returnedSha256": "2fd672f00d8928d0a449d566a381ef2c7f150377e94361f834ad21ab6a7acd74",
+        "sourceSha256": "2fd672f00d8928d0a449d566a381ef2c7f150377e94361f834ad21ab6a7acd74"
+      },
+      "status": "PASS",
+      "at": "2026-07-30T13:19:57.770Z"
+    },
+    {
+      "id": "IMAGE-EXACT-15MIB-JPEG",
+      "expected": "A valid exact 15,728,640-byte image is accepted, persisted, and returned byte-for-byte through the second helper",
+      "observed": {
+        "fixture": {
+          "format": "JPEG",
+          "verifiedFormat": "JPEG",
+          "dimensions": [
+            2,
+            2
+          ],
+          "path": "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\sync-images-2026-07-30T13-19-34-981Z\\fixtures\\exact-15mib.jpg",
+          "bytes": 15728640
+        },
+        "requestBytes": 20972347,
+        "base64Characters": 20971543,
+        "putStatus": 200,
+        "putMs": 5820,
+        "getStatus": 200,
+        "getParseMs": 187,
+        "returnedCharacters": 20971543,
+        "returnedSha256": "134d1ce9bd55808fe8023ea80447bbd6695c6b5fd0d7e9c641c04a210ce48e08",
+        "sourceSha256": "134d1ce9bd55808fe8023ea80447bbd6695c6b5fd0d7e9c641c04a210ce48e08"
+      },
+      "status": "PASS",
+      "at": "2026-07-30T13:20:28.259Z"
+    },
+    {
+      "id": "IMAGE-EXACT-15MIB-WEBP",
+      "expected": "A valid exact 15,728,640-byte image is accepted, persisted, and returned byte-for-byte through the second helper",
+      "observed": {
+        "fixture": {
+          "format": "WEBP",
+          "verifiedFormat": "WEBP",
+          "dimensions": [
+            2,
+            2
+          ],
+          "path": "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\sync-images-2026-07-30T13-19-34-981Z\\fixtures\\exact-15mib.webp",
+          "bytes": 15728640
+        },
+        "requestBytes": 20972347,
+        "base64Characters": 20971543,
+        "putStatus": 200,
+        "putMs": 3864,
+        "getStatus": 200,
+        "getParseMs": 213,
+        "returnedCharacters": 20971543,
+        "returnedSha256": "a5e47de8c00493e7a340a6f4ef6fdcac4161489c158d0be771c84dfc433cbfa3",
+        "sourceSha256": "a5e47de8c00493e7a340a6f4ef6fdcac4161489c158d0be771c84dfc433cbfa3"
+      },
+      "status": "PASS",
+      "at": "2026-07-30T13:20:47.333Z"
+    },
+    {
+      "id": "IMAGE-TWO-VALID-15MIB",
+      "expected": "Two individually valid exact 15 MiB images can coexist and the whole authoritative state remains savable",
+      "observed": {
+        "requestBytes": 41944290,
+        "serverMaxBodyBytesFromSource": 36700160,
+        "status": 413,
+        "response": {
+          "message": "Request body is too large"
+        }
+      },
+      "status": "FAIL",
+      "at": "2026-07-30T13:20:48.194Z"
+    },
+    {
+      "id": "RECOVERY-RESPECTS-ACTIVE-LOCK",
+      "expected": "Recovery refuses to replace state.json while .mechlex-state.lock is exclusively held",
+      "observed": {
+        "exitCode": 0,
+        "beforeRevision": 6,
+        "afterRevision": 5,
+        "stdoutTail": "=============================================\n MechLex Data Recovery Wizard\n=============================================\nShared folder: C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\sync-images-2026-07-30T13-19-34-981Z\\shared\n\nScanning and validating available backups...\n\nValid backups available for use:\n\r\nIndex Revision Date Size File\r\n----- -------- ---- ---- ----\r\n                             \r\n                             \r\n                             \r\n                             \r\n                             \r\n                             \r\n                             \r\n                             \r\n                             \r\n                             \r\n                             \r\n                             \r\n                             \r\n                             \r\n                             \r\n                             \r\n                             \r\n                             \r\n                             \r\n                             \r\n                             \r\n                             \r\n                             \r\n                             \r\n                             \r\n                             \r\n                             \r\n                             \r\n                             \r\n                             \r\n                             \r\n                             \r\n                             \r\n                             \r\n                             \r\n\r\n\r\n1\r\nYou selected backup from revision 5 created at 07/30/2026 16:20:03\ny\r\nSafety copy of current state saved as C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\sync-images-2026-07-30T13-19-34-981Z\\shared\\state.presafety.20260730_132054.json\n\nRestore completed successfully! Dictionary restored to revision 5\nYou can now restart the local server.\n",
+        "stderrTail": ""
+      },
+      "status": "FAIL",
+      "at": "2026-07-30T13:20:56.360Z"
+    },
+    {
+      "id": "SYNC-NO-FALSE-SUCCESS",
+      "expected": "No success toast is shown before the shared PUT is durably acknowledged",
+      "observed": {
+        "putCount": 1,
+        "toastEvents": [
+          {
+            "message": "The term was saved successfully",
+            "type": "success",
+            "at": 1785417656371
+          },
+          {
+            "message": "השמירה המשותפת נכשלה ולכן שינוי התוכן בוטל. המערכת עברה למצב קריאה בלבד.",
+            "type": "error",
+            "at": 1785417656499
+          }
+        ],
+        "successShownBeforeFailure": true,
+        "rolledBack": true
+      },
+      "status": "FAIL",
+      "at": "2026-07-30T13:20:56.622Z"
+    }
+  ],
+  "serverLogs": {
+    "stationA": [
+      "MechLex is running at http://127.0.0.1:51160/index.html\nShared data folder: C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\sync-images-2026-07-30T13-19-34-981Z\\shared\n",
+      "Local-only server: no inbound network port is opened.",
+      "\n",
+      "Keep this window open while using the dictionary. Press Ctrl+C to stop.",
+      "\n",
+      "WARNING: HTTP_413: Request body is too large\n"
+    ],
+    "stationB": [
+      "MechLex is running at http://127.0.0.1:51161/index.html",
+      "\n",
+      "Shared data folder: C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\sync-images-2026-07-30T13-19-34-981Z\\shared",
+      "\n",
+      "Local-only server: no inbound network port is opened.",
+      "\n",
+      "Keep this window open while using the dictionary. Press Ctrl+C to stop.",
+      "\n"
+    ]
+  }
+}

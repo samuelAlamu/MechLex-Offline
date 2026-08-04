@@ -1,0 +1,239 @@
+{
+  "generatedAt": "2026-07-30T13:17:05.480Z",
+  "projectRoot": "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork",
+  "workspaceRoot": "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\sync-images-2026-07-30T13-15-33-125Z",
+  "evidenceRoot": "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\evidence\\goal2\\sync-images",
+  "environment": {
+    "platform": "win32",
+    "node": "v20.15.0",
+    "powershell": "Windows PowerShell invoked with -NoProfile",
+    "stationA": {
+      "port": 59466,
+      "root": "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\sync-images-2026-07-30T13-15-33-125Z\\station-a"
+    },
+    "stationB": {
+      "port": 59467,
+      "root": "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\sync-images-2026-07-30T13-15-33-125Z\\station-b"
+    },
+    "sharedRoot": "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\sync-images-2026-07-30T13-15-33-125Z\\shared"
+  },
+  "sourceHashes": {
+    "server": "aa4cb8e410c4df7d38415dfb25fddf982c1c87d97477e7e38e76d6339e50a484",
+    "sharedSync": "ab04a11d4887498ebef5f86d25289970029973ff84340fa8664f330b2f3a0d39",
+    "recovery": "113b0a692dbc877bc92aba1203ef1d98832e050664ece46a6686ed6ccc1fa1ca"
+  },
+  "summary": {
+    "pass": 8,
+    "fail": 3,
+    "notTested": [
+      "Real SMB share with two physical workstations",
+      "Power-loss during File.Replace/Flush",
+      "Actual Edge 95 runtime and 15 MiB image rendering"
+    ]
+  },
+  "results": [
+    {
+      "id": "SYNC-STATIONS-HEALTH",
+      "expected": "Two independent loopback helpers point to the same disposable shared folder",
+      "observed": {
+        "stationA": {
+          "writable": true,
+          "ok": true,
+          "stateExists": false,
+          "mode": "offline-shared-folder"
+        },
+        "stationB": {
+          "writable": true,
+          "ok": true,
+          "stateExists": false,
+          "mode": "offline-shared-folder"
+        }
+      },
+      "status": "PASS",
+      "at": "2026-07-30T13:15:35.268Z"
+    },
+    {
+      "id": "SYNC-TERM-AVAILABLE-ALL-STATIONS",
+      "expected": "A term saved through station A is readable through independent station B",
+      "observed": {
+        "putStatus": 200,
+        "getStatus": 200,
+        "revision": 1,
+        "term": "Term added-on-a"
+      },
+      "status": "PASS",
+      "at": "2026-07-30T13:15:36.024Z",
+      "limitation": "Executed with two helper processes on one Windows host sharing one folder; real SMB/multi-PC propagation remains NOT TESTED."
+    },
+    {
+      "id": "SYNC-POLL-304",
+      "expected": "HTTP 304 Not Modified for a known current revision",
+      "observed": {
+        "status": 200,
+        "body": "{\"revision\":1,\"status\":\"unchanged\"}"
+      },
+      "status": "FAIL",
+      "at": "2026-07-30T13:15:36.054Z"
+    },
+    {
+      "id": "SYNC-REVISION-409",
+      "expected": "A stale expectedRevision is rejected with 409 and state bytes do not change",
+      "observed": {
+        "status": 409,
+        "response": {
+          "updatedAt": "2026-07-30T13:15:35.5600369Z",
+          "message": "A newer shared revision already exists",
+          "updatedBy": "station-a",
+          "currentRevision": 1
+        },
+        "beforeSha256": "a3d8ebe01f6f86d87a3eae562ee10d3fded455025fe14e2887d85c5e22b8c547",
+        "afterSha256": "a3d8ebe01f6f86d87a3eae562ee10d3fded455025fe14e2887d85c5e22b8c547"
+      },
+      "status": "PASS",
+      "at": "2026-07-30T13:15:36.274Z"
+    },
+    {
+      "id": "SYNC-CROSS-HELPER-RACE",
+      "expected": "Exactly one writer commits and one receives 409",
+      "observed": {
+        "statuses": [
+          200,
+          409
+        ],
+        "finalRevision": 2,
+        "finalReason": "race-a"
+      },
+      "status": "PASS",
+      "at": "2026-07-30T13:15:36.540Z",
+      "limitation": "Same-host two-process test, not physical SMB contention."
+    },
+    {
+      "id": "SYNC-ATOMIC-STRUCTURE",
+      "expected": "File.Replace lineage exists, previous/history exist, and no temp file remains after successful writes",
+      "observed": {
+        "previousExists": true,
+        "historyCount": 2,
+        "tempFiles": []
+      },
+      "status": "PASS",
+      "at": "2026-07-30T13:15:36.550Z",
+      "limitation": "Power-loss and real SMB atomicity were not tested."
+    },
+    {
+      "id": "SYNC-RECURSIVE-SEMANTIC-VALIDATION",
+      "expected": "HTTP 422 rejects a nested term missing id/code/name/definition and containing invalid base64",
+      "observed": {
+        "status": 200,
+        "response": {
+          "updatedAt": "2026-07-30T13:15:36.5740675Z",
+          "ok": true,
+          "checksum": "7f91d994a2acb205ea5b8cfd043d93e7afaacf0df38571a70ec4bdc01b20bf0d",
+          "revision": 3
+        }
+      },
+      "status": "FAIL",
+      "at": "2026-07-30T13:15:36.630Z"
+    },
+    {
+      "id": "IMAGE-EXACT-15MIB-PNG",
+      "expected": "A valid exact 15,728,640-byte image is accepted, persisted, and returned byte-for-byte through the second helper",
+      "observed": {
+        "fixture": {
+          "format": "PNG",
+          "verifiedFormat": "PNG",
+          "dimensions": [
+            2,
+            2
+          ],
+          "path": "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\sync-images-2026-07-30T13-15-33-125Z\\fixtures\\exact-15mib.png",
+          "bytes": 15728640
+        },
+        "requestBytes": 20972336,
+        "base64Characters": 20971542,
+        "putStatus": 200,
+        "putMs": 3373,
+        "getStatus": 200,
+        "getParseMs": 334,
+        "returnedCharacters": 20971542,
+        "returnedSha256": "2fd672f00d8928d0a449d566a381ef2c7f150377e94361f834ad21ab6a7acd74",
+        "sourceSha256": "2fd672f00d8928d0a449d566a381ef2c7f150377e94361f834ad21ab6a7acd74"
+      },
+      "status": "PASS",
+      "at": "2026-07-30T13:16:00.057Z"
+    },
+    {
+      "id": "IMAGE-EXACT-15MIB-JPEG",
+      "expected": "A valid exact 15,728,640-byte image is accepted, persisted, and returned byte-for-byte through the second helper",
+      "observed": {
+        "fixture": {
+          "format": "JPEG",
+          "verifiedFormat": "JPEG",
+          "dimensions": [
+            2,
+            2
+          ],
+          "path": "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\sync-images-2026-07-30T13-15-33-125Z\\fixtures\\exact-15mib.jpg",
+          "bytes": 15728640
+        },
+        "requestBytes": 20972347,
+        "base64Characters": 20971543,
+        "putStatus": 200,
+        "putMs": 5547,
+        "getStatus": 200,
+        "getParseMs": 286,
+        "returnedCharacters": 20971543,
+        "returnedSha256": "134d1ce9bd55808fe8023ea80447bbd6695c6b5fd0d7e9c641c04a210ce48e08",
+        "sourceSha256": "134d1ce9bd55808fe8023ea80447bbd6695c6b5fd0d7e9c641c04a210ce48e08"
+      },
+      "status": "PASS",
+      "at": "2026-07-30T13:16:36.103Z"
+    },
+    {
+      "id": "IMAGE-EXACT-15MIB-WEBP",
+      "expected": "A valid exact 15,728,640-byte image is accepted, persisted, and returned byte-for-byte through the second helper",
+      "observed": {
+        "fixture": {
+          "format": "WEBP",
+          "verifiedFormat": "WEBP",
+          "dimensions": [
+            2,
+            2
+          ],
+          "path": "C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\sync-images-2026-07-30T13-15-33-125Z\\fixtures\\exact-15mib.webp",
+          "bytes": 15728640
+        },
+        "requestBytes": 20972347,
+        "base64Characters": 20971543,
+        "putStatus": 200,
+        "putMs": 4779,
+        "getStatus": 200,
+        "getParseMs": 327,
+        "returnedCharacters": 20971543,
+        "returnedSha256": "a5e47de8c00493e7a340a6f4ef6fdcac4161489c158d0be771c84dfc433cbfa3",
+        "sourceSha256": "a5e47de8c00493e7a340a6f4ef6fdcac4161489c158d0be771c84dfc433cbfa3"
+      },
+      "status": "PASS",
+      "at": "2026-07-30T13:16:59.886Z"
+    },
+    {
+      "id": "HARNESS",
+      "expected": "Audit harness completes",
+      "observed": "Error: Lock holder did not become ready\n    at Timeout._onTimeout (file:///C:/Users/samue/Documents/Projects/Active/MechLex_Visual_Admin_Fork/codex-qa/evidence/goal2/sync-images/run-sync-images-audit.mjs:427:43)\n    at listOnTimeout (node:internal/timers:573:17)\n    at process.processTimers (node:internal/timers:514:7)",
+      "status": "FAIL",
+      "at": "2026-07-30T13:17:04.965Z"
+    }
+  ],
+  "serverLogs": {
+    "stationA": [
+      "MechLex is running at http://127.0.0.1:59466/index.html\nShared data folder: C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\sync-images-2026-07-30T13-15-33-125Z\\shared\nLocal-only server: no inbound network port is opened.\nKeep this window open while using the dictionary. Press Ctrl+C to stop.\n"
+    ],
+    "stationB": [
+      "MechLex is running at http://127.0.0.1:59467/index.html\n",
+      "Shared data folder: C:\\Users\\samue\\Documents\\Projects\\Active\\MechLex_Visual_Admin_Fork\\codex-qa\\workspaces\\sync-images-2026-07-30T13-15-33-125Z\\shared",
+      "\n",
+      "Local-only server: no inbound network port is opened.\n",
+      "Keep this window open while using the dictionary. Press Ctrl+C to stop.",
+      "\n"
+    ]
+  }
+}
