@@ -3861,14 +3861,14 @@ function bindEvents() {
     openAdmin(role, "");
   };
 
-  $("adminBtn").addEventListener("click", openPinDialog);
+  $("adminBtn")?.addEventListener("click", openPinDialog);
   $("pinForm")?.addEventListener("submit", handlePinSubmit);
-  $("closePinBtn").addEventListener("click", closePinDialog);
-  $("pinOverlay").addEventListener("click", (event) => { if (event.target === $("pinOverlay")) closePinDialog(); });
-  $("closeAdminBtn").addEventListener("click", closeAdmin);
+  $("closePinBtn")?.addEventListener("click", closePinDialog);
+  $("pinOverlay")?.addEventListener("click", (event) => { if (event.target === $("pinOverlay")) closePinDialog(); });
+  $("closeAdminBtn")?.addEventListener("click", closeAdmin);
   $("switchRoleBtn")?.addEventListener("click", switchAdminRole);
   $("headerExportDataBtn")?.addEventListener("click", exportRoleBackup);
-  $("adminOverlay").addEventListener("click", (event) => { if (event.target === $("adminOverlay")) closeAdmin(); });
+  $("adminOverlay")?.addEventListener("click", (event) => { if (event.target === $("adminOverlay")) closeAdmin(); });
   $$('[data-admin-tab]').forEach((button) => button.addEventListener("click", () => setAdminTab(button.dataset.adminTab)));
 
   $("reloadSharedDataBtn")?.addEventListener("click", restoreEmbeddedCatalog);
@@ -3876,48 +3876,48 @@ function bindEvents() {
 
   $("termForm")?.addEventListener("submit", upsertTermFromForm);
   $$('[data-rich-command]').forEach((button) => button.addEventListener("click", () => {
-    $("editDefinition").focus();
+    $("editDefinition")?.focus();
     document.execCommand(button.dataset.richCommand, false, button.dataset.richValue || null);
-    $("editDefinitionHtml").value = cleanRichHtml($("editDefinition").innerHTML);
+    if ($("editDefinitionHtml") && $("editDefinition")) $("editDefinitionHtml").value = cleanRichHtml($("editDefinition").innerHTML);
   }));
-  $("editDefinition").addEventListener("input", () => { $("editDefinitionHtml").value = cleanRichHtml($("editDefinition").innerHTML); });
-  $("clearTermBtn").addEventListener("click", clearTermForm);
-  $("deleteCurrentTermBtn").addEventListener("click", () => state.editingTermId && deleteTerm(state.editingTermId));
-  $("adminSearchInput").addEventListener("input", renderTermRecords);
-  $("adminDomainFilter").addEventListener("change", renderTermRecords);
-  $("editDomain").addEventListener("change", () => fillTermSubtopicSelect("direct"));
-  $("editImageFile").addEventListener("change", (event) => {
+  $("editDefinition")?.addEventListener("input", () => { if ($("editDefinitionHtml") && $("editDefinition")) $("editDefinitionHtml").value = cleanRichHtml($("editDefinition").innerHTML); });
+  $("clearTermBtn")?.addEventListener("click", clearTermForm);
+  $("deleteCurrentTermBtn")?.addEventListener("click", () => state.editingTermId && deleteTerm(state.editingTermId));
+  $("adminSearchInput")?.addEventListener("input", renderTermRecords);
+  $("adminDomainFilter")?.addEventListener("change", renderTermRecords);
+  $("editDomain")?.addEventListener("change", () => fillTermSubtopicSelect("direct"));
+  $("editImageFile")?.addEventListener("change", (event) => {
     const file = event.target.files?.[0];
     if (!file) return;
     if (file.size > 15 * 1024 * 1024) { event.target.value = ""; return toast("התמונה גדולה מ-15MB. יש לדחוס אותה כדי שהשמירה האופליין תישאר אמינה.", "error"); }
     const reader = new FileReader();
-    reader.onload = () => { state.embeddedImageData = String(reader.result); $("embeddedImageState").textContent = `הוטמעה: ${file.name}`; toast("התמונה הוטמעה בערך", "success"); };
+    reader.onload = () => { state.embeddedImageData = String(reader.result); if ($("embeddedImageState")) $("embeddedImageState").textContent = `הוטמעה: ${file.name}`; toast("התמונה הוטמעה בערך", "success"); };
     reader.onerror = () => toast("קריאת התמונה נכשלה", "error");
     reader.readAsDataURL(file);
   });
-  $("removeEmbeddedImageBtn").addEventListener("click", () => { state.embeddedImageData = ""; $("editImageFile").value = ""; $("embeddedImageState").textContent = "לא הוטמעה תמונה"; });
+  $("removeEmbeddedImageBtn")?.addEventListener("click", () => { state.embeddedImageData = ""; if ($("editImageFile")) $("editImageFile").value = ""; if ($("embeddedImageState")) $("embeddedImageState").textContent = "לא הוטמעה תמונה"; });
 
   $("domainForm")?.addEventListener("submit", upsertDomainFromForm);
-  $("addSubtopicBtn").addEventListener("click", () => {
+  $("addSubtopicBtn")?.addEventListener("click", () => {
     const existing = readSubtopicRows();
     renderSubtopicRows([...existing, {}]);
   });
-  $("clearDomainBtn").addEventListener("click", clearDomainForm);
-  $("deleteCurrentDomainBtn").addEventListener("click", () => state.editingDomainId && deleteDomain(state.editingDomainId));
+  $("clearDomainBtn")?.addEventListener("click", clearDomainForm);
+  $("deleteCurrentDomainBtn")?.addEventListener("click", () => state.editingDomainId && deleteDomain(state.editingDomainId));
   $("deleteDomainWithTermsBtn")?.addEventListener("click", () => state.editingDomainId && deleteDomainWithTerms(state.editingDomainId));
 
-  $("settingFontSize").addEventListener("input", (event) => { $("fontSizeOutput").textContent = `${event.target.value}px`; });
-  $("settingRadius").addEventListener("input", (event) => { $("radiusOutput").textContent = `${event.target.value}px`; });
-  $("applyAppearanceBtn").addEventListener("click", applyAppearanceFromForm);
-  $("resetAppearanceBtn").addEventListener("click", () => { settings.appearance = clone(DEFAULT_SETTINGS.appearance); settings.fields = clone(DEFAULT_SETTINGS.fields); loadAppearanceInputs(); renderFieldVisibility(); applyAppearanceFromForm(); });
+  $("settingFontSize")?.addEventListener("input", (event) => { if ($("fontSizeOutput")) $("fontSizeOutput").textContent = `${event.target.value}px`; });
+  $("settingRadius")?.addEventListener("input", (event) => { if ($("radiusOutput")) $("radiusOutput").textContent = `${event.target.value}px`; });
+  $("applyAppearanceBtn")?.addEventListener("click", applyAppearanceFromForm);
+  $("resetAppearanceBtn")?.addEventListener("click", () => { settings.appearance = clone(DEFAULT_SETTINGS.appearance); settings.fields = clone(DEFAULT_SETTINGS.fields); loadAppearanceInputs(); renderFieldVisibility(); applyAppearanceFromForm(); });
 
   $("exportContentJsonBtn")?.addEventListener("click", exportContentJson);
   $("exportFullJsonBtn")?.addEventListener("click", exportFullJson);
-  $("exportCsvBtn").addEventListener("click", exportCsv);
+  $("exportCsvBtn")?.addEventListener("click", exportCsv);
   $("restoreRecoveryBtn")?.addEventListener("click", restoreLatestRecoverySnapshot);
   $("auditCatalogBtn")?.addEventListener("click", runCatalogAudit);
-  $("importJsonBtn").addEventListener("click", () => $("importJsonFile").click());
-  $("importJsonFile").addEventListener("change", (event) => event.target.files?.[0] && importJsonFile(event.target.files[0]));
+  $("importJsonBtn")?.addEventListener("click", () => $("importJsonFile")?.click());
+  $("importJsonFile")?.addEventListener("change", (event) => event.target.files?.[0] && importJsonFile(event.target.files[0]));
   $("pinSettingsForm")?.addEventListener("submit", (event) => {
     event.preventDefault();
     const newContent = $("newContentPin")?.value.trim();
@@ -3945,12 +3945,12 @@ function bindEvents() {
       toast("נא להזין קוד חדש לתפקיד הרצוי", "error");
     }
   });
-  $("clearProgressBtn").addEventListener("click", () => {
+  $("clearProgressBtn")?.addEventListener("click", () => {
     if (!confirm("לאפס מועדפים, היסטוריה והתקדמות למידה?")) return;
     prefs.favorites = []; prefs.progress = {}; prefs.recent = [];
     saveAll("התקדמות הלמידה אופסה", { backupRelevant: "system" }); renderAdmin(); renderAll(); toast("ההתקדמות אופסה");
   });
-  $("resetAllBtn").addEventListener("click", () => {
+  $("resetAllBtn")?.addEventListener("click", () => {
     if (!confirm("איפוס מלא ימחק את כל הנתונים המקומיים ויחזיר את ברירת המחדל. להמשיך?")) return;
     if (!confirm("אישור סופי: הפעולה אינה ניתנת לביטול ללא קובץ גיבוי.")) return;
     data = normalizeData(Array.isArray(window.MECHLEX_SHARED_DATA) && window.MECHLEX_SHARED_DATA.length ? window.MECHLEX_SHARED_DATA : sampleData());
