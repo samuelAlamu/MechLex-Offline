@@ -1,0 +1,3 @@
+[2026-07-30T13:20:54.6084650Z] Manual restore operation started by admin to revision 5 from file state.previous.json
+[2026-07-30T13:20:54.6684732Z] Created pre-safety copy: C:\Users\samue\Documents\Projects\Active\MechLex_Visual_Admin_Fork\codex-qa\workspaces\sync-images-2026-07-30T13-19-34-981Z\shared\state.presafety.20260730_132054.json
+[2026-07-30T13:20:56.2121441Z] Restore completed successfully to revision 5

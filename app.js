@@ -1489,12 +1489,12 @@ function renderDictionary() {
       currentSubtopic = null;
       const domainData = data.find(d => d.id === currentDomain);
       if (domainData) {
-        html += `<div class="dict-domain-header clickable" role="button" tabindex="0" data-domain-id="${domainData.id}" style="border-bottom-color: ${domainData.color || 'var(--primary)'}; color: ${domainData.color || 'var(--text)'}; cursor: pointer;" aria-label="הצג הגדרת תחום">${domainData.name}</div>`;
+        html += `<div style="margin: 16px 0 12px 0;"><button type="button" class="btn dict-domain-header clickable" data-domain-id="${domainData.id}" style="background-color: ${domainData.color || 'var(--primary)'}; color: #fff; padding: 8px 20px; border-radius: 99px; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-weight: bold; font-size: 1.05rem; box-shadow: var(--shadow-sm); transition: transform 0.2s, box-shadow 0.2s;" aria-label="הצג הגדרת תחום" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='var(--shadow-md)';" onmouseout="this.style.transform=''; this.style.boxShadow='var(--shadow-sm)';"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>תחום: ${esc(domainData.name)}</button></div>`;
       }
     }
     if (term.subtopic && term.subtopic !== currentSubtopic) {
       currentSubtopic = term.subtopic;
-      html += `<div class="dict-subtopic-header clickable" role="button" tabindex="0" data-domain-id="${currentDomain}" data-subtopic="${currentSubtopic}" style="cursor: pointer;" aria-label="הצג הגדרת תת-תחום">${currentSubtopic}</div>`;
+      html += `<div style="margin: 12px 0 8px 0;"><button type="button" class="btn dict-subtopic-header clickable" data-domain-id="${currentDomain}" data-subtopic="${currentSubtopic}" style="background-color: var(--surface); color: var(--text-strong); padding: 6px 16px; border-radius: 99px; border: 1px solid var(--line); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-weight: bold; font-size: 0.95rem; box-shadow: var(--shadow-sm); transition: transform 0.2s, box-shadow 0.2s;" aria-label="הצג הגדרת תת-תחום" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='var(--shadow-md)';" onmouseout="this.style.transform=''; this.style.boxShadow='var(--shadow-sm)';"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>תת-תחום: ${esc(currentSubtopic)}</button></div>`;
     }
     html += renderCard(term);
   });

@@ -3,6 +3,7 @@
 
 ## Mission
 Perform an evidence-based, adversarial QA, repair and release audit of MechLex. The repository and executed tests are the source of truth. Do not optimize for producing reassuring prose.
+- Everytime we chat in hebrew Agent must always communicate with the user in Hebrew and wrap all its responses in a `<div dir="rtl">` HTML tag so that the UI renders it properly from right to left.
 
 ## Read first
 - `CODEX_QA_GOAL.md`
