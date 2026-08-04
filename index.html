@@ -53,22 +53,6 @@
             </span>
             <span>כל המושגים</span><b id="navAllCount">0</b>
           </button>
-          <button class="nav-item" data-collection="favorites">
-            <span class="nav-icon" aria-hidden="true">☆</span>
-            <span>מועדפים</span><b id="navFavCount">0</b>
-          </button>
-          <button class="nav-item" data-collection="learning">
-            <span class="nav-icon" aria-hidden="true">◔</span>
-            <span>בתהליך למידה</span><b id="navLearningCount">0</b>
-          </button>
-          <button class="nav-item" data-collection="mastered">
-            <span class="nav-icon" aria-hidden="true">✓</span>
-            <span>נלמדו</span><b id="navMasteredCount">0</b>
-          </button>
-          <button class="nav-item" data-collection="recent">
-            <span class="nav-icon" aria-hidden="true">↺</span>
-            <span>נצפו לאחרונה</span><b id="navRecentCount">0</b>
-          </button>
         </nav>
 
         <div class="sidebar-section">
@@ -96,9 +80,6 @@
           <kbd>/</kbd>
         </label>
         <div class="top-actions">
-          <button id="saveProgressBtn" class="btn primary compact-action" title="הורד קובץ התקדמות אישי לתיקיית ההורדות">שמירת מצב אישי</button>
-          <button id="loadProgressBtn" class="btn ghost compact-action" title="טען קובץ התקדמות אישי">טעינת מצב אישי</button>
-          <input id="importProgressFile" type="file" accept="application/json,text/plain,.json,.txt" hidden>
           <button id="randomBtn" class="btn random-discovery-btn" title="התחל מסלול מושגים אקראי"><span aria-hidden="true">✦</span><span>הפתיעו אותי</span></button>
           <button id="themeBtn" class="icon-btn" aria-label="החלף מצב תצוגה" title="מצב תצוגה">◐</button>
         </div>
@@ -223,13 +204,7 @@
           <span class="random-next-copy"><strong>למושג הבא</strong><small id="randomSessionProgress" aria-live="polite"></small></span>
           <span class="random-next-arrow" aria-hidden="true">←</span>
         </button>
-        <button id="termFavBtn" class="btn ghost"><span aria-hidden="true">☆</span><span>הוסף למועדפים</span></button>
-        <div class="learning-control">
-          <span>מצב למידה:</span>
-          <button class="status-btn" data-status="none">טרם התחלתי</button>
-          <button class="status-btn" data-status="learning">בתהליך</button>
-          <button class="status-btn" data-status="mastered">נלמד</button>
-        </div>
+
         <div class="export-actions">
           <button id="downloadPngBtn" class="btn ghost">הורדת PNG</button>
           <button id="downloadJpegBtn" class="btn ghost">הורדת JPEG</button>
@@ -384,13 +359,7 @@
       </header>
 
       <div class="term-toolbar">
-        <button id="domainFavBtn" class="btn ghost"><span aria-hidden="true">☆</span><span>הוסף למועדפים</span></button>
-        <div class="learning-control">
-          <span>מצב למידה:</span>
-          <button class="status-btn" data-status="none">טרם התחלתי</button>
-          <button class="status-btn" data-status="learning">בתהליך</button>
-          <button class="status-btn" data-status="mastered">נלמד</button>
-        </div>
+
         <div class="export-actions">
           <button id="downloadDomainPngBtn" class="btn ghost">הורדת PNG</button>
           <button id="downloadDomainJpegBtn" class="btn ghost">הורדת JPEG</button>
@@ -658,7 +627,7 @@
               <p>לפני איפוס מומלץ לייצא גיבוי. פעולות אלו משפיעות על הנתונים השמורים בדפדפן הנוכחי.</p>
               <div class="button-stack">
                 <button id="reloadSharedDataBtn" class="btn ghost">שחזר את קטלוג הבסיס המובנה</button>
-                <button id="clearProgressBtn" class="btn danger">איפוס התקדמות ומועדפים</button>
+
                 <button id="resetAllBtn" class="btn danger">איפוס מלא לברירת מחדל</button>
               </div>
             </article>
@@ -669,18 +638,7 @@
   </div>
 
 
-  <div id="progressOverlay" class="overlay hidden" role="dialog" aria-hidden="true" aria-modal="true" aria-labelledby="progressTitle" tabindex="-1">
-    <form id="progressForm" class="progress-dialog">
-      <button id="closeProgressBtn" type="button" class="icon-btn close-btn" aria-label="סגור">×</button>
-      <div class="progress-dialog-icon">⇩</div>
-      <h2 id="progressTitle">שמירת מצב אישי</h2>
-      <p>הקובץ יישמר בתיקיית ההורדות המוגדרת בדפדפן ויכלול רק מועדפים, מצב למידה, היסטוריית צפייה והעדפות תצוגה אישיות.</p>
-      <label>שם עובד — אופציונלי<input id="progressUserName" autocomplete="name" placeholder="לדוגמה: Samuel"></label>
-      <label>פורמט קובץ<select id="progressFileFormat"><option value="json">JSON</option><option value="txt">TXT</option></select></label>
-      <div class="progress-file-example"><span>שם הקובץ:</span><code id="progressFilenamePreview" dir="ltr"></code></div>
-      <button id="submitProgressBtn" class="btn primary full-width" type="submit">הורד קובץ אישי</button>
-    </form>
-  </div>
+
 
   <div id="pinOverlay" class="overlay hidden" role="dialog" aria-hidden="true" aria-modal="true" aria-labelledby="pinTitle" tabindex="-1">
     <form id="pinForm" class="pin-dialog">

@@ -842,11 +842,11 @@ function loadInitialState() {
   } else {
     prefs = clone(DEFAULT_PREFS);
   }
-  prefs.favorites = unique(prefs.favorites || []);
-  prefs.recent = unique(prefs.recent || []).slice(0, 20);
-  prefs.progress = prefs.progress && typeof prefs.progress === "object" ? prefs.progress : {};
+  prefs.favorites = [];
+  prefs.recent = [];
+  prefs.progress = {};
   prefs.view = prefs.view === "list" ? "list" : "grid";
-  prefs.profileName = String(prefs.profileName || "");
+  prefs.profileName = "";
 
   let settings;
   if (storage.getItem(KEYS.settings)) {
@@ -1429,15 +1429,11 @@ function statusLabel(status) {
 }
 
 function renderCard(term) {
-  const status = getTermStatus(term.id);
   const fields = settings.fields;
   return `
     <article class="term-card" tabindex="0" role="button" aria-label="פתח את הערך ${esc(term.name)}" data-term-id="${esc(term.id)}" style="--domain-color:${esc(term.domainColor)}">
       <div class="card-top">
         <div><div class="card-code">${esc(term.code)}</div></div>
-        <div class="card-actions">
-          <button data-card-fav="${esc(term.id)}" class="${prefs.favorites.includes(term.id) ? "active" : ""}" title="${prefs.favorites.includes(term.id) ? "הסר ממועדפים" : "הוסף למועדפים"}" aria-label="${prefs.favorites.includes(term.id) ? "הסר ממועדפים" : "הוסף למועדפים"}">${prefs.favorites.includes(term.id) ? "★" : "☆"}</button>
-        </div>
       </div>
       <div>
         <h3>${esc(term.name)}</h3>
@@ -1450,7 +1446,6 @@ function renderCard(term) {
         ${fields.symbol && term.symbol ? `<span class="meta-pill" dir="ltr">${esc(term.symbol)}</span>` : ""}
       </div>
       <footer class="card-footer">
-        <span class="card-status"><span class="status-dot ${status}"></span>${statusLabel(status)}</span>
         <span class="open-hint">פתח מושג מלא ←</span>
       </footer>
     </article>`;
@@ -2137,9 +2132,10 @@ function renderCurrentTerm() {
   $("termRelated").innerHTML = relatedTerms.length ? relatedTerms.map((item) => `<button class="related-btn" data-related-id="${esc(item.id)}"><span dir="ltr">${esc(item.code)}</span> · ${esc(item.name)}</button>`).join("") : `<span>לא הוגדרו מושגים קשורים.</span>`;
   $$('[data-related-id]').forEach((button) => button.addEventListener("click", () => openTerm(button.dataset.relatedId)));
 
-  const isFavorite = prefs.favorites.includes(term.id);
-  $("termFavBtn").innerHTML = `<span aria-hidden="true">${isFavorite ? "★" : "☆"}</span><span>${isFavorite ? "הסר ממועדפים" : "הוסף למועדפים"}</span>`;
-  $$('[data-status]').forEach((button) => button.classList.toggle("active", button.dataset.status === getTermStatus(term.id)));
+  if ($("termFavBtn")) {
+    const isFavorite = prefs.favorites.includes(term.id);
+    $("termFavBtn").innerHTML = `<span aria-hidden="true">${isFavorite ? "★" : "☆"}</span><span>${isFavorite ? "הסר ממועדפים" : "הוסף למועדפים"}</span>`;
+  }
 
   $("visualTitle").textContent = term.visualTitle || "מידע על התמונה";
   $("visualDescription").textContent = term.visualDescription || "";
@@ -3839,24 +3835,24 @@ function bindEvents() {
   $("randomNextBtn")?.addEventListener("click", openNextRandomTerm);
   $("termOverlay").addEventListener("pointerdown", (event) => { if (event.target === $("termOverlay")) closeTerm(); });
   $$('[data-term-tab]').forEach((button) => button.addEventListener("click", () => setTermTab(button.dataset.termTab)));
-  $("termFavBtn").addEventListener("click", () => state.currentTermId && toggleFavorite(state.currentTermId));
+  $("termFavBtn")?.addEventListener("click", () => state.currentTermId && toggleFavorite(state.currentTermId));
   $$('[data-status]').forEach((button) => button.addEventListener("click", () => state.currentTermId && setProgress(state.currentTermId, button.dataset.status)));
-  $("printTermBtn").addEventListener("click", () => window.print());
-  $("downloadPngBtn").addEventListener("click", () => exportTermImage("png"));
-  $("downloadJpegBtn").addEventListener("click", () => exportTermImage("jpeg"));
+  $("printTermBtn")?.addEventListener("click", () => window.print());
+  $("downloadPngBtn")?.addEventListener("click", () => exportTermImage("png"));
+  $("downloadJpegBtn")?.addEventListener("click", () => exportTermImage("jpeg"));
   $("detailTabs")?.addEventListener("click", (event) => {
     const button = event.target.closest("[data-detail-tab]");
     if (button) setDetailTab(button.dataset.detailTab);
   });
 
-  $("saveProgressBtn").addEventListener("click", openProgressDialog);
-  $("loadProgressBtn").addEventListener("click", () => $("importProgressFile").click());
-  $("importProgressFile").addEventListener("change", (event) => event.target.files?.[0] && importPersonalProgressFile(event.target.files[0]));
+  $("saveProgressBtn")?.addEventListener("click", openProgressDialog);
+  $("loadProgressBtn")?.addEventListener("click", () => $("importProgressFile")?.click());
+  $("importProgressFile")?.addEventListener("change", (event) => event.target.files?.[0] && importPersonalProgressFile(event.target.files[0]));
   $("progressForm")?.addEventListener("submit", exportPersonalProgress);
-  $("closeProgressBtn").addEventListener("click", closeProgressDialog);
-  $("progressOverlay").addEventListener("click", (event) => { if (event.target === $("progressOverlay")) closeProgressDialog(); });
-  $("progressUserName").addEventListener("input", updateProgressFilenamePreview);
-  $("progressFileFormat").addEventListener("change", updateProgressFilenamePreview);
+  $("closeProgressBtn")?.addEventListener("click", closeProgressDialog);
+  $("progressOverlay")?.addEventListener("click", (event) => { if (event.target === $("progressOverlay")) closeProgressDialog(); });
+  $("progressUserName")?.addEventListener("input", updateProgressFilenamePreview);
+  $("progressFileFormat")?.addEventListener("change", updateProgressFilenamePreview);
 
   const handlePinSubmit = (event) => {
     event?.preventDefault();
